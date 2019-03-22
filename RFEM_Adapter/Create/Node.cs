@@ -27,6 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Properties.Constraint;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
@@ -39,15 +40,26 @@ namespace BH.Adapter.RFEM
 
         private bool CreateCollection(IEnumerable<Node> nodes)
         {
-            //Code for creating a collection of nodes in the software
+            int nodeNum = 0;
 
-            foreach (Node node in nodes)
+            List<Node> nodeList = nodes.ToList();
+
+            rf.Node[] rfemNodes = new rf.Node[nodeList.Count()];
+
+            for (int i = 0; i < nodes.Count(); i++)
             {
-                //Tip: if the NextId method has been implemented you can get the id to be used for the creation out as (cast into applicable type used by the software):
-                object nodeId = node.CustomData[AdapterId];
+                nodeNum = System.Convert.ToInt32(NextId(nodeList[i].GetType())); //nodeNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);
+                oM.Geometry.Point position = Engine.Structure.Query.Position(nodeList[i]);
+
+                rfemNodes[i].No = nodeNum; 
+                rfemNodes[i].X = position.X; rfemNodes[i].Y = position.Y; rfemNodes[i].Z = position.Z;
             }
 
-            throw new NotImplementedException();
+            modelData.PrepareModification();
+            modelData.SetNodes(rfemNodes);
+            modelData.FinishModification();
+
+            return true;
         }
 
         /***************************************************/

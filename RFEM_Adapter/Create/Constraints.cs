@@ -27,48 +27,34 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Properties.Constraint;
-using BH.oM.Structure.Properties.Section;
-using BH.oM.Structure.Properties.Surface;
-using BH.oM.Structure.Properties;
-using BH.oM.Common.Materials;
 
 namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter
     {
+
         /***************************************************/
-        /**** Adapter overload method                   ****/
+        /**** Private methods                           ****/
         /***************************************************/
 
-        protected override bool Create<T>(IEnumerable<T> objects, bool replaceAll = false)
+        /***************************************************/
+
+        private bool CreateCollection(IEnumerable<Constraint6DOF> constraints)
         {
-            bool success = true;
+            List<Constraint6DOF> constList = constraints.ToList();
+            //IRobotLabel lable = m_RobotApplication.Project.Structure.Labels.Create(IRobotLabelType.I_LT_SUPPORT, "");
+            //IRobotNodeSupportData suppData = lable.Data;
 
-            success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
-
-            if (objects.Count() > 0)
+            for (int i = 0; i < constList.Count; i++)
             {
-                var watch = new System.Diagnostics.Stopwatch();
-                if (objects.First() is Constraint6DOF)
-                {
-                    success = CreateCollection(objects as IEnumerable<Constraint6DOF>);
-                }
-
-                if (objects.First() is Material)
-                {
-                    success = CreateCollection(objects as IEnumerable<Material>);
-                }
-
-                if (objects.First() is Node)
-                {
-                    success = CreateCollection(objects as IEnumerable<Node>);
-                }
-
+                //BH.Engine.Robot.Convert.RobotConstraint(suppData, constList[i]);
+                //m_RobotApplication.Project.Structure.Labels.StoreWithName(lable, constList[i].Name);
+                //if (m_SupportTaggs.ContainsKey(constList[i].Name))
+                //    m_SupportTaggs[constList[i].Name] = constList[i].TaggedName();
+                //else
+                //    m_SupportTaggs.Add(constList[i].Name, constList[i].TaggedName());
             }
-
-
-            return success;             //Finally return if the creation was successful or not
-
+            return true;
         }
 
         /***************************************************/

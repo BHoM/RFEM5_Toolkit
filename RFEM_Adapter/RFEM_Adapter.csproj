@@ -50,6 +50,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\Common_oM.dll</HintPath>
     </Reference>
+    <Reference Include="Dlubal.RFEM5, Version=5.5.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Geometry_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_Engine\Build\Geometry_Engine.dll</HintPath>
@@ -86,6 +89,7 @@
     <Compile Include="Create\Bar.cs" />
     <Compile Include="Create\Material.cs" />
     <Compile Include="Create\Node.cs" />
+    <Compile Include="Create\Constraints.cs" />
     <Compile Include="Create\SectionProperty.cs" />
     <Compile Include="Create\_Create.cs" />
     <Compile Include="Delete\_Delete.cs" />
