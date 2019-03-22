@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
@@ -36,24 +37,17 @@ namespace BH.Adapter.RFEM
 
         protected override object NextId(Type objectType, bool refresh = false)
         {
-            //Method that returns the next free index for a specific object type. 
-            //Software dependent which type of index to return. Could be int, string, Guid or whatever the specific software is using
-            //At the point of index assignment, the objects have not yet been created in the target software. 
-            //The if statement below is designed to grab the first free index for the first object being created and after that increment.
-
-            //Change from object to what the specific software is using
-            object index;
+            int index;
 
             if (!refresh && m_indexDict.TryGetValue(objectType, out index))
             {
-                //If possible to find the next index based on the previous one (for example index++ for an int based index system) do it here
-
-                //Example int based:
-                //index++
+                index++;
+                m_indexDict[objectType] = index;
             }
             else
             {
-                index = 0;//Insert code to get the next index of the specific type
+                index = GetLastIdOfType(objectType) + 1;
+                m_indexDict[objectType] = index;
             }
 
             m_indexDict[objectType] = index;
@@ -61,11 +55,45 @@ namespace BH.Adapter.RFEM
         }
 
         /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private int GetLastIdOfType(Type objectType)
+        {
+            int lastId;
+
+            string typeString = objectType.ToString();
+
+            switch (typeString)
+            {
+                case "Node":
+                    lastId = (modelData.GetNodeCount() == 0) ? 0 : modelData.GetNode(modelData.GetNodeCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    break;
+
+                case "Bar":
+                    lastId = (modelData.GetMemberCount() == 0) ? 0 : modelData.GetMember(modelData.GetMemberCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    break;
+
+                case "Material":
+                    lastId = (modelData.GetMaterialCount() == 0) ? 0 : modelData.GetMaterial(modelData.GetMaterialCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    break;
+                case "SectionProperty":
+                    lastId = (modelData.GetCrossSectionCount() == 0) ? 0 : modelData.GetCrossSection(modelData.GetCrossSectionCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    break;
+
+                default:
+                    lastId = 0;//<---- log error
+                    break;
+            }
+            return lastId;
+        }
+
+        /***************************************************/
         /**** Private Fields                            ****/
         /***************************************************/
 
         //Change from object to the index type used by the specific software
-        private Dictionary<Type, object> m_indexDict = new Dictionary<Type, object>();
+        private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
 
 
         /***************************************************/
