@@ -66,6 +66,8 @@ namespace BH.Adapter.RFEM
 
             }
 
+            if(app!=null)
+                app.UnlockLicense();
 
             return success;             //Finally return if the creation was successful or not
 
