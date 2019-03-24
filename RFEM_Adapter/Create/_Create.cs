@@ -46,28 +46,7 @@ namespace BH.Adapter.RFEM
 
             success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
 
-            if (objects.Count() > 0)
-            {
-                var watch = new System.Diagnostics.Stopwatch();
-                if (objects.First() is Constraint6DOF)
-                {
-                    success = CreateCollection(objects as IEnumerable<Constraint6DOF>);
-                }
-
-                if (objects.First() is Material)
-                {
-                    success = CreateCollection(objects as IEnumerable<Material>);
-                }
-
-                if (objects.First() is Node)
-                {
-                    success = CreateCollection(objects as IEnumerable<Node>);
-                }
-
-            }
-
-            if(app!=null)
-                app.UnlockLicense();
+            app.UnlockLicense();
 
             return success;             //Finally return if the creation was successful or not
 
