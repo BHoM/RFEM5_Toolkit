@@ -59,8 +59,6 @@ namespace BH.Adapter.RFEM
             modelData.SetNodes(rfemNodes);
             modelData.FinishModification();
 
-            app.UnlockLicense();
-
             return true;
         }
 
