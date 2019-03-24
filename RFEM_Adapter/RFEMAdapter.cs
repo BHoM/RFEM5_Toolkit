@@ -99,10 +99,9 @@ namespace BH.Adapter.RFEM
 
                 app.Show(); // Shows the GUI
 
-
+               
 
             }
-
         }
 
         /***************************************************/
