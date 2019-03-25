@@ -65,16 +65,23 @@ namespace BH.Adapter.RFEM
 
                 if (!IsApplicationRunning())
                 {
-                    app = new Application();
+                    try
+                    {
+                        app = new Application();
 
-                    if (!string.IsNullOrWhiteSpace(filePath) && File.Exists(filePath))
-                        model = app.OpenModel(filePath);
-                    else
-                        app.CreateModel("testModel");
+                        if (!string.IsNullOrWhiteSpace(filePath) && File.Exists(filePath))
+                            model = app.OpenModel(filePath);
+                        else
+                            app.CreateModel("testModel");
 
-                    model = app.GetModel(0);
+                        model = app.GetModel(0);
 
-                    model.Activate();
+                        model.Activate();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception($"Error creating a new Dlubal RFEM instance. Check if licenses are available. Error message:\n {e.Message}");
+                    }
 
                 }
                 else
@@ -90,7 +97,7 @@ namespace BH.Adapter.RFEM
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"Error creating a new Dlubal RFEM instance. Check whether licenses are available. Error message:\n {e.Message}");
+                        throw new Exception($"Error attaching to an existing Dlubal RFEM instance. Look in Windows Task Manager if there is a frozen RFEM process in background and close it.");
                     }
                 }
 
