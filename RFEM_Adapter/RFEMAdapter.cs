@@ -35,6 +35,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace BH.Adapter.RFEM
 {
@@ -65,8 +66,6 @@ namespace BH.Adapter.RFEM
                 if (!IsApplicationRunning())
                 {
                     app = new Application();
-
-                    app.LockLicense();
 
                     if (!string.IsNullOrWhiteSpace(filePath) && File.Exists(filePath))
                         model = app.OpenModel(filePath);
@@ -99,8 +98,7 @@ namespace BH.Adapter.RFEM
 
                 app.Show(); // Shows the GUI
 
-               
-
+                app.UnlockLicense(); // needed here to prevent GUI lock after showing it
             }
         }
 

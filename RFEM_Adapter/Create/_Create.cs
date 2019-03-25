@@ -44,6 +44,8 @@ namespace BH.Adapter.RFEM
         {
             bool success = true;
 
+            app.LockLicense();
+
             success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
 
             app.UnlockLicense();
