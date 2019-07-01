@@ -42,9 +42,7 @@ namespace BH.Adapter.RFEM
         private bool CreateCollection(IEnumerable<Node> nodes)
         {
             int nodeNum = 0;
-
             List<Node> nodeList = nodes.ToList();
-
             rf.Node[] rfemNodes = new rf.Node[nodeList.Count()];
 
             for (int i = 0; i < nodes.Count(); i++)
