@@ -48,8 +48,19 @@ namespace BH.Adapter.RFEM
             for (int i = 0; i < nodes.Count(); i++)
             {
                 nodeNum = System.Convert.ToInt32(NextId(nodeList[i].GetType())); //nodeNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);
-                rfemNodes[i] = nodeList[i].ToRFEM(nodeNum);
+                //rfemNodes[i] = nodeList[i].ToRFEM(nodeNum);
+
+                //temp
+                rfemNodes[i].No = nodeNum;
+                rfemNodes[i].X = nodeList[i].Position.X;
+                rfemNodes[i].Y = nodeList[i].Position.Y;
+                rfemNodes[i].Z = nodeList[i].Position.Z;
+
             }
+
+            // temp workaround - remove this
+            if (rfemNodes.Length < 1)
+                return true;
 
             modelData.PrepareModification();
             modelData.SetNodes(rfemNodes);
