@@ -28,7 +28,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.Properties.Constraint;
+using BH.oM.Structure.Constraints;
 
 namespace BH.Adapter.RFEM
 {

@@ -25,8 +25,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Common.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.Properties;
-//using BH.Adapter.Queries;
 using BH.oM.Base;
 using System.Runtime.InteropServices;
 using rf = Dlubal.RFEM5;

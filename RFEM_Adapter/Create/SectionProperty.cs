@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Structure.Properties.Section;
+using BH.oM.Structure.SectionProperties;
 using BH.oM.Common.Materials;
 
 namespace BH.Adapter.RFEM
@@ -47,7 +47,7 @@ namespace BH.Adapter.RFEM
                 object secPropId = sectionProperty.CustomData[AdapterId];
                 //If also the default implmentation for the DependencyTypes is used,
                 //one can from here get the id's of the subobjects by calling (cast into applicable type used by the software): 
-                object materialId = sectionProperty.Material.CustomData[AdapterId];
+                //object materialId = sectionProperty.Material.CustomData[AdapterId];
             }
 
             throw new NotImplementedException();
