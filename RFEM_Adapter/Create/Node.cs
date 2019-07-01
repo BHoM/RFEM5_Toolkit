@@ -50,8 +50,7 @@ namespace BH.Adapter.RFEM
             for (int i = 0; i < nodes.Count(); i++)
             {
                 nodeNum = System.Convert.ToInt32(NextId(nodeList[i].GetType())); //nodeNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);
-                rfemNodes[i] = nodeList[i].ToRFEM();
-                rfemNodes[i].No = nodeNum; 
+                rfemNodes[i] = nodeList[i].ToRFEM(nodeNum);
             }
 
             modelData.PrepareModification();

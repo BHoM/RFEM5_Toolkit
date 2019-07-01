@@ -17,10 +17,10 @@ namespace BH.Engine.RFEM
 
         //Add methods for converting From BHoM to the specific software types, if possible to do without any BHoM calls
         //Example:
-        public static rf.Node ToRFEM(this Node node)
+        public static rf.Node ToRFEM(this Node node, int nodeId)
         {
             rf.Node rfNode = new Dlubal.RFEM5.Node();
-
+            rfNode.No = nodeId;
             rfNode.X = node.Position.X;
             rfNode.Y = node.Position.Z;
             rfNode.Z = node.Position.Y;
