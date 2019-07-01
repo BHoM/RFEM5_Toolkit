@@ -27,6 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
+using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -49,10 +50,8 @@ namespace BH.Adapter.RFEM
             for (int i = 0; i < nodes.Count(); i++)
             {
                 nodeNum = System.Convert.ToInt32(NextId(nodeList[i].GetType())); //nodeNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);
-                oM.Geometry.Point position = Engine.Structure.Query.Position(nodeList[i]);
-
+                rfemNodes[i] = nodeList[i].ToRFEM();
                 rfemNodes[i].No = nodeNum; 
-                rfemNodes[i].X = position.X; rfemNodes[i].Y = position.Y; rfemNodes[i].Z = position.Z;
             }
 
             modelData.PrepareModification();
