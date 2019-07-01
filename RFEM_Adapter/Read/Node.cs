@@ -29,6 +29,10 @@ using System.Threading.Tasks;
 using BH.oM.Base;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
+using BH.oM.Structure.Elements;
+using BH.oM.Structure.Constraints;
+using BH.Engine.RFEM;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
@@ -44,9 +48,26 @@ namespace BH.Adapter.RFEM
 
         private List<Node> ReadNodes(List<string> ids = null)
         {
-            Engine.Reflection.Compute.RecordWarning("ReadNodes not implemented");
+            //Engine.Reflection.Compute.RecordWarning("ReadNodes not implemented");
 
-            return new List<Node>();
+            List<Node> nodeList = new List<Node>();
+
+            if (ids == null)
+            {
+                foreach (rf.Node rfNode in modelData.GetNodes())
+                {
+                    nodeList.Add(rfNode.ToBHoM());
+                }
+            }
+            else
+            {
+                foreach (string id in ids)
+                {
+                    nodeList.Add(modelData.GetNode(Int32.Parse(id), rf.ItemAt.AtNo).GetData().ToBHoM());
+                }
+            }
+
+            return nodeList;
         }
 
         /***************************************************/
