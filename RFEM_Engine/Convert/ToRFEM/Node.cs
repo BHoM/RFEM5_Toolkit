@@ -19,7 +19,7 @@ namespace BH.Engine.RFEM
         //Example:
         public static rf.Node ToRFEM(this Node node, int nodeId)
         {
-            rf.Node rfNode = new Dlubal.RFEM5.Node();
+            rf.Node rfNode = new rf.Node();
             rfNode.No = nodeId;
             rfNode.X = node.Position.X;
             rfNode.Y = node.Position.Z;

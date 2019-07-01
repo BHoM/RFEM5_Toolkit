@@ -20,10 +20,7 @@ namespace BH.Engine.RFEM
         //Example:
         public static Node ToBHoM(this rf.Node node)
         {
-            Node bhNode = new Node();
-            bhNode.Position.X = node.X;
-            bhNode.Position.Y = node.Y;
-            bhNode.Position.Z = node.Z;
+            Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
             bhNode.CustomData.Add(AdapterId, node.No);
 
             return bhNode;

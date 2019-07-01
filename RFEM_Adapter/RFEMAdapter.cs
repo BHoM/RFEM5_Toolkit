@@ -99,7 +99,7 @@ namespace BH.Adapter.RFEM
                     }
                 }
 
-                modelData = model.GetModelData();
+                modelData = model.GetModelData() as rf.IModelData2;//only this version of modeldata supports setting multiple elements at a time - this is not obvious from documentation!!
 
                 app.Show(); // Shows the GUI
 
@@ -133,7 +133,7 @@ namespace BH.Adapter.RFEM
 
         private IApplication app = null;
         private IModel model = null;
-        private IModelData modelData = null;
+        private IModelData2 modelData = null;
         /// <summary>
         /// Level of RFEM application lock: 0=no lock - ready to return UI, 1=licence locked, 2=model locked and ready for modification 
         /// </summary>
