@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
+using BH.oM.Structure.Constraints;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Engine.RFEM
 {
@@ -15,10 +17,16 @@ namespace BH.Engine.RFEM
 
         //Add methods for converting From BHoM to the specific software types, if possible to do without any BHoM calls
         //Example:
-        //public static RFEMNode ToRFEM(this Node node)
-        //{
-        //    //Insert code for convertion
-        //}
+        public static rf.Node ToRFEM(this Node node)
+        {
+            rf.Node rfNode = new Dlubal.RFEM5.Node();
+
+            rfNode.X = node.Position.X;
+            rfNode.Y = node.Position.Z;
+            rfNode.Z = node.Position.Y;
+
+            return rfNode;
+        }
 
         /***************************************************/
     }
