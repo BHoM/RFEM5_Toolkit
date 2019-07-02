@@ -51,7 +51,8 @@ namespace BH.Adapter.RFEM
                 //rfemNodes[i] = nodeList[i].ToRFEM(nodeNum);
 
                 //temp
-                rfemNodes[i].No = nodeNum;
+                rfemNodes[i] = new rf.Node();
+                rfemNodes[i].No = i + 124;// nodeNum;
                 rfemNodes[i].X = nodeList[i].Position.X;
                 rfemNodes[i].Y = nodeList[i].Position.Y;
                 rfemNodes[i].Z = nodeList[i].Position.Z;
@@ -62,9 +63,11 @@ namespace BH.Adapter.RFEM
             if (rfemNodes.Length < 1)
                 return true;
 
-            modelData.PrepareModification();
+            //modelData.PrepareModification();
+            //modelData.IgnoreErrors(true);
+
             modelData.SetNodes(rfemNodes);
-            modelData.FinishModification();
+            //modelData.FinishModification();
 
             return true;
         }

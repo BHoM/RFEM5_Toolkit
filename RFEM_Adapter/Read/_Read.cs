@@ -43,6 +43,9 @@ namespace BH.Adapter.RFEM
         {
             //Main dispatcher method.
             //Choose what to pull out depending on the type.
+
+            modelData.PrepareModification();
+
             if (type == typeof(Node))
                 return ReadNodes(ids as dynamic);
             else if (type == typeof(Bar))
@@ -51,6 +54,8 @@ namespace BH.Adapter.RFEM
                 return ReadSectionProperties(ids as dynamic);
             else if (type == typeof(Material))
                 return ReadMaterials(ids as dynamic);
+
+            modelData.FinishModification();
 
             return new List<IBHoMObject>();
         }
