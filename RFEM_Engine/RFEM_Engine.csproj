@@ -87,6 +87,7 @@
     <Compile Include="Convert\AdapterId.cs" />
     <Compile Include="Convert\ToBHoM\Node.cs" />
     <Compile Include="Convert\ToRFEM\Node.cs" />
+    <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
