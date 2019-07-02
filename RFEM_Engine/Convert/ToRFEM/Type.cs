@@ -17,7 +17,7 @@ namespace BH.Engine.RFEM
 
         //Add methods for converting From BHoM to the specific software types, if possible to do without any BHoM calls
 
-        public static rf.ModelObjectType ToRfemType(this Type bhObjectType)
+        public static rf.ModelObjectType ToRFEM(this Type bhObjectType)
         {
             string typeString = bhObjectType.ToString();
 

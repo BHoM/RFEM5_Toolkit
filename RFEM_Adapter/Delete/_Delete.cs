@@ -26,6 +26,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -39,7 +40,7 @@ namespace BH.Adapter.RFEM
         protected override int Delete(Type type, IEnumerable<object> ids)
         {
             //Insert code here to enable deletion of specific types of objects with specific ids
-            if (type.ToRfemType() == rf.ModelObjectType.UnknownObject)
+            if (type.ToRFEM() == rf.ModelObjectType.UnknownObject)
             {
                 return 0;//Fail
             }
