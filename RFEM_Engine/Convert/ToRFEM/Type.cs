@@ -19,8 +19,8 @@ namespace BH.Engine.RFEM
 
         public static rf.ModelObjectType ToRFEM(this Type bhObjectType)
         {
-            string typeString = bhObjectType.ToString();
-
+            string typeString = bhObjectType.Name;
+            
             switch (typeString)
             {
                 case "Node":

@@ -50,7 +50,7 @@ namespace BH.Adapter.RFEM
                 m_indexDict[objectType] = index;
             }
 
-            m_indexDict[objectType] = index;
+            //m_indexDict[objectType] = index;
             return index;
         }
 
@@ -62,7 +62,7 @@ namespace BH.Adapter.RFEM
         {
             int lastId;
 
-            string typeString = objectType.ToString();
+            string typeString = objectType.Name;
 
             switch (typeString)
             {

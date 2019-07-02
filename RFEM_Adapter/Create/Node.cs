@@ -41,33 +41,24 @@ namespace BH.Adapter.RFEM
 
         private bool CreateCollection(IEnumerable<Node> nodes)
         {
-            int nodeNum = 0;
-            List<Node> nodeList = nodes.ToList();
-            rf.Node[] rfemNodes = new rf.Node[nodeList.Count()];
-
-            for (int i = 0; i < nodes.Count(); i++)
+            if (nodes.Count()>0)
             {
-                nodeNum = System.Convert.ToInt32(NextId(nodeList[i].GetType())); //nodeNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);
-                //rfemNodes[i] = nodeList[i].ToRFEM(nodeNum);
+                int nodeNum = 0;
+                List<Node> nodeList = nodes.ToList();
+                rf.Node[] rfemNodes = new rf.Node[nodeList.Count()];
 
-                //temp
-                rfemNodes[i] = new rf.Node();
-                rfemNodes[i].No = i + 124;// nodeNum;
-                rfemNodes[i].X = nodeList[i].Position.X;
-                rfemNodes[i].Y = nodeList[i].Position.Y;
-                rfemNodes[i].Z = nodeList[i].Position.Z;
+                for (int i = 0; i < nodes.Count(); i++)
+                {
+                    nodeNum = System.Convert.ToInt32(NextId(nodeList[i].GetType())); //nodeNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);
+                                                                                     //rfemNodes[i] = nodeList[i].ToRFEM(nodeNum);
+                    rf.Node rfNode = nodeList[i].ToRFEM(nodeNum);
+                    modelData.SetNode(rfNode);
+                }
 
             }
 
-            // temp workaround - remove this
-            if (rfemNodes.Length < 1)
-                return true;
 
-            //modelData.PrepareModification();
-            //modelData.IgnoreErrors(true);
-
-            modelData.SetNodes(rfemNodes);
-            //modelData.FinishModification();
+            //modelData.SetNodes(rfemNodes);
 
             return true;
         }
