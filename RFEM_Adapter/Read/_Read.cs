@@ -28,6 +28,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base;
 using BH.oM.Structure.Elements;
+using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Common.Materials;
 
@@ -48,6 +49,8 @@ namespace BH.Adapter.RFEM
 
             if (type == typeof(Node))
                 return ReadNodes(ids as dynamic);
+            if (type == typeof(Constraint6DOF))
+                return ReadConstraints(ids as dynamic);
             else if (type == typeof(Bar))
                 return ReadBars(ids as dynamic);
             else if (type == typeof(ISectionProperty) || type.GetInterfaces().Contains(typeof(ISectionProperty)))

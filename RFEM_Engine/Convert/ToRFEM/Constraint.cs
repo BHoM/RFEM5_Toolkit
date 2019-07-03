@@ -21,6 +21,7 @@ namespace BH.Engine.RFEM
         {
             rf.NodalSupport rfConstraint = new rf.NodalSupport();
             rfConstraint.No = constraintId;
+            rfConstraint.NodeList = "1";//<-- temp just for testi´ng
 
             //Translation - RFEM unit is N/m
             if (constraint.TranslationX == DOFType.Free)
