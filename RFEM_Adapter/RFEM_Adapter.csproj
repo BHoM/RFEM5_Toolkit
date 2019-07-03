@@ -99,6 +99,7 @@
     <Compile Include="Create\SectionProperty.cs" />
     <Compile Include="Create\_Create.cs" />
     <Compile Include="Delete\_Delete.cs" />
+    <Compile Include="Read\Constraint.cs" />
     <Compile Include="Types\NextId.cs" />
     <Compile Include="Read\Bar.cs" />
     <Compile Include="Read\Material.cs" />
