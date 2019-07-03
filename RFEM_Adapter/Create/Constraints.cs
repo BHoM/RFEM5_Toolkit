@@ -27,6 +27,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
+using BH.Engine.RFEM;
+
+using rf = Dlubal.RFEM5;
+
 
 namespace BH.Adapter.RFEM
 {
@@ -41,22 +45,22 @@ namespace BH.Adapter.RFEM
 
         private bool CreateCollection(IEnumerable<Constraint6DOF> constraints)
         {
-            List<Constraint6DOF> constList = constraints.ToList();
-            //IRobotLabel lable = m_RobotApplication.Project.Structure.Labels.Create(IRobotLabelType.I_LT_SUPPORT, "");
-            //IRobotNodeSupportData suppData = lable.Data;
-
-            for (int i = 0; i < constList.Count; i++)
+            if (constraints.Count()>0)
             {
-                //BH.Engine.Robot.Convert.RobotConstraint(suppData, constList[i]);
-                //m_RobotApplication.Project.Structure.Labels.StoreWithName(lable, constList[i].Name);
-                //if (m_SupportTaggs.ContainsKey(constList[i].Name))
-                //    m_SupportTaggs[constList[i].Name] = constList[i].TaggedName();
-                //else
-                //    m_SupportTaggs.Add(constList[i].Name, constList[i].TaggedName());
+                List<Constraint6DOF> constList = constraints.ToList();
+
+                for (int i = 0; i < constList.Count; i++)
+                {
+                    int idNum = System.Convert.ToInt32(NextId(constList[i].GetType()));
+
+                    rf.NodalSupport rfConstraint = constList[i].ToRFEM(idNum);
+
+                    modelData.SetNodalSupport(rfConstraint);
+                }
             }
+
             return true;
         }
 
-        /***************************************************/
     }
 }
