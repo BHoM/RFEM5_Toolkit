@@ -24,7 +24,6 @@ namespace BH.Engine.RFEM
             rfNode.X = node.Position.X;
             rfNode.Y = node.Position.Z;
             rfNode.Z = node.Position.Y;
-            rfNode.Type = rf.NodeType.Standard;//<--temp
             return rfNode;
         }
 
