@@ -41,8 +41,6 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        /***************************************************/
-
         private bool CreateCollection(IEnumerable<Constraint6DOF> constraints)
         {
             if (constraints.Count()>0)

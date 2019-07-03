@@ -70,6 +70,10 @@ namespace BH.Adapter.RFEM
                     lastId = (modelData.GetNodeCount() == 0) ? 0 : modelData.GetNode(modelData.GetNodeCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
+                case "Constraint6DOF":
+                    lastId = (modelData.GetNodalSupportCount() == 0) ? 0 : modelData.GetNodalSupport(modelData.GetNodalSupportCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    break;
+
                 case "Bar":
                     lastId = (modelData.GetMemberCount() == 0) ? 0 : modelData.GetMember(modelData.GetMemberCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
