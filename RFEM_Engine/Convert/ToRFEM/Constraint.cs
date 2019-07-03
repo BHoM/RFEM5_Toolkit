@@ -15,13 +15,11 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        //Add methods for converting From BHoM to the specific software types, if possible to do without any BHoM calls
-        //Example:
-        public static rf.NodalSupport ToRFEM(this Constraint6DOF constraint, int constraintId)
+        public static rf.NodalSupport ToRFEM(this Constraint6DOF constraint, int constraintId, int nodeId)
         {
             rf.NodalSupport rfConstraint = new rf.NodalSupport();
             rfConstraint.No = constraintId;
-            rfConstraint.NodeList = "1";//<-- temp just for testi´ng
+            rfConstraint.NodeList = nodeId.ToString();//<-- id reference to node(s) required for writing constraint to RFEM 
 
             //Translation - RFEM unit is N/m
             if (constraint.TranslationX == DOFType.Free)
