@@ -25,6 +25,8 @@ namespace BH.Engine.RFEM
             {
                 case "Node":
                     return rf.ModelObjectType.NodeObject;
+                case "Constraint6DOF":
+                    return rf.ModelObjectType.NodalSupportObject;
                 case "Bar":
                     return rf.ModelObjectType.MemberObject;
                 case "Material":
