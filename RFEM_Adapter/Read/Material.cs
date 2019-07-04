@@ -27,6 +27,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Common.Materials;
+using BH.oM.Structure.MaterialFragments;
+using BH.Engine.RFEM;
+using rf = Dlubal.RFEM5;
+
 
 namespace BH.Adapter.RFEM
 {
@@ -37,13 +41,27 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        //The List<string> in the methods below can be changed to a list of any type of identification more suitable for the toolkit
-        //If no ids are provided, the convention is to return all elements of the type
 
-        private List<Material> ReadMaterials(List<string> ids = null)
+        private List<IMaterialFragment> ReadMaterials(List<string> ids = null)
         {
-            //Implement code for reading materials
-            throw new NotImplementedException();
+            List<IMaterialFragment> materialList = new List<IMaterialFragment>();
+
+            if (ids == null)
+            {
+                foreach (rf.Material rfMaterial in modelData.GetMaterials())
+                {
+                    materialList.Add(rfMaterial.ToBHoM());
+                }
+            }
+            else
+            {
+                foreach (string id in ids)
+                {
+                    materialList.Add(modelData.GetMaterial(Int32.Parse(id), rf.ItemAt.AtNo).GetData().ToBHoM());
+                }
+            }
+
+            return materialList;
         }
 
         /***************************************************/

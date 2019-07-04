@@ -31,6 +31,7 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Common.Materials;
+using BH.oM.Structure.MaterialFragments;
 
 namespace BH.Adapter.RFEM
 {
@@ -55,7 +56,7 @@ namespace BH.Adapter.RFEM
                 return ReadBars(ids as dynamic);
             else if (type == typeof(ISectionProperty) || type.GetInterfaces().Contains(typeof(ISectionProperty)))
                 return ReadSectionProperties(ids as dynamic);
-            else if (type == typeof(Material))
+            else if (type == typeof(IMaterialFragment))
                 return ReadMaterials(ids as dynamic);
 
             modelData.FinishModification();
