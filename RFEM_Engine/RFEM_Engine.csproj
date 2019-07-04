@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Convert\AdapterId.cs" />
     <Compile Include="Convert\ToBHoM\Constraint.cs" />
+    <Compile Include="Convert\ToBHoM\Material.cs" />
     <Compile Include="Convert\ToBHoM\Node.cs" />
     <Compile Include="Convert\ToRFEM\Constraint.cs" />
     <Compile Include="Convert\ToRFEM\Material.cs" />
