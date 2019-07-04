@@ -26,6 +26,8 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.Constraints;
+using BH.oM.Structure.MaterialFragments;
+using BH.oM.Physical;
 using System;
 using System.Collections.Generic;
 
@@ -71,10 +73,10 @@ namespace BH.Adapter.RFEM
         {
             //{typeof(Node), new List<Type> { typeof(Constraint6DOF) } },
             {typeof(Bar), new List<Type> { typeof(ISectionProperty), typeof(Node) } },
-            {typeof(ISectionProperty), new List<Type> { typeof(Material) } },
+            {typeof(ISectionProperty), new List<Type> { typeof(IMaterialFragment) } },
             {typeof(RigidLink), new List<Type> { typeof(LinkConstraint), typeof(Node) } },
             {typeof(FEMesh), new List<Type> { typeof(ISurfaceProperty), typeof(Node) } },
-            {typeof(ISurfaceProperty), new List<Type> { typeof(Material) } },
+            {typeof(ISurfaceProperty), new List<Type> { typeof(IMaterialFragment) } },
             {typeof(Panel), new List<Type> { typeof(ISurfaceProperty) } }
         };
 
