@@ -26,6 +26,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Common.Materials;
+using BH.oM.Structure.MaterialFragments;
+using BH.Engine.RFEM;
+using BH.oM.Physical;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
@@ -36,17 +40,25 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        private bool CreateCollection(IEnumerable<Material> materials)
+        private bool CreateCollection(IEnumerable<IMaterialFragment> materialFragments)
         {
-            //Code for creating a collection of materials in the software
-
-            foreach (Material material in materials)
+            if(materialFragments.Count()>0)
             {
-                //Tip: if the NextId method has been implemented you can get the id to be used for the creation out as (cast into applicable type used by the software):
-                object materialId = material.CustomData[AdapterId];
+                int idNum = 0;
+                List<IMaterialFragment> matList = materialFragments.ToList();
+                rf.Material[] rfMaterials = new rf.Material[matList.Count()];
+
+                for(int i=0;i< matList.Count();i++)
+                {
+                    idNum = System.Convert.ToInt32(NextId(matList[i].GetType()));
+                    rfMaterials[i] = matList[i].ToRFEM(idNum);
+
+                }
+
+                modelData.SetMaterials(rfMaterials);
             }
 
-            throw new NotImplementedException();
+            return true;
         }
 
 
