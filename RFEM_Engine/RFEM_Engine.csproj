@@ -59,6 +59,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\Geometry_oM.dll</HintPath>
     </Reference>
+    <Reference Include="Physical_oM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM\Build\Physical_oM.dll</HintPath>
+    </Reference>
     <Reference Include="Reflection_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
@@ -88,6 +92,7 @@
     <Compile Include="Convert\ToBHoM\Constraint.cs" />
     <Compile Include="Convert\ToBHoM\Node.cs" />
     <Compile Include="Convert\ToRFEM\Constraint.cs" />
+    <Compile Include="Convert\ToRFEM\Material.cs" />
     <Compile Include="Convert\ToRFEM\Node.cs" />
     <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

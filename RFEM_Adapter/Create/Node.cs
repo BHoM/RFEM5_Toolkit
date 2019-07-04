@@ -51,8 +51,9 @@ namespace BH.Adapter.RFEM
                 for (int i = 0; i < nodes.Count(); i++)
                 {
                     nodeIdNum = System.Convert.ToInt32(NextId(nodeList[i].GetType()));
-                    rf.Node rfNode = nodeList[i].ToRFEM(nodeIdNum);
-                    modelData.SetNode(rfNode);
+                    rfemNodes[i] = nodeList[i].ToRFEM(nodeIdNum);
+                    //rf.Node rfNode = nodeList[i].ToRFEM(nodeIdNum);
+                    //modelData.SetNode(rfNode);
 
                     //set support here if the node contains one ! ! ! ! !
                     if(nodeList[i].Support != null)
@@ -62,10 +63,9 @@ namespace BH.Adapter.RFEM
                         modelData.SetNodalSupport(rfConstraint);
                     }
                 }
+
+                modelData.SetNodes(rfemNodes);
             }
-
-
-            //modelData.SetNodes(rfemNodes);
 
             return true;
         }
