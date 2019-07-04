@@ -46,7 +46,6 @@ namespace BH.Adapter.RFEM
 
         private List<Node> ReadNodes(List<string> ids = null)
         {
-            //Engine.Reflection.Compute.RecordWarning("ReadNodes not implemented");
 
             List<Node> nodeList = new List<Node>();
 
