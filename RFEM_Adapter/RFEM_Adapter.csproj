@@ -103,6 +103,7 @@
     <Compile Include="Create\SectionProperty.cs" />
     <Compile Include="Create\_Create.cs" />
     <Compile Include="Delete\_Delete.cs" />
+    <Compile Include="Execute\_Execute.cs" />
     <Compile Include="Read\Constraint.cs" />
     <Compile Include="Types\NextId.cs" />
     <Compile Include="Read\Bar.cs" />
@@ -130,9 +131,7 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Execute\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
