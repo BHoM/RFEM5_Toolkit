@@ -25,8 +25,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Structure.SectionProperties;
 using BH.oM.Common.Materials;
+using BH.oM.Structure.MaterialFragments;
+using BH.oM.Structure.SectionProperties;
+using BH.Engine.RFEM;
+using BH.oM.Physical;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
@@ -39,21 +43,26 @@ namespace BH.Adapter.RFEM
 
         private bool CreateCollection(IEnumerable<ISectionProperty> sectionProperties)
         {
-            //Code for creating a collection of section properties in the software
-
-            foreach (ISectionProperty sectionProperty in sectionProperties)
+            if (sectionProperties.Count() > 0)
             {
-                //Tip: if the NextId method has been implemented you can get the id to be used for the creation out as (cast into applicable type used by the software):
-                object secPropId = sectionProperty.CustomData[AdapterId];
-                //If also the default implmentation for the DependencyTypes is used,
-                //one can from here get the id's of the subobjects by calling (cast into applicable type used by the software): 
-                //object materialId = sectionProperty.Material.CustomData[AdapterId];
+                int idNum = 0;
+                List<ISectionProperty> secList = sectionProperties.ToList();
+                rf.CrossSection[] rfCrossSections = new rf.CrossSection[secList.Count()];
+
+                for (int i = 0; i < secList.Count(); i++)
+                {
+                    idNum = System.Convert.ToInt32(NextId(secList[i].GetType()));
+                    rfCrossSections[i] = secList[i].ToRFEM(idNum);
+
+                }
+
+                modelData.SetCrossSections(rfCrossSections);
             }
 
-            throw new NotImplementedException();
+            return true;
         }
 
-        /***************************************************/
 
+        /***************************************************/
     }
 }
