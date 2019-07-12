@@ -26,9 +26,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
-
+using BH.Engine.RFEM;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
@@ -41,24 +41,37 @@ namespace BH.Adapter.RFEM
 
         private bool CreateCollection(IEnumerable<Bar> bars)
         {
-            //Code for creating a collection of bars in the software
-
-            foreach (Bar bar in bars)
+            if (bars.Count() > 0)
             {
-                //Tip: if the NextId method has been implemented you can get the id to be used for the creation out as (cast into applicable type used by the software):
-                object barId = bar.CustomData[AdapterId];
-                //If also the default implmentation for the DependencyTypes is used,
-                //one can from here get the id's of the subobjects by calling (cast into applicable type used by the software): 
-                object startNodeId = bar.StartNode.CustomData[AdapterId];
-                object endNodeId = bar.EndNode.CustomData[AdapterId];
-                object SecPropId = bar.SectionProperty.CustomData[AdapterId];
+                int barIdNum = 0;
+                int lineIdNum = 0;
+                List<Bar> barList = bars.ToList();
+                rf.Member[] rfBars = new rf.Member[barList.Count()];
+
+                for (int i = 0; i < bars.Count(); i++)
+                {
+                    barIdNum = System.Convert.ToInt32(NextId(barList[i].GetType()));
+
+                    //create line
+                    rf.Line centreLine = new rf.Line();
+                    lineIdNum = modelData.GetLineCount() + 1;
+                    centreLine.No = lineIdNum;
+                    int startNodeId = System.Convert.ToInt32(barList[i].StartNode.CustomData[AdapterId]);
+                    int endNodeId = System.Convert.ToInt32(barList[i].EndNode.CustomData[AdapterId]);
+                    centreLine.NodeList = String.Join(",", new int[] { startNodeId , endNodeId });
+                    centreLine.Type = rf.LineType.PolylineType;
+                    modelData.SetLine(centreLine);
+
+
+                    rfBars[i] = barList[i].ToRFEM(barIdNum, lineIdNum);
+                    modelData.SetMember(rfBars[i]);
+                }
+
+                //modelData.SetMembers(rfBars);
             }
 
-
-            throw new NotImplementedException();
+            return true;
         }
-
-        /***************************************************/
 
     }
 }
