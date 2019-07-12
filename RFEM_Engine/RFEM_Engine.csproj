@@ -92,6 +92,7 @@
     <Compile Include="Convert\ToBHoM\Constraint.cs" />
     <Compile Include="Convert\ToBHoM\Material.cs" />
     <Compile Include="Convert\ToBHoM\Node.cs" />
+    <Compile Include="Convert\ToRFEM\Bar.cs" />
     <Compile Include="Convert\ToRFEM\Constraint.cs" />
     <Compile Include="Convert\ToRFEM\Material.cs" />
     <Compile Include="Convert\ToRFEM\Node.cs" />
