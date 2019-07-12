@@ -44,8 +44,13 @@ namespace BH.Adapter.RFEM
 
         private List<ISectionProperty> ReadSectionProperties(List<string> ids = null)
         {
+
+            List<ISectionProperty> sectionPropList = new List<ISectionProperty>();
+
+
+            return sectionPropList;
             //Implement code for reading section properties
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         /***************************************************/

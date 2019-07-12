@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.oM.Structure.MaterialFragments;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -64,6 +65,11 @@ namespace BH.Adapter.RFEM
 
             string typeString = objectType.Name;
 
+            if (objectType.GetInterfaces().Contains(typeof(IMaterialFragment)))
+            {
+                typeString = "IMaterialFragment";
+            }
+
             switch (typeString)
             {
                 case "Node":
@@ -78,7 +84,7 @@ namespace BH.Adapter.RFEM
                     lastId = (modelData.GetMemberCount() == 0) ? 0 : modelData.GetMember(modelData.GetMemberCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
-                case "MaterialFragment":
+                case "IMaterialFragment":
                     lastId = (modelData.GetMaterialCount() == 0) ? 0 : modelData.GetMaterial(modelData.GetMaterialCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
