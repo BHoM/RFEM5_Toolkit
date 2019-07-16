@@ -29,6 +29,7 @@ namespace BH.Engine.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
+                rfMaterial.ModelType = rf.MaterialModelType.IsotropicLinearElasticType;//--consider other types depending on analysis type
             }
             else
             {

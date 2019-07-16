@@ -41,7 +41,7 @@ namespace BH.Adapter.RFEM
             switch (commandUpper)
             {
                 case "UNLOCK":
-                    modelData.FinishModification();
+                    modelData.Clean();// .FinishModification();
                     return true;
                 case "LOCK":
                     modelData.PrepareModification();
