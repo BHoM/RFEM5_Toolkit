@@ -20,7 +20,7 @@ namespace BH.Engine.RFEM
         {
             rf.CrossSection rfSectionProperty = new rf.CrossSection();
             rfSectionProperty.No = sectionPropertyId;
-            rfSectionProperty.MaterialNo = 1;//material number must be unique and should be looked up in the currently used material list
+            rfSectionProperty.MaterialNo = 2;//material number must be unique and should be looked up in the currently used material list
             rfSectionProperty.Description = sectionProperty.Name;
 
             
