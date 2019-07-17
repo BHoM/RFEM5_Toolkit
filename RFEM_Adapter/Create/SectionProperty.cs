@@ -51,7 +51,7 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < secList.Count(); i++)
                 {
-                    idNum = System.Convert.ToInt32(NextId(secList[i].GetType()));
+                    idNum = System.Convert.ToInt32(secList[i].CustomData[AdapterId]);// NextId(secList[i].GetType()));
                     rfCrossSections[i] = secList[i].ToRFEM(idNum);
                     modelData.SetCrossSection(rfCrossSections[i]);
                 }

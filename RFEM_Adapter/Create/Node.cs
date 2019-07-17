@@ -46,14 +46,13 @@ namespace BH.Adapter.RFEM
                 int nodeIdNum = 0;
                 int consIdNum = 0;
                 List<Node> nodeList = nodes.ToList();
-                rf.Node[] rfemNodes = new rf.Node[nodeList.Count()];
+                rf.Node[] rfNodes = new rf.Node[nodeList.Count()];
 
                 for (int i = 0; i < nodes.Count(); i++)
                 {
-                    nodeIdNum = System.Convert.ToInt32(NextId(nodeList[i].GetType()));
-                    rfemNodes[i] = nodeList[i].ToRFEM(nodeIdNum);
-                    rf.Node rfNode = nodeList[i].ToRFEM(nodeIdNum);
-                    modelData.SetNode(rfNode);
+                    nodeIdNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);//(NextId(nodeList[i].GetType()));
+                    rfNodes[i] = nodeList[i].ToRFEM(nodeIdNum);
+                    modelData.SetNode(rfNodes[i]);
 
                     //set support here if the node contains one ! ! ! ! !
                     if(nodeList[i].Support != null)

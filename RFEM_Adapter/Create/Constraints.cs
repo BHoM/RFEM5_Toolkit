@@ -43,7 +43,7 @@
 
 //        private bool CreateCollection(IEnumerable<Constraint6DOF> constraints)
 //        {
-//            if (constraints.Count()>0)
+//            if (constraints.Count() > 0)
 //            {
 //                List<Constraint6DOF> constList = constraints.ToList();
 
