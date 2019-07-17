@@ -99,12 +99,12 @@
     <Compile Include="Convert\ToRFEM\SectionProperty.cs" />
     <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\GetRFEMLineFromBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Compute\" />
     <Folder Include="Create\" />
     <Folder Include="Modify\" />
-    <Folder Include="Query\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RFEM_oM\RFEM_oM.csproj">

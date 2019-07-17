@@ -50,16 +50,11 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < bars.Count(); i++)
                 {
-                    barIdNum = System.Convert.ToInt32(barList[i].CustomData[AdapterId]);// NextId(barList[i].GetType()));
+                    barIdNum = System.Convert.ToInt32(barList[i].CustomData[AdapterId]);
 
                     //create line
-                    rf.Line centreLine = new rf.Line();
                     lineIdNum = modelData.GetLineCount() + 1;
-                    centreLine.No = lineIdNum;
-                    int startNodeId = System.Convert.ToInt32(barList[i].StartNode.CustomData[AdapterId]);
-                    int endNodeId = System.Convert.ToInt32(barList[i].EndNode.CustomData[AdapterId]);
-                    centreLine.NodeList = String.Join(",", new int[] { startNodeId , endNodeId });
-                    centreLine.Type = rf.LineType.PolylineType;
+                    rf.Line centreLine = Query.GetRFEMLineFromBar(barList[i], lineIdNum);
                     modelData.SetLine(centreLine);
 
 
