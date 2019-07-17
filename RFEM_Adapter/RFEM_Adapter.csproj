@@ -54,6 +54,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\Common_oM.dll</HintPath>
     </Reference>
+    <Reference Include="Data_oM, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM\Build\Data_oM.dll</HintPath>
+    </Reference>
     <Reference Include="Dlubal.RFEM5, Version=5.5.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
