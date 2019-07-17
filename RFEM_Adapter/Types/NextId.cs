@@ -65,7 +65,7 @@ namespace BH.Adapter.RFEM
 
             string typeString = objectType.Name;
 
-            if (objectType.GetInterfaces().Contains(typeof(IMaterialFragment)))
+            if (objectType.GetInterfaces().Contains(typeof(IMaterialFragment)))// - - - verify that this works as intended. 'SteelSection' seems to increment the count unintended
             {
                 typeString = "IMaterialFragment";
             }

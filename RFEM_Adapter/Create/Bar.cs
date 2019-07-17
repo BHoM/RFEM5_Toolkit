@@ -50,7 +50,7 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < bars.Count(); i++)
                 {
-                    barIdNum = System.Convert.ToInt32(NextId(barList[i].GetType()));
+                    barIdNum = System.Convert.ToInt32(barList[i].CustomData[AdapterId]);// NextId(barList[i].GetType()));
 
                     //create line
                     rf.Line centreLine = new rf.Line();
