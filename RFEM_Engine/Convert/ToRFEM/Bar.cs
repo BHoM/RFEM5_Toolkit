@@ -27,6 +27,5 @@ namespace BH.Engine.RFEM
             return rfBar;
         }
 
-
     }
 }

@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using BH.oM.Common.Materials;
 using BH.oM.Structure.Elements;
 using BH.oM.Base;
+using BH.oM.Data.Requests;
 using System.Runtime.InteropServices;
 using rf = Dlubal.RFEM5;
 using Dlubal.RFEM5;
@@ -113,6 +114,35 @@ namespace BH.Adapter.RFEM
         /**** Public  Fields                           ****/
         /***************************************************/
 
+
+        public override List<IObject> Push(IEnumerable<IObject> objects, string tag = "", Dictionary<string, object> config = null)
+        {
+            if (IsApplicationRunning() & TryToShowApp())
+            {
+                return base.Push(objects, tag, config);
+            }
+            else
+            {
+                BH.Engine.Reflection.Compute.RecordError("Make sure that either the RFEM Adapter component has opened an instance of the application or you have opened one yourself."
+                + "\nCheck if you have a frozen instance of RFEM in the background. Look in Task Manager.");
+
+                return null;
+            }
+        }
+
+        public override IEnumerable<object> Pull(IRequest request, Dictionary<string, object> config = null)
+        {
+            if (IsApplicationRunning() & TryToShowApp())
+                return base.Pull(request, config);
+            else
+            {
+                BH.Engine.Reflection.Compute.RecordError("Make sure that either the RFEM Adapter component has opened an instance of the application or you have opened one yourself."
+               + "\nCheck if you have a frozen instance of RFEM in the background. Look in Task Manager.");
+                return null;
+            }
+        }
+
+
         /***************************************************/
         /**** Public  Methods                           ****/
         /***************************************************/
@@ -126,6 +156,21 @@ namespace BH.Adapter.RFEM
 
             return (rfemProcesses.Count > 0) ? true : false;
         }
+
+        public bool TryToShowApp()
+        {
+            try
+            {
+                app.Show();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
 
         /***************************************************/
         /**** Private  Fields                           ****/
