@@ -10,14 +10,14 @@ using rf = Dlubal.RFEM5;
 
 namespace BH.Engine.RFEM
 {
-    public static partial class Query
+    public static partial class Create
     {
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
 
-  
-        public static rf.Line GetRFEMLineFromBar(Bar bar, int lineId)
+
+        public static rf.Line RFEMLine(Bar bar, int lineId)
         {
             rf.Line centreLine = new rf.Line();
             centreLine.No = lineId;

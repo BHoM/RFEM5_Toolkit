@@ -54,7 +54,7 @@ namespace BH.Adapter.RFEM
 
                     //create line
                     lineIdNum = modelData.GetLineCount() + 1;
-                    rf.Line centreLine = Query.GetRFEMLineFromBar(barList[i], lineIdNum);
+                    rf.Line centreLine = BH.Engine.RFEM.Create.RFEMLine(barList[i], lineIdNum);
                     modelData.SetLine(centreLine);
 
 
