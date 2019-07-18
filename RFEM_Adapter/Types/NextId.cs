@@ -62,7 +62,7 @@ namespace BH.Adapter.RFEM
         private int GetLastIdOfType(Type objectType)
         {
             int lastId;
-
+            
             string typeString = objectType.Name;
 
             if (objectType.GetInterfaces().Contains(typeof(IMaterialFragment)))// - - - verify that this works as intended. 'SteelSection' seems to increment the count unintended
@@ -103,8 +103,9 @@ namespace BH.Adapter.RFEM
         /**** Private Fields                            ****/
         /***************************************************/
 
-        //Change from object to the index type used by the specific software
         private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
+        private Dictionary<string, int> m_materialDict = new Dictionary<string, int>();
+        private Dictionary<string, int> m_sectionDict = new Dictionary<string, int>();
 
 
         /***************************************************/

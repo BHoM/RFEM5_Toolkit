@@ -51,6 +51,12 @@ namespace BH.Adapter.RFEM
                 foreach (rf.Material rfMaterial in modelData.GetMaterials())
                 {
                     materialList.Add(rfMaterial.ToBHoM());
+
+                    string nameId = rfMaterial.ID;// get proper conversion from the 'material.TextID'
+                    if (!m_materialDict.ContainsKey(nameId))
+                    {
+                        m_materialDict.Add(nameId, rfMaterial.No);
+                    }
                 }
             }
             else
