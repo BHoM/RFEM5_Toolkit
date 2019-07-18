@@ -23,7 +23,6 @@ namespace BH.Engine.RFEM
             rfSectionProperty.MaterialNo = 2;//material number must be unique and should be looked up in the currently used material list
             rfSectionProperty.Description = sectionProperty.Name;
 
-            
             if (sectionProperty is SteelSection)
             {
                 SteelSection steelSection = sectionProperty as SteelSection;

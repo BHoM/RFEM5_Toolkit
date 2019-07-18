@@ -29,6 +29,9 @@ using System.Threading.Tasks;
 using BH.oM.Base;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Common.Materials;
+using BH.Engine.RFEM;
+using rf = Dlubal.RFEM5;
+
 
 namespace BH.Adapter.RFEM
 {
@@ -44,13 +47,30 @@ namespace BH.Adapter.RFEM
 
         private List<ISectionProperty> ReadSectionProperties(List<string> ids = null)
         {
-
             List<ISectionProperty> sectionPropList = new List<ISectionProperty>();
 
+            if (ids == null)
+            {
+                foreach (rf.CrossSection rfSection in modelData.GetCrossSections())
+                {
+                    sectionPropList.Add(rfSection.ToBHoM());
+
+                    string nameId = rfSection.ID;// this is likely not the right text identifier
+                    if (!m_sectionDict.ContainsKey(nameId))
+                    {
+                        m_sectionDict.Add(nameId, rfSection.No);
+                    }
+                }
+            }
+            else
+            {
+                foreach (string id in ids)
+                {
+                    sectionPropList.Add(modelData.GetCrossSection(Int32.Parse(id), rf.ItemAt.AtNo).GetData().ToBHoM());
+                }
+            }
 
             return sectionPropList;
-            //Implement code for reading section properties
-            //throw new NotImplementedException();
         }
 
         /***************************************************/
