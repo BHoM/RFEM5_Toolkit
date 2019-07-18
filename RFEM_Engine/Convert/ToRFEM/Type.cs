@@ -29,9 +29,9 @@ namespace BH.Engine.RFEM
                     return rf.ModelObjectType.NodalSupportObject;
                 case "Bar":
                     return rf.ModelObjectType.MemberObject;
-                case "MaterialFragment":
+                case "IMaterialFragment":
                     return rf.ModelObjectType.MaterialObject;
-                case "SectionProperty":
+                case "ISectionProperty":
                     return rf.ModelObjectType.CrossSectionObject;
                 default:
                     return rf.ModelObjectType.UnknownObject;
