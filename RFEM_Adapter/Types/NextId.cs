@@ -88,7 +88,7 @@ namespace BH.Adapter.RFEM
                     lastId = (modelData.GetMaterialCount() == 0) ? 0 : modelData.GetMaterial(modelData.GetMaterialCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
-                case "SectionProperty":
+                case "ISectionProperty":
                     lastId = (modelData.GetCrossSectionCount() == 0) ? 0 : modelData.GetCrossSection(modelData.GetCrossSectionCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
