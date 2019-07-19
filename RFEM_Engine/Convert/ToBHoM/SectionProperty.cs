@@ -23,6 +23,8 @@ namespace BH.Engine.RFEM
         {
             ISectionProperty bhSectionProperty;
 
+            string tmpDescription = rfSectionProperty.Description;
+
             if (BH.Engine.RFEM.Query.GetSectionType(rfSectionProperty)==typeof(SteelSection))
             {
                 bhSectionProperty = BH.Engine.Structure.Create.SteelISection(10, 10, 10, 10);

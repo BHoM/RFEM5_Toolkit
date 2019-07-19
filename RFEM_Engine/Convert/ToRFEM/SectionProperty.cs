@@ -16,16 +16,34 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.CrossSection ToRFEM(this ISectionProperty sectionProperty, int sectionPropertyId)
+        public static rf.CrossSection ToRFEM(this ISectionProperty sectionProperty, int sectionPropertyId, int materialId)
         {
             rf.CrossSection rfSectionProperty = new rf.CrossSection();
             rfSectionProperty.No = sectionPropertyId;
-            rfSectionProperty.MaterialNo = 2;//material number must be unique and should be looked up in the currently used material list
-            rfSectionProperty.Description = sectionProperty.Name;
+            rfSectionProperty.MaterialNo = materialId;
+            rfSectionProperty.TextID = sectionProperty.Name;
+            rfSectionProperty.Description = sectionProperty.Name + " | " + "show standard/norm";
+            rfSectionProperty.AxialArea = sectionProperty.Area;
+            rfSectionProperty.TorsionMoment = sectionProperty.J;
+            rfSectionProperty.ShearAreaY = sectionProperty.Asy;
+            rfSectionProperty.ShearAreaZ = sectionProperty.Asz;
+
+
 
             if (sectionProperty is SteelSection)
             {
                 SteelSection steelSection = sectionProperty as SteelSection;
+                //steelSection.SectionProfile.Shape... not sure this is directly readable from RFEM sections
+                //steelSection.Fabrication = SteelFabrication.Welded; ... not sure if directly readable from rfem
+
+            }
+            else if (sectionProperty is ConcreteSection)
+            {
+                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+            }
+            else if (sectionProperty is ExplicitSection)
+            {
+                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
             }
             else
             {
