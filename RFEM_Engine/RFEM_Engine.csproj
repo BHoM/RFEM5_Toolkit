@@ -101,6 +101,7 @@
     <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="Create\RFEMLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Material.cs" />
     <Compile Include="Query\SectionProperty.cs" />
   </ItemGroup>
   <ItemGroup>
