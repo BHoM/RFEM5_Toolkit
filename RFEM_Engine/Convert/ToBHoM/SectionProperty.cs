@@ -8,6 +8,7 @@ using BH.oM.Structure.Constraints;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.SectionProperties;
 using BH.Engine.Structure;
+using BH.Engine.RFEM;
 using BH.oM.Physical;
 using rf = Dlubal.RFEM5;
 
@@ -25,27 +26,35 @@ namespace BH.Engine.RFEM
 
             string tmpDescription = rfSectionProperty.Description;
 
-            if (BH.Engine.RFEM.Query.GetSectionType(rfSectionProperty)==typeof(SteelSection))
+            SteelSection steelSection = null;
+
+
+            if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.ISection)
             {
-                //bhSectionProperty = BH.Engine.Structure.Create.SteelISection(10, 10, 10, 10);
-                bhSectionProperty = new ExplicitSection();
-                //bhSectionProperty.Material = Query.GetMaterialFromStoredDict(rfSectionProperty.MaterialNo)
-                bhSectionProperty.CustomData[AdapterId] = rfSectionProperty.No;
-                //bhSectionProperty.Material = rfSectionProperty.MaterialNo;
-                bhSectionProperty.Name = rfSectionProperty.TextID;
-                bhSectionProperty.Area = rfSectionProperty.AxialArea;
-                bhSectionProperty.J = rfSectionProperty.TorsionMoment;
-                bhSectionProperty.Asy = rfSectionProperty.ShearAreaY;
-                bhSectionProperty.Asz = rfSectionProperty.ShearAreaZ;
-
-
+                steelSection = Structure.Create.SteelISection(200, 10, 80, 80);
+            }
+            else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Tube)
+            {
+                steelSection = Structure.Create.SteelTubeSection(50, 5);
+            }
+            else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Rectangle)
+            {
+                steelSection = Structure.Create.SteelRectangleSection(200, 100);
+            }
+            else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Box)
+            {
+                steelSection = Structure.Create.SteelBoxSection(200, 100, 5);
             }
             else
             {
-                bhSectionProperty = null;
+                Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
             }
 
-            return bhSectionProperty;
+            steelSection.CustomData[AdapterId] = rfSectionProperty.No;
+            steelSection.Name = rfSectionProperty.TextID;
+
+
+            return steelSection;
         }
 
     }
