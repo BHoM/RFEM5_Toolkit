@@ -27,7 +27,18 @@ namespace BH.Engine.RFEM
 
             if (BH.Engine.RFEM.Query.GetSectionType(rfSectionProperty)==typeof(SteelSection))
             {
-                bhSectionProperty = BH.Engine.Structure.Create.SteelISection(10, 10, 10, 10);
+                //bhSectionProperty = BH.Engine.Structure.Create.SteelISection(10, 10, 10, 10);
+                bhSectionProperty = new ExplicitSection();
+                //bhSectionProperty.Material = Query.GetMaterialFromStoredDict(rfSectionProperty.MaterialNo)
+                bhSectionProperty.CustomData[AdapterId] = rfSectionProperty.No;
+                //bhSectionProperty.Material = rfSectionProperty.MaterialNo;
+                bhSectionProperty.Name = rfSectionProperty.TextID;
+                bhSectionProperty.Area = rfSectionProperty.AxialArea;
+                bhSectionProperty.J = rfSectionProperty.TorsionMoment;
+                bhSectionProperty.Asy = rfSectionProperty.ShearAreaY;
+                bhSectionProperty.Asz = rfSectionProperty.ShearAreaZ;
+
+
             }
             else
             {
