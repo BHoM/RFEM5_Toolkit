@@ -28,7 +28,7 @@ namespace BH.Engine.RFEM
             rfSectionProperty.ShearAreaY = sectionProperty.Asy;
             rfSectionProperty.ShearAreaZ = sectionProperty.Asz;
 
-
+            
 
             if (sectionProperty is SteelSection)
             {

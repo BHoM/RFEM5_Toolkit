@@ -49,7 +49,7 @@ namespace BH.Adapter.RFEM
                 modelData.PrepareModification();
 
                 success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
-
+                
                 modelData.FinishModification();
                 app.UnlockLicense();
             }
