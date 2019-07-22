@@ -34,7 +34,7 @@ namespace BH.Engine.RFEM
                 SteelSection steelSection = Structure.Create.SteelRectangleSection(dim, dim);
 
                 steelSection.CustomData[AdapterId] = rfSectionProperty.No;
-                steelSection.Material = rfMaterial.ToBHoM();
+                steelSection.Material = Structure.Create.Steel("default steel");// rfMaterial.ToBHoM();
                 steelSection.Name = rfSectionProperty.TextID;
 
                 //  - - - - read only ! cannot be assigned ! - - - - 
@@ -43,7 +43,7 @@ namespace BH.Engine.RFEM
                 //steelSection.Asy = rfSectionProperty.ShearAreaY;
                 //steelSection.Asz = rfSectionProperty.ShearAreaZ;
 
-                Reflection.Compute.RecordWarning("section: "+ rfSectionProperty.TextID + " - Id: " + rfSectionProperty.No + "cannot be read fully! consider resetting parameters");
+                Reflection.Compute.RecordWarning("Section: "+ rfSectionProperty.TextID + " - Id: " + rfSectionProperty.No + " cannot be read fully! Consider rebuilding parameters");
 
                 return steelSection;
             }
