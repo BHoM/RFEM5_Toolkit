@@ -53,9 +53,10 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.CrossSection rfSection in modelData.GetCrossSections())
                 {
-                    sectionPropList.Add(rfSection.ToBHoM());
+                    rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+                    sectionPropList.Add(rfSection.ToBHoM(rfMaterial));                    
 
-                    string nameId = rfSection.ID;// this is likely not the right text identifier
+                    string nameId = rfSection.TextID;// this is likely not the right text identifier
                     if (!m_sectionDict.ContainsKey(nameId))
                     {
                         m_sectionDict.Add(nameId, rfSection.No);
@@ -66,7 +67,9 @@ namespace BH.Adapter.RFEM
             {
                 foreach (string id in ids)
                 {
-                    sectionPropList.Add(modelData.GetCrossSection(Int32.Parse(id), rf.ItemAt.AtNo).GetData().ToBHoM());
+                    rf.CrossSection rfSection = modelData.GetCrossSection(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
+                    rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+                    sectionPropList.Add(rfSection.ToBHoM(rfMaterial));
                 }
             }
 

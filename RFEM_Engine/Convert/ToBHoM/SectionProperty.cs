@@ -20,41 +20,63 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static ISectionProperty ToBHoM(this rf.CrossSection rfSectionProperty)
+        public static ISectionProperty ToBHoM(this rf.CrossSection rfSectionProperty, rf.Material rfMaterial)
         {
-            ISectionProperty bhSectionProperty;
+            //ISectionProperty bhSectionProperty;
 
             string tmpDescription = rfSectionProperty.Description;
 
-            SteelSection steelSection = null;
+            MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
 
+            if (materialType == MaterialType.Steel)
+            {
+                SteelSection steelSection = Structure.Create.SteelFreeFormSection(new List<oM.Geometry.ICurve>());
 
-            if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.ISection)
-            {
-                steelSection = Structure.Create.SteelISection(200, 10, 80, 80);
-            }
-            else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Tube)
-            {
-                steelSection = Structure.Create.SteelTubeSection(50, 5);
-            }
-            else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Rectangle)
-            {
-                steelSection = Structure.Create.SteelRectangleSection(200, 100);
-            }
-            else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Box)
-            {
-                steelSection = Structure.Create.SteelBoxSection(200, 100, 5);
+                steelSection.CustomData[AdapterId] = rfSectionProperty.No;
+                steelSection.Material = rfMaterial.ToBHoM();
+                steelSection.Name = rfSectionProperty.TextID;
+
+                //  - - - - read only ! cannot be assigned ! - - - - 
+                //steelSection.Area = rfSectionProperty.AxialArea;
+                //steelSection.J = rfSectionProperty.TorsionMoment;
+                //steelSection.Asy = rfSectionProperty.ShearAreaY;
+                //steelSection.Asz = rfSectionProperty.ShearAreaZ;
+
+                return steelSection;
             }
             else
             {
                 Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
+                return null;
             }
 
-            steelSection.CustomData[AdapterId] = rfSectionProperty.No;
-            steelSection.Name = rfSectionProperty.TextID;
+
+            //if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.ISection)
+            //{
+            //    steelSection = Structure.Create.SteelISection(200, 10, 80, 80);
+            //}
+            //else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Tube)
+            //{
+            //    steelSection = Structure.Create.SteelTubeSection(50, 5);
+            //}
+            //else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Rectangle)
+            //{
+            //    steelSection = Structure.Create.SteelRectangleSection(200, 100);
+            //}
+            //else if (RFEM.Query.GetProfileType(rfSectionProperty.TextID) == oM.Geometry.ShapeProfiles.ShapeType.Box)
+            //{
+            //    steelSection = Structure.Create.SteelBoxSection(200, 100, 5);
+            //}
+            //else
+            //{
+            //    Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
+            //}
+
+            //steelSection.CustomData[AdapterId] = rfSectionProperty.No;
+            //steelSection.Name = rfSectionProperty.TextID;
 
 
-            return steelSection;
+            //return steelSection;
         }
 
     }
