@@ -30,7 +30,8 @@ namespace BH.Engine.RFEM
 
             if (materialType == MaterialType.Steel)
             {
-                SteelSection steelSection = Structure.Create.SteelFreeFormSection(new List<oM.Geometry.ICurve>());
+                double dim = Math.Sqrt(rfSectionProperty.AxialArea);
+                SteelSection steelSection = Structure.Create.SteelRectangleSection(dim, dim);
 
                 steelSection.CustomData[AdapterId] = rfSectionProperty.No;
                 steelSection.Material = rfMaterial.ToBHoM();
@@ -41,6 +42,8 @@ namespace BH.Engine.RFEM
                 //steelSection.J = rfSectionProperty.TorsionMoment;
                 //steelSection.Asy = rfSectionProperty.ShearAreaY;
                 //steelSection.Asz = rfSectionProperty.ShearAreaZ;
+
+                Reflection.Compute.RecordWarning("section: "+ rfSectionProperty.TextID + " - Id: " + rfSectionProperty.No + "cannot be read fully! consider resetting parameters");
 
                 return steelSection;
             }
