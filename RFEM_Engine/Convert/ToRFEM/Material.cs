@@ -21,7 +21,7 @@ namespace BH.Engine.RFEM
             rf.Material rfMaterial = new rf.Material();
             rfMaterial.No = materialId;
             rfMaterial.Description = materialFragment.Name;
-            rfMaterial.SpecificWeight = materialFragment.Density;
+            rfMaterial.SpecificWeight = materialFragment.Density * 10; //translate from kg/m3 to kN/m3
 
             if (materialFragment is IIsotropic)
             {
