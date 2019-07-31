@@ -72,7 +72,7 @@ namespace BH.Adapter.RFEM
                             model = app.OpenModel(filePath);
                         else
                             app.CreateModel("testModel");
-
+                        
                         model = app.GetModel(0);
 
                         model.Activate();
@@ -179,11 +179,10 @@ namespace BH.Adapter.RFEM
         private IApplication app = null;
         private IModel model = null;
         private IModelData2 modelData = null;
-        /// <summary>
-        /// Level of RFEM application lock: 0=no lock - ready to return UI, 1=licence locked, 2=model locked and ready for modification 
-        /// </summary>
-        private int lockLevel = 0;
 
+        private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
+        private Dictionary<string, int> m_materialDict = new Dictionary<string, int>();
+        private Dictionary<string, int> m_sectionDict = new Dictionary<string, int>();
 
         /*******IModelData data = null;********************************************/
 
