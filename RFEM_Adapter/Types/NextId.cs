@@ -103,10 +103,6 @@ namespace BH.Adapter.RFEM
         /**** Private Fields                            ****/
         /***************************************************/
 
-        private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
-        private Dictionary<string, int> m_materialDict = new Dictionary<string, int>();
-        private Dictionary<string, int> m_sectionDict = new Dictionary<string, int>();
-
 
         /***************************************************/
     }

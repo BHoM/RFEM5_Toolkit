@@ -49,14 +49,16 @@ namespace BH.Adapter.RFEM
         {
             List<ISectionProperty> sectionPropList = new List<ISectionProperty>();
 
+            //ReadSectionFromRFEMLibrary("IPE100");//<-- intended use but does not return anything useful
+
             if (ids == null)
             {
                 foreach (rf.CrossSection rfSection in modelData.GetCrossSections())
                 {
                     rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                    sectionPropList.Add(rfSection.ToBHoM(rfMaterial));                    
+                    sectionPropList.Add(rfSection.ToBHoM(rfMaterial));
 
-                    string nameId = rfSection.TextID;// this is likely not the right text identifier
+                    string nameId = rfSection.TextID;
                     if (!m_sectionDict.ContainsKey(nameId))
                     {
                         m_sectionDict.Add(nameId, rfSection.No);
@@ -70,6 +72,7 @@ namespace BH.Adapter.RFEM
                     rf.CrossSection rfSection = modelData.GetCrossSection(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
                     rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
                     sectionPropList.Add(rfSection.ToBHoM(rfMaterial));
+                    
                 }
             }
 
@@ -78,5 +81,24 @@ namespace BH.Adapter.RFEM
 
         /***************************************************/
 
+        private void ReadSectionFromRFEMLibrary(string sectionName)
+        {
+
+            dynamic rfSectionDB = modelData.GetCrossSectionDatabase();// <-- there is no documentation on how to work with this
+
+            
+            Type t = rfSectionDB.GetType();
+
+            System.Reflection.MethodInfo[] mi = t.GetMethods();
+
+            List<string> describe = new List<string>();
+
+            foreach(System.ComponentModel.PropertyDescriptor pd in System.ComponentModel.TypeDescriptor.GetProperties(rfSectionDB))
+            {
+                describe.Add(pd.Name);
+            }
+            
+
+        }
     }
 }

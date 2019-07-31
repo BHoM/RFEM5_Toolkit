@@ -15,7 +15,6 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        //Add methods for converting From BHoM to the specific software types, if possible to do without any BHoM calls
 
         public static rf.ModelObjectType ToRFEM(this Type bhObjectType)
         {
