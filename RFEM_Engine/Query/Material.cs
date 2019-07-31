@@ -29,6 +29,12 @@ namespace BH.Engine.RFEM
         {
             string[] materialString = rfMaterial.TextID.Split('@');
 
+            if(materialString.Count()<2)
+            {
+                // raise warning
+                return MaterialType.Steel;
+            }
+
             switch (materialString[1])
             {
                 case "TypeID|STEEL":

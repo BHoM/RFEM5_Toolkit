@@ -58,10 +58,10 @@ namespace BH.Adapter.RFEM
                     rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
                     ISectionProperty section = rfSection.ToBHoM(rfMaterial);
 
-                    sectionPropList.Add(section));
+                    sectionPropList.Add(section);
 
-                    int sectionId = rfSection.No
-                    if (!m_sectionDict.ContainsKey(sectionId))
+                    int sectionId = rfSection.No;
+                    if(!m_sectionDict.ContainsKey(sectionId))
                     {
                         m_sectionDict.Add(sectionId, section);
                     }
