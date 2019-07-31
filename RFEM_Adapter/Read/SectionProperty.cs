@@ -92,7 +92,6 @@ namespace BH.Adapter.RFEM
             System.Reflection.MethodInfo[] mi = t.GetMethods();
 
             List<string> describe = new List<string>();
-
             foreach(System.ComponentModel.PropertyDescriptor pd in System.ComponentModel.TypeDescriptor.GetProperties(rfSectionDB))
             {
                 describe.Add(pd.Name);

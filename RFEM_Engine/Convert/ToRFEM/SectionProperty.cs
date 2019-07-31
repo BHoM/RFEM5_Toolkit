@@ -22,11 +22,13 @@ namespace BH.Engine.RFEM
             rfSectionProperty.No = sectionPropertyId;
             rfSectionProperty.MaterialNo = materialId;
             rfSectionProperty.TextID = sectionProperty.Name;
-            rfSectionProperty.Description = sectionProperty.Name + " | " + "show standard/norm";
+            rfSectionProperty.Description = sectionProperty.Name + " | " + "no standard/norm";
             rfSectionProperty.AxialArea = sectionProperty.Area;
             rfSectionProperty.TorsionMoment = sectionProperty.J;
             rfSectionProperty.ShearAreaY = sectionProperty.Asy;
             rfSectionProperty.ShearAreaZ = sectionProperty.Asz;
+            rfSectionProperty.BendingMomentY = sectionProperty.Iy;
+            rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
 
 
             if (sectionProperty is SteelSection)
