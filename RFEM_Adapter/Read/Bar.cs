@@ -62,8 +62,8 @@ namespace BH.Adapter.RFEM
                 {
                     rf.Line line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
-                    ISectionProperty sectionProperty = m_sectionDict[member.StartCrossSectionNo]
-                    barList.Add(member.ToBHoM(line, sectionProperty);
+                    ISectionProperty sectionProperty = m_sectionDict[member.StartCrossSectionNo];
+                    barList.Add(member.ToBHoM(line, sectionProperty));
                 }
             }
             else
