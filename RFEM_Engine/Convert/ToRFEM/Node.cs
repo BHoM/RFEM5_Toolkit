@@ -11,19 +11,13 @@ namespace BH.Engine.RFEM
 {
     public static partial class Convert
     {
-        /***************************************************/
-        /**** Public Methods                            ****/
-        /***************************************************/
-
-        //Add methods for converting From BHoM to the specific software types, if possible to do without any BHoM calls
-        //Example:
         public static rf.Node ToRFEM(this Node node, int nodeId)
         {
             rf.Node rfNode = new rf.Node();
             rfNode.No = nodeId;
             rfNode.X = node.Position.X;
-            rfNode.Y = node.Position.Z;
-            rfNode.Z = node.Position.Y;
+            rfNode.Y = node.Position.Y;
+            rfNode.Z = node.Position.Z;
             return rfNode;
         }
 
