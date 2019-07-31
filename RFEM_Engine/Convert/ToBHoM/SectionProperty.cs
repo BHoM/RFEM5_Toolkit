@@ -30,22 +30,22 @@ namespace BH.Engine.RFEM
 
             if (materialType == MaterialType.Steel)
             {
-                double dim = Math.Sqrt(rfSectionProperty.AxialArea);
-                SteelSection steelSection = Structure.Create.SteelRectangleSection(dim, dim);
+                ExplicitSection section = new ExplicitSection();
+                
+                section.CustomData[AdapterId] = rfSectionProperty.No;
+                section.Material = Structure.Create.Steel("default steel");// rfMaterial.ToBHoM();
+                section.Name = rfSectionProperty.TextID;
 
-                steelSection.CustomData[AdapterId] = rfSectionProperty.No;
-                steelSection.Material = Structure.Create.Steel("default steel");// rfMaterial.ToBHoM();
-                steelSection.Name = rfSectionProperty.TextID;
-
-                //  - - - - read only ! cannot be assigned ! - - - - 
-                //steelSection.Area = rfSectionProperty.AxialArea;
-                //steelSection.J = rfSectionProperty.TorsionMoment;
-                //steelSection.Asy = rfSectionProperty.ShearAreaY;
-                //steelSection.Asz = rfSectionProperty.ShearAreaZ;
+                section.Area = rfSectionProperty.AxialArea;
+                section.J = rfSectionProperty.TorsionMoment;
+                section.Asy = rfSectionProperty.ShearAreaY;
+                section.Asz = rfSectionProperty.ShearAreaZ;
+                section.Iy = rfSectionProperty.BendingMomentY;
+                section.Iz = rfSectionProperty.BendingMomentZ;
 
                 Reflection.Compute.RecordWarning("Section: "+ rfSectionProperty.TextID + " - Id: " + rfSectionProperty.No + " cannot be read fully! Consider rebuilding parameters");
 
-                return steelSection;
+                return section;
             }
             else
             {
