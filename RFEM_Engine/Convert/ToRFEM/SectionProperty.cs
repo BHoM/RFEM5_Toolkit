@@ -34,8 +34,6 @@ namespace BH.Engine.RFEM
             if (sectionProperty is SteelSection)
             {
                 SteelSection steelSection = sectionProperty as SteelSection;
-                //steelSection.SectionProfile.Shape... not sure this is directly readable from RFEM sections
-                //steelSection.Fabrication = SteelFabrication.Welded; ... not sure if directly readable from rfem
 
             }
             else if (sectionProperty is ConcreteSection)
