@@ -24,6 +24,12 @@ namespace BH.Engine.RFEM
 
             rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[AdapterId]);
 
+            rf.Rotation rotation = new rf.Rotation();
+            rotation.Angle = bar.OrientationAngle;
+            rotation.Type = rf.RotationType.Angle;
+            rfBar.Rotation = rotation;
+
+
             return rfBar;
         }
 
