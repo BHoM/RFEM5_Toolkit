@@ -15,9 +15,6 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        //Add methods for converting to BHoM from the specific software types. 
-        //Only do this if possible to do without any com-calls or similar to the adapter
-        //Example:
         public static Node ToBHoM(this rf.Node node)
         {
             Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
