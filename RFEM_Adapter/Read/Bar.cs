@@ -31,6 +31,9 @@ using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
 using BH.oM.Common.Materials;
 
+using rf = Dlubal.RFEM5;
+using BH.Engine.RFEM;
+
 namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter
@@ -53,8 +56,24 @@ namespace BH.Adapter.RFEM
             //For example, a case where 1000 bars share 5 total number of different SectionProperties you want, if possible,
             //to only read in the section properties 5 times, not 1000. This might of course vary from software to software.
 
-            //Implement code for reading bars
-            //throw new NotImplementedException();
+            if (ids == null)
+            {
+                foreach (rf.Member member in modelData.GetMembers())
+                {
+                    rf.Line line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
+
+                    ISectionProperty sectionProperty = m_sectionDict[member.StartCrossSectionNo]
+                    barList.Add(member.ToBHoM(line, sectionProperty);
+                }
+            }
+            else
+            {
+                foreach(string id in ids)
+                {
+
+
+                }
+            }
 
             return barList;
         }

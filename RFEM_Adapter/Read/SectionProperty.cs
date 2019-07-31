@@ -56,12 +56,14 @@ namespace BH.Adapter.RFEM
                 foreach (rf.CrossSection rfSection in modelData.GetCrossSections())
                 {
                     rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                    sectionPropList.Add(rfSection.ToBHoM(rfMaterial));
+                    ISectionProperty section = rfSection.ToBHoM(rfMaterial);
 
-                    string nameId = rfSection.TextID;
-                    if (!m_sectionDict.ContainsKey(nameId))
+                    sectionPropList.Add(section));
+
+                    int sectionId = rfSection.No
+                    if (!m_sectionDict.ContainsKey(sectionId))
                     {
-                        m_sectionDict.Add(nameId, rfSection.No);
+                        m_sectionDict.Add(sectionId, section);
                     }
                 }
             }

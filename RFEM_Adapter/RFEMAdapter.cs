@@ -35,6 +35,7 @@ using System.Diagnostics;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using BH.oM.Structure.SectionProperties;
 
 namespace BH.Adapter.RFEM
 {
@@ -182,7 +183,7 @@ namespace BH.Adapter.RFEM
 
         private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
         private Dictionary<string, int> m_materialDict = new Dictionary<string, int>();
-        private Dictionary<string, int> m_sectionDict = new Dictionary<string, int>();
+        private Dictionary<int, ISectionProperty> m_sectionDict = new Dictionary<int, ISectionProperty>();
 
         /*******IModelData data = null;********************************************/
 
