@@ -50,12 +50,13 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.Material rfMaterial in modelData.GetMaterials())
                 {
-                    materialList.Add(rfMaterial.ToBHoM());
+                    IMaterialFragment material = rfMaterial.ToBHoM();
+                    materialList.Add(material);
 
-                    string nameId = rfMaterial.ID;// get proper conversion from the 'material.TextID'
-                    if (!m_materialDict.ContainsKey(nameId))
+                    int matId = rfMaterial.No;// get proper conversion from the 'material.TextID'
+                    if (!m_materialDict.ContainsKey(matId))
                     {
-                        m_materialDict.Add(nameId, rfMaterial.No);
+                        m_materialDict.Add(matId, material);
                     }
                 }
             }
