@@ -33,6 +33,7 @@ using BH.oM.Common.Materials;
 
 using rf = Dlubal.RFEM5;
 using BH.Engine.RFEM;
+using BH.oM.Structure.MaterialFragments;
 
 namespace BH.Adapter.RFEM
 {
@@ -58,8 +59,10 @@ namespace BH.Adapter.RFEM
 
                     if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
                     {
-                        sectionProperty = m_sectionDict.First().Value;
-                        BH.Engine.Reflection.Compute.RecordWarning("Section on bar no: " + member.No + " not found and replaced with default");
+                        rf.CrossSection rfSection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo).GetData();
+                        rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+                        sectionProperty = rfSection.ToBHoM(rfMat);
+                        m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     }
 
                     barList.Add(member.ToBHoM(line, sectionProperty));
@@ -75,8 +78,10 @@ namespace BH.Adapter.RFEM
 
                     if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
                     {
-                        sectionProperty = m_sectionDict.First().Value;
-                        BH.Engine.Reflection.Compute.RecordWarning("Section on bar no: " + member.No + " not found and replaced with default");
+                        rf.CrossSection rfSection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo).GetData();
+                        rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+                        sectionProperty = rfSection.ToBHoM(rfMat);
+                        m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     }
 
                     barList.Add(member.ToBHoM(line, sectionProperty));
