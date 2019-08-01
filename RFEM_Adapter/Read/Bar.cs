@@ -43,26 +43,25 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        //The List<string> in the methods below can be changed to a list of any type of identification more suitable for the toolkit
-        //If no ids are provided, the convention is to return all elements of the type
-
         private List<Bar> ReadBars(List<string> ids = null)
         {
             List<Bar> barList = new List<Bar>();
+            rf.Line line;
+            ISectionProperty sectionProperty;
 
-            //Tip: If the software stores depending types such as Nodes and SectionProperties in separate object tables,
-            //it might be a massive preformance boost to read in and store these properties before reading in the bars 
-            //and referenced these stored objects instead of reading them in each time.
-            //For example, a case where 1000 bars share 5 total number of different SectionProperties you want, if possible,
-            //to only read in the section properties 5 times, not 1000. This might of course vary from software to software.
 
             if (ids == null)
             {
                 foreach (rf.Member member in modelData.GetMembers())
                 {
-                    rf.Line line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
+                    line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
-                    ISectionProperty sectionProperty = m_sectionDict[member.StartCrossSectionNo];
+                    if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
+                    {
+                        sectionProperty = m_sectionDict.First().Value;
+                        BH.Engine.Reflection.Compute.RecordWarning("Section on bar no: " + member.No + " not found and replaced with default");
+                    }
+
                     barList.Add(member.ToBHoM(line, sectionProperty));
                 }
             }
@@ -70,8 +69,17 @@ namespace BH.Adapter.RFEM
             {
                 foreach(string id in ids)
                 {
+                    rf.Member member = modelData.GetMember(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
 
+                    line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
+                    if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
+                    {
+                        sectionProperty = m_sectionDict.First().Value;
+                        BH.Engine.Reflection.Compute.RecordWarning("Section on bar no: " + member.No + " not found and replaced with default");
+                    }
+
+                    barList.Add(member.ToBHoM(line, sectionProperty));
                 }
             }
 
