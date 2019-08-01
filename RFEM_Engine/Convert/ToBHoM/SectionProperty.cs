@@ -30,7 +30,8 @@ namespace BH.Engine.RFEM
                 ExplicitSection section = new ExplicitSection();
                 
                 section.CustomData[AdapterId] = rfSectionProperty.No;
-                section.Material = Structure.Create.Steel("default steel");// rfMaterial.ToBHoM();
+                //section.Material = Structure.Create.Steel("default steel");
+                section.Material = rfMaterial.ToBHoM();
                 section.Name = rfSectionProperty.TextID;
 
                 section.Area = rfSectionProperty.AxialArea;
@@ -39,8 +40,6 @@ namespace BH.Engine.RFEM
                 section.Asz = rfSectionProperty.ShearAreaZ;
                 section.Iy = rfSectionProperty.BendingMomentY;
                 section.Iz = rfSectionProperty.BendingMomentZ;
-
-                Reflection.Compute.RecordWarning("Section: "+ rfSectionProperty.TextID + " - Id: " + rfSectionProperty.No + " cannot be read fully! Consider rebuilding parameters");
 
                 return section;
             }

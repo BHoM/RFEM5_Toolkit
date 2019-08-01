@@ -18,9 +18,8 @@ namespace BH.Engine.RFEM
 
         public static Bar ToBHoM(this rf.Member member, rf.Line line, ISectionProperty sectionProperty)
         {
-            rf.Point3D sPt = line.ControlPoints[0];
-            rf.Point3D ePt = line.ControlPoints[1];
-            //raise warning on count >2, i.e. polyline
+            rf.Point3D sPt = line.ControlPoints.First();
+            rf.Point3D ePt = line.ControlPoints.Last();
 
             BH.oM.Geometry.Line ln = new oM.Geometry.Line() { Start = new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z }, End = new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z } };
 
