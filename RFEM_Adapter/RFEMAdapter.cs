@@ -180,7 +180,7 @@ namespace BH.Adapter.RFEM
 
         private IApplication app = null;
         private IModel model = null;
-        private IModelData2 modelData = null;
+        private IModelData modelData = null;
 
         private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
         private Dictionary<int, IMaterialFragment> m_materialDict = new Dictionary<int, IMaterialFragment>();

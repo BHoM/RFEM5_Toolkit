@@ -46,6 +46,8 @@ namespace BH.Adapter.RFEM
                 case "LOCK":
                     modelData.PrepareModification();
                     return true;
+                case "READSECTION":
+                    return ReadSectionFromRFEMLibrary("IPE 100");
                 default:
                     return false;
             }
