@@ -31,6 +31,7 @@ using BH.oM.Structure.SectionProperties;
 using BH.oM.Common.Materials;
 using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
+using rf3 = RFEM3;
 
 
 namespace BH.Adapter.RFEM
@@ -49,7 +50,7 @@ namespace BH.Adapter.RFEM
         {
             List<ISectionProperty> sectionPropList = new List<ISectionProperty>();
 
-            //ReadSectionFromRFEMLibrary("IPE100");//<-- intended use but does not return anything useful
+            //ReadSectionFromRFEMLibrary("IPE 200");
 
             if (ids == null)
             {
@@ -74,7 +75,6 @@ namespace BH.Adapter.RFEM
                     rf.CrossSection rfSection = modelData.GetCrossSection(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
                     rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
                     sectionPropList.Add(rfSection.ToBHoM(rfMaterial));
-                    
                 }
             }
 
@@ -83,22 +83,51 @@ namespace BH.Adapter.RFEM
 
         /***************************************************/
 
-        private void ReadSectionFromRFEMLibrary(string sectionName)
+        private bool ReadSectionFromRFEMLibrary(string sectionName)
         {
 
             dynamic rfSectionDB = modelData.GetCrossSectionDatabase();// <-- there is no documentation on how to work with this
 
-            
-            Type t = rfSectionDB.GetType();
+            rf3.IrfDatabaseCrSc2 dbCrSc = rfSectionDB as rf3.IrfDatabaseCrSc2;// <-- cast rfem5 type to rfem3 type
+            if (!dbCrSc.rfIsCrossSectionInDB(sectionName))
+                return false;
+            rf3.IrfCrossSectionDB csDB = dbCrSc.rfGetCrossSection(sectionName);
 
-            System.Reflection.MethodInfo[] mi = t.GetMethods();
+            //------------ using RFEM3.IrfCrossSectionDB.rfGetProperty() does work but property types need to be known in advance
+            double alpha = csDB.rfGetProperty(rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_A);
 
-            List<string> describe = new List<string>();
-            foreach(System.ComponentModel.PropertyDescriptor pd in System.ComponentModel.TypeDescriptor.GetProperties(rfSectionDB))
-            {
-                describe.Add(pd.Name);
-            }
-            
+
+            //------------ using RFEM3.IrfCrossSectionDB.rfGetPropertyArr() does work but property types need to be known in advance
+            int propertyCount = 5;
+            rf3.DB_CRSC_PROPERTY_ID[] propertyIds = new rf3.DB_CRSC_PROPERTY_ID[propertyCount];
+            double[] propertyValues = new double[propertyCount];
+
+            propertyIds[0] = rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b;
+            propertyIds[1] = rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h;
+            propertyIds[2] = rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_s;
+            propertyIds[3] = rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g;
+            propertyIds[4] = rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s;
+
+            csDB.rfGetPropertyArr(propertyCount, ref propertyIds[0], out propertyValues[0]);//should be array
+
+
+            // ------------ using RFEM3.IrfCrossSectionDB.rfGetPropertyArrAll() does not work ! method signature soes not match documentation
+            /*
+            int count = csDB.rfGetPropertyCount();
+            rf3.DB_CRSC_PROPERTY[] props = new rf3.DB_CRSC_PROPERTY[count];
+            count = csDB.rfGetPropertyArrAll(count, out props[0]);//<------- This returns a null reference exception !
+            List<string> tmpText = new List<string>();
+            for (int i = 0; i < count-1; i++)
+                tmpText.Add(props[i].strName);
+            */
+
+
+            // release COM objects as per documentation
+            rfSectionDB = null;
+            dbCrSc = null;
+            csDB = null;
+
+            return true;
 
         }
     }
