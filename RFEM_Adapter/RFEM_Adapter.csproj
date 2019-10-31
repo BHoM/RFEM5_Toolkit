@@ -100,22 +100,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Create\Bar.cs" />
-    <Compile Include="Create\Material.cs" />
-    <Compile Include="Create\Node.cs" />
-    <Compile Include="Create\Constraints.cs" />
-    <Compile Include="Create\SectionProperty.cs" />
-    <Compile Include="Create\_Create.cs" />
-    <Compile Include="Delete\_Delete.cs" />
-    <Compile Include="Execute\_Execute.cs" />
-    <Compile Include="Read\Constraint.cs" />
+    <Compile Include="CRUD\Create\Bar.cs" />
+    <Compile Include="CRUD\Create\Material.cs" />
+    <Compile Include="CRUD\Create\Node.cs" />
+    <Compile Include="CRUD\Create\Constraints.cs" />
+    <Compile Include="CRUD\Create\SectionProperty.cs" />
+    <Compile Include="CRUD\Create\_Create.cs" />
+    <Compile Include="CRUD\Delete\_Delete.cs" />
+    <Compile Include="AdapterActions\_Execute.cs" />
+    <Compile Include="CRUD\Read\Constraint.cs" />
     <Compile Include="Types\NextId.cs" />
-    <Compile Include="Read\Bar.cs" />
-    <Compile Include="Read\Material.cs" />
-    <Compile Include="Read\Node.cs" />
-    <Compile Include="Read\SectionProperty.cs" />
-    <Compile Include="Read\_Read.cs" />
-    <Compile Include="Update\_UpdateObjects.cs" />
+    <Compile Include="CRUD\Read\Bar.cs" />
+    <Compile Include="CRUD\Read\Material.cs" />
+    <Compile Include="CRUD\Read\Node.cs" />
+    <Compile Include="CRUD\Read\SectionProperty.cs" />
+    <Compile Include="CRUD\Read\_Read.cs" />
+    <Compile Include="CRUD\Update\_UpdateObjects.cs" />
     <Compile Include="RFEMAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\Comparer.cs" />
