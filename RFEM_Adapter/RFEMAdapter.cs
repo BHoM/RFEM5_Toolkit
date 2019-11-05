@@ -29,7 +29,7 @@ using BH.oM.Base;
 using BH.oM.Data.Requests;
 using System.Runtime.InteropServices;
 using rf = Dlubal.RFEM5;
-using Dlubal.RFEM5; //I am going to remove this
+using Dlubal.RFEM5; 
 
 using System.Reflection;
 using System.Diagnostics;
