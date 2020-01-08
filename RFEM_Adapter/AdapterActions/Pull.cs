@@ -38,15 +38,16 @@ using System.IO;
 using System.Collections.Generic;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
+using BH.oM.Adapter;
 
 namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter : StructuralAnalysisAdapter
     {
-        public override IEnumerable<object> Pull(IRequest request, Dictionary<string, object> config = null)
+        public override IEnumerable<object> Pull(IRequest request, PullType pullType = PullType.AdapterDefault, ActionConfig actionConfig = null)
         {
             if (IsApplicationRunning() & TryToShowApp())
-                return base.Pull(request, config);
+                return base.Pull(request, pullType, actionConfig);
             else
             {
                 BH.Engine.Reflection.Compute.RecordError("Make sure that either the RFEM Adapter component has opened an instance of the application or you have opened one yourself."
