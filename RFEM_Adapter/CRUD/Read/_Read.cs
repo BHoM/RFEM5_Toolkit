@@ -32,6 +32,7 @@ using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Common.Materials;
 using BH.oM.Structure.MaterialFragments;
+using BH.oM.Adapter;
 
 namespace BH.Adapter.RFEM
 {
@@ -41,7 +42,7 @@ namespace BH.Adapter.RFEM
         /**** Adapter overload method                   ****/
         /***************************************************/
 
-        protected virtual override IEnumerable<IBHoMObject> Read(Type type, IList ids)
+        protected override IEnumerable<IBHoMObject> IRead(Type type, IList ids, ActionConfig actionConfig = null)
         {
             //Main dispatcher method.
             //Choose what to pull out depending on the type.
