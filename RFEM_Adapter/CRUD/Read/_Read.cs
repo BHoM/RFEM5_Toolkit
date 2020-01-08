@@ -41,7 +41,7 @@ namespace BH.Adapter.RFEM
         /**** Adapter overload method                   ****/
         /***************************************************/
 
-        protected override IEnumerable<IBHoMObject> Read(Type type, IList ids)
+        protected virtual override IEnumerable<IBHoMObject> Read(Type type, IList ids)
         {
             //Main dispatcher method.
             //Choose what to pull out depending on the type.
