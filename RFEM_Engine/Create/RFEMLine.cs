@@ -21,8 +21,8 @@ namespace BH.Engine.RFEM
         {
             rf.Line centreLine = new rf.Line();
             centreLine.No = lineId;
-            int startNodeId = System.Convert.ToInt32(bar.StartNode.CustomData[Convert.AdapterId]);
-            int endNodeId = System.Convert.ToInt32(bar.EndNode.CustomData[Convert.AdapterId]);
+            int startNodeId = System.Convert.ToInt32(bar.StartNode.CustomData[Convert.AdapterIdName]);
+            int endNodeId = System.Convert.ToInt32(bar.EndNode.CustomData[Convert.AdapterIdName]);
             centreLine.NodeList = String.Join(",", new int[] { startNodeId, endNodeId });
             centreLine.Type = rf.LineType.PolylineType;
 

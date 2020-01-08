@@ -57,7 +57,7 @@ namespace BH.Adapter.RFEM
         {
             if (Active)
             {
-                AdapterId = BH.Engine.RFEM.Convert.AdapterId;   //Set the "AdapterId" to "SoftwareName_id". Generally stored as a constant string in the convert class in the SoftwareName_Engine
+                AdapterIdName = BH.Engine.RFEM.Convert.AdapterId;   //Set the "AdapterId" to "SoftwareName_id". Generally stored as a constant string in the convert class in the SoftwareName_Engine
 
                 Config.CloneBeforePush = false;      //Set to true to clone the objects before they are being pushed through the software. Required if any modifications at all, as adding a software ID is done to the objects
 

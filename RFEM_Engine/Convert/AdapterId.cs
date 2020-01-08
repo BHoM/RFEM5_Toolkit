@@ -9,6 +9,6 @@ namespace BH.Engine.RFEM
     public static partial class Convert
     {
         //Key used to find the software in the custom data of created or read objects
-        public const string AdapterId = "RFEM_id";
+        public const string AdapterIdName = "RFEM_id";
     }
 }

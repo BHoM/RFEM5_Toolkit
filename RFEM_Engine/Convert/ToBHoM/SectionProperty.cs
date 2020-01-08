@@ -29,7 +29,7 @@ namespace BH.Engine.RFEM
             {
                 ExplicitSection section = new ExplicitSection();
                 
-                section.CustomData[AdapterId] = rfSectionProperty.No;
+                section.CustomData[AdapterIdName] = rfSectionProperty.No;
                 //section.Material = Structure.Create.Steel("default steel");
                 section.Material = rfMaterial.ToBHoM();
                 section.Name = rfSectionProperty.TextID;

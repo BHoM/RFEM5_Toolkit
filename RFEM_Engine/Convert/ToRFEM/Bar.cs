@@ -22,7 +22,7 @@ namespace BH.Engine.RFEM
             rfBar.No = barId;
             rfBar.LineNo = lineId;
 
-            rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[AdapterId]);
+            rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[AdapterIdName]);
 
             rf.Rotation rotation = new rf.Rotation();
             rotation.Angle = bar.OrientationAngle;

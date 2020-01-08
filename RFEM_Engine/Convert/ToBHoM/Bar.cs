@@ -25,7 +25,7 @@ namespace BH.Engine.RFEM
 
             Bar bhBar = BH.Engine.Structure.Create.Bar(ln, sectionProperty, member.Rotation.Angle);
 
-            bhBar.CustomData.Add(AdapterId, member.No);
+            bhBar.CustomData.Add(AdapterIdName, member.No);
 
             return bhBar;
         }
