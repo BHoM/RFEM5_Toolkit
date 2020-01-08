@@ -20,44 +20,43 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Structure.Elements;
-using BH.oM.Structure.Constraints;
-using BH.oM.Structure.SectionProperties;
-using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Common.Materials;
+using BH.oM.Structure.Elements;
+using BH.oM.Base;
+using BH.oM.Data.Requests;
+using System.Runtime.InteropServices;
+using rf = Dlubal.RFEM5;
+using Dlubal.RFEM5;
+
+using System.Reflection;
+using System.Diagnostics;
+using System;
+using System.IO;
+using System.Collections.Generic;
+using BH.oM.Structure.SectionProperties;
+using BH.oM.Structure.MaterialFragments;
 
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter
+    public partial class RFEMAdapter : BHoMAdapter
     {
-        /***************************************************/
-        /**** Adapter overload method                   ****/
-        /***************************************************/
-
-        protected override bool ICreate<T>(IEnumerable<T> objects)
+        public override List<IObject> Push(IEnumerable<IObject> objects, string tag = "", Dictionary<string, object> config = null)
         {
-            bool success = true;
-
-            if (objects.Count() > 0)
+            if (IsApplicationRunning() & TryToShowApp())
             {
-                app.LockLicense();
-                modelData.PrepareModification();
-
-                success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
-                
-                modelData.FinishModification();
-                app.UnlockLicense();
+                return base.Push(objects, tag, config);
             }
+            else
+            {
+                BH.Engine.Reflection.Compute.RecordError("Make sure that either the RFEM Adapter component has opened an instance of the application or you have opened one yourself."
+                + "\nCheck if you have a frozen instance of RFEM in the background. Look in Task Manager.");
 
-            return success;             //Finally return if the creation was successful or not
-
+                return null;
+            }
         }
 
-        /***************************************************/
     }
 }
