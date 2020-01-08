@@ -116,19 +116,6 @@ namespace BH.Adapter.RFEM
 
 
 
-        public override IEnumerable<object> Pull(IRequest request, Dictionary<string, object> config = null)
-        {
-            if (IsApplicationRunning() & TryToShowApp())
-                return base.Pull(request, config);
-            else
-            {
-                BH.Engine.Reflection.Compute.RecordError("Make sure that either the RFEM Adapter component has opened an instance of the application or you have opened one yourself."
-               + "\nCheck if you have a frozen instance of RFEM in the background. Look in Task Manager.");
-                return null;
-            }
-        }
-
-
         /***************************************************/
         /**** Public  Methods                           ****/
         /***************************************************/
