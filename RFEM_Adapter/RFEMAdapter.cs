@@ -39,9 +39,10 @@ using System.Collections.Generic;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
 
+
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter : BHoMAdapter
+    public partial class RFEMAdapter : StructuralAnalysisAdapter
     {
         /***************************************************/
         /**** Public Fields                             ****/
