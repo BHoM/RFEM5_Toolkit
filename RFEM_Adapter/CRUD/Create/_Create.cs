@@ -39,7 +39,7 @@ namespace BH.Adapter.RFEM
         /**** Adapter overload method                   ****/
         /***************************************************/
 
-        protected override bool ICreate<T>(IEnumerable<T> objects)
+        protected virtual bool ICreate<T>(IEnumerable<T> objects)
         {
             bool success = true;
 
