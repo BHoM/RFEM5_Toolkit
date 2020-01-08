@@ -38,7 +38,8 @@ using System.IO;
 using System.Collections.Generic;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
-
+using BH.oM.Adapter;
+using BH.oM.Adapter.RFEM;
 
 namespace BH.Adapter.RFEM
 {
@@ -53,13 +54,14 @@ namespace BH.Adapter.RFEM
         /***************************************************/
 
         //Add any applicable constructors here, such as linking to a specific file or anything else as well as linking to that file through the (if existing) com link via the API
-        public RFEMAdapter(string filePath = "", bool Active = false)
+        public RFEMAdapter(string filePath = "", RFEMConfig rfemConfig = null, bool Active = false)
         {
             if (Active)
             {
                 AdapterIdName = BH.Engine.RFEM.Convert.AdapterIdName;   //Set the "AdapterId" to "SoftwareName_id". Generally stored as a constant string in the convert class in the SoftwareName_Engine
 
-                Config.CloneBeforePush = false;      //Set to true to clone the objects before they are being pushed through the software. Required if any modifications at all, as adding a software ID is done to the objects
+                if (rfemConfig != null)
+                    SetConfig(rfemConfig);
 
 
 
@@ -162,9 +164,20 @@ namespace BH.Adapter.RFEM
 
 
         /***************************************************/
-        /**** Private Helper Methods                    ****/
+        /**** Private Methods                    ****/
         /***************************************************/
 
+        private void SetConfig(RFEMConfig config)
+        {
+            if (config.Is2DModel)
+            {
 
+            }
+
+            if (!config.ZIsUp)
+            {
+
+            }
+        }
     }
 }
