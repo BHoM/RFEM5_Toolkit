@@ -41,7 +41,7 @@ using BH.oM.Structure.MaterialFragments;
 
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter : BHoMAdapter
+    public partial class RFEMAdapter : StructuralAnalysisAdapter
     {
         public override List<IObject> Push(IEnumerable<IObject> objects, string tag = "", Dictionary<string, object> config = null)
         {
