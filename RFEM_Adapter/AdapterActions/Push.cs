@@ -38,16 +38,17 @@ using System.IO;
 using System.Collections.Generic;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
+using BH.oM.Adapter;
 
 namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter : StructuralAnalysisAdapter
     {
-        public override List<IObject> Push(IEnumerable<IObject> objects, string tag = "", Dictionary<string, object> config = null)
+        public override List<object> Push(IEnumerable<object> objects, string tag = "", PushType pushType = PushType.AdapterDefault,  ActionConfig actionConfig = null)
         {
             if (IsApplicationRunning() & TryToShowApp())
             {
-                return base.Push(objects, tag, config);
+                return base.Push(objects, tag, pushType, actionConfig);
             }
             else
             {

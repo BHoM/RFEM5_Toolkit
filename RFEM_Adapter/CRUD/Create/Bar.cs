@@ -50,7 +50,7 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < bars.Count(); i++)
                 {
-                    barIdNum = System.Convert.ToInt32(barList[i].CustomData[AdapterId]);
+                    barIdNum = System.Convert.ToInt32(barList[i].CustomData[AdapterIdName]);
 
                     //create line
                     lineIdNum = modelData.GetLineCount() + 1;
