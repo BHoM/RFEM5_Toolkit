@@ -38,47 +38,80 @@ namespace BH.Adapter.RFEM
 
         public override int Remove(IRequest request, ActionConfig actionConfig = null)
         {
+            Type type;
+            List<int> ids = null; //not in use but we should be able to delete objects by their id, right ?? 
 
+            if(request != null && request is FilterRequest)
+            {
+                type = (request as FilterRequest).Type;
+                if (type.ToRFEM() == rf.ModelObjectType.UnknownObject)
+                    return 0;
 
-            return base.Remove(request, actionConfig);
+                if (ids == null)//delete all of the type
+                {
+                    int deleteCount = TypeCount(type);
+                    for (int i = 0; i < deleteCount - 1; i++)
+                    {
+                        if (DeleteObject(type, i, true))
+                            return 0;
+                    }
+                    return deleteCount;
+                }
+                else//delete only objects with the id
+                {
+                    int deleteCount = 0;
+                    foreach (int id in ids as dynamic)
+                    {
+                        if (DeleteObject(type, id, false))
+                            deleteCount++;
+                    }
+                    return deleteCount;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+
+            //return base.Remove(request, actionConfig);
         }
 
 
 
         /****                 OLD CODE BELOW !!!!            ****/
 
-        protected override int Delete(Type type, IEnumerable<object> ids)
-        {
+        //protected override int Delete(Type type, IEnumerable<object> ids)
+        //{
 
 
-            //Insert code here to enable deletion of specific types of objects with specific ids
-            if (type.ToRFEM() == rf.ModelObjectType.UnknownObject)
-            {
-                return 0;//Fail
-            }
+        //    //Insert code here to enable deletion of specific types of objects with specific ids
+        //    if (type.ToRFEM() == rf.ModelObjectType.UnknownObject)
+        //    {
+        //        return 0;//Fail
+        //    }
 
-            if (ids == null)//delete all of the type
-            {
-                int deleteCount = TypeCount(type);
-                for (int i = 0; i < deleteCount - 1; i++)
-                {
-                    if (DeleteObject(type, i, true))
-                        return 0;//could this not fail after some objects have been deleted ???
-                }
-                return deleteCount;
-            }
-            else//delete only objects with the id
-            {
-                int deleteCount = 0;
-                foreach (int id in ids as dynamic)
-                {
-                    if (DeleteObject(type, id, false))
-                        deleteCount++;
-                }
-                return deleteCount;
-            }
+        //    if (ids == null)//delete all of the type
+        //    {
+        //        int deleteCount = TypeCount(type);
+        //        for (int i = 0; i < deleteCount - 1; i++)
+        //        {
+        //            if (DeleteObject(type, i, true))
+        //                return 0;//could this not fail after some objects have been deleted ???
+        //        }
+        //        return deleteCount;
+        //    }
+        //    else//delete only objects with the id
+        //    {
+        //        int deleteCount = 0;
+        //        foreach (int id in ids as dynamic)
+        //        {
+        //            if (DeleteObject(type, id, false))
+        //                deleteCount++;
+        //        }
+        //        return deleteCount;
+        //    }
 
-        }
+        //}
 
         /***************************************************/
 
