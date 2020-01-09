@@ -29,12 +29,13 @@ using BH.oM.Base;
 using System.Runtime.InteropServices;
 using rf = Dlubal.RFEM5;
 using System.Collections;
+using BH.oM.Adapter;
 
 namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter
     {
-        public override bool Execute(string command, Dictionary<string, object> parameters = null, Dictionary<string, object> config = null)
+        public override bool Execute(string command, Dictionary<string, object> parameters = null, ActionConfig actionConfig = null)
         {
             string commandUpper = command.ToUpper();
 
