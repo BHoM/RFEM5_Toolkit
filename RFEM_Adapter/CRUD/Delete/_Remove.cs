@@ -27,18 +27,30 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BH.Engine.RFEM;
+using BH.oM.Adapter;
+using BH.oM.Data.Requests;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter
     {
-        /***************************************************/
-        /**** Adapter overload method                   ****/
-        /***************************************************/
+
+        public override int Remove(IRequest request, ActionConfig actionConfig = null)
+        {
+
+
+            return base.Remove(request, actionConfig);
+        }
+
+
+
+        /****                 OLD CODE BELOW !!!!            ****/
 
         protected override int Delete(Type type, IEnumerable<object> ids)
         {
+
+
             //Insert code here to enable deletion of specific types of objects with specific ids
             if (type.ToRFEM() == rf.ModelObjectType.UnknownObject)
             {
