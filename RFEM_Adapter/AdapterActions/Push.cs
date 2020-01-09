@@ -46,6 +46,15 @@ namespace BH.Adapter.RFEM
     {
         public override List<object> Push(IEnumerable<object> objects, string tag = "", PushType pushType = PushType.AdapterDefault,  ActionConfig actionConfig = null)
         {
+            // ----------------------------------------//
+            //                 SET-UP                  //
+            // ----------------------------------------//
+
+            // If unset, set the pushType to AdapterSettings' value (base AdapterSettings default is FullCRUD).
+            if (pushType == PushType.AdapterDefault)
+                pushType = m_AdapterSettings.DefaultPushType;
+
+
             if (IsApplicationRunning() & TryToShowApp())
             {
                 return base.Push(objects, tag, pushType, actionConfig);

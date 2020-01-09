@@ -138,7 +138,7 @@
     <Compile Include="CRUD\Create\Constraints.cs" />
     <Compile Include="CRUD\Create\SectionProperty.cs" />
     <Compile Include="CRUD\Create\_Create.cs" />
-    <Compile Include="CRUD\Delete\_Delete.cs" />
+    <Compile Include="CRUD\Delete\_Remove.cs" />
     <Compile Include="AdapterActions\_Execute.cs" />
     <Compile Include="CRUD\Read\Constraint.cs" />
     <Compile Include="Types\NextId.cs" />
