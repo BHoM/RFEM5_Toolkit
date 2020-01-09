@@ -65,7 +65,6 @@ namespace BH.Adapter.RFEM
                 {typeof(ISectionProperty), new BHoMObjectNameOrToStringComparer() },
                 {typeof(IMaterialFragment), new BHoMObjectNameComparer() },
                 {typeof(LinkConstraint), new BHoMObjectNameComparer() },
-
             };
 
             m_dependencyTypes = new Dictionary<Type, List<Type>>
@@ -78,7 +77,6 @@ namespace BH.Adapter.RFEM
                 {typeof(ISurfaceProperty), new List<Type> { typeof(IMaterialFragment) } },
                 {typeof(Panel), new List<Type> { typeof(ISurfaceProperty) } }
             };
-
 
 
             if (Active)
