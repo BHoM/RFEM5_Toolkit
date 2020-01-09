@@ -150,8 +150,6 @@
     <Compile Include="CRUD\Update\_Update.cs" />
     <Compile Include="RFEMAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Types\Comparer.cs" />
-    <Compile Include="Types\DependencyTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RFEM_Engine\RFEM_Engine.csproj">

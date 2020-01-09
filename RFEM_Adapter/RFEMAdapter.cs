@@ -29,7 +29,6 @@ using BH.oM.Base;
 using BH.oM.Data.Requests;
 using System.Runtime.InteropServices;
 using rf = Dlubal.RFEM5;
-using Dlubal.RFEM5; 
 
 using System.Reflection;
 using System.Diagnostics;
@@ -40,6 +39,9 @@ using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Adapter;
 using BH.oM.Adapter.RFEM;
+using BH.Engine.Base.Objects;
+using BH.oM.Structure.SurfaceProperties;
+using BH.oM.Structure.Constraints;
 
 namespace BH.Adapter.RFEM
 {
@@ -56,6 +58,29 @@ namespace BH.Adapter.RFEM
         //Add any applicable constructors here, such as linking to a specific file or anything else as well as linking to that file through the (if existing) com link via the API
         public RFEMAdapter(string filePath = "", RFEMConfig rfemConfig = null, bool Active = false)
         {
+            m_adapterComparers = new Dictionary<Type, object>
+            {
+                {typeof(Bar), new BH.Engine.Structure.BarEndNodesDistanceComparer(3) },
+                {typeof(Node), new BH.Engine.Structure.NodeDistanceComparer(3) },
+                {typeof(ISectionProperty), new BHoMObjectNameOrToStringComparer() },
+                {typeof(IMaterialFragment), new BHoMObjectNameComparer() },
+                {typeof(LinkConstraint), new BHoMObjectNameComparer() },
+
+            };
+
+            m_dependencyTypes = new Dictionary<Type, List<Type>>
+            {
+                //{typeof(Node), new List<Type> { typeof(Constraint6DOF) } },
+                {typeof(Bar), new List<Type> { typeof(ISectionProperty), typeof(Node) } },
+                {typeof(ISectionProperty), new List<Type> { typeof(IMaterialFragment) } },
+                {typeof(RigidLink), new List<Type> { typeof(LinkConstraint), typeof(Node) } },
+                {typeof(FEMesh), new List<Type> { typeof(ISurfaceProperty), typeof(Node) } },
+                {typeof(ISurfaceProperty), new List<Type> { typeof(IMaterialFragment) } },
+                {typeof(Panel), new List<Type> { typeof(ISurfaceProperty) } }
+            };
+
+
+
             if (Active)
             {
                 AdapterIdName = BH.Engine.RFEM.Convert.AdapterIdName;   //Set the "AdapterId" to "SoftwareName_id". Generally stored as a constant string in the convert class in the SoftwareName_Engine
@@ -63,19 +88,17 @@ namespace BH.Adapter.RFEM
                 if (rfemConfig != null)
                     SetConfig(rfemConfig);
 
-
-
                 if (!IsApplicationRunning())
                 {
                     try
                     {
-                        app = new Application();
+                        app = new rf.Application();
 
                         if (!string.IsNullOrWhiteSpace(filePath) && File.Exists(filePath))
                             model = app.OpenModel(filePath);
                         else
                             app.CreateModel("testModel");
-                        
+
                         model = app.GetModel(0);
 
                         model.Activate();
@@ -84,18 +107,16 @@ namespace BH.Adapter.RFEM
                     {
                         throw new Exception($"Error creating a new Dlubal RFEM instance. Check if licenses are available. Error message:\n {e.Message}");
                     }
-
                 }
                 else
                 {
                     try
                     {
-                        app = Marshal.GetActiveObject("RFEM5.Application") as IApplication;
+                        app = Marshal.GetActiveObject("RFEM5.Application") as rf.IApplication;
 
                         app.LockLicense();
 
                         model = app.GetActiveModel();
-
                     }
                     catch (Exception e)
                     {
@@ -143,7 +164,6 @@ namespace BH.Adapter.RFEM
             {
                 return false;
             }
-
             return true;
         }
 
@@ -152,9 +172,9 @@ namespace BH.Adapter.RFEM
         /**** Private  Fields                           ****/
         /***************************************************/
 
-        private IApplication app = null;
-        private IModel model = null;
-        private IModelData modelData = null;
+        private rf.IApplication app = null;
+        private rf.IModel model = null;
+        private rf.IModelData modelData = null;
 
         private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
         private Dictionary<int, IMaterialFragment> m_materialDict = new Dictionary<int, IMaterialFragment>();
