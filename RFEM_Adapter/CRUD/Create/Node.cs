@@ -50,14 +50,14 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < nodes.Count(); i++)
                 {
-                    nodeIdNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterId]);//(NextId(nodeList[i].GetType()));
+                    nodeIdNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterIdName]);//(NextId(nodeList[i].GetType()));
                     rfNodes[i] = nodeList[i].ToRFEM(nodeIdNum);
                     modelData.SetNode(rfNodes[i]);
 
                     //set support here if the node contains one ! ! ! ! !
                     if(nodeList[i].Support != null)
                     {
-                        consIdNum = System.Convert.ToInt32(NextId(nodeList[i].Support.GetType()));
+                        consIdNum = System.Convert.ToInt32(NextFreeId(nodeList[i].Support.GetType()));
                         rf.NodalSupport rfConstraint = nodeList[i].Support.ToRFEM(consIdNum, nodeIdNum);
                         modelData.SetNodalSupport(rfConstraint);
                     }
