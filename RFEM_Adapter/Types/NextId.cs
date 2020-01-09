@@ -36,7 +36,7 @@ namespace BH.Adapter.RFEM
         /**** Adapter overload method                   ****/
         /***************************************************/
 
-        protected override object NextId(Type objectType, bool refresh = false)
+        protected override object NextFreeId(Type objectType, bool refresh = false)
         {
             int index;
 
