@@ -53,6 +53,7 @@
     <Reference Include="BHoM_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_Engine\Build\BHoM_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Common_Engine">
       <SpecificVersion>False</SpecificVersion>
@@ -111,6 +112,9 @@
     </Reference>
     <Reference Include="StructuralAnalysisAdapter">
       <HintPath>..\..\BHoM_Adapter\Build\StructuralAnalysisAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Structure_AdapterModules">
+      <HintPath>..\..\BHoM_Adapter\Build\Structure_AdapterModules.dll</HintPath>
     </Reference>
     <Reference Include="Structure_Engine">
       <SpecificVersion>False</SpecificVersion>
