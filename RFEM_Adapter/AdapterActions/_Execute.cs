@@ -30,29 +30,50 @@ using System.Runtime.InteropServices;
 using rf = Dlubal.RFEM5;
 using System.Collections;
 using BH.oM.Adapter;
+using BH.oM.Reflection;
+using BH.oM.Adapter.Commands;
+
 
 namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter
     {
-        public override bool Execute(string command, Dictionary<string, object> parameters = null, ActionConfig actionConfig = null)
+        public override Output<List<object>, bool> Execute(IExecuteCommand command, ActionConfig actionConfig = null)
         {
-            string commandUpper = command.ToUpper();
+            var output = new Output<List<object>, bool>() { Item1 = null, Item2 = false };
 
-            switch (commandUpper)
-            {
-                case "UNLOCK":
-                    modelData.Clean();// .FinishModification();
-                    return true;
-                case "LOCK":
-                    modelData.PrepareModification();
-                    return true;
-                case "READSECTION":
-                    return ReadSectionFromRFEMLibrary("IPE 100");
-                default:
-                    return false;
-            }
+            output.Item2 = RunCommand(command as dynamic);
+
+            return output;
 
         }
+
+        public bool RunCommand(ClearResults command)//placeholder only
+        {
+            modelData.Clean();
+            return true;
+        }
+
+
+
+        /*
+        public bool RunCommand(BH.oM.Adapter.Commands - "UNLOCK")
+        {
+            modelData.Clean();
+            return true;
+        }
+
+        public bool RunCommand(BH.oM.Adapter.Commands - "LOCK")
+        {
+            modelData.PrepareModification();
+            return true;
+        }
+
+        public bool RunCommand(BH.oM.Adapter.Commands - "READSECTIONS")
+        {
+            return ReadSectionFromRFEMLibrary("IPE 100");
+            return true;
+        }
+        */
     }
 }

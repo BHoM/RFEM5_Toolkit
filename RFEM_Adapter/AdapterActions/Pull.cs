@@ -42,7 +42,7 @@ using BH.oM.Adapter;
 
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter : StructuralAnalysisAdapter
+    public partial class RFEMAdapter
     {
         public override IEnumerable<object> Pull(IRequest request, PullType pullType = PullType.AdapterDefault, ActionConfig actionConfig = null)
         {

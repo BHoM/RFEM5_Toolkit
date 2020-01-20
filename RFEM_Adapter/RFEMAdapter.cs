@@ -42,10 +42,12 @@ using BH.oM.Adapter.RFEM;
 using BH.Engine.Base.Objects;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.Constraints;
+using BH.Adapter;
+
 
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter : StructuralAnalysisAdapter
+    public partial class RFEMAdapter : BHoMAdapter
     {
         /***************************************************/
         /**** Public Fields                             ****/
@@ -58,7 +60,9 @@ namespace BH.Adapter.RFEM
         //Add any applicable constructors here, such as linking to a specific file or anything else as well as linking to that file through the (if existing) com link via the API
         public RFEMAdapter(string filePath = "", RFEMConfig rfemConfig = null, bool Active = false)
         {
-            m_adapterComparers = new Dictionary<Type, object>
+            BH.Adapter.Modules.Structure.ModuleLoader.LoadModules(this);
+
+            AdapterComparers = new Dictionary<Type, object>
             {
                 {typeof(Bar), new BH.Engine.Structure.BarEndNodesDistanceComparer(3) },
                 {typeof(Node), new BH.Engine.Structure.NodeDistanceComparer(3) },
@@ -67,7 +71,7 @@ namespace BH.Adapter.RFEM
                 {typeof(LinkConstraint), new BHoMObjectNameComparer() },
             };
 
-            m_dependencyTypes = new Dictionary<Type, List<Type>>
+            DependencyTypes = new Dictionary<Type, List<Type>>
             {
                 //{typeof(Node), new List<Type> { typeof(Constraint6DOF) } },
                 {typeof(Bar), new List<Type> { typeof(ISectionProperty), typeof(Node) } },

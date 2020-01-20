@@ -42,7 +42,7 @@ using BH.oM.Adapter;
 
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter : StructuralAnalysisAdapter
+    public partial class RFEMAdapter 
     {
         public override List<object> Push(IEnumerable<object> objects, string tag = "", PushType pushType = PushType.AdapterDefault,  ActionConfig actionConfig = null)
         {
