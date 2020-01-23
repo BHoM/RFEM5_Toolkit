@@ -45,31 +45,36 @@ namespace BH.Adapter.RFEM
             output.Item2 = RunCommand(command as dynamic);
 
             return output;
-
         }
 
-        public bool RunCommand(ClearResults command)//placeholder only
+        private bool RunCommand(ClearResults command)
         {
             modelData.Clean();
             return true;
         }
 
+        // Fallback case
+        private bool RunCommand(IExecuteCommand command)
+        {
+            BH.Engine.Reflection.Compute.RecordError($"The command {command.GetType().Name} is not supported by {this.GetType().Name}");
+            return true;
+        }
 
 
         /*
-        public bool RunCommand(BH.oM.Adapter.Commands - "UNLOCK")
+        private bool RunCommand(BH.oM.Adapter.Commands - "UNLOCK")
         {
             modelData.Clean();
             return true;
         }
 
-        public bool RunCommand(BH.oM.Adapter.Commands - "LOCK")
+        private bool RunCommand(BH.oM.Adapter.Commands - "LOCK")
         {
             modelData.PrepareModification();
             return true;
         }
 
-        public bool RunCommand(BH.oM.Adapter.Commands - "READSECTIONS")
+        private bool RunCommand(BH.oM.Adapter.Commands - "READSECTIONS")
         {
             return ReadSectionFromRFEMLibrary("IPE 100");
             return true;

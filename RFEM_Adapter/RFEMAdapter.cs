@@ -58,7 +58,7 @@ namespace BH.Adapter.RFEM
         /***************************************************/
 
         //Add any applicable constructors here, such as linking to a specific file or anything else as well as linking to that file through the (if existing) com link via the API
-        public RFEMAdapter(string filePath = "", RFEMConfig rfemConfig = null, bool Active = false)
+        public RFEMAdapter(string filePath = "", RFEMSettings rfemSettings = null, bool Active = false)
         {
             BH.Adapter.Modules.Structure.ModuleLoader.LoadModules(this);
 
@@ -85,10 +85,7 @@ namespace BH.Adapter.RFEM
 
             if (Active)
             {
-                AdapterIdName = BH.Engine.RFEM.Convert.AdapterIdName;   //Set the "AdapterId" to "SoftwareName_id". Generally stored as a constant string in the convert class in the SoftwareName_Engine
-
-                if (rfemConfig != null)
-                    SetConfig(rfemConfig);
+                AdapterIdName = BH.Engine.RFEM.Convert.AdapterIdName;
 
                 if (!IsApplicationRunning())
                 {
@@ -184,22 +181,5 @@ namespace BH.Adapter.RFEM
 
         /*******IModelData data = null;********************************************/
 
-
-        /***************************************************/
-        /**** Private Methods                    ****/
-        /***************************************************/
-
-        private void SetConfig(RFEMConfig config)
-        {
-            if (config.Is2DModel)
-            {
-
-            }
-
-            if (!config.ZIsUp)
-            {
-
-            }
-        }
     }
 }
