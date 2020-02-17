@@ -1,6 +1,6 @@
 ﻿/*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2019, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2020, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -58,7 +58,7 @@ namespace BH.Adapter.RFEM
         /***************************************************/
 
         //Add any applicable constructors here, such as linking to a specific file or anything else as well as linking to that file through the (if existing) com link via the API
-        public RFEMAdapter(string filePath = "", RFEMSettings rfemSettings = null, bool Active = false)
+        public RFEMAdapter(string filePath = "", RFEMSettings rfemSettings = null, bool active = false)
         {
             BH.Adapter.Modules.Structure.ModuleLoader.LoadModules(this);
 
@@ -83,7 +83,7 @@ namespace BH.Adapter.RFEM
             };
 
 
-            if (Active)
+            if (active)
             {
                 AdapterIdName = BH.Engine.RFEM.Convert.AdapterIdName;
 
