@@ -25,12 +25,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.SectionProperties;
+using BH.oM.Structure.Constraints;
+using BH.oM.Structure.MaterialFragments;
+using BH.oM.Physical;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.RFEM
+namespace BH.Adapter.RFEM
 {
     public static partial class Convert
     {
@@ -38,21 +39,28 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.Member ToRFEM(this Bar bar, int barId, int lineId)
+        public static IMaterialFragment ToBHoM(this rf.Material material)
         {
-            rf.Member rfBar = new rf.Member();
-            rfBar.No = barId;
-            rfBar.LineNo = lineId;
+            IMaterialFragment bhMaterial;
 
-            rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[AdapterIdName]);
+            if (material.ModelType == rf.MaterialModelType.IsotropicLinearElasticType)
+            {
+                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
+            }
+            else if (material.ModelType == rf.MaterialModelType.IsotropicPlastic2D3DType)
+            {
+                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
+            }
+            else if (material.ModelType == rf.MaterialModelType.IsotropicPlastic2D3DType)
+            {
+                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
+            }
+            else
+            {
+                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
+            }
 
-            rf.Rotation rotation = new rf.Rotation();
-            rotation.Angle = bar.OrientationAngle;
-            rotation.Type = rf.RotationType.Angle;
-            rfBar.Rotation = rotation;
-
-
-            return rfBar;
+            return bhMaterial;
         }
 
     }

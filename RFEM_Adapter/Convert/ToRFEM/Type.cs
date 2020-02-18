@@ -26,11 +26,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.RFEM
+namespace BH.Adapter.RFEM
 {
     public static partial class Convert
     {
@@ -38,20 +37,27 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static Bar ToBHoM(this rf.Member member, rf.Line line, ISectionProperty sectionProperty)
+
+        public static rf.ModelObjectType ToRFEM(this Type bhObjectType)
         {
-            rf.Point3D sPt = line.ControlPoints.First();
-            rf.Point3D ePt = line.ControlPoints.Last();
-
-            BH.oM.Geometry.Line ln = new oM.Geometry.Line() { Start = new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z }, End = new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z } };
-
-            Bar bhBar = BH.Engine.Structure.Create.Bar(ln, sectionProperty, member.Rotation.Angle);
-
-            bhBar.CustomData.Add(AdapterIdName, member.No);
-
-            return bhBar;
+            string typeString = bhObjectType.Name;
+            
+            switch (typeString)
+            {
+                case "Node":
+                    return rf.ModelObjectType.NodeObject;
+                case "Constraint6DOF":
+                    return rf.ModelObjectType.NodalSupportObject;
+                case "Bar":
+                    return rf.ModelObjectType.MemberObject;
+                case "IMaterialFragment":
+                    return rf.ModelObjectType.MaterialObject;
+                case "ISectionProperty":
+                    return rf.ModelObjectType.CrossSectionObject;
+                default:
+                    return rf.ModelObjectType.UnknownObject;
+            }
         }
 
-        /***************************************************/
     }
 }

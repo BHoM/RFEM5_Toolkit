@@ -25,11 +25,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.Constraints;
+using BH.oM.Structure.SectionProperties;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.RFEM
+namespace BH.Adapter.RFEM
 {
     public static partial class Convert
     {
@@ -37,27 +38,43 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-
-        public static rf.ModelObjectType ToRFEM(this Type bhObjectType)
+        public static rf.CrossSection ToRFEM(this ISectionProperty sectionProperty, int sectionPropertyId, int materialId)
         {
-            string typeString = bhObjectType.Name;
-            
-            switch (typeString)
+            rf.CrossSection rfSectionProperty = new rf.CrossSection();
+            rfSectionProperty.No = sectionPropertyId;
+            rfSectionProperty.MaterialNo = materialId;
+            rfSectionProperty.TextID = sectionProperty.Name;
+            rfSectionProperty.Description = sectionProperty.Name + " | " + "no standard/norm";
+            rfSectionProperty.AxialArea = sectionProperty.Area;
+            rfSectionProperty.TorsionMoment = sectionProperty.J;
+            rfSectionProperty.ShearAreaY = sectionProperty.Asy;
+            rfSectionProperty.ShearAreaZ = sectionProperty.Asz;
+            rfSectionProperty.BendingMomentY = sectionProperty.Iy;
+            rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
+
+
+            if (sectionProperty is SteelSection)
             {
-                case "Node":
-                    return rf.ModelObjectType.NodeObject;
-                case "Constraint6DOF":
-                    return rf.ModelObjectType.NodalSupportObject;
-                case "Bar":
-                    return rf.ModelObjectType.MemberObject;
-                case "IMaterialFragment":
-                    return rf.ModelObjectType.MaterialObject;
-                case "ISectionProperty":
-                    return rf.ModelObjectType.CrossSectionObject;
-                default:
-                    return rf.ModelObjectType.UnknownObject;
+                SteelSection steelSection = sectionProperty as SteelSection;
+
             }
+            else if (sectionProperty is ConcreteSection)
+            {
+                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+            }
+            else if (sectionProperty is ExplicitSection)
+            {
+                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+            }
+            else
+            {
+                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+            }
+
+            return rfSectionProperty;
+
         }
+
 
     }
 }

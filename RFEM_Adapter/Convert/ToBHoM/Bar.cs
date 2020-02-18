@@ -25,12 +25,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.MaterialFragments;
+using BH.oM.Structure.SectionProperties;
+using BH.oM.Structure.Constraints;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.RFEM
+namespace BH.Adapter.RFEM
 {
     public static partial class Convert
     {
@@ -38,29 +38,20 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.Material ToRFEM(this IMaterialFragment materialFragment, int materialId)
+        public static Bar ToBHoM(this rf.Member member, rf.Line line, ISectionProperty sectionProperty)
         {
-            rf.Material rfMaterial = new rf.Material();
-            rfMaterial.No = materialId;
-            rfMaterial.Description = materialFragment.Name;
-            rfMaterial.SpecificWeight = materialFragment.Density * 10; //translate from kg/m3 to kN/m3
+            rf.Point3D sPt = line.ControlPoints.First();
+            rf.Point3D ePt = line.ControlPoints.Last();
 
-            if (materialFragment is IIsotropic)
-            {
-                IIsotropic material = materialFragment as IIsotropic;
-                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
-                rfMaterial.PoissonRatio = material.PoissonsRatio;
-                rfMaterial.ElasticityModulus = material.YoungsModulus;
-                rfMaterial.ModelType = rf.MaterialModelType.IsotropicLinearElasticType;//--consider other types depending on analysis type
-            }
-            else
-            {
-                Reflection.Compute.RecordWarning("Upsie Daisy! Isotropic materials only for now! cannot make " + materialFragment.Name);
-            }
+            BH.oM.Geometry.Line ln = new oM.Geometry.Line() { Start = new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z }, End = new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z } };
 
-            return rfMaterial;
+            Bar bhBar = BH.Engine.Structure.Create.Bar(ln, sectionProperty, member.Rotation.Angle);
 
+            bhBar.CustomData.Add(AdapterIdName, member.No);
+
+            return bhBar;
         }
 
+        /***************************************************/
     }
 }

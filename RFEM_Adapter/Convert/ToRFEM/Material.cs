@@ -27,10 +27,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.SectionProperties;
+using BH.oM.Structure.MaterialFragments;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.RFEM
+namespace BH.Adapter.RFEM
 {
     public static partial class Convert
     {
@@ -38,43 +38,29 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.CrossSection ToRFEM(this ISectionProperty sectionProperty, int sectionPropertyId, int materialId)
+        public static rf.Material ToRFEM(this IMaterialFragment materialFragment, int materialId)
         {
-            rf.CrossSection rfSectionProperty = new rf.CrossSection();
-            rfSectionProperty.No = sectionPropertyId;
-            rfSectionProperty.MaterialNo = materialId;
-            rfSectionProperty.TextID = sectionProperty.Name;
-            rfSectionProperty.Description = sectionProperty.Name + " | " + "no standard/norm";
-            rfSectionProperty.AxialArea = sectionProperty.Area;
-            rfSectionProperty.TorsionMoment = sectionProperty.J;
-            rfSectionProperty.ShearAreaY = sectionProperty.Asy;
-            rfSectionProperty.ShearAreaZ = sectionProperty.Asz;
-            rfSectionProperty.BendingMomentY = sectionProperty.Iy;
-            rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
+            rf.Material rfMaterial = new rf.Material();
+            rfMaterial.No = materialId;
+            rfMaterial.Description = materialFragment.Name;
+            rfMaterial.SpecificWeight = materialFragment.Density * 10; //translate from kg/m3 to kN/m3
 
-
-            if (sectionProperty is SteelSection)
+            if (materialFragment is IIsotropic)
             {
-                SteelSection steelSection = sectionProperty as SteelSection;
-
-            }
-            else if (sectionProperty is ConcreteSection)
-            {
-                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
-            }
-            else if (sectionProperty is ExplicitSection)
-            {
-                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+                IIsotropic material = materialFragment as IIsotropic;
+                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
+                rfMaterial.PoissonRatio = material.PoissonsRatio;
+                rfMaterial.ElasticityModulus = material.YoungsModulus;
+                rfMaterial.ModelType = rf.MaterialModelType.IsotropicLinearElasticType;//--consider other types depending on analysis type
             }
             else
             {
-                Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+                Reflection.Compute.RecordWarning("Upsie Daisy! Isotropic materials only for now! cannot make " + materialFragment.Name);
             }
 
-            return rfSectionProperty;
+            return rfMaterial;
 
         }
-
 
     }
 }
