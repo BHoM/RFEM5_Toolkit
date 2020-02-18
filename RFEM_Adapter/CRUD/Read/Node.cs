@@ -53,14 +53,14 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.Node rfNode in modelData.GetNodes())
                 {
-                    nodeList.Add(rfNode.ToBHoM());
+                    nodeList.Add(rfNode.FromRFEM());
                 }
             }
             else
             {
                 foreach (string id in ids)
                 {
-                    nodeList.Add(modelData.GetNode(Int32.Parse(id), rf.ItemAt.AtNo).GetData().ToBHoM());
+                    nodeList.Add(modelData.GetNode(Int32.Parse(id), rf.ItemAt.AtNo).GetData().FromRFEM());
                 }
             }
 

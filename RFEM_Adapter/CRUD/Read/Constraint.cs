@@ -49,14 +49,14 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.NodalSupport rfConstraint in modelData.GetNodalSupports())
                 {
-                    constraintList.Add(rfConstraint.ToBHoM());
+                    constraintList.Add(rfConstraint.FromRFEM());
                 }
             }
             else
             {
                 foreach (string id in ids)
                 {
-                    constraintList.Add(modelData.GetNodalSupport(Int32.Parse(id), rf.ItemAt.AtNo).GetData().ToBHoM());
+                    constraintList.Add(modelData.GetNodalSupport(Int32.Parse(id), rf.ItemAt.AtNo).GetData().FromRFEM());
                 }
             }
 

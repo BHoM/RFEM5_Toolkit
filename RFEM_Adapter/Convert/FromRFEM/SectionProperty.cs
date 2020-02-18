@@ -42,7 +42,7 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static ISectionProperty ToBHoM(this rf.CrossSection rfSectionProperty, rf.Material rfMaterial)
+        public static ISectionProperty FromRFEM(this rf.CrossSection rfSectionProperty, rf.Material rfMaterial)
         {
 
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
@@ -51,9 +51,9 @@ namespace BH.Adapter.RFEM
             {
                 ExplicitSection section = new ExplicitSection();
                 
-                section.CustomData[AdapterIdName] = rfSectionProperty.No;
+                section.CustomData[BH.Engine.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
                 //section.Material = Structure.Create.Steel("default steel");
-                section.Material = rfMaterial.ToBHoM();
+                section.Material = rfMaterial.FromRFEM();
                 section.Name = rfSectionProperty.TextID;
 
                 section.Area = rfSectionProperty.AxialArea;

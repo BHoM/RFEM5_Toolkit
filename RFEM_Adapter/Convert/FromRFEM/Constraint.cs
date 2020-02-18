@@ -39,7 +39,7 @@ namespace BH.Adapter.RFEM
 
         //Add methods for converting to BHoM from the specific software types. 
         //Only do this if possible to do without any com-calls or similar to the adapter
-        public static Constraint6DOF ToBHoM(this rf.NodalSupport rfConstraint)
+        public static Constraint6DOF FromRFEM(this rf.NodalSupport rfConstraint)
         {
             Constraint6DOF bhConstraint = BH.Engine.Structure.Create.Constraint6DOF();
             bhConstraint.CustomData.Add(BH.Engine.RFEM.Convert.AdapterIdName, rfConstraint.No);
