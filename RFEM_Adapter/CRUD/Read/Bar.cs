@@ -61,11 +61,11 @@ namespace BH.Adapter.RFEM
                     {
                         rf.CrossSection rfSection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo).GetData();
                         rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfSection.ToBHoM(rfMat);
+                        sectionProperty = rfSection.FromRFEM(rfMat);
                         m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     }
 
-                    barList.Add(member.ToBHoM(line, sectionProperty));
+                    barList.Add(member.FromRFEM(line, sectionProperty));
                 }
             }
             else
@@ -80,11 +80,11 @@ namespace BH.Adapter.RFEM
                     {
                         rf.CrossSection rfSection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo).GetData();
                         rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfSection.ToBHoM(rfMat);
+                        sectionProperty = rfSection.FromRFEM(rfMat);
                         m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     }
 
-                    barList.Add(member.ToBHoM(line, sectionProperty));
+                    barList.Add(member.FromRFEM(line, sectionProperty));
                 }
             }
 

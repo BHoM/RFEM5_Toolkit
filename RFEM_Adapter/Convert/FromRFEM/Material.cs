@@ -39,7 +39,7 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static IMaterialFragment ToBHoM(this rf.Material material)
+        public static IMaterialFragment FromRFEM(this rf.Material material)
         {
             IMaterialFragment bhMaterial;
 

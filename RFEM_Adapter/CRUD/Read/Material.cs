@@ -50,7 +50,7 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.Material rfMaterial in modelData.GetMaterials())
                 {
-                    IMaterialFragment material = rfMaterial.ToBHoM();
+                    IMaterialFragment material = rfMaterial.FromRFEM();
                     materialList.Add(material);
 
                     int matId = rfMaterial.No;// get proper conversion from the 'material.TextID'
@@ -64,7 +64,7 @@ namespace BH.Adapter.RFEM
             {
                 foreach (string id in ids)
                 {
-                    materialList.Add(modelData.GetMaterial(Int32.Parse(id), rf.ItemAt.AtNo).GetData().ToBHoM());
+                    materialList.Add(modelData.GetMaterial(Int32.Parse(id), rf.ItemAt.AtNo).GetData().FromRFEM());
                 }
             }
 

@@ -26,7 +26,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
+using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
+using BH.Adapter.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -37,12 +39,18 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static Node ToBHoM(this rf.Node node)
+        public static Bar FromRFEM(this rf.Member member, rf.Line line, ISectionProperty sectionProperty)
         {
-            Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
-            bhNode.CustomData.Add(BH.Engine.RFEM.Convert.AdapterIdName, node.No);
+            rf.Point3D sPt = line.ControlPoints.First();
+            rf.Point3D ePt = line.ControlPoints.Last();
 
-            return bhNode;
+            BH.oM.Geometry.Line ln = new oM.Geometry.Line() { Start = new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z }, End = new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z } };
+
+            Bar bhBar = BH.Engine.Structure.Create.Bar(ln, sectionProperty, member.Rotation.Angle);
+
+            bhBar.CustomData.Add(BH.Engine.RFEM.Convert.AdapterIdName, member.No);
+
+            return bhBar;
         }
 
         /***************************************************/
