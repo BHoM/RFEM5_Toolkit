@@ -25,11 +25,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.Constraints;
+using BH.oM.Structure.SectionProperties;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.RFEM
+namespace BH.Adapter.RFEM
 {
     public static partial class Convert
     {
@@ -37,14 +38,22 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static Node ToBHoM(this rf.Node node)
+        public static rf.Member ToRFEM(this Bar bar, int barId, int lineId)
         {
-            Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
-            bhNode.CustomData.Add(AdapterIdName, node.No);
+            rf.Member rfBar = new rf.Member();
+            rfBar.No = barId;
+            rfBar.LineNo = lineId;
 
-            return bhNode;
+            rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[AdapterIdName]);
+
+            rf.Rotation rotation = new rf.Rotation();
+            rotation.Angle = bar.OrientationAngle;
+            rotation.Type = rf.RotationType.Angle;
+            rfBar.Rotation = rotation;
+
+
+            return rfBar;
         }
 
-        /***************************************************/
     }
 }

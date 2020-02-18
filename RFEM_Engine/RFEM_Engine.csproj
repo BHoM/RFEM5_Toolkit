@@ -99,18 +99,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Convert\AdapterId.cs" />
-    <Compile Include="Convert\ToBHoM\Bar.cs" />
-    <Compile Include="Convert\ToBHoM\Constraint.cs" />
-    <Compile Include="Convert\ToBHoM\Material.cs" />
-    <Compile Include="Convert\ToBHoM\Node.cs" />
-    <Compile Include="Convert\ToBHoM\SectionProperty.cs" />
-    <Compile Include="Convert\ToRFEM\Bar.cs" />
-    <Compile Include="Convert\ToRFEM\Constraint.cs" />
-    <Compile Include="Convert\ToRFEM\Material.cs" />
-    <Compile Include="Convert\ToRFEM\Node.cs" />
-    <Compile Include="Convert\ToRFEM\SectionProperty.cs" />
-    <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="Create\RFEMLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Material.cs" />
