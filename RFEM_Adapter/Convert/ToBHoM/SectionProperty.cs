@@ -67,7 +67,7 @@ namespace BH.Adapter.RFEM
             }
             else
             {
-                Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
+                Engine.Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
                 return null;
             }
 

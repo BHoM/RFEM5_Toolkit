@@ -42,7 +42,7 @@ namespace BH.Adapter.RFEM
         public static Constraint6DOF ToBHoM(this rf.NodalSupport rfConstraint)
         {
             Constraint6DOF bhConstraint = BH.Engine.Structure.Create.Constraint6DOF();
-            bhConstraint.CustomData.Add(AdapterIdName, rfConstraint.No);
+            bhConstraint.CustomData.Add(BH.Engine.RFEM.Convert.AdapterIdName, rfConstraint.No);
 
             //Translation
             if (rfConstraint.SupportConstantX == 0)

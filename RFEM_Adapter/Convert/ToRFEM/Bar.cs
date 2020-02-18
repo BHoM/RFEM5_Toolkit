@@ -44,7 +44,7 @@ namespace BH.Adapter.RFEM
             rfBar.No = barId;
             rfBar.LineNo = lineId;
 
-            rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[AdapterIdName]);
+            rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[BH.Engine.RFEM.Convert.AdapterIdName]);
 
             rf.Rotation rotation = new rf.Rotation();
             rotation.Angle = bar.OrientationAngle;
