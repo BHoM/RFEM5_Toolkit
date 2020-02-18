@@ -136,7 +136,6 @@
   <ItemGroup>
     <Compile Include="AdapterActions\Pull.cs" />
     <Compile Include="AdapterActions\Push.cs" />
-    <Compile Include="Convert\AdapterId.cs" />
     <Compile Include="Convert\ToBHoM\Bar.cs" />
     <Compile Include="Convert\ToBHoM\Constraint.cs" />
     <Compile Include="Convert\ToBHoM\Material.cs" />

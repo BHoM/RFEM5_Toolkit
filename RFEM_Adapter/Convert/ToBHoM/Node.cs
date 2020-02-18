@@ -40,7 +40,7 @@ namespace BH.Adapter.RFEM
         public static Node ToBHoM(this rf.Node node)
         {
             Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
-            bhNode.CustomData.Add(AdapterIdName, node.No);
+            bhNode.CustomData.Add(BH.Engine.RFEM.Convert.AdapterIdName, node.No);
 
             return bhNode;
         }
