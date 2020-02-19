@@ -51,7 +51,7 @@ namespace BH.Adapter.RFEM
             {
                 ExplicitSection section = new ExplicitSection();
                 
-                section.CustomData[BH.Engine.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
+                section.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
                 //section.Material = Structure.Create.Steel("default steel");
                 section.Material = rfMaterial.FromRFEM();
                 section.Name = rfSectionProperty.TextID;
