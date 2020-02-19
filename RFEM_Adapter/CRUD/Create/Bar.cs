@@ -54,7 +54,11 @@ namespace BH.Adapter.RFEM
 
                     //create line
                     lineIdNum = modelData.GetLineCount() + 1;
-                    rf.Line centreLine = BH.Engine.RFEM.Create.RFEMLine(barList[i], lineIdNum);
+                    rf.Line centreLine = new rf.Line();
+                    int startNodeId = System.Convert.ToInt32(barList[i].StartNode.CustomData[Convert.AdapterIdName]);
+                    int endNodeId = System.Convert.ToInt32(barList[i].EndNode.CustomData[Convert.AdapterIdName]);
+                    centreLine.NodeList = String.Join(",", new int[] { startNodeId, endNodeId });
+                    centreLine.Type = rf.LineType.PolylineType;
                     modelData.SetLine(centreLine);
 
 

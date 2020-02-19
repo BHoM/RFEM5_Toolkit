@@ -40,7 +40,7 @@ namespace BH.Adapter.RFEM
         public static Node FromRFEM(this rf.Node node)
         {
             Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
-            bhNode.CustomData.Add(BH.Engine.RFEM.Convert.AdapterIdName, node.No);
+            bhNode.CustomData.Add(BH.Adapter.RFEM.Convert.AdapterIdName, node.No);
 
             return bhNode;
         }
