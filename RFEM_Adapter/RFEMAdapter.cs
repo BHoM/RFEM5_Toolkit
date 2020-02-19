@@ -92,7 +92,7 @@ namespace BH.Adapter.RFEM
 
             if (active)
             {
-                AdapterIdName = BH.Engine.RFEM.Convert.AdapterIdName;
+                AdapterIdName = BH.Adapter.RFEM.Convert.AdapterIdName;
 
                 if (!IsApplicationRunning())
                 {
