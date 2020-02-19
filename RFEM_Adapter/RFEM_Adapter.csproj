@@ -67,6 +67,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\Data_oM.dll</HintPath>
     </Reference>
+    <Reference Include="Dimensional_oM, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM\Build\Dimensional_oM.dll</HintPath>
+    </Reference>
     <Reference Include="Dlubal.DynamPro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ad96acf4bd703704, processorArchitecture=MSIL">
       <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.DynamPro.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
