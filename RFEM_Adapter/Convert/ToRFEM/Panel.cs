@@ -42,7 +42,8 @@ namespace BH.Adapter.RFEM
         {
             rf.Surface rfSurface = new rf.Surface();
             rfSurface.No = panelId;
-
+            rfSurface.
+            panel.ExternalEdges;
 
 
             return rfSurface;
