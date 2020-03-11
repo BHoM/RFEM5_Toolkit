@@ -38,17 +38,15 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.Surface ToRFEM(this Panel panel, int panelId)
+        public static rf.Surface ToRFEM(this Panel panel, int panelId, int[] boundaryIdArr)
         {
             rf.Surface rfSurface = new rf.Surface();
             rfSurface.No = panelId;
             rfSurface.GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;//several other types are available!
-            rfSurface.BoundaryLineList = "1,2,3,4";//assuming same comma sepparated list as bars
-            rfSurface.MaterialNo = 1;
-            rfSurface.Thickness.Type = rf.SurfaceThicknessType.ConstantThicknessType; //other types availble
-            rfSurface.Thickness.Constant = 50;
-
-
+            rfSurface.BoundaryLineList = string.Join<int>(",",boundaryIdArr);//assuming same comma sepparated list as bars
+            int materialId = = System.Convert.ToInt32(panel.Property.Material.CustomData[AdapterIdName]);
+            rfSurface.MaterialNo = materialId;
+            rfSurface.Thickness = panel.Property.ToRFEM(0, materialId);
 
 
             return rfSurface;

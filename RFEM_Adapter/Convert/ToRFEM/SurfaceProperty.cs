@@ -38,9 +38,9 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.SurfaceStiffness2 ToRFEM(this ISurfaceProperty surfaceProperty, int surfacePropertyId, int materialId)
+        public static rf.SurfaceThickness ToRFEM(this ISurfaceProperty surfaceProperty, int surfacePropertyId, int materialId)
         {
-            rf.SurfaceStiffness2 rfSurfaceProperty = new rf.SurfaceStiffness2();
+            rf.SurfaceThickness rfSurfaceProperty = new rf.SurfaceThickness();
 
 
 
@@ -49,24 +49,31 @@ namespace BH.Adapter.RFEM
                 Engine.Reflection.Compute.RecordWarning("sorry, Can't do loding panels");
 
             }
-            else if (surfaceProperty is ConstantThickness)
-            {
-                //THIS IS THE ONE TO START WITH !!!
-            }
-            else if (surfaceProperty is Waffle)
-            {
-                Engine.Reflection.Compute.RecordWarning("sorry, Can't do waffle slabs");
-            }
-            else if (surfaceProperty is Ribbed)
-            {
-                Engine.Reflection.Compute.RecordWarning("sorry, Can't do ribbed slabs");
-            }
             else
             {
-                Engine.Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
-            }
 
-            return rfSurfaceProperty;
+                if (surfaceProperty is ConstantThickness)
+                {
+                    ConstantThickness constantThickness = surfaceProperty as ConstantThickness;
+                    rfSurfaceProperty.Type = rf.SurfaceThicknessType.ConstantThicknessType;
+                    rfSurfaceProperty.Constant = constantThickness.Thickness;
+
+                }
+                else if (surfaceProperty is Waffle)
+                {
+                    Engine.Reflection.Compute.RecordWarning("sorry, Can't do waffle slabs");
+                }
+                else if (surfaceProperty is Ribbed)
+                {
+                    Engine.Reflection.Compute.RecordWarning("sorry, Can't do ribbed slabs");
+                }
+                else
+                {
+                    Engine.Reflection.Compute.RecordWarning("my responses are limited. I don't know: " + surfaceProperty.Name);
+                }
+
+            }
+            return SurfaceThickness;
 
         }
 

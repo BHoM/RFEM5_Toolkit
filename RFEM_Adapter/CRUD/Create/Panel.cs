@@ -27,6 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
+using BH.oM.Geometry;
 using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
 
@@ -50,7 +51,6 @@ namespace BH.Adapter.RFEM
                 for (int i = 0; i < panels.Count(); i++)
                 {
                     panelIdNum = System.Convert.ToInt32(panelList[i].CustomData[AdapterIdName]);
-
 
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum);
