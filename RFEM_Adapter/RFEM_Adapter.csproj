@@ -156,6 +156,7 @@
     <Compile Include="CRUD\Create\Material.cs" />
     <Compile Include="CRUD\Create\Node.cs" />
     <Compile Include="CRUD\Create\Constraints.cs" />
+    <Compile Include="CRUD\Create\Panel.cs" />
     <Compile Include="CRUD\Create\SectionProperty.cs" />
     <Compile Include="CRUD\Create\_Create.cs" />
     <Compile Include="CRUD\Delete\_Remove.cs" />
