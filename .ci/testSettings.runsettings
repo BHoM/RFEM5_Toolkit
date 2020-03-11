@@ -44,7 +44,7 @@
 
   <!-- Parameters used by tests at runtime -->
   <TestRunParameters>
-    <Parameter name="projectName" value="RFEM_Toolkit" />
+    <Parameter name="projectName" value="RFEM_Toolki" />
     <Parameter name="oMName" value="null" />
     <Parameter name="engineName" value="null" />
     <Parameter name="adapterName" value="null" />
