@@ -159,6 +159,7 @@
     <Compile Include="CRUD\Create\Constraints.cs" />
     <Compile Include="CRUD\Create\Panel.cs" />
     <Compile Include="CRUD\Create\SectionProperty.cs" />
+    <Compile Include="CRUD\Create\SurfaceProperty.cs" />
     <Compile Include="CRUD\Create\_Create.cs" />
     <Compile Include="CRUD\Delete\_Remove.cs" />
     <Compile Include="AdapterActions\_Execute.cs" />
