@@ -152,6 +152,7 @@
     <Compile Include="Convert\ToRFEM\Node.cs" />
     <Compile Include="Convert\ToRFEM\Panel.cs" />
     <Compile Include="Convert\ToRFEM\SectionProperty.cs" />
+    <Compile Include="Convert\ToRFEM\SurfaceProperty.cs" />
     <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="CRUD\Create\Bar.cs" />
     <Compile Include="CRUD\Create\Material.cs" />
