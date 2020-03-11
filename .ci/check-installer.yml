@@ -10,10 +10,10 @@ pool:
   vmImage: 'vs2017-win2016'
 
 variables:
-  solution: '**/RFEM_Toolki.sln'
+  solution: '**/RFEM_Toolkit.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  projectName: 'RFEM_Toolki'
+  projectName: 'RFEM_Toolkit'
 
 steps:
 - checkout: self
