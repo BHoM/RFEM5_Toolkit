@@ -47,6 +47,17 @@ namespace BH.Adapter.RFEM
                 List<Panel> panelList = panels.ToList();
                 rf.Surface[] rfSurfaces = new rf.Surface[panelList.Count()];
 
+                for (int i = 0; i < panels.Count(); i++)
+                {
+                    panelIdNum = System.Convert.ToInt32(panelList[i].CustomData[AdapterIdName]);
+
+
+
+                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum);
+                    modelData.SetSurface(rfSurfaces[i]);
+                }
+
+
 
             }
 

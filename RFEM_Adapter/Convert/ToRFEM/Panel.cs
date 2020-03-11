@@ -42,8 +42,13 @@ namespace BH.Adapter.RFEM
         {
             rf.Surface rfSurface = new rf.Surface();
             rfSurface.No = panelId;
-            rfSurface.
-            panel.ExternalEdges;
+            rfSurface.GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;//several other types are available!
+            rfSurface.BoundaryLineList = "1,2,3,4";//assuming same comma sepparated list as bars
+            rfSurface.MaterialNo = 1;
+            rfSurface.Thickness.Type = rf.SurfaceThicknessType.ConstantThicknessType; //other types availble
+            rfSurface.Thickness.Constant = 50;
+
+
 
 
             return rfSurface;
