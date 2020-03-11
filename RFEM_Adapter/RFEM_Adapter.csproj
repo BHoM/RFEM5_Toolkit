@@ -150,6 +150,7 @@
     <Compile Include="Convert\ToRFEM\Constraint.cs" />
     <Compile Include="Convert\ToRFEM\Material.cs" />
     <Compile Include="Convert\ToRFEM\Node.cs" />
+    <Compile Include="Convert\ToRFEM\Panel.cs" />
     <Compile Include="Convert\ToRFEM\SectionProperty.cs" />
     <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="CRUD\Create\Bar.cs" />
