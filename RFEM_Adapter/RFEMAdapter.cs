@@ -76,6 +76,9 @@ namespace BH.Adapter.RFEM
                 {typeof(ISectionProperty), new BHoMObjectNameOrToStringComparer() },
                 {typeof(IMaterialFragment), new BHoMObjectNameComparer() },
                 {typeof(LinkConstraint), new BHoMObjectNameComparer() },
+                {typeof(Panel), new BHoMObjectNameComparer() },
+                {typeof(ISurfaceProperty), new BHoMObjectNameComparer() },
+
             };
 
             DependencyTypes = new Dictionary<Type, List<Type>>
