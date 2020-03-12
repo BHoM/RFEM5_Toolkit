@@ -52,8 +52,47 @@ namespace BH.Adapter.RFEM
                 {
                     panelIdNum = System.Convert.ToInt32(panelList[i].CustomData[AdapterIdName]);
 
+                    //get ids outside of BHoM process - might need to be changed
+                    int lastNodeId = modelData.GetLastObjectNo(rf.ModelObjectType.NodeObject);
+                    int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
 
-                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum);
+
+                    int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
+
+                    //create line
+                    //int lineIdNum = modelData.GetLineCount() + 1;
+                    int count = 0;
+                    foreach (Edge e in panelList[i].ExternalEdges)
+                    {
+                        Line l = e.Curve as Line;//TODO: unsafe!!!
+                        //nodes
+                        rf.Node n1 = new rf.Node();
+                        rf.Node n2 = new rf.Node();
+                        lastNodeId++;
+                        n1.No = lastNodeId;
+                        n1.X = l.Start.X;
+                        n1.X = l.Start.Y;
+                        n1.X = l.Start.Z;
+                        lastNodeId = +1;
+                        n2.No = lastNodeId;
+                        n2.X = l.End.X;
+                        n2.X = l.End.Y;
+                        n2.X = l.End.Z;
+
+
+
+                        rf.Line edge = new rf.Line();
+                        lastLineId++;
+                        edge.No = lastLineId;
+                        edge.NodeList = String.Join(",", new int[] { n1.No, n2.No });
+                        edge.Type = rf.LineType.PolylineType;
+                        modelData.SetLine(edge);
+                        boundaryIdArr[count] = lastLineId;
+                        count++;
+                    }
+
+
+                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, boundaryIdArr);
                     modelData.SetSurface(rfSurfaces[i]);
                 }
 

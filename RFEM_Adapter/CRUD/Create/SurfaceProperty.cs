@@ -48,15 +48,15 @@ namespace BH.Adapter.RFEM
                 int idNum = 0;
                 int matNumId = 0;
                 List<ISurfaceProperty> srfPropList = surfaceProperties.ToList();
-                rf.SurfaceStiffness2[] rfSrfStiffness = new rf.SurfaceStiffness2[srfPropList.Count()]; // TODO: this is likely not the right type
+                rf.SurfaceThickness[] rfSrfThickness = new rf.SurfaceThickness[srfPropList.Count()]; // TODO: this is likely not the right type
 
                 for (int i = 0; i < srfPropList.Count(); i++)
                 {
 
                     idNum = System.Convert.ToInt32(srfPropList[i].CustomData[AdapterIdName]);// NextId(secList[i].GetType()));
                     matNumId = System.Convert.ToInt32(srfPropList[i].Material.CustomData[AdapterIdName]);
-                    
-                    rfSrfStiffness[i] = srfPropList[i].ToRFEM(idNum, matNumId);
+
+                    rfSrfThickness[i] = srfPropList[i].ToRFEM(idNum, matNumId);
 
                     //modelData.SetCrossSection(rfCrossSections[i]);
                 }

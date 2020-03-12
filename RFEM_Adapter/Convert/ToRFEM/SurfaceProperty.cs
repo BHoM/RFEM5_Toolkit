@@ -73,7 +73,7 @@ namespace BH.Adapter.RFEM
                 }
 
             }
-            return SurfaceThickness;
+            return rfSurfaceProperty;
 
         }
 
