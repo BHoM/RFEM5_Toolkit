@@ -1,4 +1,4 @@
-﻿us/*
+﻿/*
  * This file is part of the Buildings and Habitats object Model (BHoM)
  * Copyright (c) 2015 - 2020, the respective contributors. All rights reserved.
  *
@@ -44,7 +44,7 @@ namespace BH.Adapter.RFEM
             rfSurface.No = panelId;
             rfSurface.GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;//several other types are available!
             rfSurface.BoundaryLineList = string.Join<int>(",",boundaryIdArr);//assuming same comma sepparated list as bars
-            int materialId = = System.Convert.ToInt32(panel.Property.Material.CustomData[AdapterIdName]);
+            int materialId = System.Convert.ToInt32(panel.Property.Material.CustomData[AdapterIdName]);
             rfSurface.MaterialNo = materialId;
             rfSurface.Thickness = panel.Property.ToRFEM(0, materialId);
 
