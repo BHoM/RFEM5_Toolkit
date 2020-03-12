@@ -145,6 +145,7 @@
     <Compile Include="Convert\FromRFEM\Constraint.cs" />
     <Compile Include="Convert\FromRFEM\Material.cs" />
     <Compile Include="Convert\FromRFEM\Node.cs" />
+    <Compile Include="Convert\FromRFEM\Panel.cs" />
     <Compile Include="Convert\FromRFEM\SectionProperty.cs" />
     <Compile Include="Convert\ToRFEM\Bar.cs" />
     <Compile Include="Convert\ToRFEM\Constraint.cs" />
