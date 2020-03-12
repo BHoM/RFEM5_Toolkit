@@ -44,7 +44,7 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        private List<Bar> ReadPanels(List<string> ids = null)
+        private List<Panel> ReadPanels(List<string> ids = null)
         {
             List<Panel> panelList = new List<Panel>();
             rf.Line line;
@@ -58,7 +58,7 @@ namespace BH.Adapter.RFEM
                     //string[] boundaryLineIds = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList.Split(',');
                     rf.Point3D[,] controlePts = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().ControlPoints;
 
-
+                    sectionProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
                     //line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
                     //if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
@@ -69,7 +69,7 @@ namespace BH.Adapter.RFEM
                     //    m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     //}
 
-                    panelList.Add(surface.FromRFEM(line, sectionProperty));
+                    panelList.Add(surface.FromRFEM(sectionProperty));
                 }
             }
             else
@@ -77,6 +77,7 @@ namespace BH.Adapter.RFEM
                 foreach (string id in ids)
                 {
                     rf.Surface surface = modelData.GetSurface(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
+                    sectionProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
 
                     //line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
@@ -88,7 +89,7 @@ namespace BH.Adapter.RFEM
                     //    m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     //}
 
-                    panelList.Add(surface.FromRFEM(line, sectionProperty));
+                    panelList.Add(surface.FromRFEM(sectionProperty));
                 }
             }
 
