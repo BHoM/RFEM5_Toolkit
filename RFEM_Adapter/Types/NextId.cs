@@ -92,8 +92,12 @@ namespace BH.Adapter.RFEM
                     lastId = (modelData.GetCrossSectionCount() == 0) ? 0 : modelData.GetCrossSection(modelData.GetCrossSectionCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
+                case "Edge":
+                    lastId = (modelData.GetLineCount() == 0) ? 0 : modelData.GetLine(modelData.GetLineCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    break;
+
                 case "Panel":
-                    lastId = (modelData.GetBSplineSurfaceCount() == 0) ? 0 : modelData.GetBSplineSurface(modelData.GetCrossSectionCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    lastId = (modelData.GetSurfaceCount() == 0) ? 0 : modelData.GetSurface(modelData.GetSurfaceCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
 
