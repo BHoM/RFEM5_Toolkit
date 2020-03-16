@@ -89,7 +89,7 @@ namespace BH.Adapter.RFEM
                 {typeof(RigidLink), new List<Type> { typeof(LinkConstraint), typeof(Node) } },
                 {typeof(FEMesh), new List<Type> { typeof(ISurfaceProperty), typeof(Node) } },
                 {typeof(ISurfaceProperty), new List<Type> { typeof(IMaterialFragment) } },
-                {typeof(Panel), new List<Type> { typeof(ISurfaceProperty), typeof(Edge) } }
+                {typeof(Panel), new List<Type> { typeof(ISurfaceProperty) } }
             };
 
 

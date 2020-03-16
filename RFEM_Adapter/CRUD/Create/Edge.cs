@@ -74,7 +74,7 @@ namespace BH.Adapter.RFEM
 
                     //create line
                     rf.Line centreLine = new rf.Line();
-
+                    centreLine.No = edgeIdNum;
                     centreLine.NodeList = String.Join(",", new int[] { rfNode1.No, rfNode2.No });
                     centreLine.Type = rf.LineType.PolylineType;
                     modelData.SetLine(centreLine);
