@@ -156,6 +156,7 @@
     <Compile Include="Convert\ToRFEM\SurfaceProperty.cs" />
     <Compile Include="Convert\ToRFEM\Type.cs" />
     <Compile Include="CRUD\Create\Bar.cs" />
+    <Compile Include="CRUD\Create\Edge.cs" />
     <Compile Include="CRUD\Create\Material.cs" />
     <Compile Include="CRUD\Create\Node.cs" />
     <Compile Include="CRUD\Create\Constraints.cs" />

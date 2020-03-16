@@ -58,7 +58,7 @@ namespace BH.Adapter.RFEM
 
 
                     int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
-
+                    
                     //create line
                     //int lineIdNum = modelData.GetLineCount() + 1;
                     int count = 0;
@@ -73,11 +73,13 @@ namespace BH.Adapter.RFEM
                         n1.X = l.Start.X;
                         n1.X = l.Start.Y;
                         n1.X = l.Start.Z;
-                        lastNodeId = +1;
+                        modelData.SetNode(n1);
+                        lastNodeId++;
                         n2.No = lastNodeId;
                         n2.X = l.End.X;
                         n2.X = l.End.Y;
                         n2.X = l.End.Z;
+                        modelData.SetNode(n2);
 
 
 
@@ -93,7 +95,7 @@ namespace BH.Adapter.RFEM
 
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, boundaryIdArr);
-                    modelData.SetSurface(rfSurfaces[i]);
+                    //modelData.SetSurface(rfSurfaces[i]);
                 }
 
 
