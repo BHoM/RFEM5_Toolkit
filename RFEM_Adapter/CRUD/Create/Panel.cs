@@ -58,35 +58,37 @@ namespace BH.Adapter.RFEM
 
 
                     int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
-                    
+
                     //create line
                     //int lineIdNum = modelData.GetLineCount() + 1;
                     int count = 0;
                     foreach (Edge e in panelList[i].ExternalEdges)
                     {
-                        Line l = e.Curve as Line;//TODO: unsafe!!!
-                        //nodes
-                        rf.Node n1 = new rf.Node();
-                        rf.Node n2 = new rf.Node();
-                        lastNodeId++;
-                        n1.No = lastNodeId;
-                        n1.X = l.Start.X;
-                        n1.X = l.Start.Y;
-                        n1.X = l.Start.Z;
-                        modelData.SetNode(n1);
-                        lastNodeId++;
-                        n2.No = lastNodeId;
-                        n2.X = l.End.X;
-                        n2.X = l.End.Y;
-                        n2.X = l.End.Z;
-                        modelData.SetNode(n2);
+                        //create rfem nodes, i.e. bhom points
+                        Line edgeAsLine = e.Curve as Line;
 
+                        rf.Node rfNode1 = new rf.Node
+                        {
+                            No = (int)this.NextFreeId(typeof(Node)),
+                            X = edgeAsLine.Start.X,
+                            Y = edgeAsLine.Start.Y,
+                            Z = edgeAsLine.Start.Z
+                        };
+                        modelData.SetNode(rfNode1);
 
+                        rf.Node rfNode2 = new rf.Node()
+                        {
+                            No = (int)this.NextFreeId(typeof(Node)),
+                            X = edgeAsLine.End.X,
+                            Y = edgeAsLine.End.Y,
+                            Z = edgeAsLine.End.Z
+                        };
+                        modelData.SetNode(rfNode2);
 
                         rf.Line edge = new rf.Line();
                         lastLineId++;
                         edge.No = lastLineId;
-                        edge.NodeList = String.Join(",", new int[] { n1.No, n2.No });
+                        edge.NodeList = String.Join(",", new int[] { rfNode1.No, rfNode2.No });
                         edge.Type = rf.LineType.PolylineType;
                         modelData.SetLine(edge);
                         boundaryIdArr[count] = lastLineId;
@@ -97,8 +99,6 @@ namespace BH.Adapter.RFEM
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, boundaryIdArr);
                     //modelData.SetSurface(rfSurfaces[i]);
                 }
-
-
 
             }
 
