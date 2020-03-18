@@ -64,7 +64,7 @@ namespace BH.Adapter.RFEM
                     int count = 0;
                     foreach (Edge e in panelList[i].ExternalEdges)
                     {
-                        //create rfem nodes, i.e. bhom points
+                        //create rfem nodes, i.e. bhom points - NOTE: RFEM will remove the coincident points itself leaving jumps in node numbering ! 1,2,4,6,8,10,...
                         Line edgeAsLine = e.Curve as Line;
 
                         rf.Node rfNode1 = new rf.Node
@@ -97,7 +97,7 @@ namespace BH.Adapter.RFEM
 
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, boundaryIdArr);
-                    //modelData.SetSurface(rfSurfaces[i]);
+                    modelData.SetSurface(rfSurfaces[i]);
                 }
 
             }
