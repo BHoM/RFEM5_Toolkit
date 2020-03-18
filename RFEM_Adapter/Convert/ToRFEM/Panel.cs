@@ -46,6 +46,7 @@ namespace BH.Adapter.RFEM
             rfSurface.BoundaryLineList = string.Join<int>(",",boundaryIdArr);//assuming same comma sepparated list as bars
             int materialId = System.Convert.ToInt32(panel.Property.Material.CustomData[AdapterIdName]);
             rfSurface.MaterialNo = materialId;
+            rfSurface.StiffnessType = rf.SurfaceStiffnessType.StandardStiffnessType;//several other types available
             rfSurface.Thickness = panel.Property.ToRFEM(0, materialId);
 
 
