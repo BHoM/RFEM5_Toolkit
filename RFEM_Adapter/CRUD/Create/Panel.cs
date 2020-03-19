@@ -59,6 +59,8 @@ namespace BH.Adapter.RFEM
 
                     int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
 
+                    List<string> outlineNodeList = new List<string>();
+
                     //create line
                     //int lineIdNum = modelData.GetLineCount() + 1;
                     int count = 0;
@@ -76,110 +78,51 @@ namespace BH.Adapter.RFEM
                         };
                         modelData.SetNode(rfNode1);
 
-                        rf.Node rfNode2 = new rf.Node()
-                        {
-                            No = (int)this.NextFreeId(typeof(Node)),
-                            X = edgeAsLine.End.X,
-                            Y = edgeAsLine.End.Y,
-                            Z = edgeAsLine.End.Z
-                        };
-                        modelData.SetNode(rfNode2);
+                        outlineNodeList.Add(rfNode1.No.ToString());
 
-                        rf.Line edge = new rf.Line();
-                        lastLineId++;
-                        edge.No = lastLineId;
-                        edge.NodeList = String.Join(",", new int[] { rfNode1.No, rfNode2.No });
-                        edge.Type = rf.LineType.PolylineType;
-                        modelData.SetLine(edge);
-                        boundaryIdArr[count] = lastLineId;
-                        count++;
-                    }
 
-                    rf.Line[] lns = modelData.GetLines();
-                    int[] alt = new int[4];
-                    for (int j = 0; j < 4; j++)
-                    {
-                        boundaryIdArr[j] = lns[j].No;
-                    }
-
-                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, boundaryIdArr);
-
-                    if(rfSurfaces[i].IsValid)
-                        modelData.SetSurface(rfSurfaces[i]);
-                    else
-                    {
-                        //create test surface from scratch !!
-
-                        //nodes
-                        // Allocates array of 4 nodes and sets theirs parameters.
-                        rf.Node[] nodes = new rf.Node[4];
-                        nodes[0].No = 11;
-                        nodes[0].X = 0.0;
-                        nodes[0].Y = 0.0;
-                        nodes[0].Z = 0.0;
-
-                        nodes[1].No = 12;
-                        nodes[1].X = 5.0;
-                        nodes[1].Y = 0.0;
-                        nodes[1].Z = 0.0;
-
-                        nodes[2].No = 13;
-                        nodes[2].X = 5.0;
-                        nodes[2].Y = 3.0;
-                        nodes[2].Z = 0.0;
-
-                        nodes[3].No = 14;
-                        nodes[3].X = 0.0;
-                        nodes[3].Y = 3.0;
-                        nodes[3].Z = 0.0;
-
-                        // Allocates array of 4 lines and sets theirs parameters.
-                        rf.Line[] lines = new rf.Line[4];
-                        lines[0].No = 10;
-                        lines[0].Type = rf.LineType.PolylineType;
-                        lines[0].NodeList = $"{nodes[0].No}, {nodes[1].No}";
-
-                        lines[1].No = 20;
-                        lines[1].Type = rf.LineType.PolylineType;
-                        lines[1].NodeList = $"{nodes[1].No}, {nodes[2].No}";
-
-                        lines[2].No = 30;
-                        lines[2].Type = rf.LineType.PolylineType;
-                        lines[2].NodeList = $"{nodes[2].No}, {nodes[3].No}";
-
-                        lines[3].No = 40;
-                        lines[3].Type = rf.LineType.PolylineType;
-                        lines[3].NodeList = $"{nodes[3].No}, {nodes[0].No}";
-
-                        // Creates material.
-                        rf.Material material = new rf.Material
-                        {
-                            No = 1,
-                            TextID = "NameID|Beton C30/37@TypeID|CONCRETE@NormID|DIN 1045-1 - 08"
-                        };
-
-                        // Allocates surface variable and sets it's parameters.
-                        rf.Surface surfaceData = new rf.Surface
-                        {
-                            No = 1,
-                            GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType,
-                            BoundaryLineList = $"{lines[0].No}, {lines[1].No}, {lines[2].No}, {lines[3].No}",
-                            MaterialNo = material.No,
-                            StiffnessType = rf.SurfaceStiffnessType.StandardStiffnessType
-                        };
-                        surfaceData.Thickness.Type = rf.SurfaceThicknessType.ConstantThicknessType;
-                        surfaceData.Thickness.Constant = 0.2;
-
-                        //SurfaceStiffness stiffness = new SurfaceStiffness
+                        //rf.Node rfNode2 = new rf.Node()
                         //{
-                        //    Thickness = 0.2,
-                        //    Type = rf.OrthotropyType.DefinedByStiffnessMatrix
+                        //    No = (int)this.NextFreeId(typeof(Node)),
+                        //    X = edgeAsLine.End.X,
+                        //    Y = edgeAsLine.End.Y,
+                        //    Z = edgeAsLine.End.Z
                         //};
+                        //modelData.SetNode(rfNode2);
 
-                        rf.ISurface surface = modelData.SetSurface(surfaceData);
-
-
+                        //rf.Line edge = new rf.Line();
+                        //lastLineId++;
+                        //edge.No = lastLineId;
+                        //edge.NodeList = String.Join(",", new int[] { rfNode1.No, rfNode2.No });
+                        //edge.Type = rf.LineType.PolylineType;
+                        //modelData.SetLine(edge);
+                        //boundaryIdArr[count] = lastLineId;
+                        //count++;
                     }
+
+                    outlineNodeList.Add(outlineNodeList[0]);
+
+                    rf.Line outline = new rf.Line()
+                    {
+                        No = lastLineId+1,
+                        Type = rf.LineType.PolylineType,
+                        NodeList = String.Join(",", outlineNodeList)
+                    };
+                    modelData.SetLine(outline);
+
+                    rfSurfaces[i].No = 1;
+                    rfSurfaces[i].GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;
+                    rfSurfaces[i].BoundaryLineList = outline.No.ToString();
+                    rfSurfaces[i].MaterialNo = 1;
+                    rfSurfaces[i].StiffnessType = rf.SurfaceStiffnessType.StandardStiffnessType;
+                    rfSurfaces[i].Thickness.Type = rf.SurfaceThicknessType.ConstantThicknessType;
+                    rfSurfaces[i].Thickness.Constant = 0.2;
+
+                    //rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
+                    rf.ISurface s = modelData.SetSurface(rfSurfaces[i]);
+
+
+
 
                 }
 
