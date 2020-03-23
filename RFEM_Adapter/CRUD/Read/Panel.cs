@@ -47,17 +47,38 @@ namespace BH.Adapter.RFEM
         private List<Panel> ReadPanels(List<string> ids = null)
         {
             List<Panel> panelList = new List<Panel>();
-            rf.Line line;
             ISurfaceProperty sectionProperty;
-
+            List<Edge> edgeList;
 
             if (ids == null)
             {
                 foreach (rf.Surface surface in modelData.GetSurfaces())
                 {
-                    //string[] boundaryLineIds = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList.Split(',');
-                    rf.Point3D[,] controlePts = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().ControlPoints;
+                    edgeList = new List<Edge>();
+                    List<int> boundaryLineIds = new List<int>();
+                    string boundaryString = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList; //NOTE: the below only works if RFEM does not use a mix of ',' and '-' delimiters !!
+                    if (boundaryString.Contains(','))
+                    {
+                        boundaryLineIds = boundaryString.Split(',').ToList().ConvertAll(s => Int32.Parse(s));
+                    }
+                    else if(boundaryString.Contains('-'))
+                    {
+                        List<int> startEnd = boundaryString.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
+                        boundaryLineIds.AddRange(Enumerable.Range(startEnd[0], startEnd[1]));
+                    }
 
+                    foreach (int edgeId in boundaryLineIds)
+                    {
+                        List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
+                        string[] nodeIds = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList.Split(',');
+                        foreach (string ptId in nodeIds.ToList())
+                        {
+                            rf.Node rfNode = modelData.GetNode(System.Convert.ToInt32(ptId), rf.ItemAt.AtNo).GetData();
+                            ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
+                        }
+                        edgeList.Add(Engine.Structure.Create.Edge(Engine.Geometry.Create.Polyline(ptsInEdge),null,""));
+                        
+                    }
                     sectionProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
                     //line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
@@ -68,6 +89,9 @@ namespace BH.Adapter.RFEM
                     //    sectionProperty = rfSection.FromRFEM(rfMat);
                     //    m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     //}
+
+                    List<Opening> openings = null;
+                    Panel panel = Engine.Structure.Create.Panel(edgeList, openings);
 
                     panelList.Add(surface.FromRFEM(sectionProperty));
                 }
