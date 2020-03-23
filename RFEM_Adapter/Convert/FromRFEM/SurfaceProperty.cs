@@ -21,63 +21,48 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Base;
+using BH.oM.Structure.Elements;
+using BH.oM.Structure.Constraints;
+using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.SurfaceProperties;
-using BH.oM.Common.Materials;
+using BH.Engine.Structure;
 using BH.Engine.RFEM;
+using BH.oM.Physical;
 using rf = Dlubal.RFEM5;
-using rf3 = RFEM3;
-
 
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter
+    public static partial class Convert
     {
-
         /***************************************************/
-        /**** Private methods                           ****/
+        /**** Public Methods                            ****/
         /***************************************************/
 
-        private List<ISurfaceProperty> ReadSurfaceProperties(List<string> ids = null)
+        public static ISurfaceProperty FromRFEM(this rf.SurfaceThickness surfaceThickness)
         {
-            List<ISurfaceProperty> surfacePropList = new List<ISurfaceProperty>();
 
 
-            if (ids == null)
+            if (surfaceThickness.Type == rf.SurfaceThicknessType.ConstantThicknessType)
             {
-                foreach (rf.Surface rfSurface in modelData.GetSurfaces())
-                {
-                    rf.SurfaceThickness srfThickness = rfSurface.Thickness;
+                ConstantThickness constThick = new ConstantThickness();
+                constThick.PanelType = PanelType.Undefined;
+                constThick.Thickness = surfaceThickness.Constant;
 
-                    ISurfaceProperty srfProp = srfThickness.FromRFEM();
 
-                    surfacePropList.Add(srfProp);
-                    /*
-                    int srfThickId = srfThickness.No;
-                    if (!m_sectionDict.ContainsKey(srfThickId))
-                    {
-                        m_sectionDict.Add(srfThickId, srfProp);
-                    }
-                    */
-                }
+                return constThick;
             }
             else
             {
-                foreach (string id in ids)
-                {
-
-                }
+                Engine.Reflection.Compute.RecordError("dont know how to make anything but a constant thickness panel");
+                return null;
             }
 
-            return surfacePropList;
-        }
 
-        /***************************************************/
+        }
 
     }
 }
