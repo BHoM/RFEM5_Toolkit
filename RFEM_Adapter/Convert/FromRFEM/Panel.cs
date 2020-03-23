@@ -43,6 +43,8 @@ namespace BH.Adapter.RFEM
         {
 
             ICurve outline = null;
+
+            string[] boundLineList = surface.BoundaryLineList.Split(',');
             List<Opening> openings = null;
             Panel bhPanel = Engine.Structure.Create.Panel(outline,openings,surfaceProperty);
 
