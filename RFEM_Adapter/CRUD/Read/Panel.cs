@@ -47,7 +47,7 @@ namespace BH.Adapter.RFEM
         private List<Panel> ReadPanels(List<string> ids = null)
         {
             List<Panel> panelList = new List<Panel>();
-            ISurfaceProperty sectionProperty;
+            ISurfaceProperty surfaceProperty;
             List<Edge> edgeList;
 
             if (ids == null)
@@ -64,7 +64,7 @@ namespace BH.Adapter.RFEM
                     else if(boundaryString.Contains('-'))
                     {
                         List<int> startEnd = boundaryString.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
-                        boundaryLineIds.AddRange(Enumerable.Range(startEnd[0], startEnd[1]));
+                        boundaryLineIds = Enumerable.Range(startEnd[0], startEnd[1] - startEnd[0] + 1).ToList();
                     }
 
                     foreach (int edgeId in boundaryLineIds)
@@ -79,7 +79,7 @@ namespace BH.Adapter.RFEM
                         edgeList.Add(Engine.Structure.Create.Edge(Engine.Geometry.Create.Polyline(ptsInEdge),null,""));
                         
                     }
-                    sectionProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
+                    surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
                     //line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
                     //if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
@@ -91,9 +91,9 @@ namespace BH.Adapter.RFEM
                     //}
 
                     List<Opening> openings = null;
-                    Panel panel = Engine.Structure.Create.Panel(edgeList, openings);
+                    Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
 
-                    panelList.Add(surface.FromRFEM(sectionProperty));
+                    panelList.Add(panel);
                 }
             }
             else
@@ -101,7 +101,7 @@ namespace BH.Adapter.RFEM
                 foreach (string id in ids)
                 {
                     rf.Surface surface = modelData.GetSurface(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
-                    sectionProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
+                    surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
 
                     //line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
@@ -113,7 +113,7 @@ namespace BH.Adapter.RFEM
                     //    m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     //}
 
-                    panelList.Add(surface.FromRFEM(sectionProperty));
+                    panelList.Add(surface.FromRFEM(surfaceProperty));
                 }
             }
 
