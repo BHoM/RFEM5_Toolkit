@@ -53,7 +53,6 @@ namespace BH.Adapter.RFEM
                     panelIdNum = System.Convert.ToInt32(panelList[i].CustomData[AdapterIdName]);
 
                     //get ids outside of BHoM process - might need to be changed
-                    int lastNodeId = modelData.GetLastObjectNo(rf.ModelObjectType.NodeObject);
                     int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
 
 
@@ -62,7 +61,6 @@ namespace BH.Adapter.RFEM
                     List<string> outlineNodeList = new List<string>();
 
                     //create line
-                    //int lineIdNum = modelData.GetLineCount() + 1;
                     int count = 0;
                     foreach (Edge e in panelList[i].ExternalEdges)
                     {
@@ -79,25 +77,6 @@ namespace BH.Adapter.RFEM
                         modelData.SetNode(rfNode1);
 
                         outlineNodeList.Add(rfNode1.No.ToString());
-
-
-                        //rf.Node rfNode2 = new rf.Node()
-                        //{
-                        //    No = (int)this.NextFreeId(typeof(Node)),
-                        //    X = edgeAsLine.End.X,
-                        //    Y = edgeAsLine.End.Y,
-                        //    Z = edgeAsLine.End.Z
-                        //};
-                        //modelData.SetNode(rfNode2);
-
-                        //rf.Line edge = new rf.Line();
-                        //lastLineId++;
-                        //edge.No = lastLineId;
-                        //edge.NodeList = String.Join(",", new int[] { rfNode1.No, rfNode2.No });
-                        //edge.Type = rf.LineType.PolylineType;
-                        //modelData.SetLine(edge);
-                        //boundaryIdArr[count] = lastLineId;
-                        //count++;
                     }
 
                     outlineNodeList.Add(outlineNodeList[0]);
@@ -110,18 +89,10 @@ namespace BH.Adapter.RFEM
                     };
                     modelData.SetLine(outline);
 
-                    rfSurfaces[i].No = 1;
-                    rfSurfaces[i].GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;
-                    rfSurfaces[i].BoundaryLineList = outline.No.ToString();
-                    rfSurfaces[i].MaterialNo = 1;
-                    rfSurfaces[i].StiffnessType = rf.SurfaceStiffnessType.StandardStiffnessType;
-                    rfSurfaces[i].Thickness.Type = rf.SurfaceThicknessType.ConstantThicknessType;
-                    rfSurfaces[i].Thickness.Constant = 0.2;
 
-                    //rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
-                    rf.ISurface s = modelData.SetSurface(rfSurfaces[i]);
+                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
 
-
+                    modelData.SetSurface(rfSurfaces[i]);
 
 
                 }

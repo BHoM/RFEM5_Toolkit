@@ -30,6 +30,7 @@ using BH.oM.Base;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
+using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Common.Materials;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Adapter;
@@ -49,6 +50,7 @@ namespace BH.Adapter.RFEM
 
             AppLock();
 
+<<<<<<< HEAD
             try
             {
                 if (type == typeof(Node))
@@ -66,6 +68,24 @@ namespace BH.Adapter.RFEM
             {
                 AppUnlock();
             }
+=======
+            if (type == typeof(Node))
+                return ReadNodes(ids as dynamic);
+            if (type == typeof(Constraint6DOF))
+                return ReadConstraints(ids as dynamic);
+            else if (type == typeof(Bar))
+                return ReadBars(ids as dynamic);
+            else if (type == typeof(ISectionProperty) || type.GetInterfaces().Contains(typeof(ISectionProperty)))
+                return ReadSectionProperties(ids as dynamic);
+            else if (type == typeof(IMaterialFragment))
+                return ReadMaterials(ids as dynamic);
+            else if (type == typeof(Panel))
+                return ReadPanels(ids as dynamic);
+            else if (type == typeof(ISurfaceProperty))
+                return ReadSurfaceProperties(ids as dynamic);
+
+
+>>>>>>> cleanup create panel class and add read panel to read dispatcher
 
 
             return new List<IBHoMObject>(); ;
