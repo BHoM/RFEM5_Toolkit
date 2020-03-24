@@ -58,7 +58,8 @@ namespace BH.Adapter.RFEM
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
-                    surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
+                    surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(surface.Thickness.Constant);
+                    surfaceProperty.Material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
                     List<Opening> openings = null;
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
@@ -76,7 +77,8 @@ namespace BH.Adapter.RFEM
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
-                    surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
+                    surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(surface.Thickness.Constant);
+                    surfaceProperty.Material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
                     List<Opening> openings = null;
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
