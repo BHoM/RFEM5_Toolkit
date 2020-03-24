@@ -53,6 +53,9 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.Surface surface in modelData.GetSurfaces())
                 {
+                    if(surface.GeometryType != rf.SurfaceGeometryType.PlaneSurfaceType)
+                        Engine.Reflection.Compute.RecordError("Only plane surface types are supported at the moment");
+
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
                     surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(0.1);
@@ -68,6 +71,8 @@ namespace BH.Adapter.RFEM
                 foreach (string id in ids)
                 {
                     rf.Surface surface = modelData.GetSurface(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
+                    if (surface.GeometryType != rf.SurfaceGeometryType.PlaneSurfaceType)
+                        Engine.Reflection.Compute.RecordError("Only plane surface types are supported at the moment");
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
