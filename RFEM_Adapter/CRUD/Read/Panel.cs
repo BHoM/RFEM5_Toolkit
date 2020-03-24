@@ -132,11 +132,10 @@ namespace BH.Adapter.RFEM
                     }
                     else
                     {
-                        List<int> startEnd = idsAsString.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
+                        List<int> startEnd = part.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
                         idList.AddRange(Enumerable.Range(startEnd[0], startEnd[1] - startEnd[0] + 1));
                     }
                 }
-
             }
             else if (idsAsString.Contains(','))
             {
