@@ -95,32 +95,48 @@ namespace BH.Adapter.RFEM
         private List<Edge> GetEdgesFromRFEMSurface(rf.Surface surface)
         {
             List<Edge> edgeList = new List<Edge>();
-            List<int> boundaryLineIds = new List<int>();
-            string boundaryString = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList; //NOTE: the below only works if RFEM does not use a mix of ',' and '-' delimiters !!
-            
-            if (boundaryString.Contains(','))
-            {
-                boundaryLineIds = boundaryString.Split(',').ToList().ConvertAll(s => Int32.Parse(s));
-            }
-            else if (boundaryString.Contains('-'))
-            {
-                List<int> startEnd = boundaryString.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
-                boundaryLineIds = Enumerable.Range(startEnd[0], startEnd[1] - startEnd[0] + 1).ToList();
-            }
+            string boundaryString = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList; 
+
+            List<int> boundaryLineIds = GetIdListFromString(boundaryString);
+
 
             foreach (int edgeId in boundaryLineIds)
             {
                 List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
-                string[] nodeIds = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList.Split(',');
-                foreach (string ptId in nodeIds.ToList())
+                string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                List<int> nodeIds = GetIdListFromString(nodeIdString);
+
+                foreach (int ptId in nodeIds)
                 {
-                    rf.Node rfNode = modelData.GetNode(System.Convert.ToInt32(ptId), rf.ItemAt.AtNo).GetData();
+                    rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
                     ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
                 }
                 edgeList.Add(Engine.Structure.Create.Edge(Engine.Geometry.Create.Polyline(ptsInEdge), null, ""));
             }
 
             return edgeList;
+        }
+
+        private List<int> GetIdListFromString(string idsAsString)
+        {
+            //NOTE: the below only works if RFEM does not use a mix of ',' and '-' delimiters !!
+            List<int> boundaryLineIds = new List<int>();
+
+            if (idsAsString.Contains(','))
+            {
+                boundaryLineIds = idsAsString.Split(',').ToList().ConvertAll(s => Int32.Parse(s));
+            }
+            else if (idsAsString.Contains('-'))
+            {
+                List<int> startEnd = idsAsString.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
+                boundaryLineIds = Enumerable.Range(startEnd[0], startEnd[1] - startEnd[0] + 1).ToList();
+            }
+            else
+            {
+                boundaryLineIds.Add(System.Convert.ToInt32(idsAsString));
+            }
+
+            return boundaryLineIds;
         }
     }
 }
