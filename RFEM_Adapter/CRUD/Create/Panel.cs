@@ -58,10 +58,8 @@ namespace BH.Adapter.RFEM
 
                     int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
 
+                    //create outline
                     List<string> outlineNodeList = new List<string>();
-
-                    //create line
-                    int count = 0;
                     foreach (Edge e in panelList[i].ExternalEdges)
                     {
                         //create rfem nodes, i.e. bhom points - NOTE: RFEM will remove the coincident points itself leaving jumps in node numbering ! 1,2,4,6,8,10,...
@@ -78,7 +76,6 @@ namespace BH.Adapter.RFEM
 
                         outlineNodeList.Add(rfNode1.No.ToString());
                     }
-
                     outlineNodeList.Add(outlineNodeList[0]);
 
                     rf.Line outline = new rf.Line()
