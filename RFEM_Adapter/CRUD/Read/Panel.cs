@@ -120,23 +120,39 @@ namespace BH.Adapter.RFEM
         private List<int> GetIdListFromString(string idsAsString)
         {
             //NOTE: the below only works if RFEM does not use a mix of ',' and '-' delimiters !!
-            List<int> boundaryLineIds = new List<int>();
+            List<int> idList = new List<int>();
 
-            if (idsAsString.Contains(','))
+            if(idsAsString.Contains('-') & idsAsString.Contains(','))
             {
-                boundaryLineIds = idsAsString.Split(',').ToList().ConvertAll(s => Int32.Parse(s));
+                foreach(string part in idsAsString.Split(','))
+                {
+                    if (!part.Contains('-'))
+                    {
+                        idList.Add(System.Convert.ToInt32(part));
+                    }
+                    else
+                    {
+                        List<int> startEnd = idsAsString.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
+                        idList.AddRange(Enumerable.Range(startEnd[0], startEnd[1] - startEnd[0] + 1));
+                    }
+                }
+
+            }
+            else if (idsAsString.Contains(','))
+            {
+                idList = idsAsString.Split(',').ToList().ConvertAll(s => Int32.Parse(s));
             }
             else if (idsAsString.Contains('-'))
             {
                 List<int> startEnd = idsAsString.Split('-').ToList().ConvertAll(s => Int32.Parse(s));
-                boundaryLineIds = Enumerable.Range(startEnd[0], startEnd[1] - startEnd[0] + 1).ToList();
+                idList = Enumerable.Range(startEnd[0], startEnd[1] - startEnd[0] + 1).ToList();
             }
             else
             {
-                boundaryLineIds.Add(System.Convert.ToInt32(idsAsString));
+                idList.Add(System.Convert.ToInt32(idsAsString));
             }
 
-            return boundaryLineIds;
+            return idList;
         }
     }
 }
