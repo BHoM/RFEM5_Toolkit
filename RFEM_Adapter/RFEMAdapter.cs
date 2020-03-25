@@ -141,6 +141,8 @@ namespace BH.Adapter.RFEM
             else
             {
                 app = Marshal.GetActiveObject("RFEM5.Application") as rf.IApplication;
+                model = app.GetActiveModel();
+
                 AppUnlock();
                 app = null;
                 GC.Collect();
@@ -209,6 +211,17 @@ namespace BH.Adapter.RFEM
             {
                 app.UnlockLicense();
                 lockLevel = 0;
+            }
+            else if(lockLevel == 0)
+            {
+                try
+                {
+                    modelData.FinishModification();
+                }
+                finally
+                {
+                    app.UnlockLicense();
+                }
             }
         }
 
