@@ -174,6 +174,7 @@ namespace BH.Adapter.RFEM
         }
 
 
+
         /***************************************************/
         /**** Private  Fields                           ****/
         /***************************************************/
@@ -186,7 +187,9 @@ namespace BH.Adapter.RFEM
         private Dictionary<int, IMaterialFragment> m_materialDict = new Dictionary<int, IMaterialFragment>();
         private Dictionary<int, ISectionProperty> m_sectionDict = new Dictionary<int, ISectionProperty>();
 
-        /*******IModelData data = null;********************************************/
+        private int lockLevel = 0;
+
+        /***************************************************/
 
     }
 }
