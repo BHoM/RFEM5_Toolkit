@@ -47,10 +47,15 @@ namespace BH.Adapter.RFEM
             if (objects.Count() > 0)
             {
                 AppLock();
+                try
+                {
+                    success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
+                }
+                finally
+                {
+                    AppUnlock();
+                }
 
-                success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
-
-                AppUnlock();
             }
 
             return success;             //Finally return if the creation was successful or not
