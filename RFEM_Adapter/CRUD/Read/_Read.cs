@@ -48,7 +48,7 @@ namespace BH.Adapter.RFEM
             //Choose what to pull out depending on the type.
 
             AppLock();
-
+            
             if (type == typeof(Node))
                 return ReadNodes(ids as dynamic);
             if (type == typeof(Constraint6DOF))
@@ -62,7 +62,7 @@ namespace BH.Adapter.RFEM
 
             AppUnlock();
 
-            return new List<IBHoMObject>();
+            return new List<IBHoMObject>(); ;
         }
 
         /***************************************************/

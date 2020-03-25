@@ -121,6 +121,7 @@ namespace BH.Adapter.RFEM
                         app = Marshal.GetActiveObject("RFEM5.Application") as rf.IApplication;
 
                         app.LockLicense();
+                        lockLevel = 1;
 
                         model = app.GetActiveModel();
                     }
@@ -135,6 +136,14 @@ namespace BH.Adapter.RFEM
                 app.Show(); // Shows the GUI
 
                 app.UnlockLicense(); // needed here to prevent GUI lock after showing it
+                lockLevel = 0;
+            }
+            else
+            {
+                app = Marshal.GetActiveObject("RFEM5.Application") as rf.IApplication;
+                AppUnlock();
+                app = null;
+                GC.Collect();
             }
         }
 
