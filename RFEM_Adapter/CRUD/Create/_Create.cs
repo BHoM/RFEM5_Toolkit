@@ -46,13 +46,11 @@ namespace BH.Adapter.RFEM
 
             if (objects.Count() > 0)
             {
-                app.LockLicense();
-                modelData.PrepareModification();
+                AppLock();
 
                 success = CreateCollection(objects as dynamic); //Calls the correct CreateCollection method based on dynamic casting
-                
-                modelData.FinishModification();
-                app.UnlockLicense();
+
+                AppUnlock();
             }
 
             return success;             //Finally return if the creation was successful or not

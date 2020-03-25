@@ -47,7 +47,7 @@ namespace BH.Adapter.RFEM
             //Main dispatcher method.
             //Choose what to pull out depending on the type.
 
-            modelData.PrepareModification();
+            AppLock();
 
             if (type == typeof(Node))
                 return ReadNodes(ids as dynamic);
@@ -60,7 +60,7 @@ namespace BH.Adapter.RFEM
             else if (type == typeof(IMaterialFragment))
                 return ReadMaterials(ids as dynamic);
 
-            modelData.FinishModification();
+            AppUnlock();
 
             return new List<IBHoMObject>();
         }
