@@ -173,7 +173,35 @@ namespace BH.Adapter.RFEM
             return true;
         }
 
+        private void AppLock()
+        {
+            if (lockLevel==0)
+            {
+                app.LockLicense();
+                modelData.PrepareModification();
+                lockLevel = 2;
+            }
+            else if (lockLevel==1)
+            {
+                modelData.PrepareModification();
+                lockLevel = 2;
+            }
+        }
 
+        private void AppUnlock()
+        {
+            if (lockLevel == 2)
+            {
+                modelData.FinishModification();
+                app.UnlockLicense();
+                lockLevel = 0;
+            }
+            else if (lockLevel == 1)
+            {
+                app.UnlockLicense();
+                lockLevel = 0;
+            }
+        }
 
         /***************************************************/
         /**** Private  Fields                           ****/
