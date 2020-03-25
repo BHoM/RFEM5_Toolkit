@@ -48,19 +48,25 @@ namespace BH.Adapter.RFEM
             //Choose what to pull out depending on the type.
 
             AppLock();
-            
-            if (type == typeof(Node))
-                return ReadNodes(ids as dynamic);
-            if (type == typeof(Constraint6DOF))
-                return ReadConstraints(ids as dynamic);
-            else if (type == typeof(Bar))
-                return ReadBars(ids as dynamic);
-            else if (type == typeof(ISectionProperty) || type.GetInterfaces().Contains(typeof(ISectionProperty)))
-                return ReadSectionProperties(ids as dynamic);
-            else if (type == typeof(IMaterialFragment))
-                return ReadMaterials(ids as dynamic);
 
-            AppUnlock();
+            try
+            {
+                if (type == typeof(Node))
+                    return ReadNodes(ids as dynamic);
+                if (type == typeof(Constraint6DOF))
+                    return ReadConstraints(ids as dynamic);
+                else if (type == typeof(Bar))
+                    return ReadBars(ids as dynamic);
+                else if (type == typeof(ISectionProperty) || type.GetInterfaces().Contains(typeof(ISectionProperty)))
+                    return ReadSectionProperties(ids as dynamic);
+                else if (type == typeof(IMaterialFragment))
+                    return ReadMaterials(ids as dynamic);
+            }
+            finally
+            {
+                AppUnlock();
+            }
+
 
             return new List<IBHoMObject>(); ;
         }
