@@ -138,15 +138,7 @@ namespace BH.Adapter.RFEM
                 app.UnlockLicense(); // needed here to prevent GUI lock after showing it
                 lockLevel = 0;
             }
-            else
-            {
-                app = Marshal.GetActiveObject("RFEM5.Application") as rf.IApplication;
-                model = app.GetActiveModel();
 
-                AppUnlock();
-                app = null;
-                GC.Collect();
-            }
         }
 
         /***************************************************/
