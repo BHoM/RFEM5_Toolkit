@@ -58,8 +58,16 @@ namespace BH.Adapter.RFEM
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
-                    surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(surface.Thickness.Constant);
-                    surfaceProperty.Material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
+                    //surfaceProperty = BH.Engine.Structure.Create.ConstantThickness(surface.Thickness.Constant);
+                    IMaterialFragment material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
+
+                    rf.ISurface s = modelData.GetSurface(surface.No, rf.ItemAt.AtNo);
+                    rf.IOrthotropicThickness ortho = s.GetOrthotropicThickness();
+                    rf.SurfaceStiffness stiffness = ortho.GetData();
+
+                    surfaceProperty = stiffness.FromRFEM(material);
+
+
 
                     List<Opening> openings = null;
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);

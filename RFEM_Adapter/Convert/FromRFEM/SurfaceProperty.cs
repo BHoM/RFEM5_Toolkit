@@ -42,24 +42,59 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static ISurfaceProperty FromRFEM(this rf.SurfaceThickness surfaceThickness)
+        public static ISurfaceProperty FromRFEM(this rf.SurfaceStiffness rfStiffness, IMaterialFragment material)
         {
 
-
-            if (surfaceThickness.Type == rf.SurfaceThicknessType.ConstantThicknessType)
+            ISurfaceProperty surfaceProperty = null;
+            
+            switch (rfStiffness.Type)
             {
-                ConstantThickness constThick = new ConstantThickness();
-                constThick.PanelType = PanelType.Undefined;
-                constThick.Thickness = surfaceThickness.Constant;
-
-
-                return constThick;
+                case rf.OrthotropyType.ConstantThickness:
+                    surfaceProperty = new ConstantThickness { Thickness = rfStiffness.Thickness, Material = material };
+                    break;
+                case rf.OrthotropyType.UnidirectionalRibbedPlate:
+                    surfaceProperty = new Ribbed
+                    {
+                        Thickness = rfStiffness.Thickness,
+                        TotalDepth = rfStiffness.GeometricProperties.Height,
+                        Spacing = rfStiffness.GeometricProperties.Spacing,
+                        StemWidth = rfStiffness.GeometricProperties.Width,
+                        Material = material
+                    };
+                    break;
+                case rf.OrthotropyType.BidirectionalRibbedPlate:
+                    surfaceProperty = new Waffle
+                    {
+                        Thickness = rfStiffness.Thickness,
+                        TotalDepthX = rfStiffness.GeometricProperties.HeightX,
+                        TotalDepthY = rfStiffness.GeometricProperties.HeightY,
+                        SpacingX = rfStiffness.GeometricProperties.SpacingX,
+                        SpacingY = rfStiffness.GeometricProperties.SpacingY,
+                        StemWidthX = rfStiffness.GeometricProperties.WidthX,
+                        StemWidthY = rfStiffness.GeometricProperties.WidthY
+                    };
+                    break;
+                case rf.OrthotropyType.UnknownOrthotropyType:
+                case rf.OrthotropyType.EffectiveThickness:
+                case rf.OrthotropyType.DefinedByStiffnessMatrix:
+                case rf.OrthotropyType.Coupling:
+                case rf.OrthotropyType.TrapezoidalSheet:
+                case rf.OrthotropyType.HollowCoreSlab:
+                case rf.OrthotropyType.Grillage:
+                case rf.OrthotropyType.UnidirectionalBoxFloor:
+                case rf.OrthotropyType.Glass:
+                case rf.OrthotropyType.Laminate:
+                    surfaceProperty = new ConstantThickness { Thickness = rfStiffness.Thickness, Material = material };
+                    Engine.Reflection.Compute.RecordError("could not create surface property for " + rfStiffness.ID);
+                    break;
+                default:
+                    surfaceProperty = new ConstantThickness { Thickness = rfStiffness.Thickness, Material = material };
+                    Engine.Reflection.Compute.RecordError("could not create surface property for "+rfStiffness.ID);
+                    break;
             }
-            else
-            {
-                Engine.Reflection.Compute.RecordError("dont know how to make anything but a constant thickness panel");
-                return null;
-            }
+
+            return surfaceProperty;
+
 
 
         }
