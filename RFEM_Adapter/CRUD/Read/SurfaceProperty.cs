@@ -32,7 +32,7 @@ using BH.oM.Common.Materials;
 using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
 using rf3 = RFEM3;
-
+using BH.oM.Structure.MaterialFragments;
 
 namespace BH.Adapter.RFEM
 {
@@ -50,13 +50,18 @@ namespace BH.Adapter.RFEM
 
             if (ids == null)
             {
-                foreach (rf.Surface rfSurface in modelData.GetSurfaces())
+                foreach (rf.Surface surface in modelData.GetSurfaces())
                 {
-                    rf.SurfaceThickness srfThickness = rfSurface.Thickness;
+                    IMaterialFragment material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
-                    ISurfaceProperty srfProp = srfThickness.FromRFEM();
+                    rf.ISurface s = modelData.GetSurface(surface.No, rf.ItemAt.AtNo);
+                    rf.IOrthotropicThickness ortho = s.GetOrthotropicThickness();
+                    rf.SurfaceStiffness stiffness = ortho.GetData();
 
-                    surfacePropList.Add(srfProp);
+                    ISurfaceProperty surfaceProperty = stiffness.FromRFEM(material);
+
+
+                    surfacePropList.Add(surfaceProperty);
                     /*
                     int srfThickId = srfThickness.No;
                     if (!m_sectionDict.ContainsKey(srfThickId))
