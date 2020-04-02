@@ -67,6 +67,7 @@ namespace BH.Adapter.RFEM
 
                     barList.Add(member.FromRFEM(line, sectionProperty));
                 }
+                //testing for Oliver
             }
             else
             {
