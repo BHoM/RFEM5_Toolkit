@@ -60,11 +60,22 @@ namespace BH.Adapter.RFEM
 
                     IMaterialFragment material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
-                    rf.ISurface s = modelData.GetSurface(surface.No, rf.ItemAt.AtNo);
-                    rf.IOrthotropicThickness ortho = s.GetOrthotropicThickness();
-                    rf.SurfaceStiffness stiffness = ortho.GetData();
-
-                    surfaceProperty = stiffness.FromRFEM(material);
+                    if (surface.StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
+                    {
+                        surfaceProperty = Engine.Structure.Create.ConstantThickness(surface.Thickness.Constant, material);
+                    }
+                    else if (surface.StiffnessType == rf.SurfaceStiffnessType.OrthotropicStiffnessType)
+                    {
+                        rf.ISurface s = modelData.GetSurface(surface.No, rf.ItemAt.AtNo);
+                        rf.IOrthotropicThickness ortho = s.GetOrthotropicThickness();
+                        rf.SurfaceStiffness stiffness = ortho.GetData();
+                        surfaceProperty = stiffness.FromRFEM(material);
+                    }
+                    else
+                    {
+                        surfaceProperty = null;
+                        Engine.Reflection.Compute.RecordError("could not create surface property of type " + surface.StiffnessType.ToString());
+                    }
 
                     List<Opening> openings = null;
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);

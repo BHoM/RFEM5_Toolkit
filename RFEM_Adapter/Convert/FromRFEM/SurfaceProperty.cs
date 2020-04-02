@@ -44,8 +44,8 @@ namespace BH.Adapter.RFEM
 
         public static ISurfaceProperty FromRFEM(this rf.SurfaceStiffness rfStiffness, IMaterialFragment material)
         {
-
             ISurfaceProperty surfaceProperty = null;
+            
             
             switch (rfStiffness.Type)
             {
