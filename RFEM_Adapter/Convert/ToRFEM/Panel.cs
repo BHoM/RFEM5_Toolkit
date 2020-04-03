@@ -27,7 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.SectionProperties;
+using BH.oM.Structure.SurfaceProperties;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -43,11 +43,21 @@ namespace BH.Adapter.RFEM
             rf.Surface rfSurface = new rf.Surface();
             rfSurface.No = panelId;
             rfSurface.GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;//several other types are available!
-            rfSurface.BoundaryLineList = string.Join<int>(",",boundaryIdArr);//assuming same comma sepparated list as bars
+            rfSurface.BoundaryLineList = string.Join<int>(",",boundaryIdArr);
             int materialId = System.Convert.ToInt32(panel.Property.Material.CustomData[AdapterIdName]);
             rfSurface.MaterialNo = materialId;
-            rfSurface.StiffnessType = rf.SurfaceStiffnessType.StandardStiffnessType;//several other types available
-            rfSurface.Thickness = panel.Property.ToRFEM(0, materialId);
+
+            if (panel.Property.GetType() == typeof(ConstantThickness))
+            {
+                //do simple panel
+                rfSurface.StiffnessType = rf.SurfaceStiffnessType.StandardStiffnessType;//several other types available
+                rfSurface.Thickness.Constant = (panel.Property as ConstantThickness).Thickness;
+            }
+            else
+            {
+                rf.SurfaceStiffness stiffness = panel.Property.ToRFEM(materialId);
+
+            }
 
 
             return rfSurface;
