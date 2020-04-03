@@ -38,9 +38,9 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.SurfaceThickness ToRFEM(this ISurfaceProperty surfaceProperty, int surfacePropertyId, int materialId)
+        public static rf.SurfaceStiffness ToRFEM(this ISurfaceProperty surfaceProperty, int materialId)
         {
-            rf.SurfaceThickness rfSurfaceProperty = new rf.SurfaceThickness();
+            rf.SurfaceStiffness stiffness = new rf.SurfaceStiffness();
 
 
 
@@ -55,8 +55,8 @@ namespace BH.Adapter.RFEM
                 if (surfaceProperty is ConstantThickness)
                 {
                     ConstantThickness constantThickness = surfaceProperty as ConstantThickness;
-                    rfSurfaceProperty.Type = rf.SurfaceThicknessType.ConstantThicknessType;
-                    rfSurfaceProperty.Constant = constantThickness.Thickness;
+                    stiffness.Type = rf.OrthotropyType.ConstantThickness;
+                    stiffness.Thickness = constantThickness.Thickness;
 
                 }
                 else if (surfaceProperty is Waffle)
@@ -73,7 +73,7 @@ namespace BH.Adapter.RFEM
                 }
 
             }
-            return rfSurfaceProperty;
+            return stiffness;
 
         }
 
