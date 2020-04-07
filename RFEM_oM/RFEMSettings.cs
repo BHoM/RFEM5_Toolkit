@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This file is part of the Buildings and Habitats object Model (BHoM)
  * Copyright (c) 2015 - 2020, the respective contributors. All rights reserved.
  *
@@ -36,7 +36,7 @@ namespace BH.oM.Adapter.RFEM
     // In order to access its properties, you will need to cast it to `RFEMActionConfig`.
     public class RFEMSettings : IObject
     {
-        public bool Is2DModel { get; set; } = false;
-        public bool ZIsUp { get; set; } = true;
+        public virtual bool Is2DModel { get; set; } = false;
+        public virtual bool ZIsUp { get; set; } = true;
     }
 }
