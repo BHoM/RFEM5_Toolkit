@@ -59,13 +59,25 @@ namespace BH.Adapter.RFEM
                     stiffness.Thickness = constantThickness.Thickness;
 
                 }
-                else if (surfaceProperty is Waffle)
-                {
-                    Engine.Reflection.Compute.RecordWarning("sorry, Can't do waffle slabs");
-                }
                 else if (surfaceProperty is Ribbed)
                 {
-                    Engine.Reflection.Compute.RecordWarning("sorry, Can't do ribbed slabs");
+                    Ribbed prop = surfaceProperty as Ribbed;
+                    stiffness.Thickness = prop.Thickness;
+                    stiffness.GeometricProperties.Height = prop.TotalDepth;
+                    stiffness.GeometricProperties.Spacing = prop.Spacing;
+                    stiffness.GeometricProperties.Width = prop.StemWidth;
+                }
+                else if (surfaceProperty is Waffle)
+                {
+                    Waffle prop = surfaceProperty as Waffle;
+                    stiffness.Thickness = prop.Thickness;
+                    stiffness.GeometricProperties.HeightX = prop.TotalDepthX;
+                    stiffness.GeometricProperties.HeightY = prop.TotalDepthY;
+                    stiffness.GeometricProperties.SpacingX = prop.SpacingX;
+                    stiffness.GeometricProperties.SpacingY = prop.SpacingY;
+                    stiffness.GeometricProperties.WidthX = prop.StemWidthX;
+                    stiffness.GeometricProperties.WidthY = prop.StemWidthY;
+
                 }
                 else
                 {
