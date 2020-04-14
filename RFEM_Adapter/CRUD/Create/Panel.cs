@@ -89,9 +89,17 @@ namespace BH.Adapter.RFEM
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
 
-
-
-                    modelData.SetSurface(rfSurfaces[i]);
+                    if(rfSurfaces[i].StiffnessType != rf.SurfaceStiffnessType.StandardStiffnessType)
+                    {
+                        modelData.SetSurface(rfSurfaces[i]);
+                    }
+                    else
+                    {
+                        rf.SurfaceStiffness stiffness = panelList[i].Property.ToRFEM();
+                        rf.ISurface srf = modelData.SetSurface(rfSurfaces[i]);
+                        rf.IOrthotropicThickness ortho = srf.GetOrthotropicThickness();
+                        ortho.SetData(stiffness);
+                    }
 
 
                 }

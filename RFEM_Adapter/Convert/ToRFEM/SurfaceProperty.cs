@@ -38,7 +38,7 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static rf.SurfaceStiffness ToRFEM(this ISurfaceProperty surfaceProperty, int materialId)
+        public static rf.SurfaceStiffness ToRFEM(this ISurfaceProperty surfaceProperty)
         {
             rf.SurfaceStiffness stiffness = new rf.SurfaceStiffness();
 
