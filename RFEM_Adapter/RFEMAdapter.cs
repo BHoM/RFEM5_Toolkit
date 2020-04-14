@@ -183,11 +183,13 @@ namespace BH.Adapter.RFEM
                 app.LockLicense();
                 modelData.PrepareModification();
                 lockLevel = 2;
+                app.Show();
             }
             else if (lockLevel==1)
             {
                 modelData.PrepareModification();
                 lockLevel = 2;
+                app.Show();
             }
         }
 
