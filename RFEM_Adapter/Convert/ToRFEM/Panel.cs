@@ -47,6 +47,8 @@ namespace BH.Adapter.RFEM
             int materialId = System.Convert.ToInt32(panel.Property.Material.CustomData[AdapterIdName]);
             rfSurface.MaterialNo = materialId;
 
+            
+
             if (panel.Property.GetType() == typeof(ConstantThickness))
             {
                 //do simple panel
@@ -55,8 +57,7 @@ namespace BH.Adapter.RFEM
             }
             else
             {
-                rf.SurfaceStiffness stiffness = panel.Property.ToRFEM(materialId);
-
+                rfSurface.StiffnessType = rf.SurfaceStiffnessType.OrthotropicStiffnessType;
             }
 
 

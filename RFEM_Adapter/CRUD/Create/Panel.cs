@@ -89,6 +89,8 @@ namespace BH.Adapter.RFEM
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
 
+
+
                     modelData.SetSurface(rfSurfaces[i]);
 
 
