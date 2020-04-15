@@ -70,6 +70,7 @@ namespace BH.Adapter.RFEM
                 else if (surfaceProperty is Ribbed)
                 {
                     Ribbed prop = surfaceProperty as Ribbed;
+                    stiffness.Type = rf.OrthotropyType.UnidirectionalRibbedPlate;
                     stiffness.Thickness = prop.Thickness;
                     stiffness.GeometricProperties.Height = prop.TotalDepth;
                     stiffness.GeometricProperties.Spacing = prop.Spacing;
@@ -88,6 +89,7 @@ namespace BH.Adapter.RFEM
                 else if (surfaceProperty is Waffle)
                 {
                     Waffle prop = surfaceProperty as Waffle;
+                    stiffness.Type = rf.OrthotropyType.BidirectionalRibbedPlate;
                     stiffness.Thickness = prop.Thickness;
                     stiffness.GeometricProperties.HeightX = prop.TotalDepthX;
                     stiffness.GeometricProperties.HeightY = prop.TotalDepthY;
