@@ -77,7 +77,7 @@ namespace BH.Adapter.RFEM
                 {typeof(IMaterialFragment), new BHoMObjectNameComparer() },
                 {typeof(LinkConstraint), new BHoMObjectNameComparer() },
                 //{typeof(Panel), new BHoMObjectNameComparer() },
-                {typeof(ISurfaceProperty), new BHoMObjectNameComparer() },
+                //{typeof(ISurfaceProperty), new BHoMObjectNameComparer() },
 
             };
 

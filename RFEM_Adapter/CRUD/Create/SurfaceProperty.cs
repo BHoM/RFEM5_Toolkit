@@ -45,10 +45,11 @@ namespace BH.Adapter.RFEM
         {
             if (surfaceProperties.Count() > 0)
             {
+                /*
                 int idNum = 0;
                 int matNumId = 0;
                 List<ISurfaceProperty> srfPropList = surfaceProperties.ToList();
-                rf.SurfaceThickness[] rfSrfThickness = new rf.SurfaceThickness[srfPropList.Count()]; // TODO: this is likely not the right type
+                rf.SurfaceStiffness[] rfSrfThickness = new rf.SurfaceStiffness[srfPropList.Count()]; // TODO: this is likely not the right type
 
                 for (int i = 0; i < srfPropList.Count(); i++)
                 {
@@ -56,11 +57,11 @@ namespace BH.Adapter.RFEM
                     idNum = System.Convert.ToInt32(srfPropList[i].CustomData[AdapterIdName]);// NextId(secList[i].GetType()));
                     matNumId = System.Convert.ToInt32(srfPropList[i].Material.CustomData[AdapterIdName]);
 
-                    rfSrfThickness[i] = srfPropList[i].ToRFEM(idNum, matNumId);
+                    rfSrfThickness[i] = srfPropList[i].ToRFEM();
 
                     //modelData.SetCrossSection(rfCrossSections[i]);
                 }
-
+                */
                 //modelData.SetCrossSections(rfCrossSections);
             }
 
