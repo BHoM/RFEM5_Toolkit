@@ -58,6 +58,14 @@ namespace BH.Adapter.RFEM
                     stiffness.Type = rf.OrthotropyType.ConstantThickness;
                     stiffness.Thickness = constantThickness.Thickness;
 
+                    stiffness.MultiplicationFactors.K = 1.0;
+                    stiffness.MultiplicationFactors.K33 = 1.0;
+                    stiffness.MultiplicationFactors.K44 = 1.0;
+                    stiffness.MultiplicationFactors.K55 = 1.0;
+                    stiffness.MultiplicationFactors.Kb = 1.0;
+                    stiffness.MultiplicationFactors.Ke = 1.0;
+                    stiffness.MultiplicationFactors.Km = 1.0;
+                    stiffness.MultiplicationFactors.Ks = 1.0;
                 }
                 else if (surfaceProperty is Ribbed)
                 {
@@ -66,6 +74,16 @@ namespace BH.Adapter.RFEM
                     stiffness.GeometricProperties.Height = prop.TotalDepth;
                     stiffness.GeometricProperties.Spacing = prop.Spacing;
                     stiffness.GeometricProperties.Width = prop.StemWidth;
+
+                    stiffness.MultiplicationFactors.K = 1.0;
+                    stiffness.MultiplicationFactors.K33 = 1.0;
+                    stiffness.MultiplicationFactors.K44 = 1.0;
+                    stiffness.MultiplicationFactors.K55 = 1.0;
+                    stiffness.MultiplicationFactors.Kb = 1.0;
+                    stiffness.MultiplicationFactors.Ke = 1.0;
+                    stiffness.MultiplicationFactors.Km = 1.0;
+                    stiffness.MultiplicationFactors.Ks = 1.0;
+
                 }
                 else if (surfaceProperty is Waffle)
                 {
@@ -77,6 +95,16 @@ namespace BH.Adapter.RFEM
                     stiffness.GeometricProperties.SpacingY = prop.SpacingY;
                     stiffness.GeometricProperties.WidthX = prop.StemWidthX;
                     stiffness.GeometricProperties.WidthY = prop.StemWidthY;
+
+                    stiffness.MultiplicationFactors.K = 1.0;
+                    stiffness.MultiplicationFactors.K33 = 1.0;
+                    stiffness.MultiplicationFactors.K44 = 1.0;
+                    stiffness.MultiplicationFactors.K55 = 1.0;
+                    stiffness.MultiplicationFactors.Kb = 1.0;
+                    stiffness.MultiplicationFactors.Ke = 1.0;
+                    stiffness.MultiplicationFactors.Km = 1.0;
+                    stiffness.MultiplicationFactors.Ks = 1.0;
+
 
                 }
                 else
