@@ -50,7 +50,6 @@ namespace BH.Adapter.RFEM
 
             AppLock();
 
-<<<<<<< HEAD
             try
             {
                 if (type == typeof(Node))
@@ -63,30 +62,15 @@ namespace BH.Adapter.RFEM
                     return ReadSectionProperties(ids as dynamic);
                 else if (type == typeof(IMaterialFragment))
                     return ReadMaterials(ids as dynamic);
+                else if (type == typeof(Panel))
+                    return ReadPanels(ids as dynamic);
+                else if (type == typeof(ISurfaceProperty))
+                    return ReadSurfaceProperties(ids as dynamic);
             }
             finally
             {
                 AppUnlock();
             }
-=======
-            if (type == typeof(Node))
-                return ReadNodes(ids as dynamic);
-            if (type == typeof(Constraint6DOF))
-                return ReadConstraints(ids as dynamic);
-            else if (type == typeof(Bar))
-                return ReadBars(ids as dynamic);
-            else if (type == typeof(ISectionProperty) || type.GetInterfaces().Contains(typeof(ISectionProperty)))
-                return ReadSectionProperties(ids as dynamic);
-            else if (type == typeof(IMaterialFragment))
-                return ReadMaterials(ids as dynamic);
-            else if (type == typeof(Panel))
-                return ReadPanels(ids as dynamic);
-            else if (type == typeof(ISurfaceProperty))
-                return ReadSurfaceProperties(ids as dynamic);
-
-
->>>>>>> cleanup create panel class and add read panel to read dispatcher
-
 
             return new List<IBHoMObject>(); ;
         }
