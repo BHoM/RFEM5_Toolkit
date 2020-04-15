@@ -75,6 +75,8 @@ namespace BH.Adapter.RFEM
                     stiffness.GeometricProperties.Height = prop.TotalDepth;
                     stiffness.GeometricProperties.Spacing = prop.Spacing;
                     stiffness.GeometricProperties.Width = prop.StemWidth;
+                    stiffness.GeometricProperties.Thickness = prop.Thickness;
+
 
                     stiffness.MultiplicationFactors.K = 1.0;
                     stiffness.MultiplicationFactors.K33 = 1.0;
@@ -97,6 +99,7 @@ namespace BH.Adapter.RFEM
                     stiffness.GeometricProperties.SpacingY = prop.SpacingY;
                     stiffness.GeometricProperties.WidthX = prop.StemWidthX;
                     stiffness.GeometricProperties.WidthY = prop.StemWidthY;
+                    stiffness.GeometricProperties.Thickness = prop.Thickness;
 
                     stiffness.MultiplicationFactors.K = 1.0;
                     stiffness.MultiplicationFactors.K33 = 1.0;
