@@ -50,7 +50,7 @@ namespace BH.Adapter.RFEM
             switch (materialType)
             {
                 case MaterialType.Aluminium:
-                    //AluminiumSection aluSection = new AluminiumSection();
+                    AluminiumSection aluSection = new AluminiumSection();
                     //return aluSection;
                     return null;
 
@@ -85,7 +85,7 @@ namespace BH.Adapter.RFEM
                 case MaterialType.Undefined:
                     return null;
                 default:
-                    Engine.Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
+                    Engine.Reflection.Compute.RecordError("Don't know how to make" + rfSectionProperty.TextID);
                     return null;
             }
 
