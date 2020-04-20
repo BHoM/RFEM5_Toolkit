@@ -61,12 +61,22 @@ namespace BH.Engine.RFEM
             {
                 case "TypeID|STEEL":
                     return MaterialType.Steel;
-                case "TypeID|Concrete"://best guess on string
+                case "TypeID|ALUMINIUM":
+                    return MaterialType.Aluminium;
+                case "TypeID|CONCRETE":
                     return MaterialType.Concrete;
-                case "TypeID|Timber"://best guess on string
+                case "TypeID|TIMBER":
                     return MaterialType.Timber;
+                case "TypeID|CABLE":
+                    return MaterialType.Cable;
+                case "TypeID|GLASS":
+                    return MaterialType.Glass;
+                case "TypeID|REBAR":
+                    return MaterialType.Rebar;
+                case "TypeID|TENDON":
+                    return MaterialType.Tendon;
                 default:
-                    return MaterialType.Steel;
+                    return MaterialType.Undefined;
             }
 
         }
