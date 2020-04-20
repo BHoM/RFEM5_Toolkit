@@ -47,29 +47,48 @@ namespace BH.Adapter.RFEM
 
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
 
-            if (materialType == MaterialType.Steel)
+            switch (materialType)
             {
-                ExplicitSection section = new ExplicitSection();
-                
-                section.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
-                //section.Material = Structure.Create.Steel("default steel");
-                section.Material = rfMaterial.FromRFEM();
-                section.Name = rfSectionProperty.TextID;
+                case MaterialType.Aluminium:
+                    //AluminiumSection aluSection = new AluminiumSection();
+                    //return aluSection;
+                    return null;
 
-                section.Area = rfSectionProperty.AxialArea;
-                section.J = rfSectionProperty.TorsionMoment;
-                section.Asy = rfSectionProperty.ShearAreaY;
-                section.Asz = rfSectionProperty.ShearAreaZ;
-                section.Iy = rfSectionProperty.BendingMomentY;
-                section.Iz = rfSectionProperty.BendingMomentZ;
 
-                return section;
+                case MaterialType.Steel:
+                    ExplicitSection section = new ExplicitSection();
+                    section.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
+                    //section.Material = Structure.Create.Steel("default steel");
+                    section.Material = rfMaterial.FromRFEM();
+                    section.Name = rfSectionProperty.TextID;
+
+                    section.Area = rfSectionProperty.AxialArea;
+                    section.J = rfSectionProperty.TorsionMoment;
+                    section.Asy = rfSectionProperty.ShearAreaY;
+                    section.Asz = rfSectionProperty.ShearAreaZ;
+                    section.Iy = rfSectionProperty.BendingMomentY;
+                    section.Iz = rfSectionProperty.BendingMomentZ;
+
+                    return section;
+                case MaterialType.Concrete:
+                    return null;
+                case MaterialType.Timber:
+                    return null;
+                case MaterialType.Rebar:
+                    return null;
+                case MaterialType.Tendon:
+                    return null;
+                case MaterialType.Glass:
+                    return null;
+                case MaterialType.Cable:
+                    return null;
+                case MaterialType.Undefined:
+                    return null;
+                default:
+                    Engine.Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
+                    return null;
             }
-            else
-            {
-                Engine.Reflection.Compute.RecordError("dont know how to make" + rfSectionProperty.TextID);
-                return null;
-            }
+
 
 
         }
