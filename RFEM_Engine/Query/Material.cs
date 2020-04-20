@@ -53,7 +53,7 @@ namespace BH.Engine.RFEM
 
             if(materialString.Count()<2)
             {
-                // raise warning
+                Engine.Reflection.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
                 return MaterialType.Steel;
             }
 
@@ -76,6 +76,7 @@ namespace BH.Engine.RFEM
                 case "TypeID|TENDON":
                     return MaterialType.Tendon;
                 default:
+                    Engine.Reflection.Compute.RecordWarning("Don't know how to make: " + materialString[1]);
                     return MaterialType.Undefined;
             }
 
