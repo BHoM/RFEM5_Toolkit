@@ -53,6 +53,7 @@ namespace BH.Adapter.RFEM
             rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
 
 
+
             if (sectionProperty is SteelSection)
             {
                 SteelSection steelSection = sectionProperty as SteelSection;
