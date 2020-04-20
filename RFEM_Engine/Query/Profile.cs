@@ -40,11 +40,15 @@ namespace BH.Engine.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
+        public static IProfile GetSectionProfile(string profileName)
+        {
+
+        }
 
         public static ShapeType GetProfileType(string profileName)
         {
             string typeString = profileName.Split(' ')[0];
-
+            
             ShapeType profileType;
 
             switch (typeString)
@@ -84,6 +88,7 @@ namespace BH.Engine.RFEM
 
                 default:
                     profileType = ShapeType.ISection;
+                    Engine.Reflection.Compute.RecordError("Don't know how to make" + profileName);
                     break;
             }
 
