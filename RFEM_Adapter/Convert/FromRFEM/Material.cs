@@ -63,5 +63,32 @@ namespace BH.Adapter.RFEM
             return bhMaterial;
         }
 
+        private static MaterialType GetMaterialTypeFromString(string RFEMTextID)
+        {
+            string[] stringArr = RFEMTextID.Split('@');
+
+            switch (stringArr[1])
+            {
+                case "TypeID|STEEL":
+                    return MaterialType.Steel;
+                case "TypeID|ALUMINIUM":
+                    return MaterialType.Aluminium;
+                case "TypeID|CONCRETE":
+                    return MaterialType.Concrete;
+                case "TypeID|TIMBER":
+                    return MaterialType.Timber;
+                case "TypeID|CABLE":
+                    return MaterialType.Cable;
+                case "TypeID|GLASS":
+                    return MaterialType.Glass;
+                case "TypeID|REBAR":
+                    return MaterialType.Rebar;
+                case "TypeID|TENDON":
+                    return MaterialType.Tendon;
+                default:
+                    return MaterialType.Undefined;
+            }
+        }
+
     }
 }
