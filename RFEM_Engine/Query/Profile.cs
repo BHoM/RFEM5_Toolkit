@@ -42,6 +42,68 @@ namespace BH.Engine.RFEM
 
         public static IProfile GetSectionProfile(string profileName)
         {
+            string[] profileNameArr = profileName.Split(' ');
+            string[] profileValues;
+
+            switch (GetProfileType(profileName))
+            {
+                case ShapeType.Rectangle:
+                    profileValues = profileNameArr[1].Split('/');
+                    double b = Convert.ToDouble(profileValues[0]);
+                    double h = Convert.ToDouble(profileValues[1]);
+                    RectangleProfile profile = Structure.Create.RectangleProfile(h, b, 0);
+                    return profile;
+                case ShapeType.Box:
+                    profileValues = profileNameArr[1].Split('/');
+                    double b = Convert.ToDouble(profileValues[0]);
+                    double h = Convert.ToDouble(profileValues[1]);
+                    double t = Convert.ToDouble(profileValues[1]);
+                    BoxProfile profile = Structure.Create.BoxProfile(h, b, t, 0, 0);
+                    return profile;
+                case ShapeType.Angle:
+                    AngleProfile profile = new AngleProfile();
+                    break;
+                case ShapeType.ISection:
+                    ISectionProfile profile = new ISectionProfile();
+                    break;
+                case ShapeType.Tee:
+                    TSectionProfile profile = new TSectionProfile();
+                    break;
+                case ShapeType.Channel:
+                    ChannelProfile profile = new ChannelProfile();
+                    break;
+                case ShapeType.Tube:
+                    TubeProfile profile = new TubeProfile();
+                    break;
+                case ShapeType.Circle:
+                    CircleProfile profile = new CircleProfile();
+                    break;
+                case ShapeType.Zed:
+                    ZSectionProfile profile = new ZSectionProfile();
+                    break;
+                case ShapeType.FreeForm:
+                    FreeFormProfile profile = new FreeFormProfile();
+                    break;
+                case ShapeType.DoubleAngle:
+                    break;
+                case ShapeType.DoubleISection:
+                    break;
+                case ShapeType.DoubleChannel:
+                    break;
+                case ShapeType.Cable:
+                    break;
+                default:
+                    break;
+            }
+
+            /* ---TODO: cannot find shape types for these profiles: 
+                BH.oM.Geometry.ShapeProfiles.FabricatedBoxProfile
+                BH.oM.Geometry.ShapeProfiles.FabricatedISectionProfile
+                BH.oM.Geometry.ShapeProfiles.GeneralisedFabricatedBoxProfile
+                BH.oM.Geometry.ShapeProfiles.GeneralisedTSectionProfile
+                BH.oM.Geometry.ShapeProfiles.KiteProfile
+                BH.oM.Geometry.ShapeProfiles.TaperedProfile
+                */
 
         }
 
