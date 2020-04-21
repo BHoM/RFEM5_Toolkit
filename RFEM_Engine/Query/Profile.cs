@@ -42,43 +42,109 @@ namespace BH.Engine.RFEM
 
         public static IProfile GetSectionProfile(string profileName)
         {
+            // standard section name: SHS 25x25x2
+            // parametric section name: TO 30/30/5/5/5/5
             string[] profileNameArr = profileName.Split(' ');
             string[] profileValues;
+            double v1, v2, v3, v4, v5, v6, v7, v8, v9, v10;
 
-            switch (GetProfileType(profileName))
+            if (profileNameArr.Length > 1)
             {
-                case ShapeType.Rectangle:
-                    profileValues = profileNameArr[1].Split('/');
-                    double b = Convert.ToDouble(profileValues[0]);
-                    double h = Convert.ToDouble(profileValues[1]);
-                    RectangleProfile profile = Structure.Create.RectangleProfile(h, b, 0);
+                //this is the case for Solid Timber 50/30
+                profileValues = profileNameArr[2].Split('/');//parametric sections
+            }
+            else
+            {
+                if(profileNameArr[0].Contains('x'))
+                    profileValues = profileNameArr[1].Split('/');//parametric sections
+                else
+                    profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
+            }
+
+
+
+            switch (profileNameArr[0])
+            {
+                case "Rectangle":
+                case "T-Rectangle"://timber
+                    v1 = Convert.ToDouble(profileValues[0]);
+                    v2 = Convert.ToDouble(profileValues[1]);
+                    RectangleProfile profile = Structure.Create.RectangleProfile(v1, v2, 0);
                     return profile;
-                case ShapeType.Box:
-                    profileValues = profileNameArr[1].Split('/');
-                    double b = Convert.ToDouble(profileValues[0]);
-                    double h = Convert.ToDouble(profileValues[1]);
-                    double t = Convert.ToDouble(profileValues[1]);
-                    BoxProfile profile = Structure.Create.BoxProfile(h, b, t, 0, 0);
+                case "SHS":
+                case "RHS":
+                case "QRO":
+                case "RRO":
+                case "TO":
+                case "HSH":
+                case "HSV":
+                    v1 = Convert.ToDouble(profileValues[0]);
+                    v2 = Convert.ToDouble(profileValues[1]);
+                    v3 = Convert.ToDouble(profileValues[2]);
+                    BoxProfile profile = Structure.Create.BoxProfile(v1, v2, v3, 0, 0);
                     return profile;
-                case ShapeType.Angle:
+                case "L":
+                case "LU":
+                case "KLU":
+                case "LS":
                     AngleProfile profile = new AngleProfile();
                     break;
-                case ShapeType.ISection:
+                case "I":
+                case "IPE":
+                case "HE":
+                case "HEA":
+                case "HEB":
+                case "UB":
+                case "UBP":
+                case "UC":
+                case "IS":
+                case "ITS":
+                case "IUH":
+                case "IUV":
                     ISectionProfile profile = new ISectionProfile();
                     break;
-                case ShapeType.Tee:
+                case "T":
+                case "TB":
+                case "TPS":
+                case "TS":
+                case "FB":
+                case "TH":
+                case "TV":
                     TSectionProfile profile = new TSectionProfile();
                     break;
-                case ShapeType.Channel:
+                case "U":
+                case "UPE":
+                case "UAP":
+                case "CH":
+                case "UPN":
+                case "PFC":
+                case "C":
+                case "UU":
+                case "UM":
+                case "PIH":
+                case "PIV":
                     ChannelProfile profile = new ChannelProfile();
                     break;
-                case ShapeType.Tube:
+                case "CHS":
+                case "RO":
+                case "Pipe":
+                case "Ring":
                     TubeProfile profile = new TubeProfile();
                     break;
-                case ShapeType.Circle:
+                case "RD":
+                case "ROD":
+                case "RB":
+                case "Round":
+                case "Circle":
+                case "T-Circle":
                     CircleProfile profile = new CircleProfile();
                     break;
-                case ShapeType.Zed:
+                case "Z":
+                case "KZ":
+                case "Z(A)":
+                case "Z(B)":
+                case "Z_AM":
+                case "Z_BM":
                     ZSectionProfile profile = new ZSectionProfile();
                     break;
                 case ShapeType.FreeForm:
