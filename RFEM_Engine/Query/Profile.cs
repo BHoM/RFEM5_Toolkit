@@ -147,17 +147,6 @@ namespace BH.Engine.RFEM
                 case "Z_BM":
                     ZSectionProfile profile = new ZSectionProfile();
                     break;
-                case ShapeType.FreeForm:
-                    FreeFormProfile profile = new FreeFormProfile();
-                    break;
-                case ShapeType.DoubleAngle:
-                    break;
-                case ShapeType.DoubleISection:
-                    break;
-                case ShapeType.DoubleChannel:
-                    break;
-                case ShapeType.Cable:
-                    break;
                 default:
                     break;
             }
@@ -173,55 +162,6 @@ namespace BH.Engine.RFEM
 
         }
 
-        public static ShapeType GetProfileType(string profileName)
-        {
-            string typeString = profileName.Split(' ')[0];
-            
-            ShapeType profileType;
-
-            switch (typeString)
-            {
-                case "RHS":
-                    profileType = ShapeType.Rectangle;
-                    break;
-                case "SHS":
-                    profileType = ShapeType.Box;
-                    break;
-                case "IPE":
-                    profileType = ShapeType.ISection;
-                    break;
-                case "T":
-                    profileType = ShapeType.Tee;
-                    break;
-                case "UPE":
-                    profileType = ShapeType.Channel;
-                    break;
-                case "CHS":
-                    profileType = ShapeType.Tube;
-                    break;
-                case "L":
-                    profileType = ShapeType.Angle;
-                    break;
-                case "RD":
-                    profileType = ShapeType.Circle;
-                    break;
-                case "Z":
-                    profileType = ShapeType.Zed;
-                    break;
-                //case ShapeType.FreeForm:
-                //case ShapeType.DoubleAngle:
-                //case ShapeType.DoubleISection:
-                //case ShapeType.DoubleChannel:
-                //case ShapeType.Cable:
-
-                default:
-                    profileType = ShapeType.ISection;
-                    Engine.Reflection.Compute.RecordError("Don't know how to make" + profileName);
-                    break;
-            }
-
-            return profileType;
-        }
 
         /***************************************************/
     }
