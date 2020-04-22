@@ -33,6 +33,7 @@ using BH.Engine.Structure;
 using BH.Engine.RFEM;
 using BH.oM.Physical;
 using rf = Dlubal.RFEM5;
+using rf3 = Dlubal.RFEM3;
 
 namespace BH.Adapter.RFEM
 {
@@ -45,14 +46,23 @@ namespace BH.Adapter.RFEM
         public static ISectionProperty FromRFEM(this rf.ICrossSection rfISectionProperty, rf.Material rfMaterial)
         {
             rf.CrossSection rfSectionProperty = rfISectionProperty.GetData();
-            
+
+            // ----- TEST READING SECTIONS FROM LIBRARY -----
+            rf3.IrfDatabaseCrSc rfSectionLibrary = rfISectionProperty.GetDatabaseCrossSection() as rf3.IrfDatabaseCrSc;
+            string sectionName = rfSectionProperty.ID;
+            rf3.IrfCrossSectionDB sectionFromDB = rfSectionLibrary.rfGetCrossSection(sectionName);
+
+            int propCount = sectionFromDB.rfGetPropertyCount();
+            rf3.DB_CRSC_PROPERTY[] sectionDBProps = new rf3.DB_CRSC_PROPERTY[propCount];
+            sectionFromDB.rfGetPropertyArrAll(propCount, sectionDBProps);
+
 
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
 
             switch (materialType)
             {
                 case MaterialType.Aluminium:
-                    AluminiumSection aluSection = new AluminiumSection();
+                    //AluminiumSection aluSection = new AluminiumSection();
                     //return aluSection;
                     return null;
 
