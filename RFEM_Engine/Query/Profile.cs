@@ -50,7 +50,7 @@ namespace BH.Engine.RFEM
 
             if (profileNameArr.Length > 1)
             {
-                //this is the case for Solid Timber 50/30
+                //this is the case for 'Solid Timber 50/30'
                 profileValues = profileNameArr[2].Split('/');//parametric sections
             }
             else
@@ -61,6 +61,10 @@ namespace BH.Engine.RFEM
                     profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
             }
 
+            for (int i = 0; i < 10; i++)
+            {
+
+            }
 
 
             switch (profileNameArr[0])

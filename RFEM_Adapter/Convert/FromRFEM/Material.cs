@@ -42,7 +42,7 @@ namespace BH.Adapter.RFEM
         public static IMaterialFragment FromRFEM(this rf.Material material)
         {
             IMaterialFragment bhMaterial;
-            MaterialType matType = GetMaterialTypeFromString(material.get)
+            MaterialType matType = GetMaterialTypeFromString(material.TextID);
 
             if (material.ModelType == rf.MaterialModelType.IsotropicLinearElasticType)
             {
