@@ -59,9 +59,10 @@ namespace BH.Adapter.RFEM
 
                     if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
                     {
-                        rf.CrossSection rfSection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo).GetData();
+                        rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
+                        rf.CrossSection rfSection = rfISection.GetData();
                         rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfSection.FromRFEM(rfMat);
+                        sectionProperty = rfISection.FromRFEM(rfMat);
                         m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     }
 
@@ -78,9 +79,10 @@ namespace BH.Adapter.RFEM
 
                     if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
                     {
-                        rf.CrossSection rfSection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo).GetData();
+                        rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
+                        rf.CrossSection rfSection = rfISection.GetData();
                         rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfSection.FromRFEM(rfMat);
+                        sectionProperty = rfISection.FromRFEM(rfMat);
                         m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
                     }
 
