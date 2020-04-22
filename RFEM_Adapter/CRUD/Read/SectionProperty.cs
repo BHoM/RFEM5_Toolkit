@@ -57,7 +57,8 @@ namespace BH.Adapter.RFEM
                 foreach (rf.CrossSection rfSection in modelData.GetCrossSections())
                 {
                     rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                    ISectionProperty section = rfSection.FromRFEM(rfMaterial);
+                    rf.ICrossSection rfISection = modelData.GetCrossSection(rfSection.No, rf.ItemAt.AtNo);
+                    ISectionProperty section = rfISection.FromRFEM(rfMaterial);
 
                     sectionPropList.Add(section);
 
@@ -72,9 +73,10 @@ namespace BH.Adapter.RFEM
             {
                 foreach (string id in ids)
                 {
-                    rf.CrossSection rfSection = modelData.GetCrossSection(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
+                    rf.ICrossSection rfISection = modelData.GetCrossSection(Int32.Parse(id), rf.ItemAt.AtNo);
+                    rf.CrossSection rfSection = rfISection.GetData();
                     rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                    sectionPropList.Add(rfSection.FromRFEM(rfMaterial));
+                    sectionPropList.Add(rfISection.FromRFEM(rfMaterial));
                 }
             }
 

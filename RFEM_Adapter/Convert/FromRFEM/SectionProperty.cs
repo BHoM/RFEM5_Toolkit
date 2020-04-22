@@ -42,8 +42,10 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static ISectionProperty FromRFEM(this rf.CrossSection rfSectionProperty, rf.Material rfMaterial)
+        public static ISectionProperty FromRFEM(this rf.ICrossSection rfISectionProperty, rf.Material rfMaterial)
         {
+            rf.CrossSection rfSectionProperty = rfISectionProperty.GetData();
+            
 
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
 
