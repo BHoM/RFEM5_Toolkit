@@ -48,13 +48,17 @@ namespace BH.Adapter.RFEM
             rf.CrossSection rfSectionProperty = rfISectionProperty.GetData();
 
             // ----- TEST READING SECTIONS FROM LIBRARY -----
-            rf3.IrfDatabaseCrSc rfSectionLibrary = rfISectionProperty.GetDatabaseCrossSection() as rf3.IrfDatabaseCrSc;
-            string sectionName = rfSectionProperty.ID;
-            rf3.IrfCrossSectionDB sectionFromDB = rfSectionLibrary.rfGetCrossSection(sectionName);
+            string sectionName = rfSectionProperty.Description;
+            if (sectionName != "")
+            {
+                object libraryObj = rfISectionProperty.GetDatabaseCrossSection();
+                rf3.IrfCrossSectionDB sectionFromDB = libraryObj as rf3.IrfCrossSectionDB;
 
-            int propCount = sectionFromDB.rfGetPropertyCount();
-            rf3.DB_CRSC_PROPERTY[] sectionDBProps = new rf3.DB_CRSC_PROPERTY[propCount];
-            sectionFromDB.rfGetPropertyArrAll(propCount, sectionDBProps);
+                int propCount = sectionFromDB.rfGetPropertyCount();
+                rf3.DB_CRSC_PROPERTY[] sectionDBProps = new rf3.DB_CRSC_PROPERTY[propCount];
+                sectionFromDB.rfGetPropertyArrAll(propCount, sectionDBProps);
+
+            }
 
 
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
