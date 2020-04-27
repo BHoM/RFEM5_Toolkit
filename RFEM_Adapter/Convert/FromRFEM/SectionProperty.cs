@@ -29,6 +29,7 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.SectionProperties;
+using BH.oM.Geometry.ShapeProfiles:
 using BH.Engine.Structure;
 using BH.Engine.RFEM;
 using BH.oM.Physical;
@@ -49,30 +50,35 @@ namespace BH.Adapter.RFEM
 
             // ----- TEST READING SECTIONS FROM LIBRARY -----
             string sectionName = rfSectionProperty.Description;
+            rf3.DB_CRSC_PROPERTY[] sectionDBProps = null;
             if (sectionName != "")
             {
                 object libraryObj = rfISectionProperty.GetDatabaseCrossSection();
                 rf3.IrfCrossSectionDB sectionFromDB = libraryObj as rf3.IrfCrossSectionDB;
 
                 int propCount = sectionFromDB.rfGetPropertyCount();
-                rf3.DB_CRSC_PROPERTY[] sectionDBProps = new rf3.DB_CRSC_PROPERTY[propCount];
+                sectionDBProps = new rf3.DB_CRSC_PROPERTY[propCount];
                 sectionFromDB.rfGetPropertyArrAll(propCount, sectionDBProps);
 
             }
 
 
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
-
+            IProfile profile = GetSectionProfile(sectionName, sectionDBProps);
+            
             switch (materialType)
             {
                 case MaterialType.Aluminium:
-                    //AluminiumSection aluSection = new AluminiumSection();
+                    AluminiumSection aluSection = Create.AluminiumSectionFromProfile(profile);
                     //return aluSection;
                     return null;
 
 
                 case MaterialType.Steel:
+                    // add switch on steel section type ! ! ! ! ! 
+
                     ExplicitSection section = new ExplicitSection();
+                    
                     section.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
                     //section.Material = Structure.Create.Steel("default steel");
                     section.Material = rfMaterial.FromRFEM();
@@ -87,19 +93,17 @@ namespace BH.Adapter.RFEM
 
                     return section;
                 case MaterialType.Concrete:
+                    // add switch on profile type !!!!
+                    //Create.ConcreteSectionFromProfile()
                     return null;
                 case MaterialType.Timber:
+                    //Create.TimberSectionFromProfile();
                     return null;
                 case MaterialType.Rebar:
-                    return null;
                 case MaterialType.Tendon:
-                    return null;
                 case MaterialType.Glass:
-                    return null;
                 case MaterialType.Cable:
-                    return null;
                 case MaterialType.Undefined:
-                    return null;
                 default:
                     Engine.Reflection.Compute.RecordError("Don't know how to make" + rfSectionProperty.TextID);
                     return null;
