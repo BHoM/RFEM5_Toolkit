@@ -48,7 +48,6 @@ namespace BH.Engine.RFEM
             string[] profileNameArr = profileName.Split(' ');
             string[] profileValues;
             double v1, v2, v3, v4, v5, v6, v7, v8, v9, v10;
-            IProfile profile;
 
             if (profileNameArr.Length > 1)
             {
@@ -63,9 +62,29 @@ namespace BH.Engine.RFEM
                     profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
             }
 
-            for (int i = 0; i < 10; i++)
+            if(sectionDBProps != null)//section from RFEM Library
             {
-
+                switch (profileNameArr[0])
+                {
+                    case "I":
+                    case "IPE":
+                    case "HE":
+                    case "HEA":
+                    case "HEB":
+                    case "UB":
+                    case "UBP":
+                    case "UC":
+                        double h = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
+                        double w = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
+                        double wt = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_s).fValue;
+                        double ft = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g).fValue;
+                        double fr = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
+                        double tr = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
+                        ISectionProfile profile_I = Structure.Create.ISectionProfile(h, w, wt, ft, fr, tr);
+                        return profile_I;
+                    default:
+                        break;
+                }
             }
 
 
@@ -76,7 +95,7 @@ namespace BH.Engine.RFEM
                     v1 = Convert.ToDouble(profileValues[0]);
                     v2 = Convert.ToDouble(profileValues[1]);
                     
-                    profile = Structure.Create.RectangleProfile(v1, v2, 0);
+                    RectangleProfile profile = Structure.Create.RectangleProfile(v1, v2, 0);
                     return profile;
                 case "SHS":
                 case "RHS":
@@ -96,14 +115,6 @@ namespace BH.Engine.RFEM
                 case "LS":
                     AngleProfile profile = new AngleProfile();
                     break;
-                case "I":
-                case "IPE":
-                case "HE":
-                case "HEA":
-                case "HEB":
-                case "UB":
-                case "UBP":
-                case "UC":
                 case "IS":
                 case "ITS":
                 case "IUH":
