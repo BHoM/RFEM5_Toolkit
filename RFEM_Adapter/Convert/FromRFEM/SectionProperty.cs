@@ -29,7 +29,7 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.SectionProperties;
-using BH.oM.Geometry.ShapeProfiles:
+using BH.oM.Geometry.ShapeProfiles;
 using BH.Engine.Structure;
 using BH.Engine.RFEM;
 using BH.oM.Physical;
@@ -64,7 +64,7 @@ namespace BH.Adapter.RFEM
 
 
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
-            IProfile profile = GetSectionProfile(sectionName, sectionDBProps);
+            IProfile profile = Engine.RFEM.Query.GetSectionProfile(sectionName, sectionDBProps);
             
             switch (materialType)
             {
