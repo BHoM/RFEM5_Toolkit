@@ -50,18 +50,18 @@ namespace BH.Engine.RFEM
             double v1, v2, v3, v4, v5, v6, v7, v8, v9, v10;
             IProfile profile = null;
 
-            if (profileNameArr.Length > 1)
-            {
-                //this is the case for 'Solid Timber 50/30'
-                profileValues = profileNameArr[2].Split('/');//parametric sections
-            }
-            else
-            {
-                if (profileNameArr[0].Contains('x'))
-                    profileValues = profileNameArr[1].Split('/');//parametric sections
-                else
-                    profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
-            }
+            //if (profileNameArr.Length > 2)
+            //{
+            //    //this is the case for 'Solid Timber 50/30'
+            //    profileValues = profileNameArr[2].Split('/');//parametric sections
+            //}
+            //else
+            //{
+            //    if (profileNameArr[0].Contains('x'))
+            //        profileValues = profileNameArr[1].Split('/');//parametric sections
+            //    else
+            //        profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
+            //}
 
             if(sectionDBProps != null)//section from RFEM Library
             {
@@ -97,7 +97,7 @@ namespace BH.Engine.RFEM
                     case "SQ-S":
                     case "SQ-R":
                     case "4KT":
-                        v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
+                        v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
                         v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
                         profile = Structure.Create.RectangleProfile(v1, v2, v3);
@@ -108,10 +108,14 @@ namespace BH.Engine.RFEM
                     case "LS":
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
-                        v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_s).fValue;
+                        v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
                         v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g).fValue;
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
+                        if (v1 == 0)
+                            v1 = v2;
+                        if (v4 == 0)
+                            v4 = v3;
                         profile = Structure.Create.AngleProfile(v1, v2, v3, v4, v5, v6);
                         break;
                     case "T":
@@ -143,14 +147,14 @@ namespace BH.Engine.RFEM
                         break;
                     case "CHS":
                     case "RO":
-                        v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue * 2;
+                        v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_D).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
                         profile = Structure.Create.TubeProfile(v1, v2);
                         break;
                     case "RD":
                     case "ROD":
                     case "RB":
-                        v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue * 2;
+                        v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_D).fValue;
                         profile = Structure.Create.CircleProfile(v1);
                         break;
                     //case "Z":
