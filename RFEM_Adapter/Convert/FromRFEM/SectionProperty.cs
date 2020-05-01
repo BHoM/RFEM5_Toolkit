@@ -66,6 +66,9 @@ namespace BH.Adapter.RFEM
             MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
             IProfile profile = Engine.RFEM.Query.GetSectionProfile(sectionName, sectionDBProps);
             
+            //Create.SectionPropertyFromProfile()// this creates the right property if the right material is provided 
+            // use IGeometricalSection to create steel, concrete and generic sections !
+
             switch (materialType)
             {
                 case MaterialType.Aluminium:
@@ -78,12 +81,11 @@ namespace BH.Adapter.RFEM
                     // add switch on steel section type ! ! ! ! ! 
 
                     ExplicitSection section = new ExplicitSection();
-                    
+
                     section.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
                     //section.Material = Structure.Create.Steel("default steel");
                     section.Material = rfMaterial.FromRFEM();
                     section.Name = rfSectionProperty.TextID;
-
                     section.Area = rfSectionProperty.AxialArea;
                     section.J = rfSectionProperty.TorsionMoment;
                     section.Asy = rfSectionProperty.ShearAreaY;
