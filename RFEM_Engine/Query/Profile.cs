@@ -50,18 +50,18 @@ namespace BH.Engine.RFEM
             double v1, v2, v3, v4, v5, v6, v7, v8, v9, v10;
             IProfile profile = null;
 
-            if (profileNameArr.Length > 2)
-            {
-                //this is the case for 'Solid Timber 50/30'
-                profileValues = profileNameArr[2].Split('/');//parametric sections
-            }
-            else
-            {
-                if (profileNameArr[0].Contains('/'))
-                    profileValues = profileNameArr[1].Split('/');//parametric sections
-                else
-                    profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
-            }
+            //if (profileNameArr.Length > 2)
+            //{
+            //    //this is the case for 'Solid Timber 50/30'
+            //    profileValues = profileNameArr[2].Split('/');//parametric sections
+            //}
+            //else
+            //{
+            //    if (profileNameArr[0].Contains('/'))
+            //        profileValues = profileNameArr[1].Split('/');//parametric sections
+            //    else
+            //        profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
+            //}
 
             if (sectionDBProps != null)//section from RFEM Library
             {
@@ -83,6 +83,18 @@ namespace BH.Engine.RFEM
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
                         profile = Structure.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
                         break;
+                    case "IS"://parametric
+                    case "ITS":
+                    case "IUH":
+                    case "IUV":
+                        v1 = sectionDBProps[0].fValue;
+                        v2 = sectionDBProps[1].fValue;
+                        v3 = sectionDBProps[2].fValue;
+                        v4 = sectionDBProps[3].fValue;
+                        v5 = sectionDBProps[4].fValue;
+                        v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
+                        break;
                     case "SHS":
                     case "RHS":
                     case "QRO":
@@ -94,12 +106,30 @@ namespace BH.Engine.RFEM
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
                         profile = Structure.Create.BoxProfile(v1, v2, v3, v4, v5);
                         break;
+                    case "TO"://parametric
+                    case "HSH":
+                    case "HSV":
+                        v1 = sectionDBProps[0].fValue;
+                        v2 = sectionDBProps[1].fValue;
+                        v3 = sectionDBProps[2].fValue;
+                        v4 = sectionDBProps[3].fValue;
+                        v5 = sectionDBProps[4].fValue;
+                        profile = Structure.Create.BoxProfile(v1, v2, v3, v4, v5);
+                        break;
+
                     case "SQ-S":
                     case "SQ-R":
                     case "4KT":
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
                         v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
+                        profile = Structure.Create.RectangleProfile(v1, v2, v3);
+                        break;
+                    case "Rectangle"://parametric
+                    case "T-Rectangle":
+                        v1 = sectionDBProps[0].fValue;
+                        v2 = sectionDBProps[1].fValue;
+                        v3 = sectionDBProps[2].fValue;
                         profile = Structure.Create.RectangleProfile(v1, v2, v3);
                         break;
 
@@ -118,10 +148,20 @@ namespace BH.Engine.RFEM
                             v4 = v3;
                         profile = Structure.Create.AngleProfile(v1, v2, v3, v4, v5, v6);
                         break;
+                    case "LU"://parametric
+                    case "KLU":
+                        v1 = sectionDBProps[0].fValue;
+                        v2 = sectionDBProps[1].fValue;
+                        v3 = sectionDBProps[2].fValue;
+                        v4 = sectionDBProps[3].fValue;
+                        v5 = sectionDBProps[4].fValue;
+                        v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.AngleProfile(v1, v2, v3, v4, v5, v6);
+                        break;
+
                     case "T":
                     case "TB":
                     case "TPS":
-                    case "TS":
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
                         v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_s).fValue;
@@ -130,6 +170,19 @@ namespace BH.Engine.RFEM
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
                         profile = Structure.Create.TSectionProfile(v1, v2, v3, v4, v5, v6);
                         break;
+                    case "TS"://parametric
+                    case "FB":
+                    case "TH":
+                    case "TV":
+                        v1 = sectionDBProps[0].fValue;
+                        v2 = sectionDBProps[1].fValue;
+                        v3 = sectionDBProps[2].fValue;
+                        v4 = sectionDBProps[3].fValue;
+                        v5 = sectionDBProps[4].fValue;
+                        v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.TSectionProfile(v1, v2, v3, v4, v5, v6);
+                        break;
+
                     case "U":
                     case "C":
                     case "UPE":
@@ -145,10 +198,28 @@ namespace BH.Engine.RFEM
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
                         profile = Structure.Create.ChannelProfile(v1, v2, v3, v4, v5, v6);
                         break;
+                    case "UU"://parametric
+                    case "UM":
+                    case "PIH":
+                    case "PIV":
+                        v1 = sectionDBProps[0].fValue;
+                        v2 = sectionDBProps[1].fValue;
+                        v3 = sectionDBProps[2].fValue;
+                        v4 = sectionDBProps[3].fValue;
+                        v5 = sectionDBProps[4].fValue;
+                        v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.ChannelProfile(v1, v2, v3, v4, v5, v6);
+                        break;
                     case "CHS":
                     case "RO":
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_D).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
+                        profile = Structure.Create.TubeProfile(v1, v2);
+                        break;
+                    case "Pipe"://parametric
+                    case "Ring":
+                        v1 = sectionDBProps[0].fValue;
+                        v2 = sectionDBProps[1].fValue;
                         profile = Structure.Create.TubeProfile(v1, v2);
                         break;
                     case "RD":
@@ -157,6 +228,13 @@ namespace BH.Engine.RFEM
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_D).fValue;
                         profile = Structure.Create.CircleProfile(v1);
                         break;
+                    case "Round"://parametric 
+                    case "Circle":
+                    case "T-Circle":
+                        v1 = sectionDBProps[0].fValue;
+                        profile = Structure.Create.CircleProfile(v1);
+                        break;
+
                     //case "Z":
                     //case "KZ":
                     //    v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
@@ -169,83 +247,6 @@ namespace BH.Engine.RFEM
                     //    break;
                     default:
                         Engine.Reflection.Compute.RecordError("Don't know how to make" + profileName);
-                        break;
-                }
-            }
-            else
-            {
-                //for parametric section profiles
-                switch (profileNameArr[0])
-                {
-                    case "Rectangle":
-                    case "T-Rectangle"://timber
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        v2 = Convert.ToDouble(profileValues[1]);
-                        profile = Structure.Create.RectangleProfile(v1, v2, 0);
-                        break;
-                    case "TO":
-                    case "HSH":
-                    case "HSV":
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        v2 = Convert.ToDouble(profileValues[1]);
-                        v3 = Convert.ToDouble(profileValues[2]);
-                        profile = Structure.Create.BoxProfile(v1, v2, v3, 0, 0);
-                        break;
-                    case "L":
-                    case "LU":
-                    case "KLU":
-                    case "LS":
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        v2 = Convert.ToDouble(profileValues[1]);
-                        v3 = Convert.ToDouble(profileValues[2]);
-                        v4 = Convert.ToDouble(profileValues[4]);
-                        v5 = Convert.ToDouble(profileValues[5]);
-                        profile = Structure.Create.AngleProfile(v1, v2, v3, v4, 0, 0);
-                        break;
-                    case "IS":
-                    case "ITS":
-                    case "IUH":
-                    case "IUV":
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        v2 = Convert.ToDouble(profileValues[1]);
-                        v3 = Convert.ToDouble(profileValues[2]);
-                        v4 = Convert.ToDouble(profileValues[4]);
-                        profile = Structure.Create.ISectionProfile(v1, v2, v3, v4, 0, 0);
-                        break;
-                    case "TS":
-                    case "FB":
-                    case "TH":
-                    case "TV":
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        v2 = Convert.ToDouble(profileValues[1]);
-                        v3 = Convert.ToDouble(profileValues[2]);
-                        v4 = Convert.ToDouble(profileValues[4]);
-                        profile = Structure.Create.TSectionProfile(v1, v2, v4, v3, 0, 0);
-                        break;
-                    case "C":
-                    case "UU":
-                    case "UM":
-                    case "PIH":
-                    case "PIV":
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        v2 = Convert.ToDouble(profileValues[1]);
-                        v3 = Convert.ToDouble(profileValues[2]);
-                        v4 = Convert.ToDouble(profileValues[4]);
-                        profile = Structure.Create.ChannelProfile(v1, v2, v3, v4, 0, 0);
-                        break;
-                    case "Pipe":
-                    case "Ring":
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        v2 = Convert.ToDouble(profileValues[1]);
-                        profile = Structure.Create.TubeProfile(v1, v2);
-                        break;
-                    case "Round":
-                    case "Circle":
-                    case "T-Circle":
-                        v1 = Convert.ToDouble(profileValues[0]);
-                        profile = Structure.Create.CircleProfile(v1);
-                        break;
-                    default:
                         break;
                 }
             }
