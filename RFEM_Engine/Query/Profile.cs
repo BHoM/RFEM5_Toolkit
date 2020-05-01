@@ -50,20 +50,20 @@ namespace BH.Engine.RFEM
             double v1, v2, v3, v4, v5, v6, v7, v8, v9, v10;
             IProfile profile = null;
 
-            //if (profileNameArr.Length > 2)
-            //{
-            //    //this is the case for 'Solid Timber 50/30'
-            //    profileValues = profileNameArr[2].Split('/');//parametric sections
-            //}
-            //else
-            //{
-            //    if (profileNameArr[0].Contains('x'))
-            //        profileValues = profileNameArr[1].Split('/');//parametric sections
-            //    else
-            //        profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
-            //}
+            if (profileNameArr.Length > 2)
+            {
+                //this is the case for 'Solid Timber 50/30'
+                profileValues = profileNameArr[2].Split('/');//parametric sections
+            }
+            else
+            {
+                if (profileNameArr[0].Contains('/'))
+                    profileValues = profileNameArr[1].Split('/');//parametric sections
+                else
+                    profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
+            }
 
-            if(sectionDBProps != null)//section from RFEM Library
+            if (sectionDBProps != null)//section from RFEM Library
             {
                 switch (profileNameArr[0])
                 {
@@ -81,7 +81,7 @@ namespace BH.Engine.RFEM
                         v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g).fValue;
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
-                        profile = Structure.Create.ISectionProfile(v1,v2,v3,v4,v5,v6);
+                        profile = Structure.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
                         break;
                     case "SHS":
                     case "RHS":
@@ -172,67 +172,83 @@ namespace BH.Engine.RFEM
                         break;
                 }
             }
-
-            // for parametric section profiles
-            //switch (profileNameArr[0])
-            //{
-            //    case "Rectangle":
-            //    case "T-Rectangle"://timber
-            //        v1 = Convert.ToDouble(profileValues[0]);
-            //        v2 = Convert.ToDouble(profileValues[1]);
-            //        profile = Structure.Create.RectangleProfile(v1, v2, 0);
-            //        break;
-            //    case "TO":
-            //    case "HSH":
-            //    case "HSV":
-            //        v1 = Convert.ToDouble(profileValues[0]);
-            //        v2 = Convert.ToDouble(profileValues[1]);
-            //        v3 = Convert.ToDouble(profileValues[2]);
-            //        profile = Structure.Create.BoxProfile(v1, v2, v3, 0, 0);
-            //        break;
-            //    case "L":
-            //    case "LU":
-            //    case "KLU":
-            //    case "LS":
-            //        profile = new AngleProfile();
-            //        break;
-            //    case "IS":
-            //    case "ITS":
-            //    case "IUH":
-            //    case "IUV":
-            //        profile = new ISectionProfile();
-            //        break;
-            //    case "TS":
-            //    case "FB":
-            //    case "TH":
-            //    case "TV":
-            //        profile = new TSectionProfile();
-            //        break;
-            //    case "C":
-            //    case "UU":
-            //    case "UM":
-            //    case "PIH":
-            //    case "PIV":
-            //        profile = new ChannelProfile();
-            //        break;
-            //    case "Pipe":
-            //    case "Ring":
-            //        profile = new TubeProfile();
-            //        break;
-            //    case "Round":
-            //    case "Circle":
-            //    case "T-Circle":
-            //        profile = new CircleProfile();
-            //        break;
-            //    case "Z(A)":
-            //    case "Z(B)":
-            //    case "Z_AM":
-            //    case "Z_BM":
-            //        profile = new ZSectionProfile();
-            //        break;
-            //    default:
-            //        break;
-            //}
+            else
+            {
+                //for parametric section profiles
+                switch (profileNameArr[0])
+                {
+                    case "Rectangle":
+                    case "T-Rectangle"://timber
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        v2 = Convert.ToDouble(profileValues[1]);
+                        profile = Structure.Create.RectangleProfile(v1, v2, 0);
+                        break;
+                    case "TO":
+                    case "HSH":
+                    case "HSV":
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        v2 = Convert.ToDouble(profileValues[1]);
+                        v3 = Convert.ToDouble(profileValues[2]);
+                        profile = Structure.Create.BoxProfile(v1, v2, v3, 0, 0);
+                        break;
+                    case "L":
+                    case "LU":
+                    case "KLU":
+                    case "LS":
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        v2 = Convert.ToDouble(profileValues[1]);
+                        v3 = Convert.ToDouble(profileValues[2]);
+                        v4 = Convert.ToDouble(profileValues[4]);
+                        v5 = Convert.ToDouble(profileValues[5]);
+                        profile = Structure.Create.AngleProfile(v1, v2, v3, v4, 0, 0);
+                        break;
+                    case "IS":
+                    case "ITS":
+                    case "IUH":
+                    case "IUV":
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        v2 = Convert.ToDouble(profileValues[1]);
+                        v3 = Convert.ToDouble(profileValues[2]);
+                        v4 = Convert.ToDouble(profileValues[4]);
+                        profile = Structure.Create.ISectionProfile(v1, v2, v3, v4, 0, 0);
+                        break;
+                    case "TS":
+                    case "FB":
+                    case "TH":
+                    case "TV":
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        v2 = Convert.ToDouble(profileValues[1]);
+                        v3 = Convert.ToDouble(profileValues[2]);
+                        v4 = Convert.ToDouble(profileValues[4]);
+                        profile = Structure.Create.TSectionProfile(v1, v2, v4, v3, 0, 0);
+                        break;
+                    case "C":
+                    case "UU":
+                    case "UM":
+                    case "PIH":
+                    case "PIV":
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        v2 = Convert.ToDouble(profileValues[1]);
+                        v3 = Convert.ToDouble(profileValues[2]);
+                        v4 = Convert.ToDouble(profileValues[4]);
+                        profile = Structure.Create.ChannelProfile(v1, v2, v3, v4, 0, 0);
+                        break;
+                    case "Pipe":
+                    case "Ring":
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        v2 = Convert.ToDouble(profileValues[1]);
+                        profile = Structure.Create.TubeProfile(v1, v2);
+                        break;
+                    case "Round":
+                    case "Circle":
+                    case "T-Circle":
+                        v1 = Convert.ToDouble(profileValues[0]);
+                        profile = Structure.Create.CircleProfile(v1);
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             /* ---TODO: cannot find shape types for these profiles: 
                 BH.oM.Geometry.ShapeProfiles.FabricatedBoxProfile
