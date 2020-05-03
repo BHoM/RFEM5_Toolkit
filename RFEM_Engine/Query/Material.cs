@@ -66,6 +66,7 @@ namespace BH.Engine.RFEM
                 case "TypeID|CONCRETE":
                     return MaterialType.Concrete;
                 case "TypeID|TIMBER":
+                case "TypeID|CONIFEROUS":
                     return MaterialType.Timber;
                 case "TypeID|CABLE":
                     return MaterialType.Cable;
