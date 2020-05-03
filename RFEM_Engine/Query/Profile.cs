@@ -91,9 +91,9 @@ namespace BH.Engine.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        v5 = sectionDBProps[4].fValue;
-                        v6 = sectionDBProps[5].fValue;
-                        profile = Structure.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
+                        //v5 = sectionDBProps[4].fValue;
+                        //v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.ISectionProfile(v1, v2, v3, v4, 0, 0);
                         break;
                     case "SHS":
                     case "RHS":
@@ -102,9 +102,7 @@ namespace BH.Engine.RFEM
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
                         v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
-                        v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
-                        v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
-                        profile = Structure.Create.BoxProfile(v1, v2, v3, v4, v5);
+                        profile = Structure.Create.BoxProfile(v1, v2, v3, 0, 0);
                         break;
                     case "TO"://parametric
                     case "HSH":
@@ -113,8 +111,8 @@ namespace BH.Engine.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        v5 = sectionDBProps[4].fValue;
-                        profile = Structure.Create.BoxProfile(v1, v2, v3, v4, v5);
+                        //v5 = sectionDBProps[4].fValue;
+                        profile = Structure.Create.BoxProfile(v1, v2, v3, v4, 0);
                         break;
 
                     case "SQ-S":
@@ -154,9 +152,9 @@ namespace BH.Engine.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        v5 = sectionDBProps[4].fValue;
-                        v6 = sectionDBProps[5].fValue;
-                        profile = Structure.Create.AngleProfile(v1, v2, v3, v4, v5, v6);
+                        //v5 = sectionDBProps[4].fValue;
+                        //v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.AngleProfile(v1, v2, v3, v4, 0, 0);
                         break;
 
                     case "T":
@@ -178,9 +176,9 @@ namespace BH.Engine.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        v5 = sectionDBProps[4].fValue;
-                        v6 = sectionDBProps[5].fValue;
-                        profile = Structure.Create.TSectionProfile(v1, v2, v3, v4, v5, v6);
+                        //v5 = sectionDBProps[4].fValue;
+                        //v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.TSectionProfile(v1, v2, v3, v4, 0, 0);
                         break;
 
                     case "U":
@@ -206,9 +204,9 @@ namespace BH.Engine.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        v5 = sectionDBProps[4].fValue;
-                        v6 = sectionDBProps[5].fValue;
-                        profile = Structure.Create.ChannelProfile(v1, v2, v3, v4, v5, v6);
+                        //v5 = sectionDBProps[4].fValue;
+                        //v6 = sectionDBProps[5].fValue;
+                        profile = Structure.Create.ChannelProfile(v1, v2, v3, v4, 0, 0);
                         break;
                     case "CHS":
                     case "RO":
