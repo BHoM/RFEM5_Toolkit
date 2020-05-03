@@ -44,6 +44,10 @@ namespace BH.Adapter.RFEM
             IMaterialFragment bhMaterial;
             MaterialType matType = GetMaterialTypeFromString(material.TextID);
 
+            string dbgTEXTID = material.TextID;
+            string dbgDESCRIBE = material.Description;
+            string dbgMODELTYPE = material.ModelType.ToString();
+
             if (material.ModelType == rf.MaterialModelType.IsotropicLinearElasticType)
             {
                 bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
