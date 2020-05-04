@@ -30,6 +30,7 @@ using BH.oM.Structure.Constraints;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Physical;
 using rf = Dlubal.RFEM5;
+using BH.Engine.RFEM;
 
 namespace BH.Adapter.RFEM
 {
@@ -41,12 +42,11 @@ namespace BH.Adapter.RFEM
 
         public static IMaterialFragment FromRFEM(this rf.Material material)
         {
-            //NameID | Steel S 235@TypeID | STEEL@StandardID | DIN EN 1993 - 1 - 1 - 10
             IMaterialFragment bhMaterial = null;
 
             string[] stringArr = material.TextID.Split('@');
-            MaterialType matType = GetMaterialTypeFromString(stringArr[1]);
-            string matName = stringArr[0].Split('|')[1];
+            MaterialType matType = Query.GetMaterialType(material);
+            string matName = Query.GetMaterialName(material);
 
             switch (matType)
             {
@@ -76,32 +76,6 @@ namespace BH.Adapter.RFEM
             }
 
             return bhMaterial;
-        }
-
-        private static MaterialType GetMaterialTypeFromString(string RFEMTypeID)
-        {
-            switch (RFEMTypeID)//this should use the Query namespace !!!
-            {
-                case "TypeID|STEEL":
-                    return MaterialType.Steel;
-                case "TypeID|ALUMINIUM":
-                    return MaterialType.Aluminium;
-                case "TypeID|CONCRETE":
-                    return MaterialType.Concrete;
-                case "TypeID|TIMBER":
-                case "TypeID|CONIFEROUS":
-                    return MaterialType.Timber;
-                case "TypeID|CABLE":
-                    return MaterialType.Cable;
-                case "TypeID|GLASS":
-                    return MaterialType.Glass;
-                case "TypeID|REBAR":
-                    return MaterialType.Rebar;
-                case "TypeID|TENDON":
-                    return MaterialType.Tendon;
-                default:
-                    return MaterialType.Undefined;
-            }
         }
 
     }
