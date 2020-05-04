@@ -45,17 +45,59 @@ namespace BH.Adapter.RFEM
             rfMaterial.Description = materialFragment.Name;
             rfMaterial.SpecificWeight = materialFragment.Density * 10; //translate from kg/m3 to kN/m3
 
-            if (materialFragment is IIsotropic)
+            if (materialFragment.GetType() == typeof(Aluminium))
             {
                 IIsotropic material = materialFragment as IIsotropic;
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
-                rfMaterial.ModelType = rf.MaterialModelType.IsotropicLinearElasticType;//--consider other types depending on analysis type
+
+            }
+            else if (materialFragment.GetType() == typeof(Steel))
+            {
+                IIsotropic material = materialFragment as IIsotropic;
+                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
+                rfMaterial.PoissonRatio = material.PoissonsRatio;
+                rfMaterial.ElasticityModulus = material.YoungsModulus;
+
+            }
+            else if (materialFragment.GetType() == typeof(Concrete))
+            {
+                IIsotropic material = materialFragment as IIsotropic;
+                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
+                rfMaterial.PoissonRatio = material.PoissonsRatio;
+                rfMaterial.ElasticityModulus = material.YoungsModulus;
+
+            }
+            else if (materialFragment.GetType() == typeof(GenericIsotropicMaterial))
+            {
+                IIsotropic material = materialFragment as IIsotropic;
+                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
+                rfMaterial.PoissonRatio = material.PoissonsRatio;
+                rfMaterial.ElasticityModulus = material.YoungsModulus;
+
+            }
+            else if (materialFragment.GetType() == typeof(Timber))
+            {
+                IOrthotropic material = materialFragment as IOrthotropic;
+                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff.X;
+                rfMaterial.PoissonRatio = material.PoissonsRatio.Y;
+                rfMaterial.ElasticityModulus = material.YoungsModulus.Z;
+            }
+            else if (materialFragment.GetType() == typeof(GenericOrthotropicMaterial))
+            {
+                IOrthotropic material = materialFragment as IOrthotropic;
+                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff.X;
+                rfMaterial.PoissonRatio = material.PoissonsRatio.Y;
+                rfMaterial.ElasticityModulus = material.YoungsModulus.Z;
             }
             else
             {
-                Engine.Reflection.Compute.RecordWarning("Upsie Daisy! Isotropic materials only for now! cannot make " + materialFragment.Name);
+                IIsotropic material = materialFragment as IIsotropic;
+                rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
+                rfMaterial.PoissonRatio = material.PoissonsRatio;
+                rfMaterial.ElasticityModulus = material.YoungsModulus;
+                Engine.Reflection.Compute.RecordWarning("Cannot make " + materialFragment.Name + ". Replaced with standard steel");
             }
 
             return rfMaterial;
