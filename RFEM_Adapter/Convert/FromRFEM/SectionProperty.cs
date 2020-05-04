@@ -48,7 +48,7 @@ namespace BH.Adapter.RFEM
         {
             rf.CrossSection rfSectionProperty = rfISectionProperty.GetData();
 
-            // ----- TEST READING SECTIONS FROM LIBRARY -----
+            // ----- TEST READING SECTIONS FROM RFEM LIBRARY -----
             string sectionName = rfSectionProperty.Description;
             rf3.DB_CRSC_PROPERTY[] sectionDBProps = null;
             if (sectionName != "")

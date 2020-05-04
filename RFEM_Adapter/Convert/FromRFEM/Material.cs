@@ -41,38 +41,46 @@ namespace BH.Adapter.RFEM
 
         public static IMaterialFragment FromRFEM(this rf.Material material)
         {
-            IMaterialFragment bhMaterial;
-            MaterialType matType = GetMaterialTypeFromString(material.TextID);
+            //NameID | Steel S 235@TypeID | STEEL@StandardID | DIN EN 1993 - 1 - 1 - 10
+            IMaterialFragment bhMaterial = null;
 
-            string dbgTEXTID = material.TextID;
-            string dbgDESCRIBE = material.Description;
-            string dbgMODELTYPE = material.ModelType.ToString();
+            string[] stringArr = material.TextID.Split('@');
+            MaterialType matType = GetMaterialTypeFromString(stringArr[1]);
+            string matName = stringArr[0].Split('|')[1];
 
-            if (material.ModelType == rf.MaterialModelType.IsotropicLinearElasticType)
+            switch (matType)
             {
-                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
-            }
-            else if (material.ModelType == rf.MaterialModelType.IsotropicPlastic2D3DType)
-            {
-                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
-            }
-            else if (material.ModelType == rf.MaterialModelType.IsotropicPlastic2D3DType)
-            {
-                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
-            }
-            else
-            {
-                bhMaterial = Engine.Structure.Create.Steel("S355 - I am just for testing");
+                case MaterialType.Aluminium:
+                    bhMaterial = Engine.Structure.Create.Aluminium(matName);
+                    break;
+                case MaterialType.Steel:
+                    bhMaterial = Engine.Structure.Create.Steel(matName);
+                    break;
+                case MaterialType.Concrete:
+                    bhMaterial = Engine.Structure.Create.Concrete(matName);
+                    break;
+                case MaterialType.Timber://TODO: as this uses vector over double assumption is the the below turns Timber into an incorrect Isotropic material !!!
+                    BH.oM.Geometry.Vector young = new oM.Geometry.Vector() { X = material.ElasticityModulus, Y = material.ElasticityModulus, Z = material.ElasticityModulus };
+                    BH.oM.Geometry.Vector poissons = new oM.Geometry.Vector() { X = material.PoissonRatio, Y = material.PoissonRatio, Z = material.PoissonRatio };
+                    BH.oM.Geometry.Vector shear = new oM.Geometry.Vector() { X = material.ShearModulus, Y = material.ShearModulus, Z = material.ShearModulus };
+                    BH.oM.Geometry.Vector thermal = new oM.Geometry.Vector() { X = material.ThermalExpansion, Y = material.ThermalExpansion, Z = material.ThermalExpansion };
+                    bhMaterial = Engine.Structure.Create.Timber(matName, young, poissons, shear, thermal, material.SpecificWeight, 0.05);
+                    break;
+                case MaterialType.Rebar:
+                case MaterialType.Tendon:
+                case MaterialType.Glass:
+                case MaterialType.Cable:
+                case MaterialType.Undefined:
+                default:
+                    break;
             }
 
             return bhMaterial;
         }
 
-        private static MaterialType GetMaterialTypeFromString(string RFEMTextID)
+        private static MaterialType GetMaterialTypeFromString(string RFEMTypeID)
         {
-            string[] stringArr = RFEMTextID.Split('@');
-
-            switch (stringArr[1])
+            switch (RFEMTypeID)//this should use the Query namespace !!!
             {
                 case "TypeID|STEEL":
                     return MaterialType.Steel;
@@ -81,6 +89,7 @@ namespace BH.Adapter.RFEM
                 case "TypeID|CONCRETE":
                     return MaterialType.Concrete;
                 case "TypeID|TIMBER":
+                case "TypeID|CONIFEROUS":
                     return MaterialType.Timber;
                 case "TypeID|CABLE":
                     return MaterialType.Cable;
