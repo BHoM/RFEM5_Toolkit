@@ -60,7 +60,6 @@ namespace BH.Adapter.RFEM
                 }
             }
 
-            AppUnlock();
 
             return constraintList;
         }
