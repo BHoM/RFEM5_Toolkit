@@ -90,14 +90,14 @@ namespace BH.Adapter.RFEM
                             name = s.SectionProfile.Shape.ToString();
                         break;
                     default:
-                        Engine.Reflection.Compute.RecordWarning("No name provided for section No:" + sectionPropertyId.ToString() + ". Name set to Id number.);
+                        Engine.Reflection.Compute.RecordWarning("No name provided for section No:" + sectionPropertyId.ToString() + ". Name set to Id number.");
                         name = "section id: " + sectionPropertyId.ToString();
                         break;
                 }
             }
 
             rfSectionProperty.Description = name;
-            rfSectionProperty.TextID = "NameID | " + name + "@TypeID | " + sectionProperty.Material.ToString() + "@StandardID | DIN EN 1993 - 1 - 1 - 10";
+            rfSectionProperty.TextID = name;
 
             return rfSectionProperty;
 
