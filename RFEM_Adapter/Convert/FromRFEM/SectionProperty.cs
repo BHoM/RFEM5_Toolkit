@@ -48,7 +48,6 @@ namespace BH.Adapter.RFEM
         {
             rf.CrossSection rfSectionProperty = rfISectionProperty.GetData();
 
-            // ----- TEST READING SECTIONS FROM RFEM LIBRARY -----
             string sectionName = rfSectionProperty.Description;
             rf3.DB_CRSC_PROPERTY[] sectionDBProps = null;
             if (sectionName != "")
@@ -63,8 +62,6 @@ namespace BH.Adapter.RFEM
             }
 
 
-            //MaterialType materialType = Engine.RFEM.Query.GetMaterialType(rfMaterial);
-
             IMaterialFragment materialFragment = rfMaterial.FromRFEM();
             IProfile profile = Engine.RFEM.Query.GetSectionProfile(sectionName, sectionDBProps);
 
@@ -74,50 +71,6 @@ namespace BH.Adapter.RFEM
             geoSection.Name = rfSectionProperty.TextID;
 
             return geoSection;
-
-            // use IGeometricalSection to create steel, concrete and generic sections !
-
-            //switch (materialType)
-            //{
-            //    case MaterialType.Aluminium:
-            //        AluminiumSection aluSection = Create.AluminiumSectionFromProfile(profile);
-            //        //return aluSection;
-            //        return null;
-
-
-            //    case MaterialType.Steel:
-            //        // add switch on steel section type ! ! ! ! ! 
-
-            //        ExplicitSection section = new ExplicitSection();
-
-            //        section.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
-            //        //section.Material = Structure.Create.Steel("default steel");
-            //        section.Material = rfMaterial.FromRFEM();
-            //        section.Name = rfSectionProperty.TextID;
-            //        section.Area = rfSectionProperty.AxialArea;
-            //        section.J = rfSectionProperty.TorsionMoment;
-            //        section.Asy = rfSectionProperty.ShearAreaY;
-            //        section.Asz = rfSectionProperty.ShearAreaZ;
-            //        section.Iy = rfSectionProperty.BendingMomentY;
-            //        section.Iz = rfSectionProperty.BendingMomentZ;
-
-            //        return section;
-            //    case MaterialType.Concrete:
-            //        // add switch on profile type !!!!
-            //        //Create.ConcreteSectionFromProfile()
-            //        return null;
-            //    case MaterialType.Timber:
-            //        //Create.TimberSectionFromProfile();
-            //        return null;
-            //    case MaterialType.Rebar:
-            //    case MaterialType.Tendon:
-            //    case MaterialType.Glass:
-            //    case MaterialType.Cable:
-            //    case MaterialType.Undefined:
-            //    default:
-            //        Engine.Reflection.Compute.RecordError("Don't know how to make" + rfSectionProperty.TextID);
-            //        return null;
-            //}
 
 
 

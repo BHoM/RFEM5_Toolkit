@@ -41,10 +41,9 @@ namespace BH.Adapter.RFEM
         public static rf.CrossSection ToRFEM(this ISectionProperty sectionProperty, int sectionPropertyId, int materialId)
         {
             rf.CrossSection rfSectionProperty = new rf.CrossSection();
+            string name;
             rfSectionProperty.No = sectionPropertyId;
             rfSectionProperty.MaterialNo = materialId;
-            rfSectionProperty.TextID = sectionProperty.Name;
-            rfSectionProperty.Description = sectionProperty.Name + " | " + "no standard/norm";
             rfSectionProperty.AxialArea = sectionProperty.Area;
             rfSectionProperty.TorsionMoment = sectionProperty.J;
             rfSectionProperty.ShearAreaY = sectionProperty.Asy;
@@ -52,25 +51,53 @@ namespace BH.Adapter.RFEM
             rfSectionProperty.BendingMomentY = sectionProperty.Iy;
             rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
 
-
-
-            if (sectionProperty is SteelSection)
+            if(sectionProperty.Name != "")
             {
-                SteelSection steelSection = sectionProperty as SteelSection;
-
-            }
-            else if (sectionProperty is ConcreteSection)
-            {
-                Engine.Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
-            }
-            else if (sectionProperty is ExplicitSection)
-            {
-                Engine.Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+                name = sectionProperty.Name;
             }
             else
             {
-                Engine.Reflection.Compute.RecordWarning("my responses are limited. I only speak steel sections at the moment. I dont know: " + sectionProperty.Name);
+                switch (sectionProperty)
+                {
+                    case SteelSection s:
+                        if (s.SectionProfile.Name != "")
+                            name = s.SectionProfile.Name;
+                        else
+                            name = s.SectionProfile.Shape.ToString();
+                        break;
+                    case AluminiumSection s:
+                        if (s.SectionProfile.Name != "")
+                            name = s.SectionProfile.Name;
+                        else
+                            name = s.SectionProfile.Shape.ToString();
+                        break;
+                    case GenericSection s:
+                        if (s.SectionProfile.Name != "")
+                            name = s.SectionProfile.Name;
+                        else
+                            name = s.SectionProfile.Shape.ToString();
+                        break;
+                    case TimberSection s:
+                        if (s.SectionProfile.Name != "")
+                            name = s.SectionProfile.Name;
+                        else
+                            name = s.SectionProfile.Shape.ToString();
+                        break;
+                    case ConcreteSection s:
+                        if (s.SectionProfile.Name != "")
+                            name = s.SectionProfile.Name;
+                        else
+                            name = s.SectionProfile.Shape.ToString();
+                        break;
+                    default:
+                        Engine.Reflection.Compute.RecordWarning("No name provided for section No:" + sectionPropertyId.ToString() + ". Name set to Id number.);
+                        name = "section id: " + sectionPropertyId.ToString();
+                        break;
+                }
             }
+
+            rfSectionProperty.Description = name;
+            rfSectionProperty.TextID = "NameID | " + name + "@TypeID | " + sectionProperty.Material.ToString() + "@StandardID | DIN EN 1993 - 1 - 1 - 10";
 
             return rfSectionProperty;
 
