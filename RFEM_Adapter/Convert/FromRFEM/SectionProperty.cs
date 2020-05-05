@@ -50,14 +50,23 @@ namespace BH.Adapter.RFEM
 
             string sectionName = rfSectionProperty.Description;
             rf3.DB_CRSC_PROPERTY[] sectionDBProps = null;
+            object libraryObj = null;
+
             if (sectionName != "")
             {
-                object libraryObj = rfISectionProperty.GetDatabaseCrossSection();
-                rf3.IrfCrossSectionDB sectionFromDB = libraryObj as rf3.IrfCrossSectionDB;
+                try
+                {
+                    libraryObj = rfISectionProperty.GetDatabaseCrossSection();
+                    rf3.IrfCrossSectionDB sectionFromDB = libraryObj as rf3.IrfCrossSectionDB;
 
-                int propCount = sectionFromDB.rfGetPropertyCount();
-                sectionDBProps = new rf3.DB_CRSC_PROPERTY[propCount];
-                sectionFromDB.rfGetPropertyArrAll(propCount, sectionDBProps);
+                    int propCount = sectionFromDB.rfGetPropertyCount();
+                    sectionDBProps = new rf3.DB_CRSC_PROPERTY[propCount];
+                    sectionFromDB.rfGetPropertyArrAll(propCount, sectionDBProps);
+                }
+                catch
+                {
+                    Engine.Reflection.Compute.RecordWarning("Could not create " + sectionName + " from library parameters. Best guess on name will be used");
+                }
 
             }
 
