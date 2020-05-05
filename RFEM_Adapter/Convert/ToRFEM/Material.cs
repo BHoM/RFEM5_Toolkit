@@ -79,6 +79,7 @@ namespace BH.Adapter.RFEM
             }
             else if (materialFragment.GetType() == typeof(Timber))
             {
+                //TODO: this looks like orthotropic is turned into isotropic !!!
                 IOrthotropic material = materialFragment as IOrthotropic;
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff.X;
                 rfMaterial.PoissonRatio = material.PoissonsRatio.Y;
