@@ -113,9 +113,12 @@ namespace BH.Engine.RFEM
 
         public static string GetMaterialName(rf.Material rfMaterial)
         {
+            string materialName;
             string[] materialString = rfMaterial.TextID.Split('@');
-
-            string materialName = materialString[0].Split('|')[1];//<-- not safe
+            if (materialString.Length < 2)
+                materialName = rfMaterial.Description;
+            else
+                materialName = materialString[0].Split('|')[1];
 
             return materialName;
         }
