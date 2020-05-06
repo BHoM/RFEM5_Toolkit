@@ -244,7 +244,7 @@ namespace BH.Engine.RFEM
                     //    profile = new ZSectionProfile(v1, v2, v3, v4, v5, v6, "< looks like the only way to create this now is to use the profile curves !! >");
                     //    break;
                     default:
-                        Engine.Reflection.Compute.RecordError("Don't know how to make" + profileName);
+                        Engine.Reflection.Compute.RecordError("Don't know how to make profile " + profileName);
                         break;
                 }
             }

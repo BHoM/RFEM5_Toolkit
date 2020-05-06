@@ -65,7 +65,7 @@ namespace BH.Adapter.RFEM
                 }
                 catch
                 {
-                    Engine.Reflection.Compute.RecordWarning("Could not create " + sectionName + " from library parameters. Best guess on name will be used");
+                    Engine.Reflection.Compute.RecordWarning("Could not create section" + sectionName + " from library parameters. Best guess on name will be used");
                 }
 
             }
