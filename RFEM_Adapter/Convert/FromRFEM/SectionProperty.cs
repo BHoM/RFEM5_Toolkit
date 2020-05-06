@@ -65,7 +65,7 @@ namespace BH.Adapter.RFEM
                 }
                 catch
                 {
-                    Engine.Reflection.Compute.RecordWarning("Could not create section" + sectionName + " from library parameters. Best guess on name will be used");
+                    Engine.Reflection.Compute.RecordWarning("Could not create section named " + sectionName + " from library parameters. Best guess on name will be used");
                 }
 
             }
@@ -73,13 +73,28 @@ namespace BH.Adapter.RFEM
 
             IMaterialFragment materialFragment = rfMaterial.FromRFEM();
             IProfile profile = Engine.RFEM.Query.GetSectionProfile(sectionName, sectionDBProps);
+            if (profile != null)
+            {
+                IGeometricalSection geoSection = Create.SectionPropertyFromProfile(profile, materialFragment, rfSectionProperty.TextID);// this creates the right property if the right material is provided 
+                geoSection.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
+                geoSection.Name = rfSectionProperty.TextID;
 
-            IGeometricalSection geoSection =  Create.SectionPropertyFromProfile(profile, materialFragment, rfSectionProperty.TextID);// this creates the right property if the right material is provided 
-
-            geoSection.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
-            geoSection.Name = rfSectionProperty.TextID;
-
-            return geoSection;
+                return geoSection;
+            }
+            else
+            {
+                ExplicitSection expSection = new ExplicitSection();
+                expSection.Material = materialFragment;
+                expSection.Area = rfSectionProperty.AxialArea;
+                expSection.J = rfSectionProperty.TorsionMoment;
+                expSection.Asy = rfSectionProperty.ShearAreaY;
+                expSection.Asz = rfSectionProperty.ShearAreaZ;
+                expSection.Iy = rfSectionProperty.BendingMomentY;
+                expSection.Iz = rfSectionProperty.BendingMomentZ;
+                expSection.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName] = rfSectionProperty.No;
+                expSection.Name = rfSectionProperty.TextID;
+                return expSection;
+            }
 
 
 
