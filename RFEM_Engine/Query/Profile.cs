@@ -63,7 +63,7 @@ namespace BH.Engine.RFEM
             //        profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
             //}
 
-            if (sectionDBProps != null)//section from RFEM Library
+            if (sectionDBProps != null)//section from RFEM Library including sections defined in RFEM model
             {
                 switch (profileNameArr[0])
                 {
