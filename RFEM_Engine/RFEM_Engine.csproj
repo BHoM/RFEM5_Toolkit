@@ -47,7 +47,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Dlubal.RFEM3, Version=3.4.0.0, Culture=neutral, PublicKeyToken=2168830b90cb4fa2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\BHoM.Interop.RFEM3.1.0.0\lib\net45\Dlubal.RFEM3.dll</HintPath>
     </Reference>
     <Reference Include="Dlubal.RFEM5, Version=5.5.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=AMD64">
       <HintPath>..\packages\BHoM.Interop.RFEM_5.1.0.0\lib\net45\Dlubal.RFEM5.dll</HintPath>
