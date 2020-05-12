@@ -29,6 +29,7 @@ using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SectionProperties;
 using rf = Dlubal.RFEM5;
+using BH.Engine.Structure;
 
 namespace BH.Adapter.RFEM
 {
@@ -51,50 +52,7 @@ namespace BH.Adapter.RFEM
             rfSectionProperty.BendingMomentY = sectionProperty.Iy;
             rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
 
-            if(sectionProperty.Name != "")
-            {
-                name = sectionProperty.Name;
-            }
-            else
-            {
-                switch (sectionProperty)
-                {
-                    case SteelSection s:
-                        if (s.SectionProfile.Name != "")
-                            name = s.SectionProfile.Name;
-                        else
-                            name = s.SectionProfile.Shape.ToString();
-                        break;
-                    case AluminiumSection s:
-                        if (s.SectionProfile.Name != "")
-                            name = s.SectionProfile.Name;
-                        else
-                            name = s.SectionProfile.Shape.ToString();
-                        break;
-                    case GenericSection s:
-                        if (s.SectionProfile.Name != "")
-                            name = s.SectionProfile.Name;
-                        else
-                            name = s.SectionProfile.Shape.ToString();
-                        break;
-                    case TimberSection s:
-                        if (s.SectionProfile.Name != "")
-                            name = s.SectionProfile.Name;
-                        else
-                            name = s.SectionProfile.Shape.ToString();
-                        break;
-                    case ConcreteSection s:
-                        if (s.SectionProfile.Name != "")
-                            name = s.SectionProfile.Name;
-                        else
-                            name = s.SectionProfile.Shape.ToString();
-                        break;
-                    default:
-                        Engine.Reflection.Compute.RecordWarning("No name provided for section No:" + sectionPropertyId.ToString() + ". Name set to Id number.");
-                        name = "section id: " + sectionPropertyId.ToString();
-                        break;
-                }
-            }
+            name = sectionProperty.DescriptionOrName();
 
             rfSectionProperty.Description = name;
             rfSectionProperty.TextID = name;
