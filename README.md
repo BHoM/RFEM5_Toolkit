@@ -1,5 +1,5 @@
 
-[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) [![Build status](https://ci.appveyor.com/api/projects/status/ja0l9sovnk48cf31/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/rfem_toolkit/branch/master) [![Build Status](https://dev.azure.com/BHoMBot/BHoM/_apis/build/status/RFEM_Toolkit/RFEM_Toolkit.CheckCore?branchName=master)](https://dev.azure.com/BHoMBot/BHoM/_build/latest?definitionId=93&branchName=master)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) [![Build status](https://ci.appveyor.com/api/projects/status/ja0l9sovnk48cf31/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/rfem_toolkit/branch/master) [![Build Status](https://dev.azure.com/BHoMBot/BHoM/_apis/build/status/RFEM_Toolkit/RFEM_Toolkit.CheckCore?branchName=master)](https://dev.azure.com/BHoMBot/BHoM/_build/latest?definitionId=186&branchName=master)
 
 
 # RFEM_Toolkit
@@ -11,11 +11,11 @@ https://www.dlubal.com/en/products/rfem-fea-software/what-is-rfem
 
 
 ### Known Versions of Software Supported
-Dlubal RFEM 5.21
+Dlubal RFEM 5.17
 
 Dlubal RFEM 5.19
 
-Dlubal RFEM 5.17
+Dlubal RFEM 5.21
 
 
 ### Documentation
