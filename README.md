@@ -4,19 +4,22 @@
 
 # RFEM_Toolkit
 
-This toolkit allows interoperability between the BHoM and Dlubal RFEM. Enables creation, manipulation and reading of structural finite element analysis models and analysis results. Etc.
-...
+This toolkit allows interoperability between the BHoM and Dlubal RFEM. It enables the creation, manipulation and reading of structural finite element analysis models and analysis results.
 
+More information on RFEM can be found on Dlubal product page:
 https://www.dlubal.com/en/products/rfem-fea-software/what-is-rfem
 
 
 ### Known Versions of Software Supported
 Dlubal RFEM 5.21
+
 Dlubal RFEM 5.19
+
 Dlubal RFEM 5.17
 
+
 ### Documentation
-For more information about functionality see the RFEM_Toolkit wiki [here]()
+For more information about functionality see the RFEM_Toolkit wiki [here](https://github.com/BHoM/RFEM_Toolkit/wiki)
 
 ---
 This toolkit is part of the Buildings and Habitats object Model. Find out more on our [wiki](https://github.com/BHoM/documentation/wiki) or at [https://bhom.xyz](https://bhom.xyz/)
@@ -29,8 +32,10 @@ Grab the [latest installer](https://bhom.xyz/) and a selection of [sample script
 ## Getting Started for Developers 🤖 
 
 If you want to build the BHoM and the Toolkits from source, it's hopefully easy! 😄 
+
 Do take a look at our specific wiki pages here: [Getting Started for Developers](https://github.com/BHoM/documentation/wiki/Getting-started-for-developers)
 
+The RFEM SDK is installed with RFEM and is usually located in 'C:\Users\Public\Documents\Dlubal'
 
 ## Want to Contribute? ##
 
