@@ -23,7 +23,6 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Common.Materials;
 using BH.oM.Structure.Elements;
 using BH.oM.Base;
 using BH.oM.Data.Requests;

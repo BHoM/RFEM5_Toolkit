@@ -29,7 +29,6 @@ using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
-using BH.oM.Common.Materials;
 
 using rf = Dlubal.RFEM5;
 using BH.Engine.RFEM;
