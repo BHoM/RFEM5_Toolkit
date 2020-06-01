@@ -29,12 +29,11 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Geometry.ShapeProfiles;
-using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
 using rf3 = Dlubal.RFEM3;
 
 
-namespace BH.Engine.RFEM
+namespace BH.Engine.Adapters.RFEM
 {
     public static partial class Query
     {

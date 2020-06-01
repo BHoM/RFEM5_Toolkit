@@ -27,7 +27,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Geometry;
-using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM

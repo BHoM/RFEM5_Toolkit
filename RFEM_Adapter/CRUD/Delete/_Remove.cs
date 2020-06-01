@@ -26,7 +26,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using BH.Engine.RFEM;
 using BH.oM.Adapter;
 using BH.oM.Data.Requests;
 using rf = Dlubal.RFEM5;

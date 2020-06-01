@@ -28,10 +28,9 @@ using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
-using BH.Engine.RFEM;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.RFEM
+namespace BH.Engine.Adapters.RFEM
 {
     public static partial class Query
     {
