@@ -25,7 +25,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.Common.Materials;
 using BH.oM.Structure.MaterialFragments;
 using BH.Engine.RFEM;
 using BH.oM.Physical;

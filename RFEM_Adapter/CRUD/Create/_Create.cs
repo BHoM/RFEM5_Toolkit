@@ -29,7 +29,6 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.SurfaceProperties;
-using BH.oM.Common.Materials;
 using BH.oM.Adapter;
 
 namespace BH.Adapter.RFEM
