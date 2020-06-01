@@ -38,7 +38,7 @@ using BH.oM.Reflection.Attributes;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Adapter;
-using BH.oM.Adapter.RFEM;
+using BH.oM.Adapters.RFEM;
 using BH.Engine.Base.Objects;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.Constraints;

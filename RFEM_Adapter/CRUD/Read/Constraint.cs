@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 using BH.oM.Base;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
-using BH.Engine.RFEM;
+using BH.Engine.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM

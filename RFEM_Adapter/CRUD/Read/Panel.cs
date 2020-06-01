@@ -31,7 +31,6 @@ using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.Constraints;
 
 using rf = Dlubal.RFEM5;
-using BH.Engine.RFEM;
 using BH.oM.Structure.MaterialFragments;
 
 namespace BH.Adapter.RFEM

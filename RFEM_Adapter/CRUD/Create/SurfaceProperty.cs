@@ -27,7 +27,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.SurfaceProperties;
-using BH.Engine.RFEM;
 using BH.oM.Physical;
 using rf = Dlubal.RFEM5;
 

@@ -7,7 +7,7 @@
     <ProjectGuid>{F55CC8A5-44CB-4333-BC8A-A0EB6775B1A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BH.oM.Adapter.RFEM</RootNamespace>
+    <RootNamespace>BH.oM.Adapters.RFEM</RootNamespace>
     <AssemblyName>RFEM_oM</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -66,7 +66,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFEMSettings.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Versioning_32.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

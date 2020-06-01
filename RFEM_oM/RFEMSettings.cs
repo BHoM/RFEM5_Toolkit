@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 using BH.oM.Adapter;
 using BH.oM.Base;
 
-namespace BH.oM.Adapter.RFEM
+namespace BH.oM.Adapters.RFEM
 {
     [Description("This Config can be specified in the `ActionConfig` input of any Adapter Action (e.g. Push).")]
     // Note: this will get passed within any CRUD method (see their signature). 
