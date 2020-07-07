@@ -57,11 +57,19 @@ namespace BH.Adapter.RFEM
 
                     if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
                     {
-                        rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
-                        rf.CrossSection rfSection = rfISection.GetData();
-                        rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfISection.FromRFEM(rfMat);
-                        m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
+                        try
+                        {
+                            rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
+                            rf.CrossSection rfSection = rfISection.GetData();
+                            rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+                            sectionProperty = rfISection.FromRFEM(rfMat);
+                            m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
+
+                        }
+                        catch (Exception e)
+                        {
+                            throw;
+                        }
                     }
 
                     barList.Add(member.FromRFEM(line, sectionProperty));
