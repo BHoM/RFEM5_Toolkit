@@ -75,6 +75,7 @@ namespace BH.Adapter.RFEM
                     break;
             }
 
+            bhMaterial.CustomData[AdapterIdName] = material.No;
             return bhMaterial;
         }
 
