@@ -74,7 +74,7 @@ namespace BH.Adapter.RFEM
                         surfaceProperty = null;
                         Engine.Reflection.Compute.RecordError("could not create surface property of type " + surface.StiffnessType.ToString());
                     }
-
+                    
                     List<Opening> openings = null;
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
 

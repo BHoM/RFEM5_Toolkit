@@ -53,7 +53,7 @@ namespace BH.Adapter.RFEM
             rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
 
             name = sectionProperty.DescriptionOrName();
-
+            
             rfSectionProperty.Description = name;
             rfSectionProperty.TextID = name;
 

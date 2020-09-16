@@ -92,9 +92,8 @@ namespace BH.Adapter.RFEM
                     break;
             }
 
+            surfaceProperty.CustomData[AdapterIdName] = rfStiffness.No;
             return surfaceProperty;
-
-
 
         }
 
