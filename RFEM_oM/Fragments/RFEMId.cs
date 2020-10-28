@@ -25,12 +25,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.oM.Base;
 
-namespace BH.Adapter.RFEM
+namespace BH.oM.Adapters.RFEM
 {
-    public static partial class Convert
+    public class RFEMId : IAdapterId
     {
-        //Key used to find the software in the custom data of created or read objects
-        public const string AdapterIdName = "RFEM_id";
+        public object Id { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace BH.Adapter.RFEM
 
                 for(int i=0;i< matList.Count();i++)
                 {
-                    idNum = System.Convert.ToInt32(matList[i].CustomData[AdapterIdName]);// NextId(matList[i].GetType()));
+                    idNum = GetAdapterId<int>(matList[i]);// NextId(matList[i].GetType()));
                     rfMaterials[i] = matList[i].ToRFEM(idNum);
 
                     modelData.SetMaterial(rfMaterials[i]);

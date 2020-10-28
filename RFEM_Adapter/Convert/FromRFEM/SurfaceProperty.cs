@@ -31,6 +31,8 @@ using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.SurfaceProperties;
 using BH.Engine.Structure;
 using BH.oM.Physical;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -92,7 +94,7 @@ namespace BH.Adapter.RFEM
                     break;
             }
 
-            surfaceProperty.CustomData[AdapterIdName] = rfStiffness.No;
+            surfaceProperty.SetAdapterId(typeof(RFEMId), rfStiffness.No);
             return surfaceProperty;
 
         }

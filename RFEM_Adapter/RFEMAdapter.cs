@@ -66,6 +66,8 @@ namespace BH.Adapter.RFEM
         [Output("adapter", "Adapter to RFEM")]
         public RFEMAdapter(string filePath = "", RFEMSettings rfemSettings = null, bool active = false)
         {
+
+            AdapterIdFragmentType = typeof(RFEMId);
             BH.Adapter.Modules.Structure.ModuleLoader.LoadModules(this);
 
             AdapterComparers = new Dictionary<Type, object>
@@ -94,7 +96,7 @@ namespace BH.Adapter.RFEM
 
             if (active)
             {
-                AdapterIdName = BH.Adapter.RFEM.Convert.AdapterIdName;
+
 
                 if (!IsApplicationRunning())
                 {

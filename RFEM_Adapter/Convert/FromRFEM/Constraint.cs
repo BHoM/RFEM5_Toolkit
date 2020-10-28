@@ -27,6 +27,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -42,7 +44,6 @@ namespace BH.Adapter.RFEM
         public static Constraint6DOF FromRFEM(this rf.NodalSupport rfConstraint)
         {
             Constraint6DOF bhConstraint = BH.Engine.Structure.Create.Constraint6DOF();
-            bhConstraint.CustomData.Add(BH.Adapter.RFEM.Convert.AdapterIdName, rfConstraint.No);
 
             //Translation
             if (rfConstraint.SupportConstantX == 0)
@@ -88,7 +89,7 @@ namespace BH.Adapter.RFEM
             else
                 bhConstraint.RotationalStiffnessZ = rfConstraint.RestraintConstantZ;
 
-            bhConstraint.CustomData[AdapterIdName] = rfConstraint.No;
+            bhConstraint.SetAdapterId(typeof(RFEMId), rfConstraint.No);
             return bhConstraint;
         }
 
