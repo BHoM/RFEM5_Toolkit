@@ -28,6 +28,8 @@ using System.Threading.Tasks;
 using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SectionProperties;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -44,7 +46,7 @@ namespace BH.Adapter.RFEM
             rfBar.No = barId;
             rfBar.LineNo = lineId;
 
-            rfBar.StartCrossSectionNo = System.Convert.ToInt32(bar.SectionProperty.CustomData[BH.Adapter.RFEM.Convert.AdapterIdName]);
+            rfBar.StartCrossSectionNo = bar.SectionProperty.AdapterId<int>(typeof(RFEMId));
 
             rf.Rotation rotation = new rf.Rotation();
             rotation.Angle = bar.OrientationAngle;

@@ -49,7 +49,7 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < panels.Count(); i++)
                 {
-                    panelIdNum = System.Convert.ToInt32(panelList[i].CustomData[AdapterIdName]);
+                    panelIdNum = GetAdapterId<int>(panelList[i]);
 
                     //get ids outside of BHoM process - might need to be changed
                     int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);

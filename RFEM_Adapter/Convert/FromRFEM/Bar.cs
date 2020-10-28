@@ -29,6 +29,8 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
 using BH.Adapter.RFEM;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -48,8 +50,7 @@ namespace BH.Adapter.RFEM
 
             Bar bhBar = BH.Engine.Structure.Create.Bar(ln, sectionProperty, member.Rotation.Angle);
 
-            bhBar.CustomData.Add(BH.Adapter.RFEM.Convert.AdapterIdName, member.No);
-
+            bhBar.SetAdapterId(typeof(RFEMId), member.No);
             return bhBar;
         }
 

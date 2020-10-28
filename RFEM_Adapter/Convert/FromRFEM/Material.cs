@@ -29,6 +29,8 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Physical;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 using BH.Engine.Adapters.RFEM;
 
@@ -45,8 +47,8 @@ namespace BH.Adapter.RFEM
             IMaterialFragment bhMaterial = null;
 
             string[] stringArr = material.TextID.Split('@');
-            MaterialType matType = Query.GetMaterialType(material);
-            string matName = Query.GetMaterialName(material);
+            MaterialType matType = Engine.Adapters.RFEM.Query.GetMaterialType(material);
+            string matName = Engine.Adapters.RFEM.Query.GetMaterialName(material);
 
             switch (matType)
             {
@@ -75,7 +77,7 @@ namespace BH.Adapter.RFEM
                     break;
             }
 
-            bhMaterial.CustomData[AdapterIdName] = material.No;
+            bhMaterial.SetAdapterId(typeof(RFEMId), material.No);
             return bhMaterial;
         }
 

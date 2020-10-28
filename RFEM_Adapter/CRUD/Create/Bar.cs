@@ -49,13 +49,13 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < bars.Count(); i++)
                 {
-                    barIdNum = System.Convert.ToInt32(barList[i].CustomData[AdapterIdName]);
+                    barIdNum = GetAdapterId<int>(barList[i]);
 
                     //create line
                     lineIdNum = modelData.GetLineCount() + 1;
                     rf.Line centreLine = new rf.Line();
-                    int startNodeId = System.Convert.ToInt32(barList[i].StartNode.CustomData[Convert.AdapterIdName]);
-                    int endNodeId = System.Convert.ToInt32(barList[i].EndNode.CustomData[Convert.AdapterIdName]);
+                    int startNodeId = GetAdapterId<int>(barList[i].StartNode);
+                    int endNodeId = GetAdapterId<int>(barList[i].EndNode);
                     centreLine.NodeList = String.Join(",", new int[] { startNodeId, endNodeId });
                     centreLine.Type = rf.LineType.PolylineType;
                     modelData.SetLine(centreLine);

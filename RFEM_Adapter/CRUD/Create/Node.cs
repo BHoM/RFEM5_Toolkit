@@ -49,7 +49,7 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < nodes.Count(); i++)
                 {
-                    nodeIdNum = System.Convert.ToInt32(nodeList[i].CustomData[AdapterIdName]);//(NextId(nodeList[i].GetType()));
+                    nodeIdNum = GetAdapterId<int>(nodeList[i]);//(NextId(nodeList[i].GetType()));
                     rfNodes[i] = nodeList[i].ToRFEM(nodeIdNum);
                     modelData.SetNode(rfNodes[i]);
 

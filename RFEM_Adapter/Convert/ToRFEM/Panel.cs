@@ -28,6 +28,8 @@ using System.Threading.Tasks;
 using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SurfaceProperties;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -44,7 +46,7 @@ namespace BH.Adapter.RFEM
             rfSurface.No = panelId;
             rfSurface.GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;//several other types are available!
             rfSurface.BoundaryLineList = string.Join<int>(",",boundaryIdArr);
-            int materialId = System.Convert.ToInt32(panel.Property.Material.CustomData[AdapterIdName]);
+            int materialId = panel.Property.Material.AdapterId<int>(typeof(RFEMId));
             rfSurface.MaterialNo = materialId;
 
             

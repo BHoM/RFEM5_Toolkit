@@ -49,7 +49,7 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < edges.Count(); i++)
                 {
-                    edgeIdNum = System.Convert.ToInt32(edgeList[i].CustomData[AdapterIdName]);
+                    edgeIdNum = GetAdapterId<int>(edgeList[i]);
 
 
                     //create rfem nodes, i.e. bhom points

@@ -29,6 +29,8 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Geometry;
 using BH.Adapter.RFEM;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -48,7 +50,7 @@ namespace BH.Adapter.RFEM
             List<Opening> openings = null;
             Panel bhPanel = Engine.Structure.Create.Panel(outline,openings,surfaceProperty);
 
-            bhPanel.CustomData.Add(BH.Adapter.RFEM.Convert.AdapterIdName, surface.No);
+            bhPanel.SetAdapterId(typeof(RFEMId), surface.No);
 
             return bhPanel;
         }

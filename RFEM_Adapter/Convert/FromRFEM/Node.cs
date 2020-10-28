@@ -27,6 +27,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
@@ -40,7 +42,7 @@ namespace BH.Adapter.RFEM
         public static Node FromRFEM(this rf.Node node)
         {
             Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
-            bhNode.CustomData.Add(BH.Adapter.RFEM.Convert.AdapterIdName, node.No);
+            bhNode.SetAdapterId(typeof(RFEMId), node.No);
 
             return bhNode;
         }
