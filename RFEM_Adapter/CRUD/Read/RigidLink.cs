@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Buildings and Habitats object Model (BHoM)
  * Copyright (c) 2015 - 2021, the respective contributors. All rights reserved.
  *
@@ -42,21 +42,29 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        private List<Bar> ReadBars(List<string> ids = null)
+        private List<Bar> ReadLinks(List<string> ids = null)
         {
-            List<Bar> barList = new List<Bar>();
+            List<Bar> linkList = new List<Bar>();
             rf.Line line;
             ISectionProperty sectionProperty;
 
 
             if (ids == null)
             {
-                foreach (rf.Member member in modelData.GetMembers())
-                {
-                    if (member.Type == rf.MemberType.Rigid)
-                        continue;
+                rf.Member[] allLinks = modelData.GetMembers().Where(x => x.Type == rf.MemberType.Rigid).ToArray();
 
-                    line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
+                foreach (rf.Member link in allLinks)
+                {
+
+                    line = modelData.GetLine(link.LineNo, rf.ItemAt.AtNo).GetData();
+
+
+                    RigidLink bhLink = new RigidLink();
+                    LinkConstraint bhLinkConstraint = new LinkConstraint();
+                    bhLinkConstraint.XtoX = link.StartHingeNo()
+                    bhLink.Constraint
+                    //////
+                    ///
 
                     if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
                     {
@@ -72,7 +80,7 @@ namespace BH.Adapter.RFEM
             }
             else
             {
-                foreach(string id in ids)
+                foreach (string id in ids)
                 {
                     rf.Member member = modelData.GetMember(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
 
