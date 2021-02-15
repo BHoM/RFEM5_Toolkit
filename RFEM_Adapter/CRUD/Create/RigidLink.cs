@@ -60,6 +60,13 @@ namespace BH.Adapter.RFEM
                     centreLine.Type = rf.LineType.PolylineType;
                     modelData.SetLine(centreLine);
 
+                    rf.Member rfLink = new rf.Member();
+                    rfLink.No = linkIdNum;
+                    rfLink.LineNo = lineIdNum;
+                    rfLink.Type = rf.MemberType.Rigid;
+                    
+                    LinkConstraint lc = Engine.Structure.Create.LinkConstraintFixed
+                    linkList[0].Constraint
 
                     rfLinks[i] = linkList[i].ToRFEM(linkIdNum, lineIdNum);
                     modelData.SetMember(rfLinks[i]);
