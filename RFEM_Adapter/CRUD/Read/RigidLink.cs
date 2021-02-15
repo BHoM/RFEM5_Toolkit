@@ -64,9 +64,8 @@ namespace BH.Adapter.RFEM
 
                     RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
                     LinkConstraint bhLinkConstraint = new LinkConstraint();
-
-                    rf.MemberHinge[] hinges = modelData.GetMemberHinges();
-                    if(hinges.Length==0)
+                   
+                    if(link.StartHingeNo==0 && link.EndHingeNo==0)
                     {
                         //no hinges set, then all fixed
                         bhLink.Constraint.XtoX = true;
@@ -78,7 +77,7 @@ namespace BH.Adapter.RFEM
                     }
                     else
                     {
-                        Engine.Reflection.Compute.RecordError("Hinges on Rigid links are not supported");
+                        Engine.Reflection.Compute.RecordWarning("Hinges on Rigid links are not supported. See member No. " + link.No.ToString());
                     }
 
                     bhLink.SetAdapterId(typeof(RFEMId), link.No);
@@ -106,8 +105,7 @@ namespace BH.Adapter.RFEM
                     RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
                     LinkConstraint bhLinkConstraint = new LinkConstraint();
 
-                    rf.MemberHinge[] hinges = modelData.GetMemberHinges();
-                    if (hinges.Length == 0)
+                    if (link.StartHingeNo == 0 && link.EndHingeNo == 0)
                     {
                         //no hinges set, then all fixed
                         bhLink.Constraint.XtoX = true;
@@ -119,7 +117,7 @@ namespace BH.Adapter.RFEM
                     }
                     else
                     {
-                        Engine.Reflection.Compute.RecordError("Hinges on Rigid links are not supported");
+                        Engine.Reflection.Compute.RecordWarning("Hinges on Rigid links are not supported. See member No. " + link.No.ToString());
                     }
 
                     bhLink.SetAdapterId(typeof(RFEMId), link.No);
