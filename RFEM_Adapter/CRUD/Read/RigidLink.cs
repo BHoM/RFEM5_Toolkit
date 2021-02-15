@@ -63,7 +63,6 @@ namespace BH.Adapter.RFEM
                     Node endNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z });
 
                     RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
-                    LinkConstraint bhLinkConstraint = new LinkConstraint();
                    
                     if(link.StartHingeNo==0 && link.EndHingeNo==0)
                     {
@@ -103,7 +102,6 @@ namespace BH.Adapter.RFEM
                     Node endNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z });
 
                     RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
-                    LinkConstraint bhLinkConstraint = new LinkConstraint();
 
                     if (link.StartHingeNo == 0 && link.EndHingeNo == 0)
                     {
