@@ -65,6 +65,8 @@ namespace BH.Adapter.RFEM
                     return ReadPanels(ids as dynamic);
                 else if (type == typeof(ISurfaceProperty))
                     return ReadSurfaceProperties(ids as dynamic);
+                else if (type == typeof(RigidLink))
+                    return ReadLinks(ids as dynamic);
             }
             finally
             {
