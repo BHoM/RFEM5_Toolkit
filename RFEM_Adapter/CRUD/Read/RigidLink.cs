@@ -29,9 +29,10 @@ using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
-
+using BH.Engine.Adapter;
 using rf = Dlubal.RFEM5;
 using BH.oM.Structure.MaterialFragments;
+using BH.oM.Adapters.RFEM;
 
 namespace BH.Adapter.RFEM
 {
@@ -42,12 +43,10 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        private List<Bar> ReadLinks(List<string> ids = null)
+        private List<RigidLink> ReadLinks(List<string> ids = null)
         {
-            List<Bar> linkList = new List<Bar>();
+            List<RigidLink> linkList = new List<RigidLink>();
             rf.Line line;
-            ISectionProperty sectionProperty;
-
 
             if (ids == null)
             {
@@ -55,55 +54,81 @@ namespace BH.Adapter.RFEM
 
                 foreach (rf.Member link in allLinks)
                 {
-
                     line = modelData.GetLine(link.LineNo, rf.ItemAt.AtNo).GetData();
 
+                    rf.Point3D sPt = line.ControlPoints.First();
+                    rf.Point3D ePt = line.ControlPoints.Last();
 
-                    RigidLink bhLink = new RigidLink();
+                    Node startNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z });
+                    Node endNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z });
+
+                    RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
                     LinkConstraint bhLinkConstraint = new LinkConstraint();
-                    bhLinkConstraint.XtoX = link.StartHingeNo()
-                    bhLink.Constraint
-                    //////
-                    ///
 
-                    if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
+                    rf.MemberHinge[] hinges = modelData.GetMemberHinges();
+                    if(hinges.Length==0)
                     {
-                        rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
-                        rf.CrossSection rfSection = rfISection.GetData();
-                        rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfISection.FromRFEM(rfMat);
-                        m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
+                        //no hinges set, then all fixed
+                        bhLink.Constraint.XtoX = true;
+                        bhLink.Constraint.YtoY = true;
+                        bhLink.Constraint.ZtoZ = true;
+                        bhLink.Constraint.XXtoXX = true;
+                        bhLink.Constraint.YYtoYY = true;
+                        bhLink.Constraint.ZZtoZZ = true;
+                    }
+                    else
+                    {
+                        Engine.Reflection.Compute.RecordError("Hinges on Rigid links are not supported");
                     }
 
-                    barList.Add(member.FromRFEM(line, sectionProperty));
+                    bhLink.SetAdapterId(typeof(RFEMId), link.No);
+
+                    linkList.Add(bhLink);
                 }
             }
             else
             {
                 foreach (string id in ids)
                 {
-                    rf.Member member = modelData.GetMember(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
+                    rf.Member link = modelData.GetMember(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
 
-                    if (member.Type == rf.MemberType.Rigid)
+                    if (link.Type != rf.MemberType.Rigid)
                         continue;
 
-                    line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
+                    line = modelData.GetLine(link.LineNo, rf.ItemAt.AtNo).GetData();
 
-                    if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
+                    rf.Point3D sPt = line.ControlPoints.First();
+                    rf.Point3D ePt = line.ControlPoints.Last();
+
+                    Node startNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z });
+                    Node endNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z });
+
+                    RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
+                    LinkConstraint bhLinkConstraint = new LinkConstraint();
+
+                    rf.MemberHinge[] hinges = modelData.GetMemberHinges();
+                    if (hinges.Length == 0)
                     {
-                        rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
-                        rf.CrossSection rfSection = rfISection.GetData();
-                        rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfISection.FromRFEM(rfMat);
-                        m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
+                        //no hinges set, then all fixed
+                        bhLink.Constraint.XtoX = true;
+                        bhLink.Constraint.YtoY = true;
+                        bhLink.Constraint.ZtoZ = true;
+                        bhLink.Constraint.XXtoXX = true;
+                        bhLink.Constraint.YYtoYY = true;
+                        bhLink.Constraint.ZZtoZZ = true;
+                    }
+                    else
+                    {
+                        Engine.Reflection.Compute.RecordError("Hinges on Rigid links are not supported");
                     }
 
-                    barList.Add(member.FromRFEM(line, sectionProperty));
+                    bhLink.SetAdapterId(typeof(RFEMId), link.No);
+
+                    linkList.Add(bhLink);
                 }
             }
 
-
-            return barList;
+            return linkList;
         }
 
         /***************************************************/
