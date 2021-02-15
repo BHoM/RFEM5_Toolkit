@@ -67,12 +67,8 @@ namespace BH.Adapter.RFEM
                     if(link.StartHingeNo==0 && link.EndHingeNo==0)
                     {
                         //no hinges set, then all fixed
-                        bhLink.Constraint.XtoX = true;
-                        bhLink.Constraint.YtoY = true;
-                        bhLink.Constraint.ZtoZ = true;
-                        bhLink.Constraint.XXtoXX = true;
-                        bhLink.Constraint.YYtoYY = true;
-                        bhLink.Constraint.ZZtoZZ = true;
+                        bhLink.Constraint = Engine.Structure.Create.LinkConstraintFixed();
+
                     }
                     else
                     {
