@@ -131,7 +131,7 @@ namespace BH.Adapter.RFEM
                     }
                     catch (Exception e)
                     {
-                        throw new Exception($"Error attaching to an existing Dlubal RFEM instance. Look in Windows Task Manager if there is a frozen RFEM process in background and close it.");
+                        throw new Exception($"Error attaching to an existing Dlubal RFEM instance. Check if Adapter is active or look in Windows Task Manager if there is a frozen RFEM process in background and close it.");
                     }
                 }
 
