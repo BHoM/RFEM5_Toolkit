@@ -66,13 +66,15 @@ namespace BH.Adapter.RFEM
                     rfLink.Type = rf.MemberType.Rigid;
 
                     LinkConstraint lc = linkList[0].Constraint;
-                    if(lc != null || lc.XtoX!=true || lc.YtoY!=true ||lc.ZtoZ!=true||lc.XXtoXX!=true||lc.YYtoYY!=true||lc.ZZtoZZ!=true)
+                    if(lc != null)
                     {
-                        Engine.Reflection.Compute.RecordWarning("Hinges on RigidLinks are not supported. Member no. " + linkIdNum + " created as fixed!");
+                        if (lc.XtoX != true || lc.YtoY != true || lc.ZtoZ != true || lc.XXtoXX != true || lc.YYtoYY != true || lc.ZZtoZZ != true)
+                        {
+                            Engine.Reflection.Compute.RecordWarning("Hinges on RigidLinks are not supported. Member no. " + linkIdNum + " created as fixed!");
+                        }
                     }
 
-
-                    modelData.SetMember(rfLinks[i]);
+                    modelData.SetMember(rfLink);
                 }
 
                 //modelData.SetMembers(rfBars);
