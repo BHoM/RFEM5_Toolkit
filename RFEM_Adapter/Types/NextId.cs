@@ -100,6 +100,10 @@ namespace BH.Adapter.RFEM
                     lastId = (modelData.GetSurfaceCount() == 0) ? 0 : modelData.GetSurface(modelData.GetSurfaceCount() - 1, rf.ItemAt.AtIndex).GetData().No;
                     break;
 
+                case "RigidLink":
+                    lastId = (modelData.GetMemberCount() == 0) ? 0 : modelData.GetMember(modelData.GetMemberCount() - 1, rf.ItemAt.AtIndex).GetData().No;
+                    break;
+
 
                 default:
                     lastId = 0;//<---- log error
