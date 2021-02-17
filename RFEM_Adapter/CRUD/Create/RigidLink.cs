@@ -51,6 +51,11 @@ namespace BH.Adapter.RFEM
                 {
                     linkIdNum = GetAdapterId<int>(linkList[i]);
 
+                    //check for multiple secondary nodes
+                    if(linkList[i].SecondaryNodes.Count>1)
+                        Engine.Reflection.Compute.RecordWarning("Multiple secondary nodes detected! Link no. " + linkIdNum + " was created using only the first secondary node!");
+
+
                     //create line
                     lineIdNum = modelData.GetLineCount() + 1;
                     rf.Line centreLine = new rf.Line();
