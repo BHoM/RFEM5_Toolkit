@@ -73,7 +73,6 @@ namespace BH.Adapter.RFEM
                         ISectionProperty startSectionProperty = sectionProperty;
                         ISectionProperty endSectionProperty;
 
-
                         if (!m_sectionDict.TryGetValue(member.EndCrossSectionNo, out endSectionProperty))
                         {
                             rf.ICrossSection rfISection = modelData.GetCrossSection(member.EndCrossSectionNo, rf.ItemAt.AtNo);
@@ -97,8 +96,23 @@ namespace BH.Adapter.RFEM
                             taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
                         }
 
-                        sectionProperty = BH.Engine.Structure.Create.SectionPropertyFromProfile(taperProfile, startSectionProperty.Material);
+                        if (startSectionProperty.Material.GetType() == typeof(Concrete))
+                        {
+                            ConcreteSection startSection = startSectionProperty as ConcreteSection;
+                            ConcreteSection endSection = endSectionProperty as ConcreteSection;
+                            taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
+                            taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
+                        }
 
+                        if (startSectionProperty.Material.GetType() == typeof(Timber))
+                        {
+                            TimberSection startSection = startSectionProperty as TimberSection;
+                            TimberSection endSection = endSectionProperty as TimberSection;
+                            taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
+                            taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
+                        }
+
+                        sectionProperty = BH.Engine.Structure.Create.SectionPropertyFromProfile(taperProfile, startSectionProperty.Material);
                     }
 
 
