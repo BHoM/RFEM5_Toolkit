@@ -58,33 +58,17 @@ namespace BH.Adapter.RFEM
 
                     line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
-                    if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
-                    {
-                        rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
-                        rf.CrossSection rfSection = rfISection.GetData();
-                        rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfISection.FromRFEM(rfMat);
-                        m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
-                    }
+                    sectionProperty = GetSectionProperty(member.StartCrossSectionNo);
 
                     //check for tapered section
                     if(member.EndCrossSectionNo!=0)
                     {
                         ISectionProperty startSectionProperty = sectionProperty;
-                        ISectionProperty endSectionProperty;
+                        ISectionProperty endSectionProperty = GetSectionProperty(member.EndCrossSectionNo);
 
-                        if (!m_sectionDict.TryGetValue(member.EndCrossSectionNo, out endSectionProperty))
-                        {
-                            rf.ICrossSection rfISection = modelData.GetCrossSection(member.EndCrossSectionNo, rf.ItemAt.AtNo);
-                            rf.CrossSection rfSection = rfISection.GetData();
-                            rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                            endSectionProperty = rfISection.FromRFEM(rfMat);
-                            m_sectionDict.Add(member.EndCrossSectionNo, endSectionProperty);
-                        }
-
-                        //check if section mixex material !!!
+                        //check if section mixes material !!!
                         if(startSectionProperty.Material.Name != endSectionProperty.Material.Name)//campare by name as comparing materials seems to always be not equal
-                            Engine.Reflection.Compute.RecordWarning("Tapered section mixes materials. Material from start of section is used");
+                            Engine.Reflection.Compute.RecordWarning("Tapered section mixes materials. Only material from start of section is used");
 
                         oM.Spatial.ShapeProfiles.IProfile taperProfile = null;
 
@@ -149,6 +133,21 @@ namespace BH.Adapter.RFEM
 
         /***************************************************/
 
+        private ISectionProperty GetSectionProperty(int crossSectionNumber)
+        {
+            ISectionProperty sectionProperty;
+
+            if (!m_sectionDict.TryGetValue(crossSectionNumber, out sectionProperty))
+            {
+                rf.ICrossSection rfISection = modelData.GetCrossSection(crossSectionNumber, rf.ItemAt.AtNo);
+                rf.CrossSection rfSection = rfISection.GetData();
+                rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+                sectionProperty = rfISection.FromRFEM(rfMat);
+                m_sectionDict.Add(crossSectionNumber, sectionProperty);
+            }
+
+            return sectionProperty;
+        }
     }
 }
 
