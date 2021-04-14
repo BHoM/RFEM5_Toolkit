@@ -65,40 +65,8 @@ namespace BH.Adapter.RFEM
                     {
                         ISectionProperty startSectionProperty = sectionProperty;
                         ISectionProperty endSectionProperty = GetSectionProperty(member.EndCrossSectionNo);
-
-                        //check if section mixes material !!!
-                        if(startSectionProperty.Material.Name != endSectionProperty.Material.Name)//campare by name as comparing materials seems to always be not equal
-                            Engine.Reflection.Compute.RecordWarning("Tapered section mixes materials. Only material from start of section is used");
-
-                        oM.Spatial.ShapeProfiles.IProfile taperProfile = null;
-
-                        if (startSectionProperty.Material.GetType() == typeof(Steel))
-                        {
-                            SteelSection startSection = startSectionProperty as SteelSection;
-                            SteelSection endSection = endSectionProperty as SteelSection;
-                            taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
-                            taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
-                        }
-
-                        if (startSectionProperty.Material.GetType() == typeof(Concrete))
-                        {
-                            ConcreteSection startSection = startSectionProperty as ConcreteSection;
-                            ConcreteSection endSection = endSectionProperty as ConcreteSection;
-                            taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
-                            taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
-                        }
-
-                        if (startSectionProperty.Material.GetType() == typeof(Timber))
-                        {
-                            TimberSection startSection = startSectionProperty as TimberSection;
-                            TimberSection endSection = endSectionProperty as TimberSection;
-                            taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
-                            taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
-                        }
-
-                        sectionProperty = BH.Engine.Structure.Create.SectionPropertyFromProfile(taperProfile, startSectionProperty.Material);
+                        sectionProperty = GetTaperedSectionProperty(startSectionProperty, endSectionProperty);
                     }
-
 
                     barList.Add(member.FromRFEM(line, sectionProperty));
                 }
@@ -114,19 +82,18 @@ namespace BH.Adapter.RFEM
 
                     line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
 
-                    if (!m_sectionDict.TryGetValue(member.StartCrossSectionNo, out sectionProperty))
+                    sectionProperty = GetSectionProperty(member.StartCrossSectionNo);
+
+                    if (member.EndCrossSectionNo != 0)
                     {
-                        rf.ICrossSection rfISection = modelData.GetCrossSection(member.StartCrossSectionNo, rf.ItemAt.AtNo);
-                        rf.CrossSection rfSection = rfISection.GetData();
-                        rf.Material rfMat = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
-                        sectionProperty = rfISection.FromRFEM(rfMat);
-                        m_sectionDict.Add(member.StartCrossSectionNo, sectionProperty);
+                        ISectionProperty startSectionProperty = sectionProperty;
+                        ISectionProperty endSectionProperty = GetSectionProperty(member.EndCrossSectionNo);
+                        sectionProperty = GetTaperedSectionProperty(startSectionProperty, endSectionProperty);
                     }
 
                     barList.Add(member.FromRFEM(line, sectionProperty));
                 }
             }
-
 
             return barList;
         }
@@ -147,6 +114,41 @@ namespace BH.Adapter.RFEM
             }
 
             return sectionProperty;
+        }
+
+        private ISectionProperty GetTaperedSectionProperty(ISectionProperty startSectionProperty, ISectionProperty endSectionProperty)
+        {
+            if (startSectionProperty.Material.Name != endSectionProperty.Material.Name)
+                Engine.Reflection.Compute.RecordWarning("Tapered section mixes materials. Only material from start of section is used");
+
+            oM.Spatial.ShapeProfiles.IProfile taperProfile = null;
+
+            if (startSectionProperty.Material.GetType() == typeof(Steel))
+            {
+                SteelSection startSection = startSectionProperty as SteelSection;
+                SteelSection endSection = endSectionProperty as SteelSection;
+                taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
+                taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
+            }
+
+            if (startSectionProperty.Material.GetType() == typeof(Concrete))
+            {
+                ConcreteSection startSection = startSectionProperty as ConcreteSection;
+                ConcreteSection endSection = endSectionProperty as ConcreteSection;
+                taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
+                taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
+            }
+
+            if (startSectionProperty.Material.GetType() == typeof(Timber))
+            {
+                TimberSection startSection = startSectionProperty as TimberSection;
+                TimberSection endSection = endSectionProperty as TimberSection;
+                taperProfile = BH.Engine.Spatial.Create.TaperedProfile(startSection.SectionProfile, endSection.SectionProfile);
+                taperProfile.Name = "TaperedProfile-" + startSection.Name + "-To-" + endSection.Name;
+            }
+
+            return BH.Engine.Structure.Create.SectionPropertyFromProfile(taperProfile, startSectionProperty.Material);
+
         }
     }
 }
