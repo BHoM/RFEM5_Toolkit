@@ -35,7 +35,7 @@ using rf3 = Dlubal.RFEM3;
 
 namespace BH.Engine.Adapters.RFEM
 {
-    public static partial class Query
+    public static partial class Compute
     {
         /***************************************************/
         /**** Public Methods                            ****/
