@@ -50,7 +50,11 @@ namespace BH.Adapter.RFEM
 
             if (ids == null)
             {
-                rf.Member[] allLinks = modelData.GetMembers().Where(x => x.Type == rf.MemberType.Rigid).ToArray();
+                rf.Member[] allLinks = modelData.GetMembers().Where(x => x.Type == rf.MemberType.Rigid)
+                    .Where(x => x.Type == rf.MemberType.CouplingHingeHinge)
+                    .Where(x => x.Type == rf.MemberType.CouplingHingeRigid)
+                    .Where(x => x.Type == rf.MemberType.CouplingRigidHinge)
+                    .Where(x => x.Type == rf.MemberType.CouplingRigidRigid).ToArray();
 
                 foreach (rf.Member link in allLinks)
                 {
@@ -86,7 +90,7 @@ namespace BH.Adapter.RFEM
                 {
                     rf.Member link = modelData.GetMember(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
 
-                    if (link.Type != rf.MemberType.Rigid)
+                    if (link.Type != rf.MemberType.Rigid | link.Type != rf.MemberType.CouplingHingeHinge | link.Type != rf.MemberType.CouplingHingeRigid | link.Type != rf.MemberType.CouplingRigidHinge | link.Type != rf.MemberType.CouplingRigidRigid)
                         continue;
 
                     line = modelData.GetLine(link.LineNo, rf.ItemAt.AtNo).GetData();
