@@ -53,7 +53,11 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.Member member in modelData.GetMembers())
                 {
-                    if (member.Type == rf.MemberType.Rigid | member.Type == rf.MemberType.CouplingHingeHinge | member.Type == rf.MemberType.CouplingHingeRigid | member.Type == rf.MemberType.CouplingRigidHinge | member.Type == rf.MemberType.CouplingRigidRigid)
+                    if (member.Type == rf.MemberType.Rigid |
+                        member.Type == rf.MemberType.CouplingHingeHinge |
+                        member.Type == rf.MemberType.CouplingHingeRigid |
+                        member.Type == rf.MemberType.CouplingRigidHinge |
+                        member.Type == rf.MemberType.CouplingRigidRigid)
                         continue;
                     
                     line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
@@ -68,8 +72,8 @@ namespace BH.Adapter.RFEM
                         secondSectionNo = member.EndCrossSectionNo;
                     }
 
-                    if (firstSectionNo == 0 & secondSectionNo == 0)
-                        firstSectionNo = 1;
+                    if (firstSectionNo == secondSectionNo)
+                        secondSectionNo = 0;
 
                     sectionProperty = GetSectionProperty(firstSectionNo);
 
