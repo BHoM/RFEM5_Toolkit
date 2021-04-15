@@ -72,6 +72,7 @@ namespace BH.Engine.Adapters.RFEM
                     case "HE":
                     case "HEA":
                     case "HEB":
+                    case "HEM":
                     case "UB":
                     case "UBP":
                     case "UC":
