@@ -39,7 +39,7 @@ namespace BH.Engine.Adapters.RFEM
         /***************************************************/
 
 
-        public static Type GetSectionType(rf.CrossSection rfSectionProperty)
+        public static Type GetSectionType(this rf.CrossSection rfSectionProperty)
         {
             string[] propertyString = rfSectionProperty.TextID.Split('@');
 

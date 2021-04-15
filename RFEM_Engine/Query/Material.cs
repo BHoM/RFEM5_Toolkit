@@ -46,7 +46,7 @@ namespace BH.Engine.Adapters.RFEM
         //Format: NameID|material ID@TypeID|material type@NormID|material code
         //Example: NameID|Steel S 235@TypeID|STEEL@StandardID|DIN EN 1993-1-1-10 
 
-        public static MaterialType GetMaterialType(rf.Material rfMaterial)
+        public static MaterialType GetMaterialType(this rf.Material rfMaterial)
         {
             string[] materialString = rfMaterial.TextID.Split('@');
 
