@@ -73,7 +73,7 @@ namespace BH.Adapter.RFEM
 
 
             IMaterialFragment materialFragment = rfMaterial.FromRFEM();
-            IProfile profile = Engine.Adapters.RFEM.Query.GetSectionProfile(sectionName, sectionDBProps);
+            IProfile profile = Engine.Adapters.RFEM.Compute.GetSectionProfile(sectionName, sectionDBProps);
             if (profile != null)
             {
                 IGeometricalSection geoSection = Create.SectionPropertyFromProfile(profile, materialFragment, rfSectionProperty.TextID);// this creates the right property if the right material is provided 
