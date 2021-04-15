@@ -50,11 +50,11 @@ namespace BH.Adapter.RFEM
 
             if (ids == null)
             {
-                rf.Member[] allLinks = modelData.GetMembers().Where(x => x.Type == rf.MemberType.Rigid)
-                    .Where(x => x.Type == rf.MemberType.CouplingHingeHinge)
-                    .Where(x => x.Type == rf.MemberType.CouplingHingeRigid)
-                    .Where(x => x.Type == rf.MemberType.CouplingRigidHinge)
-                    .Where(x => x.Type == rf.MemberType.CouplingRigidRigid).ToArray();
+                rf.Member[] allLinks = modelData.GetMembers().Where(x => (x.Type == rf.MemberType.Rigid) |
+                    (x.Type == rf.MemberType.CouplingHingeHinge) |
+                    (x.Type == rf.MemberType.CouplingHingeRigid) |
+                    (x.Type == rf.MemberType.CouplingRigidHinge) |
+                    (x.Type == rf.MemberType.CouplingRigidRigid)).ToArray();
 
                 foreach (rf.Member link in allLinks)
                 {
