@@ -45,7 +45,6 @@ namespace BH.Adapter.RFEM
             rf.Member rfBar = new rf.Member();
             rfBar.No = barId;
             rfBar.LineNo = lineId;
-
             rfBar.StartCrossSectionNo = bar.SectionProperty.AdapterId<int>(typeof(RFEMId));
 
             rf.Rotation rotation = new rf.Rotation();

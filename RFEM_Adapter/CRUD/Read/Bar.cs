@@ -53,18 +53,31 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.Member member in modelData.GetMembers())
                 {
-                    if (member.Type == rf.MemberType.Rigid)
+                    if (member.Type == rf.MemberType.Rigid | member.Type == rf.MemberType.CouplingHingeHinge | member.Type == rf.MemberType.CouplingHingeRigid | member.Type == rf.MemberType.CouplingRigidHinge | member.Type == rf.MemberType.CouplingRigidRigid)
                         continue;
-
+                    
                     line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
+                    int firstSectionNo = 0;
+                    int secondSectionNo = 0;
 
-                    sectionProperty = GetSectionProperty(member.StartCrossSectionNo);
+                    if (member.StartCrossSectionNo == 0 & member.EndCrossSectionNo != 0)
+                        firstSectionNo = member.EndCrossSectionNo;
+                    else
+                    {
+                        firstSectionNo = member.StartCrossSectionNo;
+                        secondSectionNo = member.EndCrossSectionNo;
+                    }
+
+                    if (firstSectionNo == 0 & secondSectionNo == 0)
+                        firstSectionNo = 1;
+
+                    sectionProperty = GetSectionProperty(firstSectionNo);
 
                     //check for tapered section
-                    if(member.EndCrossSectionNo!=0)
+                    if(secondSectionNo != 0)
                     {
                         ISectionProperty startSectionProperty = sectionProperty;
-                        ISectionProperty endSectionProperty = GetSectionProperty(member.EndCrossSectionNo);
+                        ISectionProperty endSectionProperty = GetSectionProperty(secondSectionNo);
                         sectionProperty = GetTaperedSectionProperty(startSectionProperty, endSectionProperty);
                     }
 
@@ -81,13 +94,24 @@ namespace BH.Adapter.RFEM
                         continue;
 
                     line = modelData.GetLine(member.LineNo, rf.ItemAt.AtNo).GetData();
+                    int firstSectionNo = 0;
+                    int secondSectionNo = 0;
 
-                    sectionProperty = GetSectionProperty(member.StartCrossSectionNo);
+                    if (member.StartCrossSectionNo == 0 & member.EndCrossSectionNo != 0)
+                        firstSectionNo = member.EndCrossSectionNo;
+                    else
+                    {
+                        firstSectionNo = member.StartCrossSectionNo;
+                        secondSectionNo = member.EndCrossSectionNo;
+                    }
 
-                    if (member.EndCrossSectionNo != 0)
+                    sectionProperty = GetSectionProperty(firstSectionNo);
+
+                    //check for tapered section
+                    if (secondSectionNo != 0)
                     {
                         ISectionProperty startSectionProperty = sectionProperty;
-                        ISectionProperty endSectionProperty = GetSectionProperty(member.EndCrossSectionNo);
+                        ISectionProperty endSectionProperty = GetSectionProperty(secondSectionNo);
                         sectionProperty = GetTaperedSectionProperty(startSectionProperty, endSectionProperty);
                     }
 
