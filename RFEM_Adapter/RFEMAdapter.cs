@@ -96,8 +96,6 @@ namespace BH.Adapter.RFEM
 
             if (active)
             {
-
-
                 if (!IsApplicationRunning())
                 {
                     try
@@ -142,7 +140,6 @@ namespace BH.Adapter.RFEM
                 app.UnlockLicense(); // needed here to prevent GUI lock after showing it
                 lockLevel = 0;
             }
-
         }
 
         /***************************************************/
