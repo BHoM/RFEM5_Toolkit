@@ -43,7 +43,7 @@ namespace BH.Adapter.RFEM
         {
             if (loadcases.Count() > 0)
             {
-                int loadcaseIdNum = 0;
+                string loadcaseId = "";//<---- note this is string not int as everywhere else ! ! ! ! 
 
                 List<Loadcase> loadcaseList = loadcases.ToList();
                 rf.LoadCase[] rfLoadcases = new rf.LoadCase[loadcaseList.Count()];
@@ -56,9 +56,9 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < loadcaseList.Count(); i++)
                 {
-                    loadcaseIdNum = GetAdapterId<int>(loadcaseList[i]);
+                    loadcaseId = GetAdapterId<string>(loadcaseList[i]);
 
-                    rfLoadcases[i] = loadcaseList[i].ToRFEM(loadcaseIdNum);
+                    rfLoadcases[i] = loadcaseList[i].ToRFEM(loadcaseId);
 
                 }
 
