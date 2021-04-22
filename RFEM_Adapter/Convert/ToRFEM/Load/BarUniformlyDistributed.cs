@@ -42,13 +42,35 @@ namespace BH.Adapter.RFEM
         /**** Public Methods                            ****/
         /***************************************************/
 
-        public static void ToRFEM(this BarUniformlyDistributedLoad load, int loadId)
+        public static void ToRFEM(this BarUniformlyDistributedLoad load, int loadId, int loadcaseId)
         {
             rf.MemberLoad rfLoad = new rf.MemberLoad();
-
             rfLoad.No = loadId;
-            load.Force.Length
+            rfLoad.Distribution = rf.LoadDistributionType.UniformType;
+            rfLoad.RelativeDistances = false;
 
+            if(load.Force.Length() == 0 & load.Moment.Length() == 0)
+            {
+                Engine.Reflection.Compute.RecordWarning("Zero forces set. No load pushed!");
+                return;
+            }
+
+            if(load.Force.Length() != 0)
+            {
+                rfLoad.Type = rf.LoadType.ForceType;
+                if(load.Force.Z!=0)
+                {
+                    rfLoad.Direction = rf.LoadDirectionType.GlobalZType;
+                    rfLoad.Magnitude1 = load.Force.Z;//from documentation it looks like you need to create a load for each component! only .magnityde1 is used!
+                }
+
+            }
+
+            if(load.Moment.Length() != 0)
+            {
+                rfLoad.Type = rf.LoadType.MomentType;
+
+            }
             //check if force, moment or both
             rfLoad.Type = rf.LoadType.ForceType;
             //rfLoad.Type = rf.LoadType.MomentType;

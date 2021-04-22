@@ -70,7 +70,7 @@ namespace BH.Adapter.RFEM
                         //rf.MemberLoad rfMemberLoad = load.ToRfem(loadId, loadcaseId);
                         Convert.ToRFEM(load as dynamic, loadId, loadcaseId);
 
-                        rfLoadcase.SetMemberLoad(rfMemberLoad);
+                        //rfLoadcase.SetMemberLoad(rfMemberLoad);
 
                     }
 
@@ -79,7 +79,7 @@ namespace BH.Adapter.RFEM
 
 
                 //rfLoadcase.SetMemberLoads(rfMemberLoads);
-                rfLoadcase.FinishModification();// <---- move to adapter
+                //rfLoadcase.FinishModification();// <---- move to adapter
             }
 
             return true;
