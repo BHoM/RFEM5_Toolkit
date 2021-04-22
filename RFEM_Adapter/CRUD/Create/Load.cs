@@ -48,23 +48,34 @@ namespace BH.Adapter.RFEM
 
                 List<ILoad> loadList = loads.ToList();
                 //rf.ILoads[] rfLoadss = new rf.ILoads[loadList.Count()];
-                
+
                 //*****move this to adapter *****
                 rf.ILoads rfloads = model.GetLoads();
-                rf.ILoadCase rfLoadcase = rfloads.GetLoadCase(loadcaseIdNum, rf.ItemAt.AtNo);
-                rfLoadcase.PrepareModification();
                 //*******************************
 
 
-                for (int i = 0; i < loadList.Count(); i++)
+                var loadGroupByCase = loadList.GroupBy(load => load.Loadcase.Number);
+
+                foreach (var caseGroup in loadGroupByCase)
                 {
-                    loadId = GetAdapterId<int>(loadList[i]);
+                    int loadcaseID = caseGroup.Key;
+                    rf.ILoadCase rfLoadcase = rfloads.GetLoadCase(loadcaseID, rf.ItemAt.AtNo);
+                    rfLoadcase.PrepareModification();
 
-                    //rfLoadcases[i] = loadList[i].ToRFEM(loadId);
-                    rf.MemberLoad rfMemberLoad = loadList[i].ToRfem(loadId);
+                    foreach (ILoad load in caseGroup)
+                    {
+                        loadId = GetAdapterId<int>(load);
 
-                    rfLoadcase.SetMemberLoad(rfMemberLoad);
+                        //rfLoadcases[i] = loadList[i].ToRFEM(loadId);
+                        rf.MemberLoad rfMemberLoad = load.ToRfem(loadId);
+
+                        rfLoadcase.SetMemberLoad(rfMemberLoad);
+
+                    }
+
                 }
+
+
 
                 //rfLoadcase.SetMemberLoads(rfMemberLoads);
                 rfLoadcase.FinishModification();// <---- move to adapter
