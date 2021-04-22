@@ -159,6 +159,7 @@
     <Compile Include="Convert\ToRFEM\Bar.cs" />
     <Compile Include="Convert\ToRFEM\Constraint.cs" />
     <Compile Include="Convert\ToRFEM\Load\BarUniformlyDistributed.cs" />
+    <Compile Include="Convert\ToRFEM\Load\ILoad.cs" />
     <Compile Include="Convert\ToRFEM\Load\Loadcase.cs" />
     <Compile Include="Convert\ToRFEM\Material.cs" />
     <Compile Include="Convert\ToRFEM\Node.cs" />

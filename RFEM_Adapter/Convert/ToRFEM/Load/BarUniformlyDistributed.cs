@@ -30,6 +30,7 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Loads;
 using BH.oM.Structure.SectionProperties;
 using BH.Engine.Adapter;
+using BH.Engine.Geometry;
 using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
@@ -46,6 +47,7 @@ namespace BH.Adapter.RFEM
             rf.MemberLoad rfLoad = new rf.MemberLoad();
 
             rfLoad.No = loadId;
+            load.Force.Length
 
             //check if force, moment or both
             rfLoad.Type = rf.LoadType.ForceType;
