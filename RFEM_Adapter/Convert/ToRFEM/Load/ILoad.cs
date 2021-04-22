@@ -25,65 +25,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
-using BH.oM.Structure.Constraints;
-using rf = Dlubal.RFEM5;
 using BH.oM.Structure.Loads;
+using BH.oM.Structure.SectionProperties;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
+using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM
 {
-    public partial class RFEMAdapter
+    public static partial class Convert
     {
-
         /***************************************************/
-        /**** Private methods                           ****/
+        /**** Public Methods                            ****/
         /***************************************************/
 
-        private bool CreateCollection(IEnumerable<ILoad> loads)
+        public static void ToRFEM(this ILoad load, int loadId, int loadcaseId)
         {
-            if (loads.Count() > 0)
-            {
-                int loadId = 0;
-                int loadcaseIdNum = 0; //<--- get from this load ! ! !
+            if (load != null)
+                BH.Engine.Reflection.Compute.RecordError("Load type '" + load.GetType() + "' area not supported");
 
-                List<ILoad> loadList = loads.ToList();
-                //rf.ILoads[] rfLoadss = new rf.ILoads[loadList.Count()];
-
-                //*****move this to adapter *****
-                rf.ILoads rfloads = model.GetLoads();
-                //*******************************
-
-
-                var loadGroupByCase = loadList.GroupBy(load => load.Loadcase.Number);
-
-                foreach (var caseGroup in loadGroupByCase)
-                {
-                    int loadcaseId = caseGroup.Key;
-                    rf.ILoadCase rfLoadcase = rfloads.GetLoadCase(loadcaseId, rf.ItemAt.AtNo);
-                    rfLoadcase.PrepareModification();
-
-                    foreach (ILoad load in caseGroup)
-                    {
-                        loadId = GetAdapterId<int>(load);
-
-                        //rfLoadcases[i] = loadList[i].ToRFEM(loadId);
-                        //rf.MemberLoad rfMemberLoad = load.ToRfem(loadId, loadcaseId);
-                        Convert.ToRFEM(load as dynamic, loadId, loadcaseId);
-
-                        rfLoadcase.SetMemberLoad(rfMemberLoad);
-
-                    }
-
-                }
-
-
-
-                //rfLoadcase.SetMemberLoads(rfMemberLoads);
-                rfLoadcase.FinishModification();// <---- move to adapter
-            }
-
-            return true;
         }
-
     }
 }
