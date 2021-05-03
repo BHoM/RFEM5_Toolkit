@@ -84,7 +84,7 @@ namespace BH.Adapter.RFEM
                 {
                     
 
-                    loadList.Add());
+                    loadList.Add();
                 }
             }
 
