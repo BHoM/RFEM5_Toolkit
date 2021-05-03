@@ -182,6 +182,7 @@
     <Compile Include="CRUD\Delete\_Remove.cs" />
     <Compile Include="AdapterActions\_Execute.cs" />
     <Compile Include="CRUD\Read\Constraint.cs" />
+    <Compile Include="CRUD\Read\Load.cs" />
     <Compile Include="CRUD\Read\RigidLink.cs" />
     <Compile Include="CRUD\Read\Panel.cs" />
     <Compile Include="CRUD\Read\SurfaceProperty.cs" />
