@@ -46,7 +46,9 @@ namespace BH.Adapter.RFEM
         private List<Loadcase> ReadLoadcases(List<string> ids = null)
         {
             List<Loadcase> loadcaseList = new List<Loadcase>();
-
+            int loadId;
+            Loadcase loadcase;
+            string lcName;
 
             if (ids == null)
             {
@@ -54,22 +56,30 @@ namespace BH.Adapter.RFEM
 
                 foreach (rf.LoadCase rfLoadcase in rfLoadcases)
                 {
-                    int loadId;
                     if(int.TryParse(rfLoadcase.ID, out loadId))
                     {
-                        loadcaseList.Add(BH.Engine.Structure.Create.Loadcase("lcName", loadId, GetLoadNature(rfLoadcase.ActionCategory)));
-
+                        lcName = rfLoadcase.Description;//.ID
+                        loadcase = BH.Engine.Structure.Create.Loadcase(lcName, loadId, GetLoadNature(rfLoadcase.ActionCategory));
+                        loadcaseList.Add(loadcase);
                     }
-
+                    else
+                        Engine.Reflection.Compute.RecordWarning("loadcase id: " + rfLoadcase.ID + " could not be converted to int");
                 }
             }
             else
             {
                 foreach (string id in ids)
                 {
-                    rf.Member member = modelData.GetMember(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
+                    if (int.TryParse(id, out loadId))
+                    {
+                        rf.LoadCase rfLoadcase = model.GetLoads().GetLoadCase(loadId, rf.ItemAt.AtNo).GetData();
+                        lcName = rfLoadcase.Description;//.ID
+                        loadcase = BH.Engine.Structure.Create.Loadcase(lcName, loadId, GetLoadNature(rfLoadcase.ActionCategory));
+                        loadcaseList.Add(loadcase);
 
-                    loadcaseList.Add(BH.Engine.Structure.Create.Loadcase("lcName", loadId, GetLoadNature(rfLoadcase.ActionCategory)));
+                    }
+                    else
+                        Engine.Reflection.Compute.RecordWarning("loadcase id: " + id + " could not be converted to int");
                 }
             }
 
@@ -86,13 +96,13 @@ namespace BH.Adapter.RFEM
                 case rf.ActionCategoryType.UnknownActionCategory:
                     return LoadNature.Other;
                 case rf.ActionCategoryType.Permanent:
-                    return LoadNature.Other
+                    return LoadNature.Other;
                 case rf.ActionCategoryType.Prestress:
                     return LoadNature.Prestress;
                 case rf.ActionCategoryType.SnowIce:
                     return LoadNature.Snow;
                 case rf.ActionCategoryType.Wind:
-                    return LoadNature.Wind
+                    return LoadNature.Wind;
                 case rf.ActionCategoryType.TemperatureNonFire:
                     return LoadNature.Temperature;
                 case rf.ActionCategoryType.SettlementsOfFoundationSoil:
