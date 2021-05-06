@@ -75,7 +75,7 @@ namespace BH.Adapter.RFEM
 
 
 
-                    loadList.Add();
+                    loadList.Add(barUniformLoad);
                 }
             }
             else
@@ -84,7 +84,7 @@ namespace BH.Adapter.RFEM
                 {
                     
 
-                    loadList.Add();
+                    //loadList.Add();
                 }
             }
 
