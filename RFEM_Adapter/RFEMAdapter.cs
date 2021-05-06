@@ -42,6 +42,7 @@ using BH.oM.Adapters.RFEM;
 using BH.Engine.Base.Objects;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.Constraints;
+using BH.oM.Structure.Loads;
 using BH.Adapter;
 
 using rf = Dlubal.RFEM5;
@@ -90,7 +91,10 @@ namespace BH.Adapter.RFEM
                 {typeof(RigidLink), new List<Type> { typeof(LinkConstraint), typeof(Node) } },
                 {typeof(FEMesh), new List<Type> { typeof(ISurfaceProperty), typeof(Node) } },
                 {typeof(ISurfaceProperty), new List<Type> { typeof(IMaterialFragment) } },
-                {typeof(Panel), new List<Type> { typeof(ISurfaceProperty) } }
+                {typeof(Panel), new List<Type> { typeof(ISurfaceProperty) } },
+                {typeof(ILoad), new List<Type> { typeof(Loadcase) } },
+                {typeof(LoadCombination), new List<Type> { typeof(Loadcase) } }
+
             };
 
 
