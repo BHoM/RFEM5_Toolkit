@@ -32,7 +32,9 @@ using BH.oM.Structure.Constraints;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.MaterialFragments;
+using BH.oM.Structure.Loads;
 using BH.oM.Adapter;
+
 
 namespace BH.Adapter.RFEM
 {
@@ -66,6 +68,12 @@ namespace BH.Adapter.RFEM
                 else if (type == typeof(ISurfaceProperty))
                     return ReadSurfaceProperties(ids as dynamic);
                 else if (type == typeof(RigidLink))
+                    return ReadLinks(ids as dynamic);
+                else if (type == typeof(ILoad))
+                    return ReadLinks(ids as dynamic);
+                else if (type == typeof(Loadcase))
+                    return ReadLinks(ids as dynamic);
+                else if (type == typeof(LoadCombination))
                     return ReadLinks(ids as dynamic);
             }
             finally
