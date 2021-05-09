@@ -70,11 +70,11 @@ namespace BH.Adapter.RFEM
                 else if (type == typeof(RigidLink))
                     return ReadLinks(ids as dynamic);
                 else if (type == typeof(ILoad))
-                    return ReadLinks(ids as dynamic);
+                    return ReadLoads(ids as dynamic);
                 else if (type == typeof(Loadcase))
-                    return ReadLinks(ids as dynamic);
-                else if (type == typeof(LoadCombination))
-                    return ReadLinks(ids as dynamic);
+                    return ReadLoadcases(ids as dynamic);
+                //else if (type == typeof(LoadCombination))
+                //    return ReadLoadCombinations(ids as dynamic);
             }
             finally
             {

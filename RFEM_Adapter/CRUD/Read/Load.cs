@@ -51,31 +51,77 @@ namespace BH.Adapter.RFEM
             if (ids == null)
             {
                 List<rf.LoadCase> rfLoadcases = model.GetLoads().GetLoadCases().ToList();
+                rf.ILoads l = model.GetLoads();
+                int lcCount = l.GetLoadCaseCount();
 
-                foreach (rf.LoadCase rfLoadcase in rfLoadcases)
+                Dictionary<int, Loadcase> bhLoadcaseDict = new Dictionary<int, Loadcase>();//create dictionary of all loadcases ! ! ! !... TODO
+                bhLoadcaseDict = ReadLoadcases().Distinct().ToDictionary(x => x.Number, x => x);
+
+
+                for(int i =1;i<lcCount;i++)
                 {
-                    int loadId = rfLoadcase.Loading.No;
-
-                    if(rfLoadcase.Loading.Type == rf.LoadingType.LoadCaseType)
-                    {
-                        //get loadcase
-                    }
-                    else if(rfLoadcase.Loading.Type == rf.LoadingType.LoadCombinationType)
-                    {
-                        //not implemented
-                    }
+                    //rf.LoadCase lc = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetData();
+                    rf.LoadCase rfLoadcase = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetData();
+                    Loadcase bhLoadcase;
+                    int lcId;
+                    if (int.TryParse(rfLoadcase.ID, out lcId))
+                        bhLoadcase = bhLoadcaseDict[lcId];
                     else
+                        continue;
+
+
+
+                    rf.MemberLoad[] rfMemberLoads = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetMemberLoads();
+
+                    foreach (rf.MemberLoad rfLoad in rfMemberLoads)
                     {
-                        Engine.Reflection.Compute.RecordWarning("Loadcase of type: " + rfLoadcase.Loading.Type.ToString() + " is not supported!");
+                        
+                        if(rfLoad.Distribution == rf.LoadDistributionType.UniformType)
+                        {
+                            BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
+                            if(rfLoad.Direction== rf.LoadDirectionType.GlobalZType)
+                            {
+                                barUniformLoad.Axis = LoadAxis.Global;
+                                barUniformLoad.Force.Z = rfLoad.Magnitude1;
+                                barUniformLoad.Projected = false;
+                                barUniformLoad.Loadcase = bhLoadcase;
+                                barUniformLoad.Objects = new oM.Base.BHoMGroup<Bar>();// get bars based on Ids... from somewhere ...???
+
+                            }
+
+                        }
+                        else if (rfLoad.Distribution == rf.LoadDistributionType.ConcentratedType)
+                        {
+                            BarPointLoad barPointLoad = new BarPointLoad();
+                            //...
+                        }
+                        else
+                        {
+                            Engine.Reflection.Compute.RecordWarning("Load distribution of type: " + rfLoad.Distribution.ToString() + " is not supported!");
+                        }
                     }
 
+                    //if (rfLoadcase.Loading.Type == rf.LoadingType.LoadCaseType)
+                    //{
+                    //    //get loadcase
+                    //    rf.MemberLoad[] rfMemberLoads = l.GetLoadCase(loadId, rf.ItemAt.AtIndex).GetMemberLoads();//NOTE: this uses .AtIndex ! ! not sure .AtNO is possible !! ! ! 
+                    //    //rfMemberLoads[0].Direction;
+                    //    //rfMemberLoads[0].Magnitude1;
+                    //}
+                    //else if(rfLoadcase.Loading.Type == rf.LoadingType.LoadCombinationType)
+                    //{
+                    //    //not implemented
+                    //}
+                    //else
+                    //{
+                    //    Engine.Reflection.Compute.RecordWarning("Loadcase of type: " + rfLoadcase.Loading.Type.ToString() + " is not supported!");
+                    //}
 
-                    BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
-                    barUniformLoad.Loadcase = new Loadcase() { Number = loadId };
 
 
 
-                    loadList.Add(barUniformLoad);
+
+                    //loadList.Add(barUniformLoad);
                 }
             }
             else
