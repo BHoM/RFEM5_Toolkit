@@ -56,14 +56,20 @@ namespace BH.Adapter.RFEM
 
                 foreach (rf.LoadCase rfLoadcase in rfLoadcases)
                 {
-                    if(int.TryParse(rfLoadcase.ID, out loadId))
-                    {
-                        lcName = rfLoadcase.Description;//.ID
-                        loadcase = BH.Engine.Structure.Create.Loadcase(lcName, loadId, GetLoadNature(rfLoadcase.ActionCategory));
-                        loadcaseList.Add(loadcase);
-                    }
-                    else
-                        Engine.Reflection.Compute.RecordWarning("loadcase id: " + rfLoadcase.ID + " could not be converted to int");
+                    loadId = rfLoadcase.Loading.No;
+                    lcName = rfLoadcase.Description;//.ID
+                    loadcase = BH.Engine.Structure.Create.Loadcase(lcName, loadId, GetLoadNature(rfLoadcase.ActionCategory));
+                    loadcaseList.Add(loadcase);
+
+                    //string rfLoadcaseId = rfLoadcase.ID.Trim(new char[] { '#', ' ' });//some loadcases can have the id: "" !!
+                    //if(int.TryParse(rfLoadcaseId, out loadId))
+                    //{
+                    //    lcName = rfLoadcase.Description;//.ID
+                    //    loadcase = BH.Engine.Structure.Create.Loadcase(lcName, loadId, GetLoadNature(rfLoadcase.ActionCategory));
+                    //    loadcaseList.Add(loadcase);
+                    //}
+                    //else
+                    //    Engine.Reflection.Compute.RecordWarning("loadcase id: " + rfLoadcase.ID + " could not be converted to int");
                 }
             }
             else

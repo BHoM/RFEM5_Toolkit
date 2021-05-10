@@ -33,6 +33,8 @@ using BH.Engine.Spatial;
 using rf = Dlubal.RFEM5;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.Loads;
+using BH.Engine.Adapter;
+using BH.oM.Adapters.RFEM;
 
 namespace BH.Adapter.RFEM
 {
@@ -64,18 +66,32 @@ namespace BH.Adapter.RFEM
                     rf.LoadCase rfLoadcase = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetData();
                     Loadcase bhLoadcase;
                     int lcId;
-                    if (int.TryParse(rfLoadcase.ID, out lcId))
-                        bhLoadcase = bhLoadcaseDict[lcId];
-                    else
-                        continue;
+                    string rfLoadcaseId = rfLoadcase.ID.Trim(new char[] { '#', ' ' });
+
+                    bhLoadcase = bhLoadcaseDict[rfLoadcase.Loading.No];
+
+                    //if (int.TryParse(rfLoadcaseId, out lcId))//#23495
+                    //    bhLoadcase = bhLoadcaseDict[lcId];
+                    //else
+                    //    continue;
 
 
 
                     rf.MemberLoad[] rfMemberLoads = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetMemberLoads();
 
+                    //Dictionary<string, Bar> barsById = new Dictionary<string, Bar>();
+                    //oM.Base.BHoMGroup<Bar> objectGroup = new oM.Base.BHoMGroup<Bar>();
+                    //if (rfMemberLoads.Length < 0)
+                    //{
+                    //    barsById = ReadBars().ToDictionary(x => x.AdapterId<RFEMId>().Id.ToString(), x => x);
+                    //}
+
                     foreach (rf.MemberLoad rfLoad in rfMemberLoads)
                     {
-                        
+                        //List<string> barIds = GetIdsFromRFEMString(rfLoad.ObjectList);
+                        //objectGroup.Elements.AddRange(barsById.Where(x => barsById.Contains(x.Key)));
+
+
                         if(rfLoad.Distribution == rf.LoadDistributionType.UniformType)
                         {
                             BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
@@ -87,6 +103,7 @@ namespace BH.Adapter.RFEM
                                 barUniformLoad.Loadcase = bhLoadcase;
                                 barUniformLoad.Objects = new oM.Base.BHoMGroup<Bar>();// get bars based on Ids... from somewhere ...???
 
+                                loadList.Add(barUniformLoad);
                             }
 
                         }
