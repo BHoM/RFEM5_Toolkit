@@ -56,7 +56,7 @@ namespace BH.Adapter.RFEM
                 rf.ILoads l = model.GetLoads();
                 int lcCount = l.GetLoadCaseCount();
 
-                Dictionary<int, Loadcase> bhLoadcaseDict = new Dictionary<int, Loadcase>();//create dictionary of all loadcases ! ! ! !... TODO
+                Dictionary<int, Loadcase> bhLoadcaseDict = new Dictionary<int, Loadcase>();
                 bhLoadcaseDict = ReadLoadcases().Distinct().ToDictionary(x => x.Number, x => x);
 
 
@@ -79,6 +79,45 @@ namespace BH.Adapter.RFEM
 
                     rf.MemberLoad[] rfMemberLoads = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetMemberLoads();
 
+                    if (rfMemberLoads.Length > 0)
+                    {
+                        Dictionary<string, Bar> bhBarDict = new Dictionary<string, Bar>();
+                        bhBarDict = ReadBars().ToDictionary(x => x.AdapterId<RFEMId>(typeof(RFEMId)).ToString(), x => x);
+
+                        foreach (rf.MemberLoad rfLoad in rfMemberLoads)
+                        {
+                            List<int> barIds = GetIdListFromString(rfLoad.ObjectList);
+                            //objectGroup.Elements.AddRange(barsById.Where(x => barsById.Contains(x.Key)));
+
+
+                            if (rfLoad.Distribution == rf.LoadDistributionType.UniformType)
+                            {
+                                BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
+                                if (rfLoad.Direction == rf.LoadDirectionType.GlobalZType)
+                                {
+                                    barUniformLoad.Axis = LoadAxis.Global;
+                                    barUniformLoad.Force.Z = rfLoad.Magnitude1;
+                                    barUniformLoad.Projected = false;
+                                    barUniformLoad.Loadcase = bhLoadcase;
+                                    barUniformLoad.Objects = new oM.Base.BHoMGroup<Bar>();// get bars based on Ids... from somewhere ...???
+
+                                    loadList.Add(barUniformLoad);
+                                }
+
+                            }
+                            else if (rfLoad.Distribution == rf.LoadDistributionType.ConcentratedType)
+                            {
+                                BarPointLoad barPointLoad = new BarPointLoad();
+                                //...
+                            }
+                            else
+                            {
+                                Engine.Reflection.Compute.RecordWarning("Load distribution of type: " + rfLoad.Distribution.ToString() + " is not supported!");
+                            }
+                        }
+
+
+                    }
                     //Dictionary<string, Bar> barsById = new Dictionary<string, Bar>();
                     //oM.Base.BHoMGroup<Bar> objectGroup = new oM.Base.BHoMGroup<Bar>();
                     //if (rfMemberLoads.Length < 0)
@@ -86,37 +125,6 @@ namespace BH.Adapter.RFEM
                     //    barsById = ReadBars().ToDictionary(x => x.AdapterId<RFEMId>().Id.ToString(), x => x);
                     //}
 
-                    foreach (rf.MemberLoad rfLoad in rfMemberLoads)
-                    {
-                        //List<string> barIds = GetIdsFromRFEMString(rfLoad.ObjectList);
-                        //objectGroup.Elements.AddRange(barsById.Where(x => barsById.Contains(x.Key)));
-
-
-                        if(rfLoad.Distribution == rf.LoadDistributionType.UniformType)
-                        {
-                            BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
-                            if(rfLoad.Direction== rf.LoadDirectionType.GlobalZType)
-                            {
-                                barUniformLoad.Axis = LoadAxis.Global;
-                                barUniformLoad.Force.Z = rfLoad.Magnitude1;
-                                barUniformLoad.Projected = false;
-                                barUniformLoad.Loadcase = bhLoadcase;
-                                barUniformLoad.Objects = new oM.Base.BHoMGroup<Bar>();// get bars based on Ids... from somewhere ...???
-
-                                loadList.Add(barUniformLoad);
-                            }
-
-                        }
-                        else if (rfLoad.Distribution == rf.LoadDistributionType.ConcentratedType)
-                        {
-                            BarPointLoad barPointLoad = new BarPointLoad();
-                            //...
-                        }
-                        else
-                        {
-                            Engine.Reflection.Compute.RecordWarning("Load distribution of type: " + rfLoad.Distribution.ToString() + " is not supported!");
-                        }
-                    }
 
                     //if (rfLoadcase.Loading.Type == rf.LoadingType.LoadCaseType)
                     //{
