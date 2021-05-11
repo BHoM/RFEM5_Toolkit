@@ -40,9 +40,9 @@ namespace BH.Engine.Adapters.RFEM
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
-        public static List<int> GetIdListFromString(string RFEMIdString)
+        public static List<string> GetIdListFromString(string RFEMIdString)
         {
-            List<int> idList = new List<int>();
+            List<string> idList = new List<string>();
 
             string[] firstSplit = RFEMIdString.Split(',');
             int startId, endId;
@@ -54,12 +54,11 @@ namespace BH.Engine.Adapters.RFEM
                 {
                     int.TryParse(rangeSplit[0], out startId);
                     int.TryParse(rangeSplit[1], out endId);
-                    idList.AddRange(Enumerable.Range(startId, endId - startId));
+                    idList.AddRange(Enumerable.Range(startId, endId - startId).Select(x => int.Parse(x)).ToList());
                 }
                 else if(rangeSplit.Length==1)
                 {
-                    int.TryParse(rangeSplit[0], out startId);
-                    idList.Add(startId);
+                    idList.Add(rangeSplit[0]);
                 }
             }
 
