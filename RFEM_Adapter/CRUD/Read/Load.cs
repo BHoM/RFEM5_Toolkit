@@ -59,6 +59,8 @@ namespace BH.Adapter.RFEM
                 Dictionary<int, Loadcase> bhLoadcaseDict = new Dictionary<int, Loadcase>();
                 bhLoadcaseDict = ReadLoadcases().Distinct().ToDictionary(x => x.Number, x => x);
 
+                Dictionary<string, Bar> bhBarDict = new Dictionary<string, Bar>();
+                bool barsRead = false;
 
                 for(int i =1;i<lcCount;i++)
                 {
@@ -81,8 +83,11 @@ namespace BH.Adapter.RFEM
 
                     if (rfMemberLoads.Length > 0)
                     {
-                        Dictionary<string, Bar> bhBarDict = new Dictionary<string, Bar>();
-                        bhBarDict = ReadBars().ToDictionary(x => GetAdapterId(x).ToString(), x => x);
+                        if (!barsRead)
+                        {
+                            bhBarDict = ReadBars().ToDictionary(x => GetAdapterId(x).ToString(), x => x);
+                            barsRead = true;
+                        }
 
 
                         foreach (rf.MemberLoad rfLoad in rfMemberLoads)
