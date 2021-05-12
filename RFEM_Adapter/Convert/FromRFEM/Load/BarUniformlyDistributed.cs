@@ -51,7 +51,7 @@ namespace BH.Adapter.RFEM
             BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
             barUniformLoad.Loadcase = bhLoadcase;
             barUniformLoad.Objects = objectGroup;
-
+            barUniformLoad.SetAdapterId(typeof(RFEMId), rfMemberLoad.No);
             
             GetLoadingParameters(rfMemberLoad, out loadAxis, out projected, out direction);
             barUniformLoad.Axis = loadAxis;
@@ -59,19 +59,28 @@ namespace BH.Adapter.RFEM
 
             switch (direction)
             {
-                case "X":
+                case "FX":
                     barUniformLoad.Force.X = rfMemberLoad.Magnitude1;
                     break;
-                case "Y":
+                case "FY":
                     barUniformLoad.Force.Y = rfMemberLoad.Magnitude1;
                     break;
-                case "Z":
+                case "FZ":
                     barUniformLoad.Force.Z = rfMemberLoad.Magnitude1;
                     break;
+                case "UX":
+                    barUniformLoad.Moment.X = rfMemberLoad.Magnitude1;
+                    break;
+                case "UY":
+                    barUniformLoad.Moment.Y = rfMemberLoad.Magnitude1;
+                    break;
+                case "UZ":
+                    barUniformLoad.Moment.Z = rfMemberLoad.Magnitude1;
+                    break;
+
                 default:
                     break;
             }
-
 
             return barUniformLoad;
         }
@@ -84,46 +93,74 @@ namespace BH.Adapter.RFEM
             projected = false;
             direction = "";
 
+            switch (rfMemberLoad.Type)
+            {
+                case rf.LoadType.ForceType:
+                    direction = "F";
+                    break;
+                case rf.LoadType.MomentType:
+                    direction = "U";
+                    break;
+                case rf.LoadType.TemperatureType:
+                case rf.LoadType.AxialStrainType:
+                case rf.LoadType.AxialDisplacementType:
+                case rf.LoadType.PrecamberType:
+                case rf.LoadType.InitialPrestressType:
+                case rf.LoadType.EndPrestressType:
+                case rf.LoadType.DisplacementType:
+                case rf.LoadType.RotationLoadType:
+                case rf.LoadType.FullPipeContentType:
+                case rf.LoadType.PartialPipeContentType:
+                case rf.LoadType.PipeInternalPressureType:
+                case rf.LoadType.RotaryMotionType:
+                case rf.LoadType.BuoyancyType:
+                case rf.LoadType.UnknownLoadType:
+                    Engine.Reflection.Compute.RecordWarning("Load type: " + rfMemberLoad.Type.ToString() + " is not supported!");
+                    break;
+                default:
+                    break;
+            }
+
             switch (rfMemberLoad.Direction)
             {
                 case rf.LoadDirectionType.GlobalXType:
                     loadAxis = LoadAxis.Global;
-                    direction = "X";
+                    direction += "X";
                     break;
                 case rf.LoadDirectionType.GlobalYType:
                     loadAxis = LoadAxis.Global;
-                    direction = "Y";
+                    direction += "Y";
                     break;
                 case rf.LoadDirectionType.GlobalZType:
                     loadAxis = LoadAxis.Global;
-                    direction = "Z";
+                    direction += "Z";
                     break;
                 case rf.LoadDirectionType.LocalXType:
                     loadAxis = LoadAxis.Local;
-                    direction = "X";
+                    direction += "X";
                     break;
                 case rf.LoadDirectionType.LocalYType:
                     loadAxis = LoadAxis.Local;
-                    direction = "Y";
+                    direction += "Y";
                     break;
                 case rf.LoadDirectionType.LocalZType:
                     loadAxis = LoadAxis.Local;
-                    direction = "Z";
+                    direction += "Z";
                     break;
                 case rf.LoadDirectionType.ProjectXType:
                     loadAxis = LoadAxis.Global;
                     projected = true;
-                    direction = "X";
+                    direction += "X";
                     break;
                 case rf.LoadDirectionType.ProjectYType:
                     loadAxis = LoadAxis.Global;
                     projected = true;
-                    direction = "Y";
+                    direction += "Y";
                     break;
                 case rf.LoadDirectionType.ProjectZType:
                     loadAxis = LoadAxis.Global;
                     projected = true;
-                    direction = "Z";
+                    direction += "Z";
                     break;
                 case rf.LoadDirectionType.PerpendicularZType:
                 case rf.LoadDirectionType.UnknownLoadDirectionType:
@@ -134,6 +171,7 @@ namespace BH.Adapter.RFEM
                 default:
                     break;
             }
+
         }
     }
 }
