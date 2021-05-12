@@ -99,17 +99,20 @@ namespace BH.Adapter.RFEM
 
                             if (rfLoad.Distribution == rf.LoadDistributionType.UniformType)
                             {
-                                BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
-                                if (rfLoad.Direction == rf.LoadDirectionType.GlobalZType)
-                                {
-                                    barUniformLoad.Axis = LoadAxis.Global;
-                                    barUniformLoad.Force.Z = rfLoad.Magnitude1;
-                                    barUniformLoad.Projected = false;
-                                    barUniformLoad.Loadcase = bhLoadcase;
-                                    barUniformLoad.Objects = barGroup;
+                                BarUniformlyDistributedLoad barUniformLoad = rfLoad.FromRFEM(bhLoadcase, barGroup);
 
-                                    loadList.Add(barUniformLoad);
-                                }
+                                //BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
+                                //if (rfLoad.Direction == rf.LoadDirectionType.GlobalZType)
+                                //{
+                                //    barUniformLoad.Axis = LoadAxis.Global;
+                                //    barUniformLoad.Force.Z = rfLoad.Magnitude1;
+                                //    barUniformLoad.Projected = false;
+                                //    barUniformLoad.Loadcase = bhLoadcase;
+                                //    barUniformLoad.Objects = barGroup;
+
+                                //    loadList.Add(barUniformLoad);
+                                //}
+                                loadList.Add(barUniformLoad);
 
                             }
                             else if (rfLoad.Distribution == rf.LoadDistributionType.ConcentratedType)
