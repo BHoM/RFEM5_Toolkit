@@ -49,7 +49,7 @@ namespace BH.Adapter.RFEM
             BH.oM.Geometry.Line ln = new oM.Geometry.Line() { Start = new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z }, End = new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z } };
 
             Bar bhBar = BH.Engine.Structure.Create.Bar(ln, sectionProperty, member.Rotation.Angle);
-
+            
             bhBar.SetAdapterId(typeof(RFEMId), member.No);
             return bhBar;
         }

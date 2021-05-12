@@ -76,18 +76,20 @@ namespace BH.Adapter.RFEM
                     //    continue;
 
 
-
+                    
                     rf.MemberLoad[] rfMemberLoads = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetMemberLoads();
 
                     if (rfMemberLoads.Length > 0)
                     {
                         Dictionary<string, Bar> bhBarDict = new Dictionary<string, Bar>();
-                        bhBarDict = ReadBars().ToDictionary(x => x.AdapterId<RFEMId>(typeof(RFEMId)).ToString(), x => x);
+                        bhBarDict = ReadBars().ToDictionary(x => GetAdapterId(x).ToString(), x => x);
+
 
                         foreach (rf.MemberLoad rfLoad in rfMemberLoads)
                         {
-                            List<int> barIds = GetIdListFromString(rfLoad.ObjectList);
-                            //objectGroup.Elements.AddRange(barsById.Where(x => barsById.Contains(x.Key)));
+                            List<string> barIds = BH.Engine.Adapters.RFEM.Compute.GetIdListFromString(rfLoad.ObjectList);
+                            oM.Base.BHoMGroup<Bar> barGroup = new oM.Base.BHoMGroup<Bar>();
+                            barGroup.Elements.AddRange(barIds.Where(k => bhBarDict.ContainsKey(k)).Select(k=>bhBarDict[k]));
 
 
                             if (rfLoad.Distribution == rf.LoadDistributionType.UniformType)
@@ -99,7 +101,7 @@ namespace BH.Adapter.RFEM
                                     barUniformLoad.Force.Z = rfLoad.Magnitude1;
                                     barUniformLoad.Projected = false;
                                     barUniformLoad.Loadcase = bhLoadcase;
-                                    barUniformLoad.Objects = new oM.Base.BHoMGroup<Bar>();// get bars based on Ids... from somewhere ...???
+                                    barUniformLoad.Objects = barGroup;
 
                                     loadList.Add(barUniformLoad);
                                 }
