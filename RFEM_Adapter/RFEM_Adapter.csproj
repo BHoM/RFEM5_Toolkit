@@ -151,6 +151,7 @@
     <Compile Include="AdapterActions\Push.cs" />
     <Compile Include="Convert\FromRFEM\Bar.cs" />
     <Compile Include="Convert\FromRFEM\Constraint.cs" />
+    <Compile Include="Convert\FromRFEM\Load\BarUniformlyDistributed.cs" />
     <Compile Include="Convert\FromRFEM\Material.cs" />
     <Compile Include="Convert\FromRFEM\Node.cs" />
     <Compile Include="Convert\FromRFEM\Panel.cs" />
