@@ -138,6 +138,7 @@ namespace BH.Adapter.RFEM
 
         private List<int> GetIdListFromString(string idsAsString)
         {
+            //TODO: replace this GetId.. method with the one from RFEM_Engine.Compute ! ! ! 
             //NOTE: the below only works if RFEM does not use a mix of ',' and '-' delimiters !!
             List<int> idList = new List<int>();
 

@@ -54,7 +54,7 @@ namespace BH.Engine.Adapters.RFEM
                 {
                     int.TryParse(rangeSplit[0], out startId);
                     int.TryParse(rangeSplit[1], out endId);
-                    idList.AddRange(Enumerable.Range(startId, endId - startId).Select(x => int.Parse(x)).ToList());
+                    idList.AddRange(Enumerable.Range(startId, endId - startId).Select(x => x.ToString()).ToList());
                 }
                 else if(rangeSplit.Length==1)
                 {
