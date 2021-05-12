@@ -64,23 +64,13 @@ namespace BH.Adapter.RFEM
 
                 for(int i =1;i<lcCount;i++)
                 {
-                    //rf.LoadCase lc = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetData();
                     rf.LoadCase rfLoadcase = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetData();
                     Loadcase bhLoadcase;
-                    int lcId;
-                    string rfLoadcaseId = rfLoadcase.ID.Trim(new char[] { '#', ' ' });
 
                     bhLoadcase = bhLoadcaseDict[rfLoadcase.Loading.No];
 
-                    //if (int.TryParse(rfLoadcaseId, out lcId))//#23495
-                    //    bhLoadcase = bhLoadcaseDict[lcId];
-                    //else
-                    //    continue;
-
-
                     
                     rf.MemberLoad[] rfMemberLoads = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetMemberLoads();
-
                     if (rfMemberLoads.Length > 0)
                     {
                         if (!barsRead)
@@ -100,18 +90,6 @@ namespace BH.Adapter.RFEM
                             if (rfLoad.Distribution == rf.LoadDistributionType.UniformType)
                             {
                                 BarUniformlyDistributedLoad barUniformLoad = rfLoad.FromRFEM(bhLoadcase, barGroup);
-
-                                //BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
-                                //if (rfLoad.Direction == rf.LoadDirectionType.GlobalZType)
-                                //{
-                                //    barUniformLoad.Axis = LoadAxis.Global;
-                                //    barUniformLoad.Force.Z = rfLoad.Magnitude1;
-                                //    barUniformLoad.Projected = false;
-                                //    barUniformLoad.Loadcase = bhLoadcase;
-                                //    barUniformLoad.Objects = barGroup;
-
-                                //    loadList.Add(barUniformLoad);
-                                //}
                                 loadList.Add(barUniformLoad);
 
                             }
@@ -128,35 +106,7 @@ namespace BH.Adapter.RFEM
 
 
                     }
-                    //Dictionary<string, Bar> barsById = new Dictionary<string, Bar>();
-                    //oM.Base.BHoMGroup<Bar> objectGroup = new oM.Base.BHoMGroup<Bar>();
-                    //if (rfMemberLoads.Length < 0)
-                    //{
-                    //    barsById = ReadBars().ToDictionary(x => x.AdapterId<RFEMId>().Id.ToString(), x => x);
-                    //}
 
-
-                    //if (rfLoadcase.Loading.Type == rf.LoadingType.LoadCaseType)
-                    //{
-                    //    //get loadcase
-                    //    rf.MemberLoad[] rfMemberLoads = l.GetLoadCase(loadId, rf.ItemAt.AtIndex).GetMemberLoads();//NOTE: this uses .AtIndex ! ! not sure .AtNO is possible !! ! ! 
-                    //    //rfMemberLoads[0].Direction;
-                    //    //rfMemberLoads[0].Magnitude1;
-                    //}
-                    //else if(rfLoadcase.Loading.Type == rf.LoadingType.LoadCombinationType)
-                    //{
-                    //    //not implemented
-                    //}
-                    //else
-                    //{
-                    //    Engine.Reflection.Compute.RecordWarning("Loadcase of type: " + rfLoadcase.Loading.Type.ToString() + " is not supported!");
-                    //}
-
-
-
-
-
-                    //loadList.Add(barUniformLoad);
                 }
             }
             else
