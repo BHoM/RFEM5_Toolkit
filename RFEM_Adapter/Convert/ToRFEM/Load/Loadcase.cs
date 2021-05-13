@@ -44,62 +44,50 @@ namespace BH.Adapter.RFEM
         public static rf.LoadCase ToRFEM(this Loadcase loadcase, string loadcaseId)
         {
             rf.LoadCase rfLoadcase = new rf.LoadCase();
-            rfLoadcase.ID = loadcaseId;//<---- string ! !  !
+            int lcNo;
+            int.TryParse(loadcaseId, out lcNo);
+            rfLoadcase.Loading.No = lcNo;
+            rfLoadcase.Description = loadcase.Name;
             rfLoadcase.ActionCategory = GetLoadCategory(loadcase.Nature);
 
-            // unsure about these ***********
-            rfLoadcase.ToSolve = true;
-            rfLoadcase.Description = loadcase.Name;
-            rfLoadcase.Loading.No = 1;
-            rfLoadcase.Loading.Type = rf.LoadingType.LoadCaseType;
-            // ******************************
+            //// unsure about these ***********
+            //rfLoadcase.ToSolve = true;
+            //rfLoadcase.Loading.Type = rf.LoadingType.LoadCaseType;
+            //// ******************************
 
             return rfLoadcase;
         }
 
         private static rf.ActionCategoryType GetLoadCategory(LoadNature loadNature)
         {
-            rf.ActionCategoryType ac = rf.ActionCategoryType.UnknownActionCategory;
-
             switch (loadNature)
             {
-                case LoadNature.Accidental:
-                    ac = rf.ActionCategoryType.Accidental;
-                    break;
                 case LoadNature.Dead:
-                    ac = rf.ActionCategoryType.DeadLoad;
-                    break;
-                case LoadNature.Live:
-                    ac = rf.ActionCategoryType.Live;
-                    break;
-                case LoadNature.Notional:
-                    ac = rf.ActionCategoryType.NotionalHorizontalForces;//???
-                    break;
-                case LoadNature.Prestress:
-                    ac = rf.ActionCategoryType.Prestress;
-                    break;
-                case LoadNature.Seismic:
-                    ac = rf.ActionCategoryType.GbSeismic;
-                    break;
-                case LoadNature.Snow:
-                    ac = rf.ActionCategoryType.Snow;
-                    break;
+                    return rf.ActionCategoryType.DeadLoad;
                 case LoadNature.SuperDead:
-                    ac = rf.ActionCategoryType.DeadLoadDL;
-                    break;
-                case LoadNature.Temperature:
-                    ac = rf.ActionCategoryType.TemperatureNonFire;
-                    break;
+                    return rf.ActionCategoryType.OtherCategory;//TODO: What is super dead load in RFEM terminology??
+                case LoadNature.Live:
+                    return rf.ActionCategoryType.Live;
                 case LoadNature.Wind:
-                    ac = rf.ActionCategoryType.Wind;
-                    break;
+                    return rf.ActionCategoryType.Wind;
+                case LoadNature.Seismic:
+                    return rf.ActionCategoryType.Earthquake;
+                case LoadNature.Temperature:
+                    return rf.ActionCategoryType.UniformTemperatures;
+                case LoadNature.Snow:
+                    return rf.ActionCategoryType.Snow;
+                case LoadNature.Accidental:
+                    return rf.ActionCategoryType.Accidental;
+                case LoadNature.Prestress:
+                    return rf.ActionCategoryType.Prestress;
+                case LoadNature.Notional:
+                    return rf.ActionCategoryType.OtherCategory;
                 case LoadNature.Other:
+                    return rf.ActionCategoryType.OtherCategory;
                 default:
-                    ac = rf.ActionCategoryType.UnknownActionCategory;
-                    break;
+                    return rf.ActionCategoryType.UnknownActionCategory;
             }
 
-            return ac;
         }
     }
 }
