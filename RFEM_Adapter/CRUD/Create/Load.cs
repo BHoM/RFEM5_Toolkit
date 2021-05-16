@@ -29,6 +29,7 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using rf = Dlubal.RFEM5;
 using BH.oM.Structure.Loads;
+using BH.Adapter.RFEM;
 
 namespace BH.Adapter.RFEM
 {
@@ -67,19 +68,24 @@ namespace BH.Adapter.RFEM
                         loadId = GetAdapterId<int>(load);
 
                         //rfLoadcases[i] = loadList[i].ToRFEM(loadId);
-                        //rf.MemberLoad rfMemberLoad = load.ToRfem(loadId, loadcaseId);
-                        Convert.ToRFEM(load as dynamic, loadId, loadcaseId);
+                        if(load.GetType().IsAssignableFrom(typeof(BarUniformlyDistributedLoad)))
+                        {
+                            BarUniformlyDistributedLoad barLoad = load as BarUniformlyDistributedLoad;
+                            rf.MemberLoad[] rfBarLoads = barLoad.ToRFEM(loadId, loadcaseId).ToArray();
+                            rfLoadcase.SetMemberLoads(rfBarLoads);
+                        }
+                        //Convert.ToRFEM(load as dynamic, loadId, loadcaseId);
 
                         //rfLoadcase.SetMemberLoad(rfMemberLoad);
 
                     }
+                    rfLoadcase.FinishModification();// <---- move to adapter
 
                 }
 
 
 
                 //rfLoadcase.SetMemberLoads(rfMemberLoads);
-                //rfLoadcase.FinishModification();// <---- move to adapter
             }
 
             return true;
