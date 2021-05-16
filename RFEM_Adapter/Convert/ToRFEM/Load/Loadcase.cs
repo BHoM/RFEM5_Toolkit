@@ -45,11 +45,12 @@ namespace BH.Adapter.RFEM
         {
             rf.LoadCase rfLoadcase = new rf.LoadCase();
             int lcNo;
-            int.TryParse(loadcaseId, out lcNo);
+            if (!int.TryParse(loadcaseId, out lcNo))
             rfLoadcase.Loading.No = lcNo;
             rfLoadcase.Description = loadcase.Name;
             rfLoadcase.ActionCategory = GetLoadCategory(loadcase.Nature);
-
+            rfLoadcase.ToSolve = true;
+            
             //// unsure about these ***********
             //rfLoadcase.ToSolve = true;
             //rfLoadcase.Loading.Type = rf.LoadingType.LoadCaseType;
