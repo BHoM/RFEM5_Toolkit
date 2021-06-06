@@ -50,6 +50,8 @@ namespace BH.Adapter.RFEM
             rfLoad.No = loadId;
             rfLoad.Distribution = rf.LoadDistributionType.UniformType;
             rfLoad.RelativeDistances = false;
+            rfLoad.ReferenceTo = rf.MemberLoadReferenceType.MembersType;
+            //load.Objects.AdapterIds(typeof(int));
 
             if(load.Force.Length() == 0 & load.Moment.Length() == 0)
             {
