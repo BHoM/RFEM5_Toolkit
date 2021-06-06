@@ -44,8 +44,11 @@ namespace BH.Adapter.RFEM
         public static rf.LoadCase ToRFEM(this Loadcase loadcase, string loadcaseId)
         {
             rf.LoadCase rfLoadcase = new rf.LoadCase();
-            int lcNo;
-            if (!int.TryParse(loadcaseId, out lcNo))
+            int lcNo = loadcase.Number;
+
+            if (loadcase.Number == 0)
+                int.TryParse(loadcaseId, out lcNo);
+
             rfLoadcase.Loading.No = lcNo;
             rfLoadcase.Description = loadcase.Name;
             rfLoadcase.ActionCategory = GetLoadCategory(loadcase.Nature);

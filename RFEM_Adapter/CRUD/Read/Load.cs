@@ -62,7 +62,7 @@ namespace BH.Adapter.RFEM
                 Dictionary<string, Bar> bhBarDict = new Dictionary<string, Bar>();
                 bool barsRead = false;
 
-                for(int i =1;i<lcCount;i++)
+                for(int i = 0;i<lcCount;i++)
                 {
                     rf.LoadCase rfLoadcase = l.GetLoadCase(i, rf.ItemAt.AtIndex).GetData();
                     Loadcase bhLoadcase;
