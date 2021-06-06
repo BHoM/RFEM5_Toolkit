@@ -80,6 +80,7 @@ namespace BH.Adapter.RFEM
 
                     }
                     rfLoadcase.FinishModification();// <---- move to adapter
+                    modelData.PrepareModification(); //<--- hack to avoid app lock issue
 
                 }
 
