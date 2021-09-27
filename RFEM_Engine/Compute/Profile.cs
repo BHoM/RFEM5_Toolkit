@@ -40,7 +40,6 @@ namespace BH.Engine.Adapters.RFEM
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
-        [PreviousVersion("4.2", "BH.Engine.Adapters.RFEM.Query.GetSectionProfile(System.String, Dlubal.RFEM3.DB_CRSC_PROPERTY[])")]
         public static IProfile GetSectionProfile(string profileName, rf3.DB_CRSC_PROPERTY[] sectionDBProps = null)
         {
             // standard section name: SHS 25x25x2

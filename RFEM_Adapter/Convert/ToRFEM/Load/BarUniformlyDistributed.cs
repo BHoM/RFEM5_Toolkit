@@ -47,11 +47,19 @@ namespace BH.Adapter.RFEM
             List<rf.MemberLoad> rfLoadList = new List<rf.MemberLoad>();
 
             rf.MemberLoad rfLoad = new rf.MemberLoad();
-            rfLoad.No = loadId;
+            rfLoad.No = loadId+2;
             rfLoad.Distribution = rf.LoadDistributionType.UniformType;
             rfLoad.RelativeDistances = false;
             rfLoad.ReferenceTo = rf.MemberLoadReferenceType.MembersType;
-            //load.Objects.AdapterIds(typeof(int));
+
+            List<string> objectIds = load.Objects.Elements.Select(x => x.AdapterId<int>(typeof(RFEMId)).ToString()).ToList();
+            string objectIdString = string.Join(",", objectIds);
+            rfLoad.ObjectList = objectIdString;
+
+            //rfLoad.IsValid = true;
+            //rfLoad.Comment = "";
+            //rfLoad.ID = "";
+            //rfLoad.Tag = "";
 
             if(load.Force.Length() == 0 & load.Moment.Length() == 0)
             {
