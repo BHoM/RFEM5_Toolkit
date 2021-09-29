@@ -45,14 +45,12 @@ namespace BH.Adapter.RFEM
             if (loads.Count() > 0)
             {
                 int loadId = 0;
-
                 List<ILoad> loadList = loads.ToList();
 
                 //*****move this to adapter *****
                 modelData.FinishModification();
                 rf.ILoads rfloads = model.GetLoads();
                 //*******************************
-
 
                 var loadGroupByCase = loadList.GroupBy(load => load.Loadcase.Number);
 
@@ -70,15 +68,18 @@ namespace BH.Adapter.RFEM
                         {
                             BarUniformlyDistributedLoad barLoad = load as BarUniformlyDistributedLoad;
                             rf.MemberLoad[] rfBarLoads = barLoad.ToRFEM(loadId, loadcaseId).ToArray();
-                            //rfLoadcase.SetMemberLoads(rfBarLoads);
                             foreach (rf.MemberLoad item in rfBarLoads)
-                            {
                                 rfLoadcase.SetMemberLoad(item);
-                            }
                         }
-                        //Convert.ToRFEM(load as dynamic, loadId, loadcaseId);
 
-                        //rfLoadcase.SetMemberLoad(rfMemberLoad);
+                        //if (load.GetType().IsAssignableFrom(typeof(BarPointLoad)))
+                        //{
+                        //    BarPointLoad barLoad = load as BarPointLoad;
+                        //    rf.MemberLoad[] rfBarLoads = barLoad.ToRFEM(loadId, loadcaseId).ToArray();
+                        //    foreach (rf.MemberLoad item in rfBarLoads)
+                        //        rfLoadcase.SetMemberLoad(item);
+                        //}
+
 
                     }
                     rfLoadcase.FinishModification();// <---- move to adapter
@@ -86,9 +87,6 @@ namespace BH.Adapter.RFEM
 
                 }
 
-
-
-                //rfLoadcase.SetMemberLoads(rfMemberLoads);
             }
 
             return true;
