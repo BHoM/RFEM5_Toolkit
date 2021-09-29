@@ -51,6 +51,7 @@ namespace BH.Adapter.RFEM
                 //rf.ILoads[] rfLoadss = new rf.ILoads[loadList.Count()];
 
                 //*****move this to adapter *****
+                modelData.FinishModification();
                 rf.ILoads rfloads = model.GetLoads();
                 //*******************************
 
@@ -72,7 +73,11 @@ namespace BH.Adapter.RFEM
                         {
                             BarUniformlyDistributedLoad barLoad = load as BarUniformlyDistributedLoad;
                             rf.MemberLoad[] rfBarLoads = barLoad.ToRFEM(loadId, loadcaseId).ToArray();
-                            rfLoadcase.SetMemberLoads(rfBarLoads);
+                            //rfLoadcase.SetMemberLoads(rfBarLoads);
+                            foreach (rf.MemberLoad item in rfBarLoads)
+                            {
+                                rfLoadcase.SetMemberLoad(item);
+                            }
                         }
                         //Convert.ToRFEM(load as dynamic, loadId, loadcaseId);
 
