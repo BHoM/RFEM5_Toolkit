@@ -47,7 +47,6 @@ namespace BH.Adapter.RFEM
             List<rf.MemberLoad> rfLoadList = new List<rf.MemberLoad>();
 
             rf.MemberLoad rfLoad = new rf.MemberLoad();
-            //rfLoad.No = loadId;
             rfLoad.Distribution = rf.LoadDistributionType.UniformType;
             rfLoad.RelativeDistances = false;
             rfLoad.ReferenceTo = rf.MemberLoadReferenceType.MembersType;
@@ -135,13 +134,6 @@ namespace BH.Adapter.RFEM
                 }
             }
 
-            //check if force, moment or both
-            //rfLoad.Type = rf.LoadType.ForceType;
-            //rfLoad.Type = rf.LoadType.MomentType;
-            //rfLoad.Type = rf.LoadType.TemperatureType;
-            //rfLoad.Magnitude1 = load.Force;
-
-            //rfLoad.ObjectList = load.Objects.AdapterIds(typeof(RFEMId)).ToString();
 
             return rfLoadList;
         }
