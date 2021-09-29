@@ -47,7 +47,7 @@ namespace BH.Adapter.RFEM
             List<rf.MemberLoad> rfLoadList = new List<rf.MemberLoad>();
 
             rf.MemberLoad rfLoad = new rf.MemberLoad();
-            rfLoad.No = loadId+2;
+            rfLoad.No = loadId+7;//tmp for debug only
             rfLoad.Distribution = rf.LoadDistributionType.UniformType;
             rfLoad.RelativeDistances = false;
             rfLoad.ReferenceTo = rf.MemberLoadReferenceType.MembersType;
@@ -56,10 +56,12 @@ namespace BH.Adapter.RFEM
             string objectIdString = string.Join(",", objectIds);
             rfLoad.ObjectList = objectIdString;
 
-            //rfLoad.IsValid = true;
-            //rfLoad.Comment = "";
-            //rfLoad.ID = "";
-            //rfLoad.Tag = "";
+            /*
+            rfLoad.IsValid = true;
+            rfLoad.Comment = "";
+            rfLoad.ID = "";
+            rfLoad.Tag = "";
+            */
 
             if(load.Force.Length() == 0 & load.Moment.Length() == 0)
             {
