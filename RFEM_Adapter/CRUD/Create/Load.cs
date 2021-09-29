@@ -45,10 +45,8 @@ namespace BH.Adapter.RFEM
             if (loads.Count() > 0)
             {
                 int loadId = 0;
-                int loadcaseIdNum = 0; //<--- get from this load ! ! !
 
                 List<ILoad> loadList = loads.ToList();
-                //rf.ILoads[] rfLoadss = new rf.ILoads[loadList.Count()];
 
                 //*****move this to adapter *****
                 modelData.FinishModification();
@@ -68,7 +66,6 @@ namespace BH.Adapter.RFEM
                     {
                         loadId = GetAdapterId<int>(load);
 
-                        //rfLoadcases[i] = loadList[i].ToRFEM(loadId);
                         if(load.GetType().IsAssignableFrom(typeof(BarUniformlyDistributedLoad)))
                         {
                             BarUniformlyDistributedLoad barLoad = load as BarUniformlyDistributedLoad;
