@@ -47,7 +47,7 @@ namespace BH.Adapter.RFEM
             List<rf.MemberLoad> rfLoadList = new List<rf.MemberLoad>();
 
             rf.MemberLoad rfLoad = new rf.MemberLoad();
-            rfLoad.No = loadId;
+            //rfLoad.No = loadId;
             rfLoad.Distribution = rf.LoadDistributionType.UniformType;
             rfLoad.RelativeDistances = false;
             rfLoad.ReferenceTo = rf.MemberLoadReferenceType.MembersType;
@@ -72,26 +72,32 @@ namespace BH.Adapter.RFEM
                 rfLoad.Type = rf.LoadType.ForceType;
                 if(load.Force.X!=0)
                 {
+                    rfLoad.No = loadId;
                     rf.MemberLoad xLoad = rfLoad;
                     xLoad.Direction = load.Axis == LoadAxis.Global ? rf.LoadDirectionType.GlobalXType : rf.LoadDirectionType.LocalXType;
                     xLoad.Magnitude1 = load.Force.X;
                     rfLoadList.Add(xLoad);
+                    loadId++;
                 }
 
                 if (load.Force.Y != 0)
                 {
+                    rfLoad.No = loadId;
                     rf.MemberLoad yLoad = rfLoad;
                     yLoad.Direction = load.Axis == LoadAxis.Global ? rf.LoadDirectionType.GlobalYType : rf.LoadDirectionType.LocalYType;
                     yLoad.Magnitude1 = load.Force.Y;
                     rfLoadList.Add(yLoad);
+                    loadId++;
                 }
 
                 if (load.Force.Z != 0)
                 {
+                    rfLoad.No = loadId;
                     rf.MemberLoad zLoad = rfLoad;
                     zLoad.Direction = load.Axis == LoadAxis.Global ? rf.LoadDirectionType.GlobalZType : rf.LoadDirectionType.LocalZType;
                     zLoad.Magnitude1 = load.Force.Z;
                     rfLoadList.Add(zLoad);
+                    loadId++;
                 }
             }
 
@@ -100,26 +106,32 @@ namespace BH.Adapter.RFEM
                 rfLoad.Type = rf.LoadType.MomentType;
                 if (load.Moment.X != 0)
                 {
+                    rfLoad.No = loadId;
                     rf.MemberLoad uxLoad = rfLoad;
                     uxLoad.Direction = load.Axis == LoadAxis.Global ? rf.LoadDirectionType.GlobalXType : rf.LoadDirectionType.LocalXType;
                     uxLoad.Magnitude1 = load.Moment.X;
                     rfLoadList.Add(uxLoad);
+                    loadId++;
                 }
 
                 if (load.Moment.Y != 0)
                 {
+                    rfLoad.No = loadId;
                     rf.MemberLoad uyLoad = rfLoad;
                     uyLoad.Direction = load.Axis == LoadAxis.Global ? rf.LoadDirectionType.GlobalXType : rf.LoadDirectionType.LocalXType;
                     uyLoad.Magnitude1 = load.Moment.X;
                     rfLoadList.Add(uyLoad);
+                    loadId++;
                 }
 
                 if (load.Moment.X != 0)
                 {
+                    rfLoad.No = loadId;
                     rf.MemberLoad uzLoad = rfLoad;
                     uzLoad.Direction = load.Axis == LoadAxis.Global ? rf.LoadDirectionType.GlobalXType : rf.LoadDirectionType.LocalXType;
                     uzLoad.Magnitude1 = load.Moment.X;
                     rfLoadList.Add(uzLoad);
+                    loadId++;
                 }
             }
 
