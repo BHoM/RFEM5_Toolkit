@@ -32,6 +32,7 @@ using BH.oM.Spatial.ShapeProfiles;
 using rf = Dlubal.RFEM5;
 using rf3 = Dlubal.RFEM3;
 using BH.oM.Reflection.Attributes;
+using System.ComponentModel;
 
 namespace BH.Engine.Adapters.RFEM
 {
@@ -40,6 +41,9 @@ namespace BH.Engine.Adapters.RFEM
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
+        [Description("Get list of Ids from RFEM string")]
+        [Input("rfemIdString", "String with RFEM ids")]
+        [Output("idList", "List of ids")]
         public static List<string> GetIdListFromString(string rfemIdString)
         {
             List<string> idList = new List<string>();

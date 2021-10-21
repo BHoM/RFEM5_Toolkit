@@ -63,7 +63,7 @@ namespace BH.Adapter.RFEM
         //Add any applicable constructors here, such as linking to a specific file or anything else as well as linking to that file through the (if existing) com link via the API
         [Description("Connect to RFEM")]
         [Input("filePath", "Input the optional file path to RFEM model. Default is to use the currently running instance")]
-        [Input("RFEMSettings", "Input the optional RFEM Settings for the adapter. Default is null")]
+        [Input("rfemSettings", "Input the optional RFEM Settings for the adapter. Default is null")]
         [Output("adapter", "Adapter to RFEM")]
         public RFEMAdapter(string filePath = "", RFEMSettings rfemSettings = null, bool active = false)
         {

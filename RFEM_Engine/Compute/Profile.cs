@@ -32,6 +32,7 @@ using BH.oM.Spatial.ShapeProfiles;
 using rf = Dlubal.RFEM5;
 using rf3 = Dlubal.RFEM3;
 using BH.oM.Reflection.Attributes;
+using System.ComponentModel;
 
 namespace BH.Engine.Adapters.RFEM
 {
@@ -40,6 +41,10 @@ namespace BH.Engine.Adapters.RFEM
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
+        [Description("Get profile from name")]
+        [InputFromProperty("profileName")]
+        [InputFromProperty("sectionDBProps")]
+        [Output("profile", "The BHoM profile")]
         public static IProfile GetSectionProfile(string profileName, rf3.DB_CRSC_PROPERTY[] sectionDBProps = null)
         {
             // standard section name: SHS 25x25x2
