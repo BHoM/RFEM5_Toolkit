@@ -40,11 +40,11 @@ namespace BH.Engine.Adapters.RFEM
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
-        public static List<string> GetIdListFromString(string RFEMIdString)
+        public static List<string> GetIdListFromString(string rfemIdString)
         {
             List<string> idList = new List<string>();
 
-            string[] firstSplit = RFEMIdString.Split(',');
+            string[] firstSplit = rfemIdString.Split(',');
             int startId, endId;
 
             foreach (string item in firstSplit)
