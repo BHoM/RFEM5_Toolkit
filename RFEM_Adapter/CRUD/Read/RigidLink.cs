@@ -76,7 +76,7 @@ namespace BH.Adapter.RFEM
                     }
                     else
                     {
-                        Engine.Reflection.Compute.RecordWarning("Hinges on Rigid links are not supported. See member No. " + link.No.ToString());
+                        Engine.Base.Compute.RecordWarning("Hinges on Rigid links are not supported. See member No. " + link.No.ToString());
                     }
 
                     bhLink.SetAdapterId(typeof(RFEMId), link.No);
@@ -115,7 +115,7 @@ namespace BH.Adapter.RFEM
                     }
                     else
                     {
-                        Engine.Reflection.Compute.RecordWarning("Hinges on Rigid links are not supported. See member No. " + link.No.ToString());
+                        Engine.Base.Compute.RecordWarning("Hinges on Rigid links are not supported. See member No. " + link.No.ToString());
                     }
 
                     bhLink.SetAdapterId(typeof(RFEMId), link.No);

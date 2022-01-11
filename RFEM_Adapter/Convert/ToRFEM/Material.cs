@@ -106,7 +106,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
-                Engine.Reflection.Compute.RecordWarning("Cannot make " + materialFragment.Name + ". Replaced with standard steel");
+                Engine.Base.Compute.RecordWarning("Cannot make " + materialFragment.Name + ". Replaced with standard steel");
                 rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
 
             }

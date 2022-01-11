@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 using rf = Dlubal.RFEM5;
 using System.Collections;
 using BH.oM.Adapter;
-using BH.oM.Reflection;
+using BH.oM.Base;
 using BH.oM.Adapter.Commands;
 
 
@@ -56,7 +56,7 @@ namespace BH.Adapter.RFEM
         // Fallback case
         private bool RunCommand(IExecuteCommand command)
         {
-            BH.Engine.Reflection.Compute.RecordError($"The command {command.GetType().Name} is not supported by {this.GetType().Name}");
+            BH.Engine.Base.Compute.RecordError($"The command {command.GetType().Name} is not supported by {this.GetType().Name}");
             return true;
         }
 

@@ -44,7 +44,7 @@ namespace BH.Adapter.RFEM
         public static void ToRFEM(this ILoad load, int loadId, int loadcaseId)
         {
             if (load != null)
-                BH.Engine.Reflection.Compute.RecordError("Load type '" + load.GetType() + "' area not supported");
+                BH.Engine.Base.Compute.RecordError("Load type '" + load.GetType() + "' area not supported");
 
         }
     }

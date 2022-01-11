@@ -53,7 +53,7 @@ namespace BH.Adapter.RFEM
 
                     //check for multiple secondary nodes
                     if(linkList[i].SecondaryNodes.Count>1)
-                        Engine.Reflection.Compute.RecordWarning("Multiple secondary nodes detected! Link no. " + linkIdNum + " was created using only the first secondary node!");
+                        Engine.Base.Compute.RecordWarning("Multiple secondary nodes detected! Link no. " + linkIdNum + " was created using only the first secondary node!");
 
 
                     //create line
@@ -75,7 +75,7 @@ namespace BH.Adapter.RFEM
                     {
                         if (lc.XtoX != true || lc.YtoY != true || lc.ZtoZ != true || lc.XXtoXX != true || lc.YYtoYY != true || lc.ZZtoZZ != true)
                         {
-                            Engine.Reflection.Compute.RecordWarning("Hinges on RigidLinks are not supported. Member no. " + linkIdNum + " created as fixed!");
+                            Engine.Base.Compute.RecordWarning("Hinges on RigidLinks are not supported. Member no. " + linkIdNum + " created as fixed!");
                         }
                     }
 

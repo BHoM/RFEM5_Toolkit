@@ -52,7 +52,7 @@ namespace BH.Adapter.RFEM
                 foreach (rf.Surface surface in modelData.GetSurfaces())
                 {
                     if(surface.GeometryType != rf.SurfaceGeometryType.PlaneSurfaceType)
-                        Engine.Reflection.Compute.RecordError("Only plane surface types are supported at the moment");
+                        Engine.Base.Compute.RecordError("Only plane surface types are supported at the moment");
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
@@ -72,7 +72,7 @@ namespace BH.Adapter.RFEM
                     else
                     {
                         surfaceProperty = null;
-                        Engine.Reflection.Compute.RecordError("could not create surface property of type " + surface.StiffnessType.ToString());
+                        Engine.Base.Compute.RecordError("could not create surface property of type " + surface.StiffnessType.ToString());
                     }
                     
                     List<Opening> openings = null;
@@ -87,7 +87,7 @@ namespace BH.Adapter.RFEM
                 {
                     rf.Surface surface = modelData.GetSurface(Int32.Parse(id), rf.ItemAt.AtNo).GetData();
                     if (surface.GeometryType != rf.SurfaceGeometryType.PlaneSurfaceType)
-                        Engine.Reflection.Compute.RecordError("Only plane surface types are supported at the moment");
+                        Engine.Base.Compute.RecordError("Only plane surface types are supported at the moment");
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 

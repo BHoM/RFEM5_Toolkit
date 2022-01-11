@@ -115,7 +115,7 @@ namespace BH.Adapter.RFEM
                 case rf.LoadType.RotaryMotionType:
                 case rf.LoadType.BuoyancyType:
                 case rf.LoadType.UnknownLoadType:
-                    Engine.Reflection.Compute.RecordWarning("Load type: " + rfMemberLoad.Type.ToString() + " is not supported!");
+                    Engine.Base.Compute.RecordWarning("Load type: " + rfMemberLoad.Type.ToString() + " is not supported!");
                     break;
                 default:
                     break;
@@ -166,7 +166,7 @@ namespace BH.Adapter.RFEM
                 case rf.LoadDirectionType.UnknownLoadDirectionType:
                 case rf.LoadDirectionType.LocalUType:
                 case rf.LoadDirectionType.LocalVType:
-                    Engine.Reflection.Compute.RecordWarning("Load direction type: " + rfMemberLoad.Direction.ToString() + " is not supported!");
+                    Engine.Base.Compute.RecordWarning("Load direction type: " + rfMemberLoad.Direction.ToString() + " is not supported!");
                     break;
                 default:
                     break;
