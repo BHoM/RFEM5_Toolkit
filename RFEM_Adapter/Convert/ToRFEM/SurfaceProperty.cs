@@ -46,7 +46,7 @@ namespace BH.Adapter.RFEM
 
             if (surfaceProperty is LoadingPanelProperty)
             {
-                Engine.Reflection.Compute.RecordWarning("sorry, Can't do loding panels");
+                Engine.Base.Compute.RecordWarning("sorry, Can't do loding panels");
 
             }
             else
@@ -114,7 +114,7 @@ namespace BH.Adapter.RFEM
                 }
                 else
                 {
-                    Engine.Reflection.Compute.RecordWarning("my responses are limited. I don't know: " + surfaceProperty.Name);
+                    Engine.Base.Compute.RecordWarning("my responses are limited. I don't know: " + surfaceProperty.Name);
                 }
 
             }

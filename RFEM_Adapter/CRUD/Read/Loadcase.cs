@@ -69,7 +69,7 @@ namespace BH.Adapter.RFEM
                     //    loadcaseList.Add(loadcase);
                     //}
                     //else
-                    //    Engine.Reflection.Compute.RecordWarning("loadcase id: " + rfLoadcase.ID + " could not be converted to int");
+                    //    Engine.Base.Compute.RecordWarning("loadcase id: " + rfLoadcase.ID + " could not be converted to int");
                 }
             }
             else
@@ -85,7 +85,7 @@ namespace BH.Adapter.RFEM
 
                     }
                     else
-                        Engine.Reflection.Compute.RecordWarning("loadcase id: " + id + " could not be converted to int");
+                        Engine.Base.Compute.RecordWarning("loadcase id: " + id + " could not be converted to int");
                 }
             }
 

@@ -147,7 +147,7 @@ namespace BH.Adapter.RFEM
         private ISectionProperty GetTaperedSectionProperty(ISectionProperty startSectionProperty, ISectionProperty endSectionProperty)
         {
             if (startSectionProperty.Material.Name != endSectionProperty.Material.Name)
-                Engine.Reflection.Compute.RecordWarning("Tapered section mixes materials. Only material from start of section is used");
+                Engine.Base.Compute.RecordWarning("Tapered section mixes materials. Only material from start of section is used");
 
             oM.Spatial.ShapeProfiles.IProfile taperProfile = null;
 

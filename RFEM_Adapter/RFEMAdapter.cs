@@ -34,7 +34,7 @@ using System.Collections.Generic;
 using BH.oM.Structure.Elements;
 using BH.oM.Base;
 using BH.oM.Data.Requests;
-using BH.oM.Reflection.Attributes;
+using BH.oM.Base.Attributes;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Adapter;

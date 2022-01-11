@@ -62,7 +62,7 @@ namespace BH.Adapter.RFEM
 
             if(load.Force.Length() == 0 & load.Moment.Length() == 0)
             {
-                Engine.Reflection.Compute.RecordWarning("Zero forces set. No load pushed!");
+                Engine.Base.Compute.RecordWarning("Zero forces set. No load pushed!");
                 return rfLoadList;
             }
 

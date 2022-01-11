@@ -86,11 +86,11 @@ namespace BH.Adapter.RFEM
                 case rf.OrthotropyType.Glass:
                 case rf.OrthotropyType.Laminate:
                     surfaceProperty = new ConstantThickness { Thickness = rfStiffness.Thickness, Material = material };
-                    Engine.Reflection.Compute.RecordError("could not create surface property for " + rfStiffness.ID);
+                    Engine.Base.Compute.RecordError("could not create surface property for " + rfStiffness.ID);
                     break;
                 default:
                     surfaceProperty = new ConstantThickness { Thickness = rfStiffness.Thickness, Material = material };
-                    Engine.Reflection.Compute.RecordError("could not create surface property for "+rfStiffness.ID);
+                    Engine.Base.Compute.RecordError("could not create surface property for "+rfStiffness.ID);
                     break;
             }
 

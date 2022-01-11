@@ -31,7 +31,7 @@ using BH.oM.Structure.SectionProperties;
 using BH.oM.Spatial.ShapeProfiles;
 using rf = Dlubal.RFEM5;
 using rf3 = Dlubal.RFEM3;
-using BH.oM.Reflection.Attributes;
+using BH.oM.Base.Attributes;
 using System.ComponentModel;
 
 namespace BH.Engine.Adapters.RFEM
@@ -250,7 +250,7 @@ namespace BH.Engine.Adapters.RFEM
                     //    profile = new ZSectionProfile(v1, v2, v3, v4, v5, v6, "< looks like the only way to create this now is to use the profile curves !! >");
                     //    break;
                     default:
-                        Engine.Reflection.Compute.RecordError("Don't know how to make profile: " + profileName);
+                        Engine.Base.Compute.RecordError("Don't know how to make profile: " + profileName);
                         break;
                 }
             }

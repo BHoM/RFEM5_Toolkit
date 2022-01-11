@@ -49,7 +49,7 @@ namespace BH.Adapter.RFEM
                 return base.Pull(request, pullType, actionConfig);
             else
             {
-                BH.Engine.Reflection.Compute.RecordError("Make sure that either the RFEM Adapter component has opened an instance of the application or you have opened one yourself."
+                BH.Engine.Base.Compute.RecordError("Make sure that either the RFEM Adapter component has opened an instance of the application or you have opened one yourself."
                + "\nCheck if you have a frozen instance of RFEM in the background. Look in Task Manager.");
                 return null;
             }

@@ -100,7 +100,7 @@ namespace BH.Adapter.RFEM
                             }
                             else
                             {
-                                Engine.Reflection.Compute.RecordWarning("Load distribution of type: " + rfLoad.Distribution.ToString() + " is not supported!");
+                                Engine.Base.Compute.RecordWarning("Load distribution of type: " + rfLoad.Distribution.ToString() + " is not supported!");
                             }
                         }
 

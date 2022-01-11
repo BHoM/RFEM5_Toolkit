@@ -31,7 +31,7 @@ using BH.oM.Structure.SectionProperties;
 using BH.oM.Spatial.ShapeProfiles;
 using rf = Dlubal.RFEM5;
 using rf3 = Dlubal.RFEM3;
-using BH.oM.Reflection.Attributes;
+using BH.oM.Base.Attributes;
 using System.ComponentModel;
 
 namespace BH.Engine.Adapters.RFEM
