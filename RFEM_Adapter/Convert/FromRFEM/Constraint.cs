@@ -43,7 +43,7 @@ namespace BH.Adapter.RFEM
         //Only do this if possible to do without any com-calls or similar to the adapter
         public static Constraint6DOF FromRFEM(this rf.NodalSupport rfConstraint)
         {
-            Constraint6DOF bhConstraint = BH.Engine.Structure.Create.Constraint6DOF();
+            Constraint6DOF bhConstraint = new Constraint6DOF();
 
             //Translation
             if (rfConstraint.SupportConstantX == 0)

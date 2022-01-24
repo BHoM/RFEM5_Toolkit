@@ -60,7 +60,7 @@ namespace BH.Adapter.RFEM
 
                     if (surface.StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
                     {
-                        surfaceProperty = Engine.Structure.Create.ConstantThickness(surface.Thickness.Constant, material);
+                        surfaceProperty = new ConstantThickness { Thickness = surface.Thickness.Constant, Material = material };
                     }
                     else if (surface.StiffnessType == rf.SurfaceStiffnessType.OrthotropicStiffnessType)
                     {
@@ -130,7 +130,7 @@ namespace BH.Adapter.RFEM
                     rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
                     ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
                 }
-                edgeList.Add(Engine.Structure.Create.Edge(Engine.Geometry.Create.Polyline(ptsInEdge), null, ""));
+                edgeList.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
             }
 
             return edgeList;
