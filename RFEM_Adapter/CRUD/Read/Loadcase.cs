@@ -58,7 +58,7 @@ namespace BH.Adapter.RFEM
                 {
                     loadId = rfLoadcase.Loading.No;
                     lcName = rfLoadcase.Description;//.ID
-                    loadcase = BH.Engine.Structure.Create.Loadcase(lcName, loadId, GetLoadNature(rfLoadcase.ActionCategory));
+                    loadcase = new Loadcase { Name = lcName, Number = loadId, Nature = GetLoadNature(rfLoadcase.ActionCategory) };
                     loadcaseList.Add(loadcase);
 
                     //string rfLoadcaseId = rfLoadcase.ID.Trim(new char[] { '#', ' ' });//some loadcases can have the id: "" !!
@@ -80,7 +80,7 @@ namespace BH.Adapter.RFEM
                     {
                         rf.LoadCase rfLoadcase = model.GetLoads().GetLoadCase(loadId, rf.ItemAt.AtNo).GetData();
                         lcName = rfLoadcase.Description;//.ID
-                        loadcase = BH.Engine.Structure.Create.Loadcase(lcName, loadId, GetLoadNature(rfLoadcase.ActionCategory));
+                        loadcase = new Loadcase { Name = lcName, Number = loadId, Nature = GetLoadNature(rfLoadcase.ActionCategory) };
                         loadcaseList.Add(loadcase);
 
                     }

@@ -63,10 +63,10 @@ namespace BH.Adapter.RFEM
                     rf.Point3D sPt = line.ControlPoints.First();
                     rf.Point3D ePt = line.ControlPoints.Last();
 
-                    Node startNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z });
-                    Node endNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z });
+                    Node startNode = new Node { Position = new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z } };
+                    Node endNode = new Node { Position = new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z } };
 
-                    RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
+                    RigidLink bhLink = new RigidLink { PrimaryNode = startNode, SecondaryNodes = new List<Node> { endNode } };
                    
                     if(link.StartHingeNo==0 && link.EndHingeNo==0)
                     {
@@ -98,10 +98,10 @@ namespace BH.Adapter.RFEM
                     rf.Point3D sPt = line.ControlPoints.First();
                     rf.Point3D ePt = line.ControlPoints.Last();
 
-                    Node startNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z });
-                    Node endNode = Engine.Structure.Create.Node(new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z });
+                    Node startNode = new Node { Position = new oM.Geometry.Point() { X = sPt.X, Y = sPt.Y, Z = sPt.Z } };
+                    Node endNode = new Node { Position = new oM.Geometry.Point() { X = ePt.X, Y = ePt.Y, Z = ePt.Z } };
 
-                    RigidLink bhLink = BH.Engine.Structure.Create.RigidLink(startNode, new Node[] { endNode });
+                    RigidLink bhLink = new RigidLink { PrimaryNode = startNode, SecondaryNodes = new List<Node> { endNode } };
 
                     if (link.StartHingeNo == 0 && link.EndHingeNo == 0)
                     {

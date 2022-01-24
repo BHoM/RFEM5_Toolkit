@@ -41,7 +41,7 @@ namespace BH.Adapter.RFEM
 
         public static Node FromRFEM(this rf.Node node)
         {
-            Node bhNode = BH.Engine.Structure.Create.Node(new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z });
+            Node bhNode = new Node { Position = new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z } };
             bhNode.SetAdapterId(typeof(RFEMId), node.No);
 
             return bhNode;
