@@ -51,7 +51,7 @@ namespace BH.Adapter.RFEM
             rotation.Angle = bar.OrientationAngle;
             rotation.Type = rf.RotationType.Angle;
             rfBar.Rotation = rotation;
-
+            rfBar.Comment = bar.Name;
 
             return rfBar;
         }
