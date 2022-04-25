@@ -43,7 +43,7 @@ namespace BH.Adapter.RFEM
 
         public static Panel FromRFEM(this rf.Surface surface, ISurfaceProperty surfaceProperty)
         {
-
+            //TODO: this is not currently being called from "ReadPanels" - move relevant conversions to this extension method
             ICurve outline = null;
 
             string[] boundLineList = surface.BoundaryLineList.Split(',');
@@ -51,6 +51,7 @@ namespace BH.Adapter.RFEM
             Panel bhPanel = Engine.Structure.Create.Panel(outline,openings,surfaceProperty);
 
             bhPanel.SetAdapterId(typeof(RFEMId), surface.No);
+
 
             return bhPanel;
         }

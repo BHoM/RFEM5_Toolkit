@@ -50,6 +50,12 @@ namespace BH.Adapter.RFEM
             rf.CrossSection rfSectionProperty = rfISectionProperty.GetData();
 
             string sectionName = rfSectionProperty.Description;
+            sectionName.GetType().ToString();
+
+            
+
+
+
             rf3.DB_CRSC_PROPERTY[] sectionDBProps = null;
             object libraryObj = null;
 
@@ -79,6 +85,8 @@ namespace BH.Adapter.RFEM
                 IGeometricalSection geoSection = BH.Engine.Structure.Create.SectionPropertyFromProfile(profile, materialFragment, rfSectionProperty.TextID);// this creates the right property if the right material is provided 
                 geoSection.SetAdapterId(typeof(RFEMId), rfSectionProperty.No);
                 geoSection.Name = rfSectionProperty.TextID;
+                 
+
 
                 return geoSection;
             }
@@ -94,6 +102,8 @@ namespace BH.Adapter.RFEM
                 expSection.Iz = rfSectionProperty.BendingMomentZ;
                 expSection.SetAdapterId(typeof(RFEMId), rfSectionProperty.No);
                 expSection.Name = rfSectionProperty.TextID;
+                
+                
                 return expSection;
             }
 

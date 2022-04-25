@@ -77,6 +77,7 @@ namespace BH.Adapter.RFEM
                     
                     List<Opening> openings = null;
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
+                    panel.Name = surface.Comment;
 
                     panelList.Add(panel);
                 }

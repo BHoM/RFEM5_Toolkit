@@ -63,6 +63,8 @@ namespace BH.Adapter.RFEM
             }
 
 
+            rfSurface.Comment = panel.Name;
+
             return rfSurface;
         }
 

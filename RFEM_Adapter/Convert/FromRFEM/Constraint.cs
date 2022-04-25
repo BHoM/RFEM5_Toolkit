@@ -45,6 +45,9 @@ namespace BH.Adapter.RFEM
         {
             Constraint6DOF bhConstraint = new Constraint6DOF();
 
+            
+            bhConstraint.Name = rfConstraint.Comment;
+
             //Translation
             if (rfConstraint.SupportConstantX == 0)
                 bhConstraint.TranslationX = DOFType.Free;
@@ -89,7 +92,10 @@ namespace BH.Adapter.RFEM
             else
                 bhConstraint.RotationalStiffnessZ = rfConstraint.RestraintConstantZ;
 
+           
+          
             bhConstraint.SetAdapterId(typeof(RFEMId), rfConstraint.No);
+
             return bhConstraint;
         }
 
