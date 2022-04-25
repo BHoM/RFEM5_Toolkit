@@ -44,6 +44,9 @@ namespace BH.Adapter.RFEM
             Node bhNode = new Node { Position = new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z } };
             bhNode.SetAdapterId(typeof(RFEMId), node.No);
 
+           
+            bhNode.Name = node.Comment;
+
             return bhNode;
         }
 

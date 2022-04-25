@@ -76,6 +76,9 @@ namespace BH.Adapter.RFEM
                 default:
                     break;
             }
+           
+         
+            bhMaterial.Name = material.Comment;
 
             bhMaterial.SetAdapterId(typeof(RFEMId), material.No);
             return bhMaterial;

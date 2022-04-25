@@ -41,6 +41,10 @@ namespace BH.Adapter.RFEM
             rfNode.Y = node.Position.Y;
             rfNode.Z = node.Position.Z;
             rfNode.Comment = node.Name;
+
+            rfNode.Comment = node.Name;
+
+
             return rfNode;
         }
 

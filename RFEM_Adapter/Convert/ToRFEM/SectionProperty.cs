@@ -54,8 +54,15 @@ namespace BH.Adapter.RFEM
 
             name = sectionProperty.DescriptionOrName();
             
+            
+            //TODO 
+            // The CrossSection class does both use the attribute name and discribtion. 
+            // The Grasshopper interface does only know name
+
             rfSectionProperty.Description = name;
             rfSectionProperty.TextID = name;
+            rfSectionProperty.Description = name;
+            rfSectionProperty.Comment = sectionProperty.Name;
 
             return rfSectionProperty;
 

@@ -42,7 +42,7 @@ namespace BH.Adapter.RFEM
         {
             rf.SurfaceStiffness stiffness = new rf.SurfaceStiffness();
 
-
+            
 
             if (surfaceProperty is LoadingPanelProperty)
             {
@@ -118,6 +118,8 @@ namespace BH.Adapter.RFEM
                 }
 
             }
+            stiffness.Comment = surfaceProperty.Name;
+
             return stiffness;
 
         }
