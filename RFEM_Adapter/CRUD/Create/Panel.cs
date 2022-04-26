@@ -34,7 +34,7 @@ namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter
     {
-
+        String test = "Test";
         /***************************************************/
         /**** Private methods                           ****/
         /***************************************************/
