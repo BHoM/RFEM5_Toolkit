@@ -61,7 +61,6 @@ namespace BH.Adapter.RFEM
 
             rfSectionProperty.Description = name;
             rfSectionProperty.TextID = name;
-            rfSectionProperty.Description = name;
             rfSectionProperty.Comment = sectionProperty.Name;
 
             return rfSectionProperty;
