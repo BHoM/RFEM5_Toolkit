@@ -50,7 +50,6 @@ namespace BH.Adapter.RFEM
             rf.CrossSection rfSectionProperty = rfISectionProperty.GetData();
 
             string sectionName = rfSectionProperty.Description;
-            sectionName.GetType().ToString();
 
             
 
