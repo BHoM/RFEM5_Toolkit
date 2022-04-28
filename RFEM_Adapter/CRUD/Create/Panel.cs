@@ -34,7 +34,6 @@ namespace BH.Adapter.RFEM
 {
     public partial class RFEMAdapter
     {
-        String test = "Test";
         /***************************************************/
         /**** Private methods                           ****/
         /***************************************************/
@@ -49,6 +48,16 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < panels.Count(); i++)
                 {
+                   
+
+                    if (panelList.ElementAt(i).Property == null)
+                    {
+                        Engine.Base.Compute.RecordError("Could not create surface due to missing property in the panel "+ panelList.ElementAt(i).Name);
+                        continue;
+                    }
+                    
+
+
                     panelIdNum = GetAdapterId<int>(panelList[i]);
 
                     //get ids outside of BHoM process - might need to be changed
