@@ -45,19 +45,19 @@ namespace BH.Adapter.RFEM
         {
             Constraint6DOF bhConstraint = new Constraint6DOF();
 
-            
+
             bhConstraint.Name = rfConstraint.Comment;
 
             //Translation x
             if (rfConstraint.SupportConstantX == 0)
             {
                 bhConstraint.TranslationX = DOFType.Free;
-                bhConstraint.TranslationalStiffnessX = 0;
             }
             else if (rfConstraint.SupportConstantX == -1)
             {
                 bhConstraint.TranslationX = DOFType.Fixed;
-                bhConstraint.TranslationalStiffnessX = -1;
+
+
             }
             else
             {
@@ -68,12 +68,12 @@ namespace BH.Adapter.RFEM
             if (rfConstraint.SupportConstantY == 0)
             {
                 bhConstraint.TranslationY = DOFType.Free;
-                bhConstraint.TranslationalStiffnessY = 0;
             }
             else if (rfConstraint.SupportConstantY == -1)
             {
                 bhConstraint.TranslationY = DOFType.Fixed;
-                bhConstraint.TranslationalStiffnessY = -1;
+
+
             }
             else
             {
@@ -84,16 +84,16 @@ namespace BH.Adapter.RFEM
             if (rfConstraint.SupportConstantZ == 0)
             {
                 bhConstraint.TranslationZ = DOFType.Free;
-                bhConstraint.TranslationalStiffnessZ = 0;
             }
             else if (rfConstraint.SupportConstantZ == -1)
             {
                 bhConstraint.TranslationZ = DOFType.Fixed;
-                bhConstraint.TranslationalStiffnessZ = -1;
+
+
             }
             else
             {
-                bhConstraint.TranslationalStiffnessX = rfConstraint.SupportConstantZ;
+                bhConstraint.TranslationalStiffnessZ = rfConstraint.SupportConstantZ;
                 bhConstraint.TranslationZ = DOFType.Spring;
             }
 
@@ -103,12 +103,12 @@ namespace BH.Adapter.RFEM
             if (rfConstraint.RestraintConstantX == 0)
             {
                 bhConstraint.RotationX = DOFType.Free;
-                bhConstraint.RotationalStiffnessX = 0;
             }
             else if (rfConstraint.RestraintConstantX == -1)
             {
                 bhConstraint.RotationX = DOFType.Fixed;
-                bhConstraint.RotationalStiffnessX = -1;
+
+
             }
             else
             {
@@ -120,12 +120,12 @@ namespace BH.Adapter.RFEM
             if (rfConstraint.RestraintConstantY == 0)
             {
                 bhConstraint.RotationY = DOFType.Free;
-                bhConstraint.RotationalStiffnessY = 0;
             }
             else if (rfConstraint.RestraintConstantY == -1)
             {
                 bhConstraint.RotationY = DOFType.Fixed;
-                bhConstraint.RotationalStiffnessY = -1;
+
+
             }
             else
             {
@@ -137,12 +137,12 @@ namespace BH.Adapter.RFEM
             if (rfConstraint.RestraintConstantZ == 0)
             {
                 bhConstraint.RotationZ = DOFType.Free;
-                bhConstraint.RotationalStiffnessZ = 0;
             }
             else if (rfConstraint.RestraintConstantZ == -1)
             {
                 bhConstraint.RotationZ = DOFType.Fixed;
-                bhConstraint.RotationalStiffnessZ = -1;
+
+
             }
             else
             {
