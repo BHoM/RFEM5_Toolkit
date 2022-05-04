@@ -43,11 +43,11 @@ namespace BH.Adapter.RFEM
             rfConstraint.No = constraintId;
             rfConstraint.NodeList = nodeId.ToString();//<-- id reference to node(s) required for writing constraint to RFEM 
 
-            //Translation - RFEM unit is N/m
+
             if (constraint.TranslationX == DOFType.Free)
                 rfConstraint.SupportConstantX = 0;
             else if (constraint.TranslationX == DOFType.Fixed)
-                rfConstraint.SupportConstantX = -1;
+               rfConstraint.SupportConstantX = -1;
             else
                 rfConstraint.SupportConstantX = constraint.TranslationalStiffnessX;
 
@@ -87,7 +87,7 @@ namespace BH.Adapter.RFEM
             else
                 rfConstraint.RestraintConstantZ = constraint.RotationalStiffnessZ;
 
-         
+            new Constraint6DOF { Name = "name" };
            
 
             return rfConstraint;
