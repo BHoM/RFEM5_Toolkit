@@ -87,8 +87,7 @@ namespace BH.Adapter.RFEM
             else
                 rfConstraint.RestraintConstantZ = constraint.RotationalStiffnessZ;
 
-            new Constraint6DOF { Name = "name" };
-           
+
 
             return rfConstraint;
         }
