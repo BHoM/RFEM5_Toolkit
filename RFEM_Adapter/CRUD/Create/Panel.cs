@@ -88,6 +88,81 @@ namespace BH.Adapter.RFEM
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
 
+
+                    ///Openings
+
+                    if (panelList[i].Openings.Count>0)
+                    {
+
+                        List<Opening> openings = panelList[i].Openings;
+                        rf.Opening[] rfOpenings = new rf.Opening[openings.Count];
+                        int openingId = 0;
+
+                        foreach (Opening o in openings)
+                        {
+
+                            int count = 0;
+                            openingId = modelData.GetLastObjectNo(rf.ModelObjectType.OpeningObject);
+
+                            List<string> openingOutlineNodeList = new List<string>();
+
+                            
+
+                            //Defining Nodes
+                            foreach (Edge e in o.Edges)
+                            {
+                                Line edgeAsLine = e.Curve as Line;
+
+                                rf.Node rfNode = new rf.Node
+                                {
+                                    No = (int)this.NextFreeId(typeof(Node)),
+                                    X = edgeAsLine.Start.X,
+                                    Y = edgeAsLine.Start.Y,
+                                    Z = edgeAsLine.Start.Z
+                                };
+                                modelData.SetNode(rfNode);
+                                openingOutlineNodeList.Add(rfNode.No.ToString());
+                            }
+                            openingOutlineNodeList.Add(openingOutlineNodeList[0]);
+
+                            lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
+
+                            //Defining Lines
+                            rf.Line openingOutline = new rf.Line()
+                            {
+                                No = lastLineId + 1,
+                                Type = rf.LineType.PolylineType,
+                                NodeList = String.Join(",", openingOutlineNodeList)
+                            };
+                            modelData.SetLine(openingOutline);
+
+                            rf.Opening opening = new rf.Opening()
+                            {
+                                No = openingId,
+                                InSurfaceNo = rfSurfaces[i].No,
+                                BoundaryLineList = String.Join(",", openingOutline.No)
+                                
+                            };
+
+                            rfOpenings[count]= opening;
+                            modelData.SetOpening(opening);
+                            rfSurfaces[i].IntegratedOpeningList = String.Join(",", new int[] {opening.No});
+
+
+                            
+                        }
+                        modelData.SetSurface(rfSurfaces[i]);
+
+
+                    };
+
+
+
+
+
+                    ////
+
+
                     if(rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
                     {
                         modelData.SetSurface(rfSurfaces[i]);
