@@ -76,10 +76,33 @@ namespace BH.Adapter.RFEM
                     }
                     
                     List<Opening> openings = null;
+                    
+
+                    
+
+
+                    //if opening panel exists
+                    if (!(surface.BoundaryLineList.Length==0))
+                    {
+                        List<int> openingIDList=GetIdListFromString(surface.BoundaryLineList);
+
+                        foreach (int i in openingIDList)
+                        {
+                            Opening opening = new Opening();
+                            rf.Opening rfOpening=modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
+
+                            opening.Edges = GetEdgesFromOpenings(rfOpening);
+                            //panel.Openings.Add(opening);
+                            openings.Add(opening);
+                        }
+
+
+                    }
+
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
                     panel.Name = surface.Comment;
-
                     panelList.Add(panel);
+
                 }
             }
             else
@@ -99,10 +122,31 @@ namespace BH.Adapter.RFEM
                     rf.SurfaceStiffness stiffness = ortho.GetData();
 
                     surfaceProperty = stiffness.FromRFEM(material);
-
                     List<Opening> openings = null;
-                    Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
 
+
+
+
+
+                    //if opening panel exists
+                    if (!(surface.BoundaryLineList.Length == 0))
+                    {
+                        List<int> openingIDList = GetIdListFromString(surface.BoundaryLineList);
+
+                        foreach (int i in openingIDList)
+                        {
+                            Opening opening = new Opening();
+                            rf.Opening rfOpening = modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
+
+                            opening.Edges = GetEdgesFromOpenings(rfOpening);
+                            //panel.Openings.Add(opening);
+                            openings.Add(opening);
+                        }
+
+
+                    }
+                 
+                    Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
                     panelList.Add(panel);
                 }
             }
@@ -174,6 +218,33 @@ namespace BH.Adapter.RFEM
 
             return idList;
         }
+
+        private List<Edge> GetEdgesFromOpenings(rf.Opening openings)
+        {
+            List<Edge> edges = new List<Edge>();
+            string boundaryString = modelData.GetOpening(openings.No, rf.ItemAt.AtNo).GetData().BoundaryLineList;
+
+            List<int> boundaryLineIds = GetIdListFromString(boundaryString);
+
+
+            foreach (int edgeId in boundaryLineIds)
+            {
+                List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
+                string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                List<int> nodeIds = GetIdListFromString(nodeIdString);
+
+                foreach (int ptId in nodeIds)
+                {
+                    rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
+                    ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
+                }
+                edges.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
+            }
+
+
+            return edges;
+        }
+
     }
 }
 
