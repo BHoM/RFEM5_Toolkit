@@ -95,28 +95,33 @@ namespace BH.Adapter.RFEM
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
 
-
-                    ///Openings
-
-                    if (panelList[i].Openings.Count>0)
+                    if(rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
                     {
+                        modelData.SetSurface(rfSurfaces[i]);
+                    }
+                    else
+                    {
+                        rf.SurfaceStiffness stiffness = panelList[i].Property.ToRFEM();
+                        rfSurfaces[i].Thickness.Constant = stiffness.Thickness;
+                        rf.ISurface srf = modelData.SetSurface(rfSurfaces[i]);
+                        rf.IOrthotropicThickness ortho = srf.GetOrthotropicThickness();
+                        ortho.SetData(stiffness);
+                    }
 
-                        List<Opening> openings = panelList[i].Openings;
-                        rf.Opening[] rfOpenings = new rf.Opening[openings.Count];
+                    //Openings
+                    if (panelList[i].Openings.Count > 0)
+                    {
+                        List<Opening> openingList = panelList[i].Openings;
+                        rf.Opening[] rfOpenings = new rf.Opening[openingList.Count];
                         int openingId = 0;
 
-                        foreach (Opening o in openings)
+                        for (int o = 0; o < openingList.Count; o++)
                         {
-
-                            int count = 0;
                             openingId = modelData.GetLastObjectNo(rf.ModelObjectType.OpeningObject);
-
                             List<string> openingOutlineNodeList = new List<string>();
-
                             
-
                             //Defining Nodes
-                            foreach (Edge e in o.Edges)
+                            foreach (Edge e in openingList[o].Edges)
                             {
                                 Line edgeAsLine = e.Curve as Line;
 
@@ -148,44 +153,16 @@ namespace BH.Adapter.RFEM
                                 No = openingId,
                                 InSurfaceNo = rfSurfaces[i].No,
                                 BoundaryLineList = String.Join(",", openingOutline.No)
-                                
                             };
 
-                            rfOpenings[count]= opening;
+                            rfOpenings[o] = opening;
+                            rfSurfaces[i].IntegratedOpeningList = String.Join(",", new int[] { opening.No });
+
                             modelData.SetOpening(opening);
-                            rfSurfaces[i].IntegratedOpeningList = String.Join(",", new int[] {opening.No});
-
-
-                            
                         }
-                        modelData.SetSurface(rfSurfaces[i]);
-
-
-                    };
-
-
-
-
-
-                    ////
-
-
-                    if(rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
-                    {
-                        modelData.SetSurface(rfSurfaces[i]);
                     }
-                    else
-                    {
-                        rf.SurfaceStiffness stiffness = panelList[i].Property.ToRFEM();
-                        rfSurfaces[i].Thickness.Constant = stiffness.Thickness;
-                        rf.ISurface srf = modelData.SetSurface(rfSurfaces[i]);
-                        rf.IOrthotropicThickness ortho = srf.GetOrthotropicThickness();
-                        ortho.SetData(stiffness);
-                    }
-
 
                 }
-
             }
 
             return true;
