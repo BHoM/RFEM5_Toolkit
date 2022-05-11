@@ -77,6 +77,9 @@ namespace BH.Adapter.RFEM
 
                         if (e.Curve.GetType().Name.Equals("Polyline"))
                         {
+                            //TODO:
+                            //Add section that enables the algo to handle polylines larege than 2 pts.
+
                             rfNode1.No = (int)this.NextFreeId(typeof(Node));
                             rfNode1.X = polyline.ControlPoints[0].X;
                             rfNode1.Y = polyline.ControlPoints[0].Y;
@@ -143,7 +146,10 @@ namespace BH.Adapter.RFEM
                                 rf.Node rfNode = new rf.Node();
                                 if (e.Curve.GetType().Name.Equals("Polyline"))
                                 {
-                                    
+                                    //TODO:
+                                    //Add section that enables the algo to handle polylines larege than 2 pts.
+
+
                                     rfNode.No = (int)this.NextFreeId(typeof(Node));
                                     rfNode.X = polyline.ControlPoints[0].X;
                                     rfNode.Y = polyline.ControlPoints[0].Y;
