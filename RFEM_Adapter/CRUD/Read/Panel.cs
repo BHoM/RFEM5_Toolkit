@@ -29,6 +29,7 @@ using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.Constraints;
+using BH.oM.Geometry;
 
 using rf = Dlubal.RFEM5;
 using BH.oM.Structure.MaterialFragments;
@@ -75,24 +76,28 @@ namespace BH.Adapter.RFEM
                         Engine.Base.Compute.RecordError("could not create surface property of type " + surface.StiffnessType.ToString());
                     }
                     
-                    List<Opening> openings = null;
-                    
-
-                    
+                    List<Opening> openings = new List<Opening>();
 
 
                     //if opening panel exists
-                    if (!(surface.BoundaryLineList.Length==0))
+                    if (!(surface.BoundaryLineList.Length == 0))
                     {
-                        List<int> openingIDList=GetIdListFromString(surface.BoundaryLineList);
+                        List<int> openingIDList = GetIdListFromString(surface.IntegratedOpeningList);
 
                         foreach (int i in openingIDList)
                         {
-                            Opening opening = new Opening();
-                            rf.Opening rfOpening=modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
+                           
+                            rf.Opening rfOpening = modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
+                            List<Edge> edges = GetEdgesFromOpenings(rfOpening);
+                            List<ICurve> iCurveList = new List<ICurve>(); 
 
-                            opening.Edges = GetEdgesFromOpenings(rfOpening);
-                            //panel.Openings.Add(opening);
+                            foreach (Edge e in edges)
+                            {
+                                iCurveList.Add(e.Curve);
+                            }
+                    
+                            Opening opening = Engine.Structure.Create.Opening(iCurveList);
+       
                             openings.Add(opening);
                         }
 
@@ -140,12 +145,15 @@ namespace BH.Adapter.RFEM
 
                             opening.Edges = GetEdgesFromOpenings(rfOpening);
                             //panel.Openings.Add(opening);
-                            openings.Add(opening);
+                            //openings.Add(opening);
+
+
+                            openings.Add(Engine.Structure.Create.Opening((oM.Geometry.ICurve)GetEdgesFromOpenings(rfOpening)));
                         }
 
 
                     }
-                 
+
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
                     panelList.Add(panel);
                 }
