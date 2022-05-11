@@ -78,8 +78,7 @@ namespace BH.Adapter.RFEM
                     
                     List<Opening> openings = new List<Opening>();
 
-
-                    //if opening panel exists
+                    //if opening exists in panel
                     if (!(surface.BoundaryLineList.Length == 0))
                     {
                         List<int> openingIDList = GetIdListFromString(surface.IntegratedOpeningList);
@@ -88,20 +87,10 @@ namespace BH.Adapter.RFEM
                         {
                            
                             rf.Opening rfOpening = modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
-                            List<Edge> edges = GetEdgesFromOpenings(rfOpening);
-                            List<ICurve> iCurveList = new List<ICurve>(); 
-
-                            foreach (Edge e in edges)
-                            {
-                                iCurveList.Add(e.Curve);
-                            }
-                    
-                            Opening opening = Engine.Structure.Create.Opening(iCurveList);
-       
+                            List<ICurve> edges = GetEdgesAsCurveFromOpenings(rfOpening);
+                            Opening opening = Engine.Structure.Create.Opening(edges);
                             openings.Add(opening);
                         }
-
-
                     }
 
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
@@ -127,31 +116,21 @@ namespace BH.Adapter.RFEM
                     rf.SurfaceStiffness stiffness = ortho.GetData();
 
                     surfaceProperty = stiffness.FromRFEM(material);
-                    List<Opening> openings = null;
+                    List<Opening> openings = new List<Opening>();
 
-
-
-
-
-                    //if opening panel exists
+                    //if opening exists in panel
                     if (!(surface.BoundaryLineList.Length == 0))
                     {
-                        List<int> openingIDList = GetIdListFromString(surface.BoundaryLineList);
+                        List<int> openingIDList = GetIdListFromString(surface.IntegratedOpeningList);
 
                         foreach (int i in openingIDList)
                         {
-                            Opening opening = new Opening();
+
                             rf.Opening rfOpening = modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
-
-                            opening.Edges = GetEdgesFromOpenings(rfOpening);
-                            //panel.Openings.Add(opening);
-                            //openings.Add(opening);
-
-
-                            openings.Add(Engine.Structure.Create.Opening((oM.Geometry.ICurve)GetEdgesFromOpenings(rfOpening)));
+                            List<ICurve> edges = GetEdgesAsCurveFromOpenings(rfOpening);
+                            Opening opening = Engine.Structure.Create.Opening(edges);
+                            openings.Add(opening);
                         }
-
-
                     }
 
                     Panel panel = Engine.Structure.Create.Panel(edgeList, openings, surfaceProperty);
@@ -227,13 +206,12 @@ namespace BH.Adapter.RFEM
             return idList;
         }
 
-        private List<Edge> GetEdgesFromOpenings(rf.Opening openings)
+        private List<ICurve> GetEdgesAsCurveFromOpenings(rf.Opening openings)
         {
-            List<Edge> edges = new List<Edge>();
+            
+            List<ICurve> edgesAsCurve = new List<ICurve>();
             string boundaryString = modelData.GetOpening(openings.No, rf.ItemAt.AtNo).GetData().BoundaryLineList;
-
             List<int> boundaryLineIds = GetIdListFromString(boundaryString);
-
 
             foreach (int edgeId in boundaryLineIds)
             {
@@ -246,11 +224,12 @@ namespace BH.Adapter.RFEM
                     rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
                     ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
                 }
-                edges.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
+
+                edgesAsCurve.Add(Engine.Geometry.Create.Polyline(ptsInEdge));
             }
 
 
-            return edges;
+            return edgesAsCurve;
         }
 
     }
