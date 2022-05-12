@@ -117,7 +117,6 @@ namespace BH.Adapter.RFEM
                     };
                     modelData.SetLine(outline);
 
-
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
 
                     if(rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
@@ -165,12 +164,10 @@ namespace BH.Adapter.RFEM
                                         rfNode.Y = polyline.ControlPoints[j].Y;
                                         rfNode.Z = polyline.ControlPoints[j].Z;
 
-
                                         modelData.SetNode(rfNode);
                                         openingOutlineNodeList.Add(rfNode.No.ToString());
 
                                     }
-
                                 }
                                 else
                                 {
