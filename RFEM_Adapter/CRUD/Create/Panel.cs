@@ -54,53 +54,12 @@ namespace BH.Adapter.RFEM
                     //get ids outside of BHoM process - might need to be changed
                     int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
 
-
                     int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
 
                     //create outline
                     List<string> outlineNodeList = new List<string>();
-                    foreach (Edge e in panelList[i].ExternalEdges)
-                    {
-                        
-                        //create rfem nodes, i.e. bhom points - NOTE: RFEM will remove the coincident points itself leaving jumps in node numbering ! 1,2,4,6,8,10,...
-
-                        rf.Node rfNode1 = new rf.Node();
-
-                        if (e.Curve.GetType().Name.Equals("Polyline"))
-                        {
-
-                            Polyline polyline = e.Curve as Polyline;
-
-                            for (int j=0; j<polyline.ControlPoints.Count-1;j++)
-                            {
-                                rfNode1 = new rf.Node();
-
-                                rfNode1.No = (int)this.NextFreeId(typeof(Node));
-                                rfNode1.X = polyline.ControlPoints[j].X;
-                                rfNode1.Y = polyline.ControlPoints[j].Y;
-                                rfNode1.Z = polyline.ControlPoints[j].Z;
-
-                                modelData.SetNode(rfNode1);
-                                outlineNodeList.Add(rfNode1.No.ToString());
-                            }
-
-                        }
-                        else
-                        {
-                            Line edgeAsLine = e.Curve as Line;
-
-                            rfNode1.No = (int)this.NextFreeId(typeof(Node));
-                            rfNode1.X = edgeAsLine.Start.X;
-                            rfNode1.Y = edgeAsLine.Start.Y;
-                            rfNode1.Z = edgeAsLine.Start.Z;
-
-                            modelData.SetNode(rfNode1);
-                            outlineNodeList.Add(rfNode1.No.ToString());
-
-                        };
-                       
-                    }
-                    outlineNodeList.Add(outlineNodeList[0]);
+                   
+                    outlineNodeList=generateOutlineNodeList(panelList[i].ExternalEdges);
 
                     rf.Line outline = new rf.Line()
                     {
@@ -137,46 +96,8 @@ namespace BH.Adapter.RFEM
                         {
                             openingId = modelData.GetLastObjectNo(rf.ModelObjectType.OpeningObject);
                             List<string> openingOutlineNodeList = new List<string>();
-                            
-                            //Defining Nodes
-                            foreach (Edge e in openingList[o].Edges)
-                            {
-                                
-                                rf.Node rfNode = new rf.Node();
-                                if (e.Curve.GetType().Name.Equals("Polyline"))
-                                {
 
-                                    Polyline polyline = e.Curve as Polyline;
-
-                                    for (int j = 0; j < polyline.ControlPoints.Count - 1; j++)
-                                    {
-                                        rfNode=new rf.Node();
-
-                                        rfNode.No = (int)this.NextFreeId(typeof(Node));
-                                        rfNode.X = polyline.ControlPoints[j].X;
-                                        rfNode.Y = polyline.ControlPoints[j].Y;
-                                        rfNode.Z = polyline.ControlPoints[j].Z;
-
-                                        modelData.SetNode(rfNode);
-                                        openingOutlineNodeList.Add(rfNode.No.ToString());
-
-                                    }
-                                }
-                                else
-                                {
-                                    Line edgeAsLine = e.Curve as Line;
-
-                                    rfNode.No = (int)this.NextFreeId(typeof(Node));
-                                    rfNode.X = edgeAsLine.Start.X;
-                                    rfNode.Y = edgeAsLine.Start.Y;
-                                    rfNode.Z = edgeAsLine.Start.Z;
-
-                                    modelData.SetNode(rfNode);
-                                    openingOutlineNodeList.Add(rfNode.No.ToString());
-                                }
-
-                            }
-                            openingOutlineNodeList.Add(openingOutlineNodeList[0]);
+                            openingOutlineNodeList=generateOutlineNodeList(openingList[o].Edges);
 
                             lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
 
@@ -208,6 +129,54 @@ namespace BH.Adapter.RFEM
             }
 
             return true;
+        }
+
+
+        public List<String> generateOutlineNodeList(List<Edge> edgeList)
+        {
+            List<String> outlineNodeList = new List<String>();
+
+            //Defining Nodes
+            foreach (Edge e in edgeList)
+            {
+             
+                rf.Node rfNode = new rf.Node();
+                
+                if (e.Curve is Polyline)
+                {
+
+                    Polyline polyline = e.Curve as Polyline;
+
+                    for (int j = 0; j < polyline.ControlPoints.Count - 1; j++)
+                    {
+                        rfNode = new rf.Node();
+
+                        rfNode.No = (int)this.NextFreeId(typeof(Node));
+                        rfNode.X = polyline.ControlPoints[j].X;
+                        rfNode.Y = polyline.ControlPoints[j].Y;
+                        rfNode.Z = polyline.ControlPoints[j].Z;
+
+                        modelData.SetNode(rfNode);
+                        outlineNodeList.Add(rfNode.No.ToString());
+                    }
+                }
+                else
+                {
+                    Line edgeAsLine = e.Curve as Line;
+
+                    rfNode.No = (int)this.NextFreeId(typeof(Node));
+                    rfNode.X = edgeAsLine.Start.X;
+                    rfNode.Y = edgeAsLine.Start.Y;
+                    rfNode.Z = edgeAsLine.Start.Z;
+
+                    modelData.SetNode(rfNode);
+                    outlineNodeList.Add(rfNode.No.ToString());
+                }
+
+            }
+            outlineNodeList.Add(outlineNodeList[0]);
+
+            return outlineNodeList;
         }
 
     }
