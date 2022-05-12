@@ -61,35 +61,44 @@ namespace BH.Adapter.RFEM
                     List<string> outlineNodeList = new List<string>();
                     foreach (Edge e in panelList[i].ExternalEdges)
                     {
-                        Polyline polyline = e.Curve as Polyline;
-
+                        
                         //create rfem nodes, i.e. bhom points - NOTE: RFEM will remove the coincident points itself leaving jumps in node numbering ! 1,2,4,6,8,10,...
-                        Line edgeAsLine = e.Curve as Line;
 
                         rf.Node rfNode1 = new rf.Node();
 
                         if (e.Curve.GetType().Name.Equals("Polyline"))
                         {
-                            //TODO:
-                            //Add section that enables the algo to handle polylines larege than 2 pts.
 
-                            rfNode1.No = (int)this.NextFreeId(typeof(Node));
-                            rfNode1.X = polyline.ControlPoints[0].X;
-                            rfNode1.Y = polyline.ControlPoints[0].Y;
-                            rfNode1.Z = polyline.ControlPoints[0].Z;
+                            Polyline polyline = e.Curve as Polyline;
+
+                            for (int j=0; j<polyline.ControlPoints.Count-1;j++)
+                            {
+                                rfNode1 = new rf.Node();
+
+                                rfNode1.No = (int)this.NextFreeId(typeof(Node));
+                                rfNode1.X = polyline.ControlPoints[j].X;
+                                rfNode1.Y = polyline.ControlPoints[j].Y;
+                                rfNode1.Z = polyline.ControlPoints[j].Z;
+
+                                modelData.SetNode(rfNode1);
+                                outlineNodeList.Add(rfNode1.No.ToString());
+                            }
 
                         }
                         else
                         {
-                                rfNode1.No = (int)this.NextFreeId(typeof(Node));
-                                rfNode1.X = edgeAsLine.Start.X;
-                                rfNode1.Y = edgeAsLine.Start.Y;
-                                rfNode1.Z = edgeAsLine.Start.Z;
+                            Line edgeAsLine = e.Curve as Line;
+
+                            rfNode1.No = (int)this.NextFreeId(typeof(Node));
+                            rfNode1.X = edgeAsLine.Start.X;
+                            rfNode1.Y = edgeAsLine.Start.Y;
+                            rfNode1.Z = edgeAsLine.Start.Z;
+
+                            modelData.SetNode(rfNode1);
+                            outlineNodeList.Add(rfNode1.No.ToString());
+
                         };
-
-                        modelData.SetNode(rfNode1);
-
-                        outlineNodeList.Add(rfNode1.No.ToString());
+                       
                     }
                     outlineNodeList.Add(outlineNodeList[0]);
 
@@ -133,33 +142,42 @@ namespace BH.Adapter.RFEM
                             //Defining Nodes
                             foreach (Edge e in openingList[o].Edges)
                             {
-                                Line edgeAsLine = e.Curve as Line;
-                                Polyline polyline = e.Curve as Polyline;
-
+                                
                                 rf.Node rfNode = new rf.Node();
                                 if (e.Curve.GetType().Name.Equals("Polyline"))
                                 {
-                                    //TODO:
-                                    //Add section that enables the algo to handle polylines larege than 2 pts.
+
+                                    Polyline polyline = e.Curve as Polyline;
+
+                                    for (int j = 0; j < polyline.ControlPoints.Count - 1; j++)
+                                    {
+                                        rfNode=new rf.Node();
+
+                                        rfNode.No = (int)this.NextFreeId(typeof(Node));
+                                        rfNode.X = polyline.ControlPoints[j].X;
+                                        rfNode.Y = polyline.ControlPoints[j].Y;
+                                        rfNode.Z = polyline.ControlPoints[j].Z;
 
 
-                                    rfNode.No = (int)this.NextFreeId(typeof(Node));
-                                    rfNode.X = polyline.ControlPoints[0].X;
-                                    rfNode.Y = polyline.ControlPoints[0].Y;
-                                    rfNode.Z = polyline.ControlPoints[0].Z;
+                                        modelData.SetNode(rfNode);
+                                        openingOutlineNodeList.Add(rfNode.No.ToString());
+
+                                    }
+
                                 }
                                 else
                                 {
-                                    
+                                    Line edgeAsLine = e.Curve as Line;
+
                                     rfNode.No = (int)this.NextFreeId(typeof(Node));
                                     rfNode.X = edgeAsLine.Start.X;
                                     rfNode.Y = edgeAsLine.Start.Y;
                                     rfNode.Z = edgeAsLine.Start.Z;
+
+                                    modelData.SetNode(rfNode);
+                                    openingOutlineNodeList.Add(rfNode.No.ToString());
                                 }
 
-
-                                modelData.SetNode(rfNode);
-                                openingOutlineNodeList.Add(rfNode.No.ToString());
                             }
                             openingOutlineNodeList.Add(openingOutlineNodeList[0]);
 
