@@ -174,9 +174,8 @@ namespace BH.Adapter.RFEM
             //NOTE: the below only works if RFEM does not use a mix of ',' and '-' delimiters !!
             List<int> idList = new List<int>();
 
-            if(idsAsString.Contains('-') & idsAsString.Contains(','))
+            if (idsAsString.Contains('-') & idsAsString.Contains(','))
             {
-                foreach(string part in idsAsString.Split(','))
                 foreach (string part in idsAsString.Split(','))
                 {
                     if (!part.Contains('-'))
