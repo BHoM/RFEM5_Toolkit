@@ -78,8 +78,8 @@ namespace BH.Adapter.RFEM
                     
                     List<Opening> openings = new List<Opening>();
 
-                    //if opening exists in panel
-                    if (!(surface.BoundaryLineList.Length == 0))
+                    //if opening exists in panel     
+                    if (!(surface.IntegratedOpeningList.Length == 0))
                     {
                         List<int> openingIDList = GetIdListFromString(surface.IntegratedOpeningList);
 
@@ -119,7 +119,7 @@ namespace BH.Adapter.RFEM
                     List<Opening> openings = new List<Opening>();
 
                     //if opening exists in panel
-                    if (!(surface.BoundaryLineList.Length == 0))
+                    if (!(surface.IntegratedOpeningList.Length == 0))
                     {
                         List<int> openingIDList = GetIdListFromString(surface.IntegratedOpeningList);
 
@@ -177,6 +177,7 @@ namespace BH.Adapter.RFEM
             if(idsAsString.Contains('-') & idsAsString.Contains(','))
             {
                 foreach(string part in idsAsString.Split(','))
+                foreach (string part in idsAsString.Split(','))
                 {
                     if (!part.Contains('-'))
                     {
@@ -204,6 +205,7 @@ namespace BH.Adapter.RFEM
             }
 
             return idList;
+
         }
 
         private List<ICurve> GetEdgesAsCurveFromOpenings(rf.Opening openings)
