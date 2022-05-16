@@ -59,7 +59,7 @@ namespace BH.Adapter.RFEM
                     //create outline
                     List<string> outlineNodeList = new List<string>();
                    
-                    outlineNodeList=generateOutlineNodeList(panelList[i].ExternalEdges);
+                    outlineNodeList=GenerateOutlineNodeList(panelList[i].ExternalEdges);
 
                     rf.Line outline = new rf.Line()
                     {
@@ -97,7 +97,7 @@ namespace BH.Adapter.RFEM
                             openingId = modelData.GetLastObjectNo(rf.ModelObjectType.OpeningObject);
                             List<string> openingOutlineNodeList = new List<string>();
 
-                            openingOutlineNodeList=generateOutlineNodeList(openingList[o].Edges);
+                            openingOutlineNodeList=GenerateOutlineNodeList(openingList[o].Edges);
 
                             lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
 
@@ -132,9 +132,9 @@ namespace BH.Adapter.RFEM
         }
 
 
-        public List<String> generateOutlineNodeList(List<Edge> edgeList)
+        public List<string> GenerateOutlineNodeList(List<Edge> edgeList)
         {
-            List<String> outlineNodeList = new List<String>();
+            List<string> outlineNodeList = new List<string>();
 
             //Defining Nodes
             foreach (Edge e in edgeList)
