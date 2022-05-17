@@ -57,6 +57,8 @@ namespace BH.Adapter.RFEM
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
+                   
+
                     IMaterialFragment material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
                     if (surface.StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
@@ -153,16 +155,27 @@ namespace BH.Adapter.RFEM
 
             foreach (int edgeId in boundaryLineIds)
             {
-                List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
-                string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                List<int> nodeIds = GetIdListFromString(nodeIdString);
 
-                foreach (int ptId in nodeIds)
+                if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.PolylineType))
                 {
-                    rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
-                    ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
+
+
+
+                    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
+                    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                    List<int> nodeIds = GetIdListFromString(nodeIdString);
+
+                    foreach (int ptId in nodeIds)
+                    {
+                        rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
+                        ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
+                    }
+                    edgeList.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
                 }
-                edgeList.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
+                else
+                {
+                    Engine.Base.Compute.RecordError("Import of nont polygonal panel shapes have not been implemented yet!");
+                };
             }
 
             return edgeList;
