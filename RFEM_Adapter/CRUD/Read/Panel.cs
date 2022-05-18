@@ -173,35 +173,6 @@ namespace BH.Adapter.RFEM
                     edgeList.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
                 }
 
-                //else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.EllipseType))
-                //{
-
-                //    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
-                //    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                //    List<int> nodeIds = GetIdListFromString(nodeIdString);
-
-                //    rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
-                //    rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
-                //    rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
-
-                    
-
-                //    Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
-                //    Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
-                //    Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
-
-                //   // Ellipse arc = Engine.Geometry.Create.Ellipse(p0, p1, p2);
-
-                //   // edgeList.Add(new Edge { Curve = arc });
-
-                    
-
-                //}
-
-                //else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.EllipticalArcType))
-                //{
-
-                //}
 
                 //Arc-Circular
                 else if(modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.ArcType))
@@ -246,10 +217,11 @@ namespace BH.Adapter.RFEM
 
 
                 }
-                //TODO:: Issue 139
+                
+
                 else
                 {
-                    Engine.Base.Compute.RecordError("Import of other shaped panels have not been implemented yet!");
+                    Engine.Base.Compute.RecordError("Import of the chosen panel shape is currently not supported!");
                 };
             }
 
@@ -304,19 +276,66 @@ namespace BH.Adapter.RFEM
 
             foreach (int edgeId in boundaryLineIds)
             {
-                
-  
-                List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
-                string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                List<int> nodeIds = GetIdListFromString(nodeIdString);
 
-                foreach (int ptId in nodeIds)
+
+                if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.PolylineType)) {
+
+                    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
+                    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                    List<int> nodeIds = GetIdListFromString(nodeIdString);
+
+                    foreach (int ptId in nodeIds)
+                    {
+                        rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
+                        ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
+                    }
+
+                    edgesAsCurve.Add(Engine.Geometry.Create.Polyline(ptsInEdge));
+                }
+                else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.ArcType))
                 {
-                    rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
-                    ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
+
+                    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
+                    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                    List<int> nodeIds = GetIdListFromString(nodeIdString);
+
+                    rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
+                    rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
+                    rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
+                    Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
+                    Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
+                    Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
+
+                    Arc arc = Engine.Geometry.Create.Arc(p0, p1, p2);
+
+                    edgesAsCurve.Add(arc);
+
+
+                }
+                else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.CircleType))
+                {
+
+                    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
+                    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                    List<int> nodeIds = GetIdListFromString(nodeIdString);
+
+                    rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
+                    rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
+                    rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
+                    Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
+                    Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
+                    Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
+
+                    Circle circle = Engine.Geometry.Create.Circle(p0, p1, p2);
+
+                    edgesAsCurve.Add(circle);
+
+                }
+                else
+                {
+                    Engine.Base.Compute.RecordError("Import of chosen opening shape is currently not supported!");
                 }
 
-                edgesAsCurve.Add(Engine.Geometry.Create.Polyline(ptsInEdge));
             }
 
 
