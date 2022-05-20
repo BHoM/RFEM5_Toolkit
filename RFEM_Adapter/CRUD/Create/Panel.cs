@@ -65,20 +65,16 @@ namespace BH.Adapter.RFEM
 
                     //create outline
                     List<string> outlineNodeList = new List<string>();
-                   
-                    outlineNodeList=GenerateOutlineNodeList(panelList[i].ExternalEdges);
 
-                    rf.Line outline = new rf.Line()
-                    {
-                        No = lastLineId+1,
-                        Type = rf.LineType.PolylineType,
-                        NodeList = String.Join(",", outlineNodeList)
-                    };
-                    modelData.SetLine(outline);
 
-                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
+                    List<rf.Line> outline = GenerateOutlineNodeList(panelList[i].ExternalEdges);
+                    int[] outlineNo = outline.Select(l => l.No).ToArray();
 
-                    if(rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
+                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, outlineNo);
+
+                    //rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
+
+                    if (rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
                     {
                         modelData.SetSurface(rfSurfaces[i]);
                     }
@@ -104,25 +100,16 @@ namespace BH.Adapter.RFEM
                             openingId = modelData.GetLastObjectNo(rf.ModelObjectType.OpeningObject);
                             List<string> openingOutlineNodeList = new List<string>();
 
-                            openingOutlineNodeList=GenerateOutlineNodeList(openingList[o].Edges);
-
-                            lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
-
-                            //Defining Lines
-                            rf.Line openingOutline = new rf.Line()
-                            {
-                                No = lastLineId + 1,
-                                Type = rf.LineType.PolylineType,
-                                NodeList = String.Join(",", openingOutlineNodeList)
-                            };
-                            modelData.SetLine(openingOutline);
+                            List<rf.Line> openingOutline = GenerateOutlineNodeList(openingList[o].Edges);
+                            int[] lst = openingOutline.Select(l => l.No).ToArray();
+                            String[] otln = lst.Select(l => l.ToString()).ToArray();
 
                             //Defining Openings
                             rf.Opening opening = new rf.Opening()
                             {
-                                No = openingId+1,
+                                No = openingId + 1,
                                 InSurfaceNo = rfSurfaces[i].No,
-                                BoundaryLineList = String.Join(",", openingOutline.No)
+                                BoundaryLineList = String.Join(",", otln)
                             };
 
                             rfOpenings[o] = opening;
@@ -139,54 +126,199 @@ namespace BH.Adapter.RFEM
         }
 
 
-        public List<string> GenerateOutlineNodeList(List<Edge> edgeList)
+        public List<rf.Line> GenerateOutlineNodeList(List<Edge> edgeList)
         {
-            List<string> outlineNodeList = new List<string>();
+
+            List<rf.Line> lines = new List<rf.Line>();
+
+            Dictionary<double, Dictionary<double, Dictionary<double, rf.Node>>> pointMap= GenrateMapAndAddPointsToRFEM(edgeList);
 
             //Defining Nodes
             foreach (Edge e in edgeList)
             {
-             
+
                 rf.Node rfNode = new rf.Node();
-                
+
                 if (e.Curve is Polyline)
                 {
+                    List<string> outlineNodeList = new List<string>();
 
                     Polyline polyline = e.Curve as Polyline;
 
-                    for (int j = 0; j < polyline.ControlPoints.Count - 1; j++)
+                    if (polyline.ControlPoints.Last().Equals(polyline.ControlPoints.First()))
                     {
-                        rfNode = new rf.Node();
+                        for (int j = 0; j < polyline.ControlPoints.Count-1; j++)
+                        {
+    
+                            rfNode = pointMap[polyline.ControlPoints[j].X][polyline.ControlPoints[j].Y][polyline.ControlPoints[j].Z];
 
-                        rfNode.No = (int)this.NextFreeId(typeof(Node));
-                        rfNode.X = polyline.ControlPoints[j].X;
-                        rfNode.Y = polyline.ControlPoints[j].Y;
-                        rfNode.Z = polyline.ControlPoints[j].Z;
-
-                        modelData.SetNode(rfNode);
-                        outlineNodeList.Add(rfNode.No.ToString());
+                            outlineNodeList.Add(rfNode.No.ToString());
+                        }
+                        outlineNodeList.Add(outlineNodeList[0]);
                     }
+                    else
+                    {
+
+                        for (int j = 0; j < polyline.ControlPoints.Count; j++)
+                        {
+                            rfNode = pointMap[polyline.ControlPoints[j].X][polyline.ControlPoints[j].Y][polyline.ControlPoints[j].Z];
+
+                            outlineNodeList.Add(rfNode.No.ToString());
+                        }
+                    }
+
+                    //Defining Lines
+                    rf.Line openingOutline = new rf.Line()
+                    {
+                        No = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject) + 1,
+                        Type = rf.LineType.PolylineType,
+                        NodeList = String.Join(",", outlineNodeList)
+                    };
+                    modelData.SetLine(openingOutline);
+
+                    lines.Add(openingOutline);
+
                 }
-                else
+                else if (e.Curve is Line)
                 {
+                    List<string> outlineNodeList = new List<string>();
+
                     Line edgeAsLine = e.Curve as Line;
 
-                    rfNode.No = (int)this.NextFreeId(typeof(Node));
-                    rfNode.X = edgeAsLine.Start.X;
-                    rfNode.Y = edgeAsLine.Start.Y;
-                    rfNode.Z = edgeAsLine.Start.Z;
+                    rfNode = pointMap[edgeAsLine.Start.X][edgeAsLine.Start.Y][edgeAsLine.Start.Z];
 
-                    modelData.SetNode(rfNode);
                     outlineNodeList.Add(rfNode.No.ToString());
+
+                    //Defining Lines
+                    rf.Line openingOutline = new rf.Line()
+                    {
+                        No = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject) + 1,
+                        Type = rf.LineType.PolylineType,
+                        NodeList = String.Join(",", outlineNodeList)
+                    };
+                    modelData.SetLine(openingOutline);
+
+
+                    lines.Add(openingOutline);
+
                 }
+                else if (e.Curve is Arc)
+                {
 
+                    Arc edgeAsArch = e.Curve as Arc;
+                    List<Point> pt0 = Engine.Geometry.Query.ControlPoints(edgeAsArch);
+                    List<String> archPointNoString = new List<string>();
+
+    
+                    rf.Node node0=pointMap[pt0[0].X][pt0[0].Y][pt0[0].Z];
+                    rf.Node node1 = pointMap[pt0[2].X][pt0[2].Y][pt0[2].Z];
+                    rf.Node node2 = pointMap[pt0[4].X][pt0[4].Y][pt0[4].Z];
+
+                    archPointNoString.Add(node0.No.ToString());
+                    archPointNoString.Add(node1.No.ToString());
+                    archPointNoString.Add(node2.No.ToString());
+
+
+                    //Defining Lines
+                    rf.Line arcLine = new rf.Line()
+                    {
+                        No = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject) + 1,
+                        Type = rf.LineType.ArcType,
+                        NodeList = String.Join(",", archPointNoString)
+                    };
+                    modelData.SetLine(arcLine);
+
+                    lines.Add(arcLine);
+
+                }
             }
-            outlineNodeList.Add(outlineNodeList[0]);
 
-            return outlineNodeList;
+            return lines;
         }
 
+        private Dictionary<double, Dictionary<double, Dictionary<double, rf.Node>>> GenrateMapAndAddPointsToRFEM(List<Edge> edges)
+        {
+
+            Dictionary<double, Dictionary<double, Dictionary<double, rf.Node>>> pointMap = new Dictionary<double, Dictionary<double, Dictionary<double, rf.Node>>>();
+
+            foreach (Edge e in edges)
+            {
+
+                List<Point> points = new List<Point>();
+                if (e.Curve is Polyline)
+                {
+                    Polyline polyline = e.Curve as Polyline;
+
+                    points = polyline.ControlPoints;
+                } 
+                else if (e.Curve is Arc)
+                {
+                    Arc arc = e.Curve as Arc;
+                    points = Engine.Geometry.Query.ControlPoints(arc);
+
+                }
+
+                foreach (Point p in points)
+                {
+                    double x = p.X;
+                    double y = p.Y;
+                    double z = p.Z;
+
+
+                    rf.Node node = new rf.Node()
+                    {
+                        //No = (int)this.NextFreeId(typeof(Node)),
+                        X = x,
+                        Y = y,
+                        Z = z
+                    };
+
+                    if (!pointMap.ContainsKey(x))
+                    {
+
+                        node.No = (int)this.NextFreeId(typeof(Node));
+                        modelData.SetNode(node);
+                        Dictionary<double, rf.Node> pmZ = new Dictionary<double, rf.Node>();
+                        pmZ.Add(z, node);
+                        Dictionary<double, Dictionary<double, rf.Node>> pmY = new Dictionary<double, Dictionary<double, rf.Node>>();
+                        pmY.Add(y, pmZ);
+                        pointMap.Add(x, pmY);
+
+                    }
+                    else if (!pointMap[x].ContainsKey(y))
+                    {
+
+                        node.No = (int)this.NextFreeId(typeof(Node));
+                        modelData.SetNode(node);
+                        Dictionary<double, rf.Node> pmZ = new Dictionary<double, rf.Node>();
+                        pmZ.Add(z, node);
+                        Dictionary<double, Dictionary<double, rf.Node>> pmY = new Dictionary<double, Dictionary<double, rf.Node>>();
+                        pmY.Add(y, pmZ);
+                        pointMap[x] = pmY;
+
+
+
+                    }
+                    else if (!pointMap[x][y].ContainsKey(z))
+                    {
+                        node.No = (int)this.NextFreeId(typeof(Node));
+                        modelData.SetNode(node);
+                        Dictionary<double, rf.Node> pmZ = new Dictionary<double, rf.Node>();
+                        pmZ.Add(z, node);
+                        pointMap[x][y] = pmZ;
+
+                    }
+
+                }
+            }
+
+            return pointMap;
+        }
+
+
     }
+
 }
+
 
 
