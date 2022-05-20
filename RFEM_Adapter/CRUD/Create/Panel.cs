@@ -254,7 +254,10 @@ namespace BH.Adapter.RFEM
                 else if (e.Curve is Arc)
                 {
                     Arc arc = e.Curve as Arc;
-                    points = Engine.Geometry.Query.ControlPoints(arc);
+                    //points = Engine.Geometry.Query.ControlPoints(arc);
+                    points.Add(Engine.Geometry.Query.ControlPoints(arc)[0]);
+                    points.Add(Engine.Geometry.Query.ControlPoints(arc)[2]);
+                    points.Add(Engine.Geometry.Query.ControlPoints(arc)[4]);
 
                 }
 
