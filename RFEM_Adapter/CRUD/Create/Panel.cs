@@ -41,6 +41,7 @@ namespace BH.Adapter.RFEM
 
         private bool CreateCollection(IEnumerable<Panel> panels)
         {
+            //If panels exist
             if (panels.Count() > 0)
             {
                 int panelIdNum = 0;
@@ -61,18 +62,11 @@ namespace BH.Adapter.RFEM
                     //get ids outside of BHoM process - might need to be changed
                     int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
 
-                    int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
-
-                    //create outline
-                    List<string> outlineNodeList = new List<string>();
-
-
-                    List<rf.Line> outline = GenerateOutlineNodeList(panelList[i].ExternalEdges);
+                    //Panel Outline
+                    List<rf.Line> outline = GenerateLineOutlineList(panelList[i].ExternalEdges);
                     int[] outlineNo = outline.Select(l => l.No).ToArray();
-
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, outlineNo);
 
-                    //rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
 
                     if (rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
                     {
@@ -87,29 +81,25 @@ namespace BH.Adapter.RFEM
                         ortho.SetData(stiffness);
                     }
 
-                    //Openings
+                    //If opening exist in panel
                     if (panelList[i].Openings.Count > 0)
                     {
+                        int openingId = 0;
                         List<Opening> openingList = panelList[i].Openings;
                         rf.Opening[] rfOpenings = new rf.Opening[openingList.Count];
-                        int openingId = 0;
-
 
                         for (int o = 0; o < openingList.Count; o++)
                         {
                             openingId = modelData.GetLastObjectNo(rf.ModelObjectType.OpeningObject);
-                            List<string> openingOutlineNodeList = new List<string>();
-
-                            List<rf.Line> openingOutline = GenerateOutlineNodeList(openingList[o].Edges);
-                            int[] lst = openingOutline.Select(l => l.No).ToArray();
-                            String[] otln = lst.Select(l => l.ToString()).ToArray();
+                            List<rf.Line> openingOutline = GenerateLineOutlineList(openingList[o].Edges);
+                            String[] openingOutlineLineNo = (openingOutline.Select(lst => lst.No).ToArray()).Select(l => l.ToString()).ToArray();
 
                             //Defining Openings
                             rf.Opening opening = new rf.Opening()
                             {
                                 No = openingId + 1,
                                 InSurfaceNo = rfSurfaces[i].No,
-                                BoundaryLineList = String.Join(",", otln)
+                                BoundaryLineList = String.Join(",", openingOutlineLineNo)
                             };
 
                             rfOpenings[o] = opening;
@@ -126,48 +116,43 @@ namespace BH.Adapter.RFEM
         }
 
 
-        public List<rf.Line> GenerateOutlineNodeList(List<Edge> edgeList)
+        public List<rf.Line> GenerateLineOutlineList(List<Edge> edgeList)
         {
-
             List<rf.Line> lines = new List<rf.Line>();
 
-            Dictionary<double, Dictionary<double, Dictionary<double, rf.Node>>> pointMap= GenrateMapAndAddPointsToRFEM(edgeList);
+            //point Map to avoid double definition of points
+            Dictionary<double, Dictionary<double, Dictionary<double, rf.Node>>> pointMap = GenrateMapAndAddPointsToRFEM(edgeList);
 
             //Defining Nodes
             foreach (Edge e in edgeList)
             {
 
-                rf.Node rfNode = new rf.Node();
+                rf.Node rfNode;
 
                 if (e.Curve is Polyline)
                 {
+                    Polyline polyline = e.Curve as Polyline;
                     List<string> outlineNodeList = new List<string>();
 
-                    Polyline polyline = e.Curve as Polyline;
-
+                    //If Curve is closed
                     if (polyline.ControlPoints.Last().Equals(polyline.ControlPoints.First()))
                     {
-                        for (int j = 0; j < polyline.ControlPoints.Count-1; j++)
+                        for (int j = 0; j < polyline.ControlPoints.Count - 1; j++)
                         {
-    
                             rfNode = pointMap[polyline.ControlPoints[j].X][polyline.ControlPoints[j].Y][polyline.ControlPoints[j].Z];
-
                             outlineNodeList.Add(rfNode.No.ToString());
                         }
                         outlineNodeList.Add(outlineNodeList[0]);
                     }
                     else
                     {
-
                         for (int j = 0; j < polyline.ControlPoints.Count; j++)
                         {
                             rfNode = pointMap[polyline.ControlPoints[j].X][polyline.ControlPoints[j].Y][polyline.ControlPoints[j].Z];
-
                             outlineNodeList.Add(rfNode.No.ToString());
                         }
                     }
-
-                    //Defining Lines
+                    //Defining rf.Line objects from polylines
                     rf.Line openingOutline = new rf.Line()
                     {
                         No = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject) + 1,
@@ -182,11 +167,8 @@ namespace BH.Adapter.RFEM
                 else if (e.Curve is Line)
                 {
                     List<string> outlineNodeList = new List<string>();
-
                     Line edgeAsLine = e.Curve as Line;
-
                     rfNode = pointMap[edgeAsLine.Start.X][edgeAsLine.Start.Y][edgeAsLine.Start.Z];
-
                     outlineNodeList.Add(rfNode.No.ToString());
 
                     //Defining Lines
@@ -197,8 +179,6 @@ namespace BH.Adapter.RFEM
                         NodeList = String.Join(",", outlineNodeList)
                     };
                     modelData.SetLine(openingOutline);
-
-
                     lines.Add(openingOutline);
 
                 }
@@ -206,18 +186,12 @@ namespace BH.Adapter.RFEM
                 {
 
                     Arc edgeAsArch = e.Curve as Arc;
-                    List<Point> pt0 = Engine.Geometry.Query.ControlPoints(edgeAsArch);
+                    List<Point> cp = Engine.Geometry.Query.ControlPoints(edgeAsArch);
                     List<String> archPointNoString = new List<string>();
 
-    
-                    rf.Node node0=pointMap[pt0[0].X][pt0[0].Y][pt0[0].Z];
-                    rf.Node node1 = pointMap[pt0[2].X][pt0[2].Y][pt0[2].Z];
-                    rf.Node node2 = pointMap[pt0[4].X][pt0[4].Y][pt0[4].Z];
-
-                    archPointNoString.Add(node0.No.ToString());
-                    archPointNoString.Add(node1.No.ToString());
-                    archPointNoString.Add(node2.No.ToString());
-
+                    List<rf.Node> rfNodeList = new List<rf.Node>() {pointMap[cp[0].X][cp[0].Y][cp[0].Z], pointMap[cp[2].X][cp[2].Y][cp[2].Z], pointMap[cp[4].X][cp[4].Y][cp[4].Z] };
+                    archPointNoString=(rfNodeList.Select(n => n.No).ToList()).Select(k => k.ToString()).ToList();
+                    
 
                     //Defining Lines
                     rf.Line arcLine = new rf.Line()
@@ -236,6 +210,7 @@ namespace BH.Adapter.RFEM
             return lines;
         }
 
+        //Generating Point map to avoid double definition of points
         private Dictionary<double, Dictionary<double, Dictionary<double, rf.Node>>> GenrateMapAndAddPointsToRFEM(List<Edge> edges)
         {
 
@@ -250,7 +225,7 @@ namespace BH.Adapter.RFEM
                     Polyline polyline = e.Curve as Polyline;
 
                     points = polyline.ControlPoints;
-                } 
+                }
                 else if (e.Curve is Arc)
                 {
                     Arc arc = e.Curve as Arc;
