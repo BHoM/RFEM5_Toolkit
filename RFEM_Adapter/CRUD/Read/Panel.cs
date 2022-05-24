@@ -201,14 +201,22 @@ namespace BH.Adapter.RFEM
                 {
                     List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
                     string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                    String s=modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                    rf.Point3D[] rfPoints = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().ControlPoints;
+
                     List<int> nodeIds = GetIdListFromString(nodeIdString);
 
-                    rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
-                    rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
-                    rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
-                    Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
-                    Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
-                    Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
+                    //rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
+                    //rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
+                    //rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
+
+                    //Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
+                    //Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
+                    //Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
+
+                    Point p0 = new oM.Geometry.Point() { X = rfPoints[0].X, Y = rfPoints[0].Y, Z = rfPoints[0].Z };
+                    Point p1 = new oM.Geometry.Point() { X = rfPoints[1].X, Y = rfPoints[1].Y, Z = rfPoints[1].Z };
+                    Point p2 = new oM.Geometry.Point() { X = rfPoints[2].X, Y = rfPoints[2].Y, Z = rfPoints[2].Z };
 
 
                     Circle circle = Engine.Geometry.Create.Circle(p0,p1,p2);
