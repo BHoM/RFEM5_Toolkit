@@ -59,7 +59,6 @@ namespace BH.Adapter.RFEM
                     //get ids outside of BHoM process - might need to be changed
                     int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
 
-
                     //create Panel outline
                     List<rf.Line> outlineNodeList = GenerateOutlineLines(panelList[i].ExternalEdges);
                     int[] numberArray = outlineNodeList.Select(line => line.No).ToArray();
@@ -145,8 +144,7 @@ namespace BH.Adapter.RFEM
                 if (e == 0)
                 {
                     List<string> pointList = new List<string>();
-                    //if ((!points.First().Equals(points.Last())) || (edgeList[e].Curve is Circle))
-                    if ((!points.First().Equals(points.Last())) || (edgeList[e].Curve is Circle))
+                    if ((!points.First().Equals(points.Last())))
 
                     {
                         pointList = points.Select(x => AddPointToModelData(x)).ToList();
@@ -181,12 +179,9 @@ namespace BH.Adapter.RFEM
 
                     for (int i = 1; i < points.Count; i++)
                     {
-
                         pointList.Add(AddPointToModelData(points[i]));
-
                     }
                     lineList.Add(AddLineToModelData(pointList, edgeList[e]));
-
                 }
 
             }
