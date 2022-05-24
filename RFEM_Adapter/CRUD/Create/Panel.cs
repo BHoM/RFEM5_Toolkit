@@ -62,24 +62,10 @@ namespace BH.Adapter.RFEM
                     int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
 
                     //create outline
-                    //List<string> outlineNodeList = new List<string>();
-
-                    //outlineNodeList = GenerateOutlineNodeList(panelList[i].ExternalEdges);
                     List<rf.Line> outlineNodeList = new List<rf.Line>();
-                    outlineNodeList = GenerateOutlineOpeningNodeList(panelList[i].ExternalEdges);
-
-
-                    //rf.Line outline = new rf.Line()
-                    //{
-                    //    No = lastLineId + 1,
-                    //    Type = rf.LineType.PolylineType,
-                    //    NodeList = String.Join(",", outlineNodeList)
-                    //};
-                    //modelData.SetLine(outline);
-
+                    outlineNodeList = GenerateOutlineLines(panelList[i].ExternalEdges);
                     int[] numberArray = outlineNodeList.Select(line=>line.No).ToArray();
 
-                    //rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, numberArray);
 
 
@@ -101,19 +87,14 @@ namespace BH.Adapter.RFEM
                     {
                         List<Opening> openingList = panelList[i].Openings;
                         rf.Opening[] rfOpenings = new rf.Opening[openingList.Count];
-                        int openingId = 0;
-
 
                         for (int o = 0; o < openingList.Count; o++)
                         {
 
-                           
-                            //List<string> openingLineList = GenerateOutlineOpeningNodeList(openingList[o].Edges);
-                            List<rf.Line> openingLineList = GenerateOutlineOpeningNodeList(openingList[o].Edges);
+                            List<rf.Line> openingLineList = GenerateOutlineLines(openingList[o].Edges);
 
                             List<String> openingLineListString = (openingLineList.Select(line=>line.No).ToList()).Select(g => g.ToString()).ToList();
                             
-
                             //Defining Openings
                             rf.Opening opening = new rf.Opening()
                             {
@@ -128,15 +109,13 @@ namespace BH.Adapter.RFEM
                             modelData.SetOpening(opening);
                         }
                     }
-
                 }
             }
 
             return true;
         }
 
-
-        public List<rf.Line> GenerateOutlineOpeningNodeList(List<Edge> edgeList)
+        public List<rf.Line> GenerateOutlineLines(List<Edge> edgeList)
         {
 
             List<String> openingLineStringList = new List<String>();
@@ -161,7 +140,6 @@ namespace BH.Adapter.RFEM
                     points = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve);
                 }
 
-
                 //Adding Points 
                 if (e == 0)
                 {
@@ -184,9 +162,7 @@ namespace BH.Adapter.RFEM
                         //openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
                         lineList.Add(addLineToModelData(pointList, edgeList[e]));
 
-
                     }
-
 
                 }
                 else if (e == (edgeList.Count - 1))
@@ -227,66 +203,12 @@ namespace BH.Adapter.RFEM
                     //openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
                     lineList.Add(addLineToModelData(pointList, edgeList[e]));
 
-
                 }
-
 
             }
 
             return lineList;
         }
-
-
-        private List<string> GenerateOutlineNodeList(List<Edge> edgeList)
-        {
-
-
-            List<string> outlineNodeList = new List<string>();
-
-            //Defining Nodes
-            foreach (Edge e in edgeList)
-            {
-
-                rf.Node rfNode = new rf.Node();
-
-                if (e.Curve is Polyline)
-                {
-
-                    Polyline polyline = e.Curve as Polyline;
-
-                    for (int j = 0; j < polyline.ControlPoints.Count - 1; j++)
-                    {
-                        rfNode = new rf.Node();
-
-                        rfNode.No = (int)this.NextFreeId(typeof(Node));
-                        rfNode.X = polyline.ControlPoints[j].X;
-                        rfNode.Y = polyline.ControlPoints[j].Y;
-                        rfNode.Z = polyline.ControlPoints[j].Z;
-
-                        modelData.SetNode(rfNode);
-                        outlineNodeList.Add(rfNode.No.ToString());
-                    }
-                }
-                else
-                {
-                    Line edgeAsLine = e.Curve as Line;
-
-                    rfNode.No = (int)this.NextFreeId(typeof(Node));
-                    rfNode.X = edgeAsLine.Start.X;
-                    rfNode.Y = edgeAsLine.Start.Y;
-                    rfNode.Z = edgeAsLine.Start.Z;
-
-                    modelData.SetNode(rfNode);
-                    outlineNodeList.Add(rfNode.No.ToString());
-                }
-
-            }
-            outlineNodeList.Add(outlineNodeList[0]);
-
-            return outlineNodeList;
-
-        }
-
 
         private string addPointToModelData(Point p)
         {
@@ -304,7 +226,6 @@ namespace BH.Adapter.RFEM
             return node.No.ToString();
 
         }
-
 
         private rf.Node getNodeFromModelDate(Point p)
         {
@@ -329,7 +250,6 @@ namespace BH.Adapter.RFEM
                 modelData.SetLine(polyline);
 
                 return polyline;
-                //return "" + polyline.No;
             }
             else if (e.Curve is Line)
             {
@@ -344,8 +264,7 @@ namespace BH.Adapter.RFEM
                 modelData.SetLine(line);
 
                 return line;
-                //return "" + line.No;
-
+               
             }
             else if (e.Curve is Arc)
             {
@@ -359,14 +278,12 @@ namespace BH.Adapter.RFEM
                 modelData.SetLine(arc);
 
                 return arc;
-                //return "" + arc.No;
             }
             else
             {
                 return new rf.Line();
             }
              
-
         }
 
     }
