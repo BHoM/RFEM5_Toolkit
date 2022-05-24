@@ -135,6 +135,19 @@ namespace BH.Adapter.RFEM
 
                     points = new List<Point>() { start, mid, End };
                 }
+                else if (edgeList[e].Curve is Circle)
+                {
+
+                    List<string> pointList = new List<string>();
+                    Circle circle=edgeList[e].Curve as Circle;
+
+                    List<Point> pts = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve);
+                    points =new List<Point>() { Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[1], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[2] };
+                    pointList = points.Select(x => addPointToModelData(x)).ToList();
+
+                    addLineToModelData(pointList,edgeList[e]);
+
+                }
                 else
                 {
                     points = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve);
@@ -279,6 +292,20 @@ namespace BH.Adapter.RFEM
 
                 return arc;
             }
+            else if (e.Curve is Circle)
+            {
+                //Defining Lines
+                rf.Line circle = new rf.Line()
+                {
+                    No = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject) + 1,
+                    Type = rf.LineType.CircleType,
+                    NodeList = String.Join(",", nodeString)
+                };
+                modelData.SetLine(circle);
+
+                return circle;
+            }
+
             else
             {
                 return new rf.Line();
