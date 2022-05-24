@@ -57,8 +57,6 @@ namespace BH.Adapter.RFEM
 
                     List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
 
-                   
-
                     IMaterialFragment material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
                     if (surface.StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
@@ -149,17 +147,13 @@ namespace BH.Adapter.RFEM
         {
             List<Edge> edgeList = new List<Edge>();
             string boundaryString = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList; 
-
             List<int> boundaryLineIds = GetIdListFromString(boundaryString);
-
 
             foreach (int edgeId in boundaryLineIds)
             {
-
+                //Polyline
                 if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.PolylineType))
                 {
-
-
 
                     List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
                     string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
@@ -173,11 +167,9 @@ namespace BH.Adapter.RFEM
                     edgeList.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
                 }
 
-
                 //Arc-Circular
                 else if(modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.ArcType))
                 {
-                    //Engine.Base.Compute.RecordError("Import of Arch shaped panels have not been implemented yet!");
 
                     List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
                     string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
@@ -194,7 +186,6 @@ namespace BH.Adapter.RFEM
 
                     edgeList.Add(new Edge { Curve = arc });
 
-
                 }
                 //Circle
                 else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.CircleType))
@@ -203,16 +194,6 @@ namespace BH.Adapter.RFEM
                     string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
                     String s=modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
                     rf.Point3D[] rfPoints = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().ControlPoints;
-
-                    List<int> nodeIds = GetIdListFromString(nodeIdString);
-
-                    //rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
-                    //rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
-                    //rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
-
-                    //Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
-                    //Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
-                    //Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
 
                     Point p0 = new oM.Geometry.Point() { X = rfPoints[0].X, Y = rfPoints[0].Y, Z = rfPoints[0].Z };
                     Point p1 = new oM.Geometry.Point() { X = rfPoints[1].X, Y = rfPoints[1].Y, Z = rfPoints[1].Z };
