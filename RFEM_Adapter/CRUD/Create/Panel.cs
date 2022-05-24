@@ -62,19 +62,26 @@ namespace BH.Adapter.RFEM
                     int[] boundaryIdArr = new int[panelList[i].ExternalEdges.Count()];
 
                     //create outline
-                    List<string> outlineNodeList = new List<string>();
+                    //List<string> outlineNodeList = new List<string>();
 
-                    outlineNodeList = GenerateOutlineNodeList(panelList[i].ExternalEdges);
+                    //outlineNodeList = GenerateOutlineNodeList(panelList[i].ExternalEdges);
+                    List<rf.Line> outlineNodeList = new List<rf.Line>();
+                    outlineNodeList = GenerateOutlineOpeningNodeList(panelList[i].ExternalEdges);
 
-                    rf.Line outline = new rf.Line()
-                    {
-                        No = lastLineId + 1,
-                        Type = rf.LineType.PolylineType,
-                        NodeList = String.Join(",", outlineNodeList)
-                    };
-                    modelData.SetLine(outline);
 
-                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
+                    //rf.Line outline = new rf.Line()
+                    //{
+                    //    No = lastLineId + 1,
+                    //    Type = rf.LineType.PolylineType,
+                    //    NodeList = String.Join(",", outlineNodeList)
+                    //};
+                    //modelData.SetLine(outline);
+
+                    int[] numberArray = outlineNodeList.Select(line=>line.No).ToArray();
+
+                    //rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, new int[] { outline.No });
+                    rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, numberArray);
+
 
                     if (rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
                     {
