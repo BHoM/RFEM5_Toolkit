@@ -101,15 +101,18 @@ namespace BH.Adapter.RFEM
                         {
 
                            
-                            List<string> openingLineList = GenerateOutlineOpeningNodeList(openingList[o].Edges);
+                            //List<string> openingLineList = GenerateOutlineOpeningNodeList(openingList[o].Edges);
+                            List<rf.Line> openingLineList = GenerateOutlineOpeningNodeList(openingList[o].Edges);
 
+                            List<String> openingLineListString = (openingLineList.Select(line=>line.No).ToList()).Select(g => g.ToString()).ToList();
+                            
 
                             //Defining Openings
                             rf.Opening opening = new rf.Opening()
                             {
                                 No = modelData.GetLastObjectNo(rf.ModelObjectType.OpeningObject) + 1,
                                 InSurfaceNo = rfSurfaces[i].No,
-                                BoundaryLineList = String.Join(",", openingLineList)
+                                BoundaryLineList = String.Join(",", openingLineListString)
                             };
 
                             rfOpenings[o] = opening;
@@ -126,12 +129,12 @@ namespace BH.Adapter.RFEM
         }
 
 
-        public List<string> GenerateOutlineOpeningNodeList(List<Edge> edgeList)
+        public List<rf.Line> GenerateOutlineOpeningNodeList(List<Edge> edgeList)
         {
 
             List<String> openingLineStringList = new List<String>();
 
-            List<string> lineList = new List<string>();
+            List<rf.Line> lineList = new List<rf.Line>();
 
             for (int e = 0; e < edgeList.Count; e++)
             {
@@ -160,7 +163,8 @@ namespace BH.Adapter.RFEM
 
                         pointList = points.Select(x => addPointToModelData(x)).ToList();
 
-                        openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
+                        //openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
+                        lineList.Add(addLineToModelData(pointList, edgeList[e]));
                     }
                     else
                     {
@@ -170,7 +174,8 @@ namespace BH.Adapter.RFEM
 
                         pointList.Add(pointList.First());
 
-                        openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
+                        //openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
+                        lineList.Add(addLineToModelData(pointList, edgeList[e]));
 
 
                     }
@@ -196,8 +201,8 @@ namespace BH.Adapter.RFEM
                     //pointList.Add("" + getNodeFromModelDate(points.Last()).No);
                     pointList.Add("" + getNodeFromModelDate((Engine.Geometry.Query.IControlPoints(edgeList[0].Curve)).First()).No);
 
-                    openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
-
+                    //openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
+                    lineList.Add(addLineToModelData(pointList, edgeList[e]));
                 }
                 else
                 {
@@ -212,14 +217,16 @@ namespace BH.Adapter.RFEM
                         pointList.Add(addPointToModelData(points[i]));
 
                     }
-                    openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
+                    //openingLineStringList.Add(addLineToModelData(pointList, edgeList[e]));
+                    lineList.Add(addLineToModelData(pointList, edgeList[e]));
+
 
                 }
 
 
             }
 
-            return openingLineStringList;
+            return lineList;
         }
 
 
@@ -300,7 +307,7 @@ namespace BH.Adapter.RFEM
             return node.FirstOrDefault();
         }
 
-        private string addLineToModelData(List<String> nodeString, Edge e)
+        private rf.Line addLineToModelData(List<String> nodeString, Edge e)
         {
 
             if (e.Curve is Polyline)
@@ -314,7 +321,8 @@ namespace BH.Adapter.RFEM
                 };
                 modelData.SetLine(polyline);
 
-                return ""+ polyline.No;
+                return polyline;
+                //return "" + polyline.No;
             }
             else if (e.Curve is Line)
             {
@@ -328,7 +336,8 @@ namespace BH.Adapter.RFEM
                 };
                 modelData.SetLine(line);
 
-                return "" + line.No;
+                return line;
+                //return "" + line.No;
 
             }
             else if (e.Curve is Arc)
@@ -342,11 +351,12 @@ namespace BH.Adapter.RFEM
                 };
                 modelData.SetLine(arc);
 
-                return "" + arc.No;
+                return arc;
+                //return "" + arc.No;
             }
             else
             {
-                return null;
+                return new rf.Line();
             }
              
 
