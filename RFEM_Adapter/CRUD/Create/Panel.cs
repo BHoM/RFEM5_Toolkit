@@ -64,7 +64,7 @@ namespace BH.Adapter.RFEM
                     //create outline
                     List<rf.Line> outlineNodeList = new List<rf.Line>();
                     outlineNodeList = GenerateOutlineLines(panelList[i].ExternalEdges);
-                    int[] numberArray = outlineNodeList.Select(line=>line.No).ToArray();
+                    int[] numberArray = outlineNodeList.Select(line => line.No).ToArray();
 
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, numberArray);
 
@@ -93,8 +93,8 @@ namespace BH.Adapter.RFEM
 
                             List<rf.Line> openingLineList = GenerateOutlineLines(openingList[o].Edges);
 
-                            List<String> openingLineListString = (openingLineList.Select(line=>line.No).ToList()).Select(g => g.ToString()).ToList();
-                            
+                            List<String> openingLineListString = (openingLineList.Select(line => line.No).ToList()).Select(g => g.ToString()).ToList();
+
                             //Defining Openings
                             rf.Opening opening = new rf.Opening()
                             {
@@ -139,14 +139,15 @@ namespace BH.Adapter.RFEM
                 {
 
                     List<string> pointList = new List<string>();
-                    Circle circle=edgeList[e].Curve as Circle;
+                    Circle circle = edgeList[e].Curve as Circle;
 
                     List<Point> pts = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve);
-                    points =new List<Point>() { Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[1], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[2] };
+                    points = new List<Point>() { Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[1], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[2] };
                     pointList = points.Select(x => addPointToModelData(x)).ToList();
 
-                    addLineToModelData(pointList,edgeList[e]);
+                    addLineToModelData(pointList, edgeList[e]);
 
+                    
                 }
                 else
                 {
@@ -156,8 +157,9 @@ namespace BH.Adapter.RFEM
                 //Adding Points 
                 if (e == 0)
                 {
-                        List<string> pointList = new List<string>();
-                    if (!points.First().Equals(points.Last())) {
+                    List<string> pointList = new List<string>();
+                    if ( (!points.First().Equals(points.Last()))|| (edgeList[e].Curve is Circle))
+                    {
 
                         pointList = points.Select(x => addPointToModelData(x)).ToList();
 
@@ -184,7 +186,7 @@ namespace BH.Adapter.RFEM
                     List<string> pointList = new List<string>();
 
                     //pointList.Add("" + getNodeFromModelDate(points.First()).No);
-                    pointList.Add("" + getNodeFromModelDate((Engine.Geometry.Query.IControlPoints(edgeList[e-1].Curve)).Last()).No);
+                    pointList.Add("" + getNodeFromModelDate((Engine.Geometry.Query.IControlPoints(edgeList[e - 1].Curve)).Last()).No);
 
 
                     for (int i = 1; i < points.Count - 1; i++)
@@ -277,7 +279,7 @@ namespace BH.Adapter.RFEM
                 modelData.SetLine(line);
 
                 return line;
-               
+
             }
             else if (e.Curve is Arc)
             {
@@ -310,7 +312,7 @@ namespace BH.Adapter.RFEM
             {
                 return new rf.Line();
             }
-             
+
         }
 
     }
