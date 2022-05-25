@@ -45,6 +45,7 @@ namespace BH.Adapter.RFEM
                 List<Panel> panelList = panels.ToList();
                 rf.Surface[] rfSurfaces = new rf.Surface[panelList.Count()];
 
+                //Panels
                 for (int i = 0; i < panels.Count(); i++)
                 {
 
@@ -130,10 +131,12 @@ namespace BH.Adapter.RFEM
                     List<Point> pts = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve);
 
                     //access relevant controlpoints for the describtion of the rf.circle
-                    points = new List<Point>() { Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[1], Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[2] };
-                    pointList = points.Select(x => AddPointToModelData(x)).ToList();
-                    lineList.Add(AddLineToModelData(pointList, edgeList[e]));
-                    continue;
+                    Point p0 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0];
+                    Point p1 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[1];
+                    Point p2 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[2];
+                    Point p3 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0];
+
+                    points = new List<Point>() {p0, p1, p2};
                 }
                 else
                 {
