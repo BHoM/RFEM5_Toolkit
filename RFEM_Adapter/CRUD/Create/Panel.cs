@@ -134,7 +134,6 @@ namespace BH.Adapter.RFEM
                     Point p0 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0];
                     Point p1 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[1];
                     Point p2 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[2];
-                    Point p3 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[0];
 
                     points = new List<Point>() {p0, p1, p2};
                 }
