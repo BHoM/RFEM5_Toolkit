@@ -73,8 +73,8 @@ namespace BH.Adapter.RFEM
                     //rfLoadCombination.Loading.No
                     //rfLoadCombination.Loading.Type
 
-                    string combiName;
-                    int combiNo;
+                    string combiName = rfLoadCombination.Description;
+                    //int combiNo = rfLoadCombination.ID
                     List<Loadcase> loadcases;
                     List<double> combiFactors;
 
