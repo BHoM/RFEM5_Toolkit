@@ -69,20 +69,21 @@ namespace BH.Adapter.RFEM
 
                     LoadCombination bhLoadCombination;
 
-                    //bhLoadcase = bhLoadcaseDict[rfLoadcase.Loading.No];
-
-                    // - - -  bhLoadCombination.LoadCases = rfLoadCombination.Definition <--- string parsing is needed here ! ! ! 
-                    //rfLoadCombination.Loading.No
-                    //rfLoadCombination.Loading.Type
-
                     string combiName = rfLoadCombination.Description;
-                    //int combiNo = rfLoadCombination.ID
-                    //List<Loadcase> loadcases = rfCombiLoadings.Select(x => x.Loading).ToList();
-                    List<double> combiFactors = rfCombiLoadings.Select(x => x.Factor).ToList();
+                    int combiNo;
+                    if (!int.TryParse(rfLoadCombination.ID, out combiNo))
+                    {
+                        Engine.Base.Compute.RecordWarning("Load Combination id: " + rfLoadCombination.ID + " could not be converted to int");
+                    }
 
+                    List<Loadcase> loadcases = new List<Loadcase>();//rfCombiLoadings.Select(x => x.Loading).ToList();
+                    List<double> combiFactors = new List<double>();//rfCombiLoadings.Select(x => x.Factor).ToList();
+                    foreach (rf.CombinationLoading cl in rfCombiLoadings)
+                    {
+                        combiFactors.Add(cl.Factor);
+                        loadcases.Add(m_loadcaseDict[cl.No]);
+                    }
                     bhLoadCombination = Engine.Structure.Create.LoadCombination(combiName, combiNo, loadcases, combiFactors);
-
-
 
                     loadCombinationList.Add(bhLoadCombination);
                 }
