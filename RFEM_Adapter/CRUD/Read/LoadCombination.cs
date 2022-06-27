@@ -65,6 +65,8 @@ namespace BH.Adapter.RFEM
                 for (int i = 0; i < lcCount; i++)
                 {
                     rf.LoadCombination rfLoadCombination = rfLoadCombinations[i];// l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetData();
+                    rf.CombinationLoading[] rfCombiLoadings = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetLoadings();
+
                     LoadCombination bhLoadCombination;
 
                     //bhLoadcase = bhLoadcaseDict[rfLoadcase.Loading.No];
@@ -75,8 +77,8 @@ namespace BH.Adapter.RFEM
 
                     string combiName = rfLoadCombination.Description;
                     //int combiNo = rfLoadCombination.ID
-                    List<Loadcase> loadcases;
-                    List<double> combiFactors;
+                    //List<Loadcase> loadcases = rfCombiLoadings.Select(x => x.Loading).ToList();
+                    List<double> combiFactors = rfCombiLoadings.Select(x => x.Factor).ToList();
 
                     bhLoadCombination = Engine.Structure.Create.LoadCombination(combiName, combiNo, loadcases, combiFactors);
 
