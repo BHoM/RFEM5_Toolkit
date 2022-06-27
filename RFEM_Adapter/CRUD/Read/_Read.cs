@@ -73,8 +73,8 @@ namespace BH.Adapter.RFEM
                     return ReadLoads(ids as dynamic);
                 else if (type == typeof(Loadcase))
                     return ReadLoadcases(ids as dynamic);
-                //else if (type == typeof(LoadCombination))
-                //    return ReadLoadCombinations(ids as dynamic);
+                else if (type == typeof(LoadCombination))
+                    return ReadLoadCombinations(ids as dynamic);
             }
             finally
             {

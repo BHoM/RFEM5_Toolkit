@@ -45,7 +45,7 @@ namespace BH.Adapter.RFEM
         /**** Private methods                           ****/
         /***************************************************/
 
-        private List<ILoad> ReadLoadCombinations(List<string> ids = null)
+        private List<LoadCombination> ReadLoadCombinations(List<string> ids = null)
         {
             List<LoadCombination> loadCombinationList = new List<LoadCombination>();
 
@@ -92,7 +92,6 @@ namespace BH.Adapter.RFEM
             {
                 foreach (string id in ids)
                 {
-
 
                     //loadList.Add();
                 }
