@@ -235,6 +235,7 @@ namespace BH.Adapter.RFEM
         private Dictionary<Type, int> m_indexDict = new Dictionary<Type, int>();
         private Dictionary<int, IMaterialFragment> m_materialDict = new Dictionary<int, IMaterialFragment>();
         private Dictionary<int, ISectionProperty> m_sectionDict = new Dictionary<int, ISectionProperty>();
+        private Dictionary<int, Loadcase> m_loadcaseDict = new Dictionary<int, Loadcase>();
 
         private int lockLevel = 0;
 

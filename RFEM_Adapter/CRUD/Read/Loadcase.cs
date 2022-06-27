@@ -61,6 +61,9 @@ namespace BH.Adapter.RFEM
                     loadcase = new Loadcase { Name = lcName, Number = loadId, Nature = GetLoadNature(rfLoadcase.ActionCategory) };
                     loadcaseList.Add(loadcase);
 
+                    //store loadcases on Adapter
+                    m_loadcaseDict.Add(loadId, loadcase);
+
                     //string rfLoadcaseId = rfLoadcase.ID.Trim(new char[] { '#', ' ' });//some loadcases can have the id: "" !!
                     //if(int.TryParse(rfLoadcaseId, out loadId))
                     //{
@@ -83,6 +86,8 @@ namespace BH.Adapter.RFEM
                         loadcase = new Loadcase { Name = lcName, Number = loadId, Nature = GetLoadNature(rfLoadcase.ActionCategory) };
                         loadcaseList.Add(loadcase);
 
+                        //store loadcases on Adapter
+                        m_loadcaseDict.Add(loadId, loadcase);
                     }
                     else
                         Engine.Base.Compute.RecordWarning("loadcase id: " + id + " could not be converted to int");
