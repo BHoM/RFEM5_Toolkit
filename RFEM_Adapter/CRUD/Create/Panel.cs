@@ -106,7 +106,7 @@ namespace BH.Adapter.RFEM
             return true;
         }
 
-        public List<rf.Line> GenerateOutlineLines(List<Edge> edgeList)
+        private List<rf.Line> GenerateOutlineLines(List<Edge> edgeList)
         {
 
             List<String> openingLineStringList = new List<String>();
