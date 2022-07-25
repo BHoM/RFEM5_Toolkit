@@ -55,7 +55,8 @@ namespace BH.Adapter.RFEM
                     if(surface.GeometryType != rf.SurfaceGeometryType.PlaneSurfaceType)
                         Engine.Base.Compute.RecordError("Only plane surface types are supported at the moment");
 
-                    List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
+                    //List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
+                    List<Edge> edgeList = GetBoundaryEdges(modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList);
 
                     IMaterialFragment material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
@@ -87,8 +88,8 @@ namespace BH.Adapter.RFEM
                         {
                            
                             rf.Opening rfOpening = modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
-                            List<ICurve> edges = GetEdgesAsCurveFromOpenings(rfOpening);
-                            Opening opening = Engine.Structure.Create.Opening(edges);
+                            List<Edge> edges = GetBoundaryEdges(rfOpening.BoundaryLineList);
+                            Opening opening = new Opening { Edges=edges};
                             openings.Add(opening);
                         }
                     }
@@ -107,7 +108,7 @@ namespace BH.Adapter.RFEM
                     if (surface.GeometryType != rf.SurfaceGeometryType.PlaneSurfaceType)
                         Engine.Base.Compute.RecordError("Only plane surface types are supported at the moment");
 
-                    List<Edge> edgeList = GetEdgesFromRFEMSurface(surface);
+                    List<Edge> edgeList = GetBoundaryEdges(modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList);
 
                     IMaterialFragment material = modelData.GetMaterial(surface.MaterialNo, rf.ItemAt.AtNo).GetData().FromRFEM();
 
@@ -127,8 +128,8 @@ namespace BH.Adapter.RFEM
                         {
 
                             rf.Opening rfOpening = modelData.GetOpening(i, rf.ItemAt.AtNo).GetData();
-                            List<ICurve> edges = GetEdgesAsCurveFromOpenings(rfOpening);
-                            Opening opening = Engine.Structure.Create.Opening(edges);
+                            List<Edge> edges = GetBoundaryEdges(rfOpening.BoundaryLineList);
+                            Opening opening = new Opening { Edges = edges };
                             openings.Add(opening);
                         }
                     }
@@ -141,81 +142,6 @@ namespace BH.Adapter.RFEM
             return panelList;
         }
 
-        /***************************************************/
-
-        private List<Edge> GetEdgesFromRFEMSurface(rf.Surface surface)
-        {
-            List<Edge> edgeList = new List<Edge>();
-            string boundaryString = modelData.GetSurface(surface.No, rf.ItemAt.AtNo).GetData().BoundaryLineList; 
-            List<int> boundaryLineIds = GetIdListFromString(boundaryString);
-
-            foreach (int edgeId in boundaryLineIds)
-            {
-                //Polyline
-                if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.PolylineType))
-                {
-
-                    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
-                    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                    List<int> nodeIds = GetIdListFromString(nodeIdString);
-
-                    foreach (int ptId in nodeIds)
-                    {
-                        rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
-                        ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
-                    }
-                    edgeList.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
-                }
-
-                //Arc-Circular
-                else if(modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.ArcType))
-                {
-
-                    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
-                    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                    List<int> nodeIds = GetIdListFromString(nodeIdString);
-
-                    rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
-                    rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
-                    rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
-                    Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
-                    Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
-                    Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
-
-                    Arc arc = Engine.Geometry.Create.Arc(p0, p1, p2);
-
-                    edgeList.Add(new Edge { Curve = arc });
-
-                }
-                //Circle
-                else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.CircleType))
-                {
-                    List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
-                    string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                    String s=modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                    rf.Point3D[] rfPoints = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().ControlPoints;
-
-                    Point p0 = new oM.Geometry.Point() { X = rfPoints[0].X, Y = rfPoints[0].Y, Z = rfPoints[0].Z };
-                    Point p1 = new oM.Geometry.Point() { X = rfPoints[1].X, Y = rfPoints[1].Y, Z = rfPoints[1].Z };
-                    Point p2 = new oM.Geometry.Point() { X = rfPoints[2].X, Y = rfPoints[2].Y, Z = rfPoints[2].Z };
-
-
-                    Circle circle = Engine.Geometry.Create.Circle(p0,p1,p2);
-
-                    edgeList.Add(new Edge {Curve= circle});
-
-
-                }
-                
-
-                else
-                {
-                    Engine.Base.Compute.RecordError("Import of the chosen panel shape is currently not supported!");
-                };
-            }
-
-            return edgeList;
-        }
 
         private List<int> GetIdListFromString(string idsAsString)
         {
@@ -256,18 +182,21 @@ namespace BH.Adapter.RFEM
 
         }
 
-        private List<ICurve> GetEdgesAsCurveFromOpenings(rf.Opening openings)
+
+        private List<Edge> GetBoundaryEdges(string boundaryString)
         {
-            
-            List<ICurve> edgesAsCurve = new List<ICurve>();
-            string boundaryString = modelData.GetOpening(openings.No, rf.ItemAt.AtNo).GetData().BoundaryLineList;
+            List<Edge> edgeList = new List<Edge>();
             List<int> boundaryLineIds = GetIdListFromString(boundaryString);
 
             foreach (int edgeId in boundaryLineIds)
             {
 
 
-                if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.PolylineType)) {
+                var modelEdgeType = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type;
+
+                //Polyline
+                if (modelEdgeType.Equals(rf.LineType.PolylineType))
+                {
 
                     List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
                     string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
@@ -278,10 +207,11 @@ namespace BH.Adapter.RFEM
                         rf.Node rfNode = modelData.GetNode(ptId, rf.ItemAt.AtNo).GetData();
                         ptsInEdge.Add(new oM.Geometry.Point() { X = rfNode.X, Y = rfNode.Y, Z = rfNode.Z });
                     }
-
-                    edgesAsCurve.Add(Engine.Geometry.Create.Polyline(ptsInEdge));
+                    edgeList.Add(new Edge { Curve = Engine.Geometry.Create.Polyline(ptsInEdge) });
                 }
-                else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.ArcType))
+
+                //Arc-Circular
+                else if (modelEdgeType.Equals(rf.LineType.ArcType))
                 {
 
                     List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
@@ -297,38 +227,38 @@ namespace BH.Adapter.RFEM
 
                     Arc arc = Engine.Geometry.Create.Arc(p0, p1, p2);
 
-                    edgesAsCurve.Add(arc);
-
+                    edgeList.Add(new Edge { Curve = arc });
 
                 }
-                else if (modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().Type.Equals(rf.LineType.CircleType))
+                //Circle
+                else if (modelEdgeType.Equals(rf.LineType.CircleType))
                 {
-
                     List<oM.Geometry.Point> ptsInEdge = new List<oM.Geometry.Point>();
                     string nodeIdString = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
-                    List<int> nodeIds = GetIdListFromString(nodeIdString);
+                    String s = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().NodeList;
+                    rf.Point3D[] rfPoints = modelData.GetLine(edgeId, rf.ItemAt.AtNo).GetData().ControlPoints;
 
-                    rf.Node rfNode0 = modelData.GetNode(nodeIds[0], rf.ItemAt.AtNo).GetData();
-                    rf.Node rfNode1 = modelData.GetNode(nodeIds[1], rf.ItemAt.AtNo).GetData();
-                    rf.Node rfNode2 = modelData.GetNode(nodeIds[2], rf.ItemAt.AtNo).GetData();
-                    Point p0 = new oM.Geometry.Point() { X = rfNode0.X, Y = rfNode0.Y, Z = rfNode0.Z };
-                    Point p1 = new oM.Geometry.Point() { X = rfNode1.X, Y = rfNode1.Y, Z = rfNode1.Z };
-                    Point p2 = new oM.Geometry.Point() { X = rfNode2.X, Y = rfNode2.Y, Z = rfNode2.Z };
+                    Point p0 = new oM.Geometry.Point() { X = rfPoints[0].X, Y = rfPoints[0].Y, Z = rfPoints[0].Z };
+                    Point p1 = new oM.Geometry.Point() { X = rfPoints[1].X, Y = rfPoints[1].Y, Z = rfPoints[1].Z };
+                    Point p2 = new oM.Geometry.Point() { X = rfPoints[2].X, Y = rfPoints[2].Y, Z = rfPoints[2].Z };
+
 
                     Circle circle = Engine.Geometry.Create.Circle(p0, p1, p2);
 
-                    edgesAsCurve.Add(circle);
+                    edgeList.Add(new Edge { Curve = circle });
+
 
                 }
+
+
                 else
                 {
-                    Engine.Base.Compute.RecordError("Import of chosen opening shape is currently not supported!");
-                }
-
+                    //Engine.Base.Compute.RecordError("Import of the chosen panel shape is currently not supported!");
+                    Engine.Base.Compute.RecordError("The boundary of either a panel or an opening contains an edge of type " + modelEdgeType + " which is currently not supported!");
+                };
             }
 
-
-            return edgesAsCurve;
+            return edgeList;
         }
 
     }
