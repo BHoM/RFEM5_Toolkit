@@ -67,6 +67,19 @@ namespace BH.Engine.Adapters.RFEM
             //        profileValues = profileNameArr[1].Split('x');//standard sections - Note: can have format "IPE 80" and "IPE 750x137"
             //}
 
+            var dictionary= new Dictionary<string,string>()
+            {
+                { "Rechteck", "Rectangle"},
+                { "Rohr", "Pipe"},
+                { "Kreis","Circle"},
+                { "Rundstahl","Round"}
+            };
+
+            if (dictionary.ContainsKey(profileNameArr[0]))
+            {
+                profileNameArr[0] = dictionary[profileNameArr[0]];
+            }
+
             if (sectionDBProps != null)//section from RFEM Library including sections defined in RFEM model
             {
                 switch (profileNameArr[0])
