@@ -58,12 +58,13 @@ namespace BH.Adapter.RFEM
                     panelIdNum = GetAdapterId<int>(panelList[i]);
 
                     //get ids outside of BHoM process - might need to be changed
-                    int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
-
+                    // int lastLineId = modelData.GetLastObjectNo(rf.ModelObjectType.LineObject);
+                    var nodes = modelData.GetNodes();
                     //create Panel outline
                     List<rf.Line> outlineNodeList = GenerateOutlineLines(panelList[i].ExternalEdges);
                     int[] numberArray = outlineNodeList.Select(line => line.No).ToArray();
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, numberArray);
+
 
 
                     if (rfSurfaces[i].StiffnessType == rf.SurfaceStiffnessType.StandardStiffnessType)
@@ -109,7 +110,7 @@ namespace BH.Adapter.RFEM
         private List<rf.Line> GenerateOutlineLines(List<Edge> edgeList)
         {
 
-            List<String> openingLineStringList = new List<String>();
+            //List<String> openingLineStringList = new List<String>();
             List<rf.Line> lineList = new List<rf.Line>();
 
             for (int e = 0; e < edgeList.Count; e++)
@@ -135,7 +136,7 @@ namespace BH.Adapter.RFEM
                     Point p1 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[1];
                     Point p2 = Engine.Geometry.Query.IControlPoints(edgeList[e].Curve)[2];
 
-                    points = new List<Point>() {p0, p1, p2};
+                    points = new List<Point>() { p0, p1, p2 };
                 }
                 else
                 {
@@ -198,6 +199,9 @@ namespace BH.Adapter.RFEM
 
             if (nodes.Count>0) { return nodes.First().No.ToString(); }
 
+            var rfNodes = modelData.GetNodes().ToList();
+
+
             rf.Node node = new rf.Node()
             {
                 No = modelData.GetLastObjectNo(rf.ModelObjectType.NodeObject) + 1,
@@ -207,6 +211,7 @@ namespace BH.Adapter.RFEM
             };
 
             modelData.SetNode(node);
+
             return node.No.ToString();
 
         }
