@@ -194,6 +194,10 @@ namespace BH.Adapter.RFEM
         private string AddPointToModelData(Point p)
         {
 
+            List<rf.Node> nodes = modelData.GetNodes().Where(n => (n.X.Equals(p.X) && n.Y.Equals(p.Y) && n.Z.Equals(p.Z))).ToList();
+
+            if (nodes.Count>0) { return nodes.First().No.ToString(); }
+
             rf.Node node = new rf.Node()
             {
                 No = modelData.GetLastObjectNo(rf.ModelObjectType.NodeObject) + 1,
