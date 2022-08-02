@@ -37,7 +37,7 @@ namespace BH.Adapter.RFEM
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
-
+     
         public static rf.Material ToRFEM(this IMaterialFragment materialFragment, int materialId)
         {
             //Example: NameID|Steel S 235@TypeID|STEEL@StandardID|DIN EN 1993-1-1-10 
