@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 using BH.oM.Base;
 using BH.oM.Structure.SectionProperties;
 using rf = Dlubal.RFEM5;
-using rf3 = RFEM3;
+using rf3 = Dlubal.RFEM3;
 
 
 namespace BH.Adapter.RFEM
@@ -109,7 +109,7 @@ namespace BH.Adapter.RFEM
             propertyIds[3] = rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g;
             propertyIds[4] = rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s;
 
-            csDB.rfGetPropertyArr(propertyCount, ref propertyIds[0], out propertyValues[0]);//should be array
+            csDB.rfGetPropertyArr(propertyCount, propertyIds, propertyValues);//should be array
 
 
             // ------------ using RFEM3.IrfCrossSectionDB.rfGetPropertyArrAll() does not work ! method signature soes not match documentation

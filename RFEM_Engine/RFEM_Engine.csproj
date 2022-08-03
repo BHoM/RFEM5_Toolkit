@@ -41,26 +41,15 @@
       <HintPath>C:\ProgramData\BHoM\Assemblies\BHoM_Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Dlubal.DynamPro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ad96acf4bd703704, processorArchitecture=AMD64">
-      <HintPath>..\packages\BHoM.Interop.RFEM_5.1.0.0\lib\net45\Dlubal.DynamPro.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Dlubal.RFEM3, Version=3.4.0.0, Culture=neutral, PublicKeyToken=2168830b90cb4fa2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\BHoM.Interop.RFEM3.1.0.0\lib\net45\Dlubal.RFEM3.dll</HintPath>
     </Reference>
-    <Reference Include="Dlubal.RFEM5, Version=5.5.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=AMD64">
-      <HintPath>..\packages\BHoM.Interop.RFEM_5.1.0.0\lib\net45\Dlubal.RFEM5.dll</HintPath>
+    <Reference Include="Dlubal.RFEM5, Version=5.6.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Dlubal.SteelSurfaces, Version=2.0.0.0, Culture=neutral, PublicKeyToken=401d448485510c51, processorArchitecture=AMD64">
-      <HintPath>..\packages\BHoM.Interop.RFEM_5.1.0.0\lib\net45\Dlubal.SteelSurfaces.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Dlubal.TimberPro, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0b06332e21b255cd, processorArchitecture=AMD64">
-      <HintPath>..\packages\BHoM.Interop.RFEM_5.1.0.0\lib\net45\Dlubal.TimberPro.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\libs\Dlubal.RFEM5.dll</HintPath>
     </Reference>
     <Reference Include="Geometry_Engine">
       <SpecificVersion>False</SpecificVersion>
@@ -125,7 +114,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Versioning_32.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

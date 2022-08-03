@@ -1,0 +1,3059 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dlubal.TimberPro</name>
+    </assembly>
+    <members>
+        <member name="T:Dlubal.TimberPro.FactorCategory">
+            <summary>
+                Material factor category
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryUnknown">
+            <summary>
+                Unknown factor category
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENSolidTimber">
+            <summary>
+                Solid timber
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENGluedLaminatedTimber">
+            <summary>
+                Glued laminated timber
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENLVL">
+            <summary>
+                LVL
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENPlywoodPart1">
+            <summary>
+                Plywood part 1.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENPlywoodPart2">
+            <summary>
+                Plywood part 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENPlywoodPart3">
+            <summary>
+                Plywood part 3
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENOSB2">
+            <summary>
+                OSB 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENOSB3OSB4">
+            <summary>
+                OSB 3 / OSB 4
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENParticleBoardPart4">
+            <summary>
+                Particleboard part 4
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENParticleBoardPart5">
+            <summary>
+                Particleboard part 5
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENParticleBoardPart6">
+            <summary>
+                Particleboard part 6
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENParticleBoardPart7">
+            <summary>
+                Particleboard part 7
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENFibreboardHardHBLA">
+            <summary>
+                Fibreboard hard HB.LA
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENFibreboardHardHBHLA1Or2">
+            <summary>
+                Fibreboard hard HB.HLA 1 or 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENFibreboardMediumMBHLA1Or2">
+            <summary>
+                Fibreboard medium MBH.LA 1 or 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENFibreboardMediumMBHHLS1Or2">
+            <summary>
+                Fibreboard medium MBH.HLS 1 or 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENFibreboardMDFLA">
+            <summary>
+                Fibreboard MDF LA
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENFibreboardMDFHLS">
+            <summary>
+                Fibreboard MDF HLS
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENGypsumPalserboardFibreboard">
+            <summary>
+                Gypsum plasterboard and fibreboard
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINSolidTimber">
+            <summary>
+                Solid timber.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINGluedLaminatedTimber">
+            <summary>
+                Glued laminated timber.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINGluelam">
+            <summary>
+                Gluelam of 2 or 3 laminations
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINLaminatedVeneerLumber">
+            <summary>
+                Laminated veneer lumber
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINCrossLaminatedTimber">
+            <summary>
+                Cross laminated timber
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINPlywood">
+            <summary>
+                Plywood
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINOSB2">
+            <summary>
+                OSB 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINOSB3OSB4">
+            <summary>
+                OSB 3 / OSB 4
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINResinBondedParticleboard">
+            <summary>
+                Resin-bonded particleboard
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINCementBondedParticleBoard">
+            <summary>
+                Cement-bonded particleboard
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINFibreboardHBHLA2">
+            <summary>
+                Fibreboard HB.HLA 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINFibreboardMBHLA2">
+            <summary>
+                Fibreboard MBH.LA 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINGypsumGKBAndGFK">
+            <summary>
+                Gypsum GKB And GFK
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryDINGypsumGKBIAndGFKI">
+            <summary>
+                Gypsum GKBI And GFKI
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FactorCategory.FactorCategoryENCrossLaminatedTimber">
+            <summary>
+                Cross laminated timber
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.LateralTorsionalBucklingOption">
+            <summary>
+                Option of effective length or critical bending moment for lateral-torsional buckling L<sub>cr</sub> / M<sub>cr</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LateralTorsionalBucklingOption.LateralTorsionalBucklingOptionUnknown">
+            <summary>
+                Unknown
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LateralTorsionalBucklingOption.LateralTorsionalBucklingOptionEffectiveLengthManually">
+            <summary>
+                Effective length for lateral-torsional buckling sets manually
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LateralTorsionalBucklingOption.LateralTorsionalBucklingOptionCriticalBendingMomentManually">
+            <summary>
+                Critical bending moment for lateral-torsional buckling sets manually
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LateralTorsionalBucklingOption.LateralTorsionalBucklingOptionAsMemberLength">
+            <summary>
+                Effective length for lateral-torsional buckling sets as member length
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LateralTorsionalBucklingOption.LateralTorsionalBucklingOptionAccordingTable61">
+            <summary>
+                Effective length for lateral-torsional buckling sets according Table 6.1
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.EffectiveLengthForBendingMembersOption">
+            <summary>
+                Option of effective length for bending members according to table 6.1
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLengthForBendingMembersOption.EffectiveLengthForBendingMembersOptionUnknown">
+            <summary>
+                Unknown
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLengthForBendingMembersOption.EffectiveLengthForBendingMembersOptionSimpleSupportedBeamConstantMoment">
+            <summary>
+                Simple supported beam with constant moment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLengthForBendingMembersOption.EffectiveLengthForBendingMembersOptionSimpleSupportedBeamUniformlyDistributedLoad">
+            <summary>
+                Simple supported beam with uniformly distributed load
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLengthForBendingMembersOption.EffectiveLengthForBendingMembersOptionSimpleSupportedBeamConcentratedForceAtTheMiddleOfTheSpan">
+            <summary>
+                Simple supported beam with concentrated force at the middle of the span
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLengthForBendingMembersOption.EffectiveLengthForBendingMembersOptionCantileverUniformlyDistributedLoad">
+            <summary>
+                Cantilever with uniformly distributed load
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLengthForBendingMembersOption.EffectiveLengthForBendingMembersOptionCantileverConcentratedForceAtTheMiddleOfTheSpan">
+            <summary>
+                Cantilever with concentrated force at the middle of the span
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ReferenceType">
+            <summary>
+                Type of reference objects.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ReferenceType.ReferenceTypeUnknown">
+            <summary>
+                Unknown
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ReferenceType.ReferenceTypeMember">
+            <summary>
+                Member
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ReferenceType.ReferenceTypeListOfMembers">
+            <summary>
+                List of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ReferenceType.ReferenceTypeSetOfMembers">
+            <summary>
+                Set of members
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.BeamType">
+            <summary>
+                Type of the beam.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.BeamType.BeamTypeUnknown">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.BeamType.BeamTypeBeam">
+            <summary>
+                Beam
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.BeamType.BeamTypeCantileverStartFree">
+            <summary>
+                Cantilever start free
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.BeamType.BeamTypeCantileverEndFree">
+            <summary>
+                Cantilever end free
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.GoverningDirection">
+            <summary>
+                Type or governing direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.GoverningDirection.GoverningDirectionUnknown">
+            <summary>
+                Unknown direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.GoverningDirection.GoverningDirectionY">
+            <summary>
+                Direction y
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.GoverningDirection.GoverningDirectionZ">
+            <summary>
+                Direction z
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.GoverningDirection.GoverningDirectionYAndZ">
+            <summary>
+                Direction y, z
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.GoverningDirection.GoverningDirectionR">
+            <summary>
+                Direction R
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.TaperGrainParallelTo">
+            <summary>
+                Direction of grain
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperGrainParallelTo.GrainUnknown">
+            <summary>
+                Unknown direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperGrainParallelTo.GrainParallelToEdgeInPositiveZDirection">
+            <summary>
+                Direction parallel to the edge with positive z
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperGrainParallelTo.GrainParallelToEdgeInNegativeZDirection">
+            <summary>
+                Direction parallel to the edge with negative z
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperGrainParallelTo.GrainRawLog">
+            <summary>
+                Direction of grain as in raw log
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperGrainParallelTo.GrainParallelToCenterLine">
+            <summary>
+                Direction parallel to center line
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperGrainParallelTo.GrainCutAround">
+            <summary>
+                Direction of grain as in cut around timber. Not supported yet.
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.LoadDurationClass">
+            <summary>
+                Load duration parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationClass.LoadDurationUnknown">
+            <summary>
+                Unknown load duration
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationClass.LoadDurationPermanent">
+            <summary>
+                Permanent load duration
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationClass.LoadDurationLongTerm">
+            <summary>
+                Long term load duration
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationClass.LoadDurationMediumTerm">
+            <summary>
+                Medium term load duration
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationClass.LoadDurationShortTerm">
+            <summary>
+                Short term load duration
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationClass.LoadDurationInstantaneous">
+            <summary>
+                Instantaneous load duration
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationClass.LoadDurationShortTermInstantaneous">
+            <summary>
+                Short term / instantaneous load duration
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.StabilityAnalysisMethod">
+            <summary>
+                Stability analysis method
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.StabilityAnalysisMethod.StabilityAnalysisMethodUnknown">
+            <summary>
+                Unknown stability analysis method
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.StabilityAnalysisMethod.StabilityAnalysisEquivalentMemberMethod">
+            <summary>
+                Stability analysis by equivalent member method
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.StabilityAnalysisMethod.StabilityAnalysisMethodSecondOrder">
+            <summary>
+                Stability analysis by second order analysis method
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.DeformationRelativeTo">
+            <summary>
+                The geometry to which we consider the deformation
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DeformationRelativeTo.DeformationRelativeToUnknown">
+            <summary>
+                Unknown geometry to which are deformations relative
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DeformationRelativeTo.DeformationRelativeToUndeformedSystem">
+            <summary>
+                Deformations are relative to undeformed beam
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DeformationRelativeTo.DeformationRelativeToShiftedEnds">
+            <summary>
+                Deformations are relative to shifted ends
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.FireResistanceClass">
+            <summary>
+                Fire resistance class
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistanceClass.FireResistanceClassUnknown">
+            <summary>
+                Unknown fire resistance class
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistanceClass.FireResistanceClass30Minutes">
+            <summary>
+                Fire resistance class 30-B
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistanceClass.FireResistanceClass60Minutes">
+            <summary>
+                Fire resistance class 60-B
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistanceClass.FireResistanceClass90Minutes">
+            <summary>
+                Fire resistance class 90-B
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistanceClass.FireResistanceClassCustom">
+            <summary>
+                Custom fire resistance class
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.PartsListContent">
+            <summary>
+                Members to be shown in parts list
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.PartsListContent.PartsListContentUnknown">
+            <summary>
+                Unknown members to be shown
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.PartsListContent.PartsListContentMembersSelectedForDesign">
+            <summary>
+                Show members selected for design
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.PartsListContent.PartsListContentAllMembers">
+            <summary>
+                Show all members
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ServiceClassSelectionType">
+            <summary>
+                Selection type of service class
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassSelectionType.ServiceClassSelectionUnknown">
+            <summary>
+                Unknown service class selection
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassSelectionType.ServiceClassSelectionOneClassForAllMembers">
+            <summary>
+                Select one service class for all members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassSelectionType.ServiceClassSelectionByObject">
+            <summary>
+                Select different service class for different members
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ServiceClass">
+            <summary>
+                Service class
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClass.ServiceClassUnknown">
+            <summary>
+                Unknown service class
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClass.ServiceClass1">
+            <summary>
+                Service class 1
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClass.ServiceClass2">
+            <summary>
+                Service class 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClass.ServiceClass3">
+            <summary>
+                Service class 3
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.LoadDirection">
+            <summary>
+                load direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDirection.LoadDirectionUnknown">
+            <summary>
+                Unknown load direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDirection.LoadDirectionTension">
+            <summary>
+                Load direction tension
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDirection.LoadDirectionCompressionFlexure">
+            <summary>
+                Load direction compression / flexure
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ItemAt">
+            <summary>
+                Define type of accessing an object.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ItemAt.AtIndex">
+            <summary>
+                Object is get by index of array where is the object placed.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ItemAt.AtNo">
+            <summary>
+                Object is get by object number.
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.AxisType">
+            <summary>
+                Type of the axis
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.AxisType.UnknownAxis">
+            <summary>
+                Unknown axis
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.AxisType.AxisX">
+            <summary>
+                Axis X
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.AxisType.AxisY">
+            <summary>
+                Axis Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.AxisType.AxisZ">
+            <summary>
+                Axis Z
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.PlaneType">
+            <summary>
+                Type of the plane
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.PlaneType.UnknownPlane">
+            <summary>
+                Unknown plane
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.PlaneType.PlaneXY">
+            <summary>
+                Plane X-Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.PlaneType.PlaneYZ">
+            <summary>
+                Plane Y-Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.PlaneType.PlaneXZ">
+            <summary>
+                Plane X-Z
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.OrientationType">
+            <summary>
+                Orientation type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OrientationType.Downward">
+            <summary>
+                Oriented downward
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OrientationType.Upward">
+            <summary>
+                Oriented upward
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.HorizontalAlignmentType">
+            <summary>
+                Type of horizontal alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.HorizontalAlignmentType.UnknownHAlignment">
+            <summary>
+                Unknown horizontal alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.HorizontalAlignmentType.Left">
+            <summary>
+                Left alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.HorizontalAlignmentType.Center">
+            <summary>
+                Center alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.HorizontalAlignmentType.Right">
+            <summary>
+                Right alignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.VerticalAlignmentType">
+            <summary>
+                Type of vertical alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.VerticalAlignmentType.UnknownVAlignment">
+            <summary>
+                Unknown vertical alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.VerticalAlignmentType.Top">
+            <summary>
+                Left alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.VerticalAlignmentType.Middle">
+            <summary>
+                Middle alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.VerticalAlignmentType.Bottom">
+            <summary>
+                Right alignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.RotationSequence">
+            <summary>
+                Rotation sequence
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.RotationSequence.UnknownRotationSequence">
+            <summary>
+                Unknown rotation sequence
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.RotationSequence.SequenceZYX">
+            <summary>
+                Rotation Sequence Z'Y'X'
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.RotationSequence.SequenceZXY">
+            <summary>
+                Rotation Sequence Z'X'Y'
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.RotationSequence.SequenceYZX">
+            <summary>
+                Rotation Sequence Y'Z'X'
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.RotationSequence.SequenceYXZ">
+            <summary>
+                Rotation Sequence Y'X'Z'
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.RotationSequence.SequenceXZY">
+            <summary>
+                Rotation Sequence X'Z'Y'
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.RotationSequence.SequenceXYZ">
+            <summary>
+                Rotation Sequence X'Y'Z'
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.LoadingType">
+            <summary>
+                Type of loading
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.UnknownLoadingType">
+            <summary>
+                Unknown load type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.LoadCaseType">
+            <summary>
+                Load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.LoadCombinationType">
+            <summary>
+                Load combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.ResultCombinationType">
+            <summary>
+                Result combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.SuperCombinationType">
+            <summary>
+                Super combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.DynamicCaseType">
+            <summary>
+                Dynamic case
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.DynamicCombinationType">
+            <summary>
+                Dynamic combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadingType.ModuleCaseType">
+            <summary>
+                Module case
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ErrorType">
+            <summary>
+                Type of error
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorType.UnknownErrorType">
+            <summary>
+                Unknown error
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorType.UserErrorType">
+            <summary>
+                User error
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorType.InternalErrorType">
+            <summary>
+                Internal error
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorType.WarningType">
+            <summary>
+                Warning
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorType.CalculationErrorType">
+            <summary>
+                Calculation error
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.DesignSituationType">
+            <summary>
+                Design situation type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignSituationType.UnknownDesignSituationType">
+            <summary>
+                Unknown
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignSituationType.PersistentAndTransientType">
+            <summary>
+                Persistent and Transient design situation
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignSituationType.AccidentalType">
+            <summary>
+                Accidental design situation
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.DesignCombinationType">
+            <summary>
+                Type of design combination.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.UnknownDesignCombination">
+            <summary>
+                Unknown
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationCharacteristicWithoutCreep">
+            <summary>
+                Characteristic combination (without creep component)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationCharacteristicWithCreep">
+            <summary>
+                Characteristic combination (with creep component)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationRare">
+            <summary>
+                Rare combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationFrequent">
+            <summary>
+                Quasi-permanent combination (with creep component)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationCharacteristicQuasiPermanent">
+            <summary>
+                Characteristic / quasi-permanent combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationQuasiPermanentWithPrecamber">
+            <summary>
+                Quasi-permanent combination with precamber
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationQuasiPermanentWithoutPrecamber">
+            <summary>
+                Quasi-permanent combination without precamber
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.DesignCombinationType.DesignCombinationVibrationDesign">
+            <summary>
+                Vibration design
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.CrossSectionStatus">
+            <summary>
+                Status of the cross-section.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.UnknownStatus">
+            <summary>
+                Unknown status
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.NoStatus">
+            <summary>
+                No extra status
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.DifferentCrossSection">
+            <summary>
+                The cross-section in the application is different from that in the module.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.GeneralType">
+            <summary>
+                Type General - Only Class 3 is possible.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.IncorrectMaterial">
+            <summary>
+                Incorrect material of cross-section.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.IncorrectCrossSectionAssigned">
+            <summary>
+                Incorrect cross-section data.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.NoMaterialWeight">
+            <summary>
+                The weight of the material of this cross-section is zero.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.IncorrectCrossSectionType">
+            <summary>
+                Incorrect type of cross-section.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.NotUsedInApplication">
+            <summary>
+                The cross-section is not assigned to any member.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.NotUsedInModule">
+            <summary>
+                No member with this cross-section is selected for design.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSectionStatus.WillBeOptimized">
+            <summary>
+                The cross-section will be optimized. Therefore, the optimal section from the table will be used.
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.CalcError">
+            <summary>
+                Calculation error information.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CalcError.ModuleName">
+            <summary>
+                Name of the module
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CalcError.LoadID">
+            <summary>
+                Load
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CalcError.ErrorNo">
+            <summary>
+                Error number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CalcError.Description">
+            <summary>
+                Error description
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.Material">
+            <summary>
+                Material parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.No">
+            <summary>
+                Material number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.ID">
+            <summary>
+                Identifier
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.Tag">
+            <summary>
+                Tag
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.IsValid">
+            <summary>
+                Information if the object is valid or not (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.Description">
+            <summary>
+                Material description
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.TextID">
+            <summary>
+                Language independent text identifier
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.OriginalTextID">
+            <summary>
+                Language independent text identifier of the original material (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Material.MaterialFactorCategory">
+            <summary>
+                Factor category
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.EffectiveLength">
+            <summary>
+                Member or set of members effective length parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.No">
+            <summary>
+                Member or set of members number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.ID">
+            <summary>
+                Identifier
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.Tag">
+            <summary>
+                Tag
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.IsValid">
+            <summary>
+                Information if the object is valid or not (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.Length">
+            <summary>
+                Length of member or set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.EnableBucklingAboutY">
+            <summary>
+                Enables/disables buckling about axis y.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.BucklingLengthCoefficientY">
+            <summary>
+                Buckling about axis y length coefficient k<sub>cr,y</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.EffectiveLengthY">
+            <summary>
+                Effective length about axis y L<sub>cr,y</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.EnableBucklingAboutZ">
+            <summary>
+                Enables/disables buckling about axis z.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.BucklingLengthCoefficientZ">
+            <summary>
+                Buckling about axis z length coefficient k<sub>cr,z</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.EffectiveLengthZ">
+            <summary>
+                Effective length about axis z L<sub>cr,z</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.EnableLTB">
+            <summary>
+                Enables/disables lateral-torsional buckling.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength.LTBLength">
+            <summary>
+                Effective length for lateral-torsional buckling L<sub>cr</sub>
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.EffectiveLength2">
+            <summary>
+                Member or set of members effective length parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.No">
+            <summary>
+                Member or set of members number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.ID">
+            <summary>
+                Identifier
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.Tag">
+            <summary>
+                Tag
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.IsValid">
+            <summary>
+                Information if the object is valid or not (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.Length">
+            <summary>
+                Length of member or set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.EnableBucklingAboutY">
+            <summary>
+                Enables/disables buckling about axis y.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.BucklingLengthCoefficientY">
+            <summary>
+                Buckling about axis y length coefficient k<sub>cr,y</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.EffectiveLengthY">
+            <summary>
+                Effective length about axis y L<sub>cr,y</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.EnableBucklingAboutZ">
+            <summary>
+                Enables/disables buckling about axis z.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.BucklingLengthCoefficientZ">
+            <summary>
+                Buckling about axis z length coefficient k<sub>cr,z</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.EffectiveLengthZ">
+            <summary>
+                Effective length about axis z L<sub>cr,z</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.EnableLTB">
+            <summary>
+                Enables/disables lateral-torsional buckling.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.EffectiveLateralTorsionalBucklingOption">
+            <summary>
+                Option of effective length or critical bending moment for lateral-torsional buckling L<sub>cr</sub> / M<sub>cr</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.LTBLength">
+            <summary>
+                Effective length for lateral-torsional buckling L<sub>cr</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.LTBCriticalMoment">
+            <summary>
+                Critical bending moment for lateral-torsional buckling M<sub>cr</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.EnableUnsupportedLength">
+            <summary>
+                Enables/disables unsupported length L
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.LTBUnsupportedLength">
+            <summary>
+                Unsupported length for effective length L<sub>cr</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.EffectiveLength2.OptionEffectiveLTBLengthAccordingToTable61">
+            <summary>
+                Option of effective length for bending members according to table 6.1
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.Serviceability">
+            <summary>
+                Serviceability parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.No">
+            <summary>
+                Serviceability number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.ObjectReferenceType">
+            <summary>
+                Type of reference objects
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.ObjectsList">
+            <summary>
+                List of reference objects
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.ReferenceLength">
+            <summary>
+                Reference length
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.Direction">
+            <summary>
+                Governing direction for the serviceability design.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.PrecamberY">
+            <summary>
+                Precamber wc in y direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.PrecamberZ">
+            <summary>
+                Precamber wc in z direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.ObjectBeamType">
+            <summary>
+                Beam type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Serviceability.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.FireResistance">
+            <summary>
+                Fire resistance parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistance.No">
+            <summary>
+                Fire protection data number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistance.ObjectsList">
+            <summary>
+                List of reference objects
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistance.ExposedToFireOnLeft">
+            <summary>
+                The member is exposed to fire from the left
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistance.ExposedToFireOnRight">
+            <summary>
+                The member is exposed to fire from the right
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistance.ExposedToFireOnTop">
+            <summary>
+                The member is exposed to fire from the top
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistance.ExposedToFireOnBottom">
+            <summary>
+                The member is exposed to fire from the bottom
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistance.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.TaperDetail">
+            <summary>
+                Taper detail parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.No">
+            <summary>
+                Taper detail number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.MemberNo">
+            <summary>
+                Member number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.CutToGrainAngle">
+            <summary>
+                Cut to grain angle
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.GrainDirection">
+            <summary>
+                Direction of grain
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.DoRidgeVerification">
+            <summary>
+                Do ridge verification
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.DoSetManually">
+            <summary>
+                Do set perpendicular tension region parameters manually
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.VolumeAtRidge">
+            <summary>
+                Perpendicular tension region volume
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.KVol">
+            <summary>
+                Factor k_vol
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.TaperDetail.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.CurvedMemberDetailEC5">
+            <summary>
+                Curved Member Detail for EC5.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.No">
+            <summary>
+                Curved detail number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.MemberNo">
+            <summary>
+                Member number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.LaminateThickness">
+            <summary>
+                Laminate thickness. For not laminated materials 0 is returned
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.DesignPerpendicularTension">
+            <summary>
+                Design perpendicular tension
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.MemberLength">
+            <summary>
+                Member length. Set 0 to set this value automatically.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.MemberVolume">
+            <summary>
+                Perpendicular tension region volume
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.KVol">
+            <summary>
+                Factor k_vol
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.KDis">
+            <summary>
+                Factor k_dis
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailEC5.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.CurvedMemberDetailDIN">
+            <summary>
+                Curved member detail for DIN.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailDIN.No">
+            <summary>
+                Curved member detail number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailDIN.MemberNo">
+            <summary>
+                Member number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailDIN.LaminateThickness">
+            <summary>
+                Laminate thickness. For not laminated materials 0 is returned
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailDIN.DesignPerpendicularTension">
+            <summary>
+                Design perpendicular tension
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailDIN.ReferenceHeight">
+            <summary>
+                Reference height
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailDIN.KDis">
+            <summary>
+                Factor k_dis
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailDIN.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.CurvedMemberDetailSIA">
+            <summary>
+                Curved member detail for SIA.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailSIA.No">
+            <summary>
+                Curved member detail number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailSIA.MemberNo">
+            <summary>
+                Member number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailSIA.LaminateThickness">
+            <summary>
+                Laminate thickness. For not laminated materials 0 is returned.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailSIA.DesignPerpendicularTension">
+            <summary>
+                Design perpendicular tension
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailSIA.MinimalInnerRadius">
+            <summary>
+                Minimal inner radius
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CurvedMemberDetailSIA.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.LoadDurationDetail">
+            <summary>
+                Load duration detail.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationDetail.LoadID">
+            <summary>
+                Load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.LoadDurationDetail.LoadDurationClassForModuleUse">
+            <summary>
+                Load duration class
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ULSOptions">
+            <summary>
+                Additional settings for ultimate limit state.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.ReduceLimitTensionStress">
+            <summary>
+                Reduction of limit tension stress
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.NodesSelectedForLimitTensionStressRedution">
+            <summary>
+                Members selected for limit tension stress reduction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.ConnectionLength">
+            <summary>
+                Connection length for reduction of limit tension stress
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.MaximumStressRatioInsideConnections">
+            <summary>
+                Maximum stress ratio inside connections.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.MaximumStressRatioOutsideConnections">
+            <summary>
+                Maximum stress ratio outside connections.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.UseStresspointDesignForRectanglesAndCircles">
+            <summary>
+                Use stress-point design for rectangles and circles
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.StiffnessReductionDueToCreep">
+            <summary>
+                Reduction of stiffness due to creep
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.MembersSelectedForStiffnessReductionDueToCreep">
+            <summary>
+                Members selected for stiffness reduction due to creep
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ULSOptions.ActivateCrossSectionalReduction">
+            <summary>
+                Activate cross-sectional reduction - for future use
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.StabilityOptions">
+            <summary>
+                Additional settings for stability computations.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.StabilityOptions.CheckStability">
+            <summary>
+                Should the stability be verified?
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.StabilityOptions.SelectedStabilityAnalysisMethod">
+            <summary>
+                Stability verification method
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.SLSOptions">
+            <summary>
+                Additional settings for serviceability computations.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.SLSOptions.DeformationEvaulationMethod">
+            <summary>
+                The geometry to which we consider the deformation
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.FireResistanceOptions">
+            <summary>
+                Additional settings for fire resistance computations.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistanceOptions.ConstructionFireResistanceClass">
+            <summary>
+                Fire resistance class
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.FireResistanceOptions.CustomFireResistanceTime">
+            <summary>
+                Custom fire resistance time
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.OtherOptions">
+            <summary>
+                Additional settings for computations.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.MaximalAllowableRatioInOptimization">
+            <summary>
+                Maximal allowable ration in optimization
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.MaximalSlendernessInTension">
+            <summary>
+                Maximal slenderness in tension
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.MaximalSlendernessInCompressionFlexure">
+            <summary>
+                Maximal slenderness in compression / flexure
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.IncludeBendingStressComponentInBendingStressVerifications">
+            <summary>
+                Include bending stress component in stress-point verifications
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowDesignByLoadCase">
+            <summary>
+                Show design by load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowDesignByCrossSection">
+            <summary>
+                Show design by cross section
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowDesignBySetOfMembers">
+            <summary>
+                Show design by set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowDesignByMember">
+            <summary>
+                Show design by member
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowDesignByXLocation">
+            <summary>
+                Show design by x-location
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowGoverningInternalForcesByMember">
+            <summary>
+                Show governing internal forces by member
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowGoverningInternalForcesBySetOfMembers">
+            <summary>
+                Show governing internal forces by set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowMemberSlenderness">
+            <summary>
+                Show member slenderness
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowPartsListByMember">
+            <summary>
+                Show parts list by member
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ShowPartsListBySetOfMembers">
+            <summary>
+                Show parts list by set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions.ObjectsSelectedForPartsList">
+            <summary>
+                Parts list content
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.OtherOptions2">
+            <summary>
+                Additional settings for computations.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.MaximalAllowableRatioInOptimization">
+            <summary>
+                Maximal allowable ration in optimization
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.MaximalSlendernessInTension">
+            <summary>
+                Maximal slenderness in tension
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.MaximalSlendernessInCompressionFlexure">
+            <summary>
+                Maximal slenderness in compression / flexure
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.IncludeBendingStressComponentInBendingStressVerifications">
+            <summary>
+                Include bending stress component in stress-point verifications
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowDesignByLoadCase">
+            <summary>
+                Show design by load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowDesignByCrossSection">
+            <summary>
+                Show design by cross section
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowDesignBySetOfMembers">
+            <summary>
+                Show design by set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowDesignByMember">
+            <summary>
+                Show design by member
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowDesignByXLocation">
+            <summary>
+                Show design by x-location
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowGoverningInternalForcesByMember">
+            <summary>
+                Show governing internal forces by member
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowGoverningInternalForcesBySetOfMembers">
+            <summary>
+                Show governing internal forces by set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowMemberSlenderness">
+            <summary>
+                Show member slenderness
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowPartsListByMember">
+            <summary>
+                Show parts list by member
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ShowPartsListBySetOfMembers">
+            <summary>
+                Show parts list by set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.ObjectsSelectedForPartsList">
+            <summary>
+                Parts list content
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.OtherOptions2.LimitAngleOfPrincipalAxis">
+            <summary>
+                Limit angle of principal axis
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.NationalAnnex">
+            <summary>
+                National annex parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.NationalAnnex.Name">
+            <summary>
+                Name
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.NationalAnnex.StandardID">
+            <summary>
+                Standard language independent ID
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.NationalAnnex.AnnexID">
+            <summary>
+                Annex language independent ID
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ServiceClassDetails">
+            <summary>
+                Service class selection parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.ChosenServiceClassSelectionType">
+            <summary>
+                Type of service class selection
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.ServiceClassForAllMembers">
+            <summary>
+                Service class applied to all members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.MembersInServiceClass1">
+            <summary>
+                Members in service class 1
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.MembersInServiceClass2">
+            <summary>
+                Members in service class 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.MembersInServiceClass3">
+            <summary>
+                Members in service class 3
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.SetsOfMemberInServiceClass1">
+            <summary>
+                Sets of member in service class 1
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.SetsOfMemberInServiceClass2">
+            <summary>
+                Sets of member in service class 2
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceClassDetails.SetsOfMemberInServiceClass3">
+            <summary>
+                Sets of member in service class 3
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ResultsDesign">
+            <summary>
+                Structure of governing internal forces/moments.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsDesign.MemberNo">
+            <summary>
+                Member number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsDesign.X">
+            <summary>
+                Location x
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsDesign.LoadID">
+            <summary>
+                Load Case
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsDesign.Designable">
+            <summary>
+                Designable/Non-designable
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsDesign.DesignRatio">
+            <summary>
+                Design Ratio
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsDesign.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ResultsInternalForces">
+            <summary>
+                Structure of governing internal forces/moments.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.No">
+            <summary>
+                Member / Set number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.X">
+            <summary>
+                Location x
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.LoadID">
+            <summary>
+                Load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.N">
+            <summary>
+                Internal force N
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.Vy">
+            <summary>
+                Internal force V<sub>y</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.Vz">
+            <summary>
+                Internal force V<sub>z</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.MT">
+            <summary>
+                Internal moment M<sub>T</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.My">
+            <summary>
+                Internal moment M<sub>y</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.Mz">
+            <summary>
+                Internal moment M<sub>z</sub>
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsInternalForces.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ResultsMemberSlenderness">
+            <summary>
+                Structure of member slenderness.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.No">
+            <summary>
+                Member numbers
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.LoadDirectionOnTheMember">
+            <summary>
+                Load direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.Length">
+            <summary>
+                Member length
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.InstabilityFactorInYDirection">
+            <summary>
+                Instability factor in y direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.SlendernessDegreeInYDirection">
+            <summary>
+                Slenderness degree y direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.RadiusOfInertiaInYDirection">
+            <summary>
+                Radius of inertia in y direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.InstabilityFactorInZDirection">
+            <summary>
+                Instability factor in z direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.SlendernessDegreeInZDirection">
+            <summary>
+                Slenderness degree z direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsMemberSlenderness.RadiusOfInertiaInZDirection">
+            <summary>
+                Radius of inertia in z direction
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ResultsPartslist">
+            <summary>
+                Part list structure
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.PartNo">
+            <summary>
+                Part number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.Description">
+            <summary>
+                Description of cross-section or set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.Count">
+            <summary>
+                Count of members or set of members
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.Length">
+            <summary>
+                Length
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.TotalLength">
+            <summary>
+                Total length
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.SurfaceArea">
+            <summary>
+                Surface area
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.Volume">
+            <summary>
+                Volume
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.UnitWeight">
+            <summary>
+                Unit weight
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.Weight">
+            <summary>
+                Weight
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ResultsPartslist.TotalWeight">
+            <summary>
+                Total weight
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.Point2D">
+            <summary>
+                3D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Point2D.X">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Point2D.Y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.Point3D">
+            <summary>
+                3D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Point3D.X">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Point3D.Y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Point3D.Z">
+            <summary>
+                Z coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.Loading">
+            <summary>
+                Load parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Loading.Type">
+            <summary>
+                Type of load
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.Loading.No">
+            <summary>
+                Load number
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ErrorInfo">
+            <summary>
+                Information about an error.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorInfo.ModuleName">
+            <summary>
+                Name of the module
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorInfo.Load">
+            <summary>
+                Load
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorInfo.ErrorNo">
+            <summary>
+                Error number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorInfo.Type">
+            <summary>
+                Error type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ErrorInfo.Description">
+            <summary>
+                Error description
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ModuleCase">
+            <summary>
+                Module case basic parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ModuleCase.No">
+            <summary>
+                Number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ModuleCase.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.UltimateLimitState">
+            <summary>
+                Ultimate limit state parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.UltimateLimitState.No">
+            <summary>
+                Load number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.UltimateLimitState.Type">
+            <summary>
+                Load type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.UltimateLimitState.DesignSituation">
+            <summary>
+                Design situation
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.ServiceabilityLimitState">
+            <summary>
+                Serviceability limit state parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceabilityLimitState.No">
+            <summary>
+                Load number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceabilityLimitState.Type">
+            <summary>
+                Load type
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.ServiceabilityLimitState.DesignCombination">
+            <summary>
+                Design combination
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.CrossSection">
+            <summary>
+                Cross-section parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.No">
+            <summary>
+                Material number
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.ID">
+            <summary>
+                Identifier
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.Tag">
+            <summary>
+                Tag
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.IsValid">
+            <summary>
+                Information if the object is valid or not (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.MaterialNo">
+            <summary>
+                Material number (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.Description">
+            <summary>
+                Cross-section description
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.TextID">
+            <summary>
+                Language independent text identifier
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.OriginalTextID">
+            <summary>
+                Language independent text identifier of the original cross-section (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.Optimize">
+            <summary>
+                Optimize cross-section
+            </summary>
+        </member>
+        <member name="F:Dlubal.TimberPro.CrossSection.Status">
+            <summary>
+                Status (read only)
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.IModule">
+            <summary>
+                Interface for working with module.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.GetCaseCount">
+            <summary>
+                Gets count of cases in this module.
+            </summary>
+            <returns>Count of cases in this modules.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.GetCase(System.Int32,System.UInt32)">
+            <summary>
+                Gets module case.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number or index of the module case you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.SetCase(System.Int32,System.String)">
+            <summary>
+                Sets the module case. If the case with number exists, just returns its interface.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number of the module case. If it is zero or does not exist, new case is added.</param>
+            <param name="Name">Name of the module case to be added.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.DeleteCase(System.Int32,System.UInt32)">
+            <summary>
+                Deletes module case based.
+            </summary>
+            <param name="No">Number or index of the module case you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.GetCases">
+            <summary>
+                Gets array of module cases.
+            </summary>
+            <returns>Array of module cases</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.Clean">
+            <summary>
+                Deletes all cases of the module.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.CopyCase(System.Int32,System.UInt32)">
+            <summary>
+                Copies case based on given index.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number or index of the module case you want to copy.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModule.HasResults">
+            <summary>
+                Checks whether the module has results.
+            </summary>
+            <returns>True when any module's load case has results, false otherwise</returns>
+        </member>
+        <member name="T:Dlubal.TimberPro.ITimberProResults">
+            <summary>
+                Interface for working with module results.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetDesignsByLoad">
+            <summary>
+                Gets array of design by loads.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetDesignsByCrossSection">
+            <summary>
+                Gets array of design by cross-section.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetDesignsBySetOfMembers">
+            <summary>
+                Gets array of design by set of members.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetDesignsByMember">
+            <summary>
+                Gets array of design by members.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetDesignsByXLocation">
+            <summary>
+                Gets array of design by x location.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetInternalForcesByMember">
+            <summary>
+                Gets array of internal forces by member.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetInternalForcesBySetOfMembers">
+            <summary>
+                Gets array of internal forces by set of members.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetMemberSlendernesses">
+            <summary>
+                Gets array of member slendernesses.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetPartsListByMember">
+            <summary>
+                Gets array of parts by member.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.ITimberProResults.GetPartsListBySetOfMembers">
+            <summary>
+                Gets array of parts by set of members.
+            </summary>
+            <returns>Array of results.</returns>
+        </member>
+        <member name="T:Dlubal.TimberPro.IModuleCase">
+            <summary>
+                Interface for working with module case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberCount">
+            <summary>
+                Gets count of members selected for the design.
+            </summary>
+            <returns>Count of members</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberList">
+            <summary>
+                Gets list of members used for the design.
+            </summary>
+            <returns>List of members used for design. Allowed values: "1,2,3"; "1-5"; "1-3,5"</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMemberList(System.String)">
+            <summary>
+                Sets list of members used for the design.
+            </summary>
+            <param name="Members">List of members used for the design. Allowed values: "1,2,3"; "1-5"; "1-3,5"; "all"</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberSetCount">
+            <summary>
+                Gets count of sets of members selected for the design.
+            </summary>
+            <returns>Count of sets of members.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberSetList">
+            <summary>
+                Gets list of sets of members used for the design.
+            </summary>
+            <returns>List of sets of members used for the design. Allowed values: "1,2,3"; "1-5"; "1-3,5"</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMemberSetList(System.String)">
+            <summary>
+                Sets list of sets of members used for design.
+            </summary>
+            <param name="Sets">List of sets of members used for design. Allowed values: "1,2,3"; "1-5"; "1-3,5"; "all"</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetNationalAnnex">
+            <summary>
+                Gets current national annex.
+            </summary>
+            <returns>Get current national annex</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetNationalAnnex(System.UInt32@)">
+            <summary>
+                Sets national annex.
+            </summary>
+            <param name="Annex">National Annex</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetServiceClassDetails">
+            <summary>
+                Get details of service class selection
+            </summary>
+            <returns>Details of service class selection</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetServiceClassDetails(System.UInt32@)">
+            <summary>
+                Set details of service class selection
+            </summary>
+            <param name="Details">Details of service class selection</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMaterialCount">
+            <summary>
+                Gets count of materials.
+            </summary>
+            <returns>Count of materials</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMaterial(System.Int32,System.UInt32)">
+            <summary>
+                Gets material.
+            </summary>
+            <returns>Material parameters.</returns>
+            <param name="No">Number or index of the material you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMaterial(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets material.
+            </summary>
+            <param name="No">Number or index of the material you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Material">Material parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMaterials">
+            <summary>
+                Gets all materials.
+            </summary>
+            <returns>Array of all materials</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMaterials(System.UInt32@)">
+            <summary>
+                Sets materials.
+            </summary>
+            <param name="Materials">Array of materials you want to set.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCrossSectionCount">
+            <summary>
+                Gets count of cross-sections.
+            </summary>
+            <returns>Count of cross-sections</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCrossSection(System.Int32,System.UInt32)">
+            <summary>
+                Gets cross-section.
+            </summary>
+            <returns>Cross-section parameters.</returns>
+            <param name="No">Number or index of the cross-section you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCrossSection(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets cross-section.
+            </summary>
+            <param name="No">Number or index of the cross-section you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="CrossSection">Cross-section parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCrossSections">
+            <summary>
+                Gets all cross-sections.
+            </summary>
+            <returns>Array of all cross-sections</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCrossSections(System.UInt32@)">
+            <summary>
+                Sets cross-sections.
+            </summary>
+            <param name="CrossSections">Array of cross-sections you want to set.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberEffectiveLengthCount">
+            <summary>
+                Gets count of members effective lengths.
+            </summary>
+            <returns>Count of members effective lengths</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberEffectiveLength(System.Int32,System.UInt32)">
+            <summary>
+                Gets member effective length.
+            </summary>
+            <returns>Member effective length parameters.</returns>
+            <param name="No">Number or index of the member effective length you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMemberEffectiveLength(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets member effective length.
+            </summary>
+            <param name="No">Number or index of the members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Length">Members effective length parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMembersEffectiveLengths">
+            <summary>
+                Gets members effective lengths.
+            </summary>
+            <returns>Array of all members effective lengths</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMembersEffectiveLengths(System.UInt32@)">
+            <summary>
+                Sets members effective lengths.
+            </summary>
+            <param name="Lengths">Array of members effective lengths you want to set.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetSetEffectiveLengthCount">
+            <summary>
+                Gets count of sets of members effective lengths.
+            </summary>
+            <returns>Count of sets of members effective lengths</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetSetEffectiveLength(System.Int32,System.UInt32)">
+            <summary>
+                Gets set of members effective length.
+            </summary>
+            <returns>Set of members effective length parameters.</returns>
+            <param name="No">Number or index of the set of members effective length you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetSetEffectiveLength(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets set of members effective length.
+            </summary>
+            <param name="No">Number or index of the set of members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Length">Set of members effective length parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetSetsEffectiveLengths">
+            <summary>
+                Gets sets of members effective lengths.
+            </summary>
+            <returns>Array of all sets of members effective lengths.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetSetsEffectiveLengths(System.UInt32@)">
+            <summary>
+                Sets sets of members effective lengths.
+            </summary>
+            <param name="Lengths">Array of sets of members effective lengths.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetServiceabilityCount">
+            <summary>
+                Gets count of serviceability.
+            </summary>
+            <returns>Count of serviceability</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetServiceability(System.Int32,System.UInt32)">
+            <summary>
+                Gets serviceability.
+            </summary>
+            <returns>Serviceability parameters</returns>
+            <param name="No">Number or index of the set of members effective length you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetServiceability(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets serviceability.
+            </summary>
+            <param name="No">Number or index of the set of members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Data">Serviceability parameters.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetServiceabilities">
+            <summary>
+                Gets all serviceability parameters.
+            </summary>
+            <returns>Array of all serviceability parameters.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetServiceabilities(System.UInt32@)">
+            <summary>
+                Sets all serviceability parameters.
+            </summary>
+            <param name="Data">Array of serviceability parameters.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.DeleteServiceability(System.Int32,System.UInt32)">
+            <summary>
+                Deletes serviceability parameters.
+            </summary>
+            <param name="No">Number or index of the set of members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberFireResistanceCount">
+            <summary>
+                Gets count of fire resistance parameters for members.
+            </summary>
+            <returns>Count of fire resistance parameters</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMemberFireResistance(System.Int32,System.UInt32)">
+            <summary>
+                Gets fire resistance parameters for a member.
+            </summary>
+            <returns>Member fire resistance parameters.</returns>
+            <param name="No">Number or index of the set of members effective length you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMemberFireResistance(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets fire resistance parameters for a member.
+            </summary>
+            <param name="No">Number or index of the set of members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Resistance">Fire resistance parameters of members</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetMembersFireResistances">
+            <summary>
+                Gets fire resistance parameters for all members.
+            </summary>
+            <returns>Array of all fire resistance parameters</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetMembersFireResistances(System.UInt32@)">
+            <summary>
+                Sets fire resistance parameters for all members.
+            </summary>
+            <param name="Resistance">Array of all fire resistance parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.DeleteMemberFireResistance(System.Int32,System.UInt32)">
+            <summary>
+                Deletes member fire resistance parameters.
+            </summary>
+            <param name="No">Number or index of the set of members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetSetFireResistanceCount">
+            <summary>
+                Gets count of fire resistance parameters for sets of members.
+            </summary>
+            <returns>Count of fire resistance parameters</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetSetFireResistance(System.Int32,System.UInt32)">
+            <summary>
+                Gets fire resistance parameters for a set of members.
+            </summary>
+            <returns>Member fire resistance parameters</returns>
+            <param name="No">Number or index of the set of members</param>
+            <param name="At">Specifies the type of access</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetSetFireResistance(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets fire resistance parameters for set of members.
+            </summary>
+            <param name="No">Number or index of the set of members</param>
+            <param name="At">Specifies the type of access</param>
+            <param name="Resistance">Fire resistance parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetSetsFireResistances">
+            <summary>
+                Gets fire resistance parameters for all sets of members.
+            </summary>
+            <returns>Array of all fire resistance parameters.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetSetsFireResistances(System.UInt32@)">
+            <summary>
+                Sets fire resistance parameters for all sets of members.
+            </summary>
+            <param name="Resistance">Array of fire protection for all sets of members.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.DeleteSetFireResistance(System.Int32,System.UInt32)">
+            <summary>
+                Deletes set fire resistance parameters.
+            </summary>
+            <param name="No">Number or index of the set of members fire resistance.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetTaperDetailCount">
+            <summary>
+                Gets count of taper parameters.
+            </summary>
+            <returns>Count of taper parameters</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetTaperDetail(System.Int32,System.UInt32)">
+            <summary>
+                Gets taper detail.
+            </summary>
+            <returns>Taper detail.</returns>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetTaperDetail(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets taper detail.
+            </summary>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access</param>
+            <param name="Detail">Structure with taper detail</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetTapersDetails">
+            <summary>
+                Gets tapered members details.
+            </summary>
+            <returns>Array of all taper details.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetTapersDetails(System.UInt32@)">
+            <summary>
+                Gets tapered members details.
+            </summary>
+            <param name="Detail">Array of all taper details.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCurvedMemberDetailCount">
+            <summary>
+                Gets count of curved members.
+            </summary>
+            <returns>Count curved members parameters</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCurvedMemberDetailEC5(System.Int32,System.UInt32)">
+            <summary>
+                Gets curved member detail for standard EC5.
+            </summary>
+            <returns>Curved member detail for standard EC5</returns>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCurvedMemberDetailDIN(System.Int32,System.UInt32)">
+            <summary>
+                Gets curved member detail for standard DIN.
+            </summary>
+            <returns>Curved member detail for standard DIN.</returns>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCurvedMemberDetailSIA(System.Int32,System.UInt32)">
+            <summary>
+                Gets curved member detail for standard SIA.
+            </summary>
+            <returns>Curved member detail for standard SIA.</returns>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCurvedMemberDetailEC5(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets curved member detail for standard EC5.
+            </summary>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Detail">Curved member detail for standard EC5.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCurvedMemberDetailDIN(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets curved member detail for standard DIN.
+            </summary>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Detail">Curved member detail for standard DIN.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCurvedMemberDetailSIA(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets curved member detail for standard SIA.
+            </summary>
+            <param name="No">Number or index of the detail</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Detail">Curved member detail for standard SIA.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCurvedMemberDetailsEC5">
+            <summary>
+                Gets curved members details for the standard EC5.
+            </summary>
+            <returns>Array of all curved members details for standard EC5.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCurvedMemberDetailsDIN">
+            <summary>
+                Gets curved members details for the standard DIN.
+            </summary>
+            <returns>Array of all curved members details for standard DIN.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetCurvedMemberDetailsSIA">
+            <summary>
+                Gets curved members details for the standard SIA.
+            </summary>
+            <returns>Array of all curved members details for standard SIA.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCurvedMemberDetailsEC5(System.UInt32@)">
+            <summary>
+                Sets curved members details for the standard EC5.
+            </summary>
+            <param name="Detail">Array of curved member details.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCurvedMemberDetailsDIN(System.UInt32@)">
+            <summary>
+                Sets curved members details for the standard DIN.
+            </summary>
+            <param name="Detail">Array of curved member details.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetCurvedMemberDetailsSIA(System.UInt32@)">
+            <summary>
+                Sets curved members details for the standard SIA.
+            </summary>
+            <param name="Detail">Array of curved member details.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetLoadDurationDetailCount">
+            <summary>
+                Gets count of load duration records.
+            </summary>
+            <returns>Count of load duration records</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetLoadDurationDetail(System.Int32,System.UInt32)">
+            <summary>
+                Gets load duration detail.
+            </summary>
+            <returns>Load duration detail</returns>
+            <param name="No">Number of the loading</param>
+            <param name="Type">Type of the loading</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetLoadDurationDetail(System.UInt32@)">
+            <summary>
+                Sets load duration detail.
+            </summary>
+            <param name="Detail">Load duration detail</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetLoadDurationDetails">
+            <summary>
+                Gets load duration details.
+            </summary>
+            <returns>Array of all load duration details.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetLoadDurationDetails(System.UInt32@)">
+            <summary>
+                Sets load duration details.
+            </summary>
+            <param name="Detail">Array of all load duration details.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetULSOptions">
+            <summary>
+                Gets ultimate limit state options.
+            </summary>
+            <returns>Ultimate limit state options.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetULSOptions(System.UInt32@)">
+            <summary>
+                Sets ultimate limit state options.
+            </summary>
+            <param name="Options">Ultimate limit state options</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetStabilityOptions">
+            <summary>
+                Gets stability options.
+            </summary>
+            <returns>Stability options</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetStabilityOptions(System.UInt32@)">
+            <summary>
+                Sets stability options.
+            </summary>
+            <param name="Options">Stability options</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetSLSOptions">
+            <summary>
+                Gets serviceability limit state options.
+            </summary>
+            <returns>Serviceability limit state options</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetSLSOptions(System.UInt32@)">
+            <summary>
+                Sets serviceability limit state options.
+            </summary>
+            <param name="Options">Serviceability limit state options</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetFireResistanceOptions">
+            <summary>
+                Gets fire resistance options.
+            </summary>
+            <returns>Fire resistance options</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetFireResistanceOptions(System.UInt32@)">
+            <summary>
+                Sets fire resistance options.
+            </summary>
+            <param name="Options">Fire resistance options</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetOtherOptions">
+            <summary>
+                Gets other options.
+            </summary>
+            <returns>Other options</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.SetOtherOptions(System.UInt32@)">
+            <summary>
+                Sets other options.
+            </summary>
+            <param name="Options">Other options</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.Calculate">
+            <summary>
+                Calculates results of the module case.
+            </summary>
+            <returns>Array of errors that occurred during the calculation.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.GetResults">
+            <summary>
+                Gets results.
+            </summary>
+            <returns>Interface for working with results.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase.DeleteResults">
+            <summary>
+                Deletes results.
+            </summary>
+        </member>
+        <member name="T:Dlubal.TimberPro.IModuleCase2">
+            <summary>
+                Interface for working with module case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.GetMemberEffectiveLength2(System.Int32,System.UInt32)">
+            <summary>
+                Gets member effective length.
+            </summary>
+            <returns>Member effective length parameters.</returns>
+            <param name="No">Number or index of the member effective length you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.SetMemberEffectiveLength2(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets member effective length.
+            </summary>
+            <param name="No">Number or index of the members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Length">Members effective length parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.GetMembersEffectiveLengths2">
+            <summary>
+                Gets members effective lengths.
+            </summary>
+            <returns>Array of all members effective lengths</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.SetMembersEffectiveLengths2(System.UInt32@)">
+            <summary>
+                Sets members effective lengths.
+            </summary>
+            <param name="Lengths">Array of members effective lengths you want to set.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.GetSetEffectiveLength2(System.Int32,System.UInt32)">
+            <summary>
+                Gets set of members effective length.
+            </summary>
+            <returns>Set of members effective length parameters.</returns>
+            <param name="No">Number or index of the set of members effective length you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.SetSetEffectiveLength2(System.Int32,System.UInt32,System.UInt32@)">
+            <summary>
+                Sets set of members effective length.
+            </summary>
+            <param name="No">Number or index of the set of members effective length you want to set.</param>
+            <param name="At">Specifies the type of access.</param>
+            <param name="Length">Set of members effective length parameters</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.GetSetsEffectiveLengths2">
+            <summary>
+                Gets sets of members effective lengths.
+            </summary>
+            <returns>Array of all sets of members effective lengths.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.SetSetsEffectiveLengths2(System.UInt32@)">
+            <summary>
+                Sets sets of members effective lengths.
+            </summary>
+            <param name="Lengths">Array of sets of members effective lengths.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.GetOtherOptions2">
+            <summary>
+                Gets other options.
+            </summary>
+            <returns>Other options</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCase2.SetOtherOptions2(System.UInt32@)">
+            <summary>
+                Sets other options.
+            </summary>
+            <param name="Options">Other options</param>
+        </member>
+        <member name="T:Dlubal.TimberPro.IModuleCaseBase">
+            <summary>
+                Interface for working with module case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.GetNo">
+            <summary>
+                Gets the number of the module case.
+            </summary>
+            <returns>Number of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.GetDescription">
+            <summary>
+                Gets the description of the module case.
+            </summary>
+            <returns>Description of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.SetDescription(System.String)">
+            <summary>
+                Sets the description of the module case.
+            </summary>
+            <param name="Description">Description of the module case.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.GetComment">
+            <summary>
+                Gets the comment of the module case.
+            </summary>
+            <returns>Comment of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.SetComment(System.String)">
+            <summary>
+                Sets the comment of the module case.
+            </summary>
+            <param name="Comment">Comment of the module case.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.Clone(System.Int32)">
+            <summary>
+                Clones the module case and returns the new one interface.
+            </summary>
+            <returns>Cloned module case interface.</returns>
+            <param name="NewNo">Number of the cloned module case. Zero means number should be assigned by RFEM."</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.Delete">
+            <summary>
+                Deletes the load case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseBase.HasResults">
+            <summary>
+                Check whether the load case has any results.
+            </summary>
+            <returns>True if the module case has any results, otherwise false.</returns>
+        </member>
+        <member name="T:Dlubal.TimberPro.IModuleCaseResistance">
+            <summary>
+                Case working with loads.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.GetULSLoadCount">
+            <summary>
+                Gets count of ultimate limit state loads.
+            </summary>
+            <returns>Count of ultimate limit state loads.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.GetULSLoads">
+            <summary>
+                Gets ultimate limit state loads.
+            </summary>
+            <returns>Array of ultimate limit state loads.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.SetULSLoads(System.UInt32@)">
+            <summary>
+                Sets ultimate limit state loads.
+            </summary>
+            <param name="Loads">Array of ultimate limit state loads.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.CleanULSLoads">
+            <summary>
+                Cleans ultimate limit state loads.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.GetSLSLoadCount">
+            <summary>
+                Gets count of serviceability limit state loads.
+            </summary>
+            <returns>Count of serviceability limit state loads.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.GetSLSLoads">
+            <summary>
+                Gets serviceability limit state loads.
+            </summary>
+            <returns>Array of serviceability limit state loads.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.SetSLSLoads(System.UInt32@)">
+            <summary>
+                Sets serviceability limit state loads.
+            </summary>
+            <param name="Loads">Array of serviceability limit state loads.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.CleanSLSLoads">
+            <summary>
+                Cleans serviceability limit state loads.
+            </summary>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.GetFRLoadCount">
+            <summary>
+                Gets count of fire resistance loads.
+            </summary>
+            <returns>Count of fire resistance loads.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.GetFRLoads">
+            <summary>
+                Gets fire resistance loads.
+            </summary>
+            <returns>Array of fire resistance loads.</returns>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.SetFRLoads(System.UInt32@)">
+            <summary>
+                Sets fire resistance loads.
+            </summary>
+            <param name="Loads">Array of fire resistance loads.</param>
+        </member>
+        <member name="M:Dlubal.TimberPro.IModuleCaseResistance.CleanFRLoads">
+            <summary>
+                Cleans fire resistance loads.
+            </summary>
+        </member>
+    </members>
+</doc>

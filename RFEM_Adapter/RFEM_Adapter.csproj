@@ -72,24 +72,29 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Dlubal.DynamPro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ad96acf4bd703704, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.DynamPro.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\libs\Dlubal.DynamPro.dll</HintPath>
     </Reference>
-    <Reference Include="Dlubal.RFEM3, Version=3.4.0.0, Culture=neutral, PublicKeyToken=2168830b90cb4fa2, processorArchitecture=AMD64">
-      <HintPath>..\packages\BHoM.Interop.RFEM3.1.0.0\lib\net45\Dlubal.RFEM3.dll</HintPath>
+    <Reference Include="Dlubal.RFEM3, Version=3.4.0.0, Culture=neutral, PublicKeyToken=2168830b90cb4fa2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\libs\Dlubal.RFEM3.dll</HintPath>
     </Reference>
-    <Reference Include="Dlubal.RFEM5, Version=5.5.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.RFEM5.dll</HintPath>
+    <Reference Include="Dlubal.RFEM5, Version=5.6.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\libs\Dlubal.RFEM5.dll</HintPath>
     </Reference>
     <Reference Include="Dlubal.SteelSurfaces, Version=2.0.0.0, Culture=neutral, PublicKeyToken=401d448485510c51, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.SteelSurfaces.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\libs\Dlubal.SteelSurfaces.dll</HintPath>
     </Reference>
     <Reference Include="Dlubal.TimberPro, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0b06332e21b255cd, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.TimberPro.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\libs\Dlubal.TimberPro.dll</HintPath>
     </Reference>
     <Reference Include="Geometry_Engine">
       <SpecificVersion>False</SpecificVersion>
@@ -100,10 +105,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\ProgramData\BHoM\Assemblies\Geometry_oM.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Interop.RFEM3, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM3.1.0.0\lib\net45\Interop.RFEM3.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Physical_oM">
       <SpecificVersion>False</SpecificVersion>
@@ -210,9 +211,6 @@
       <Name>RFEM_oM</Name>
       <Private>False</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,0 +1,1486 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dlubal.SteelSurfaces</name>
+    </assembly>
+    <members>
+        <member name="T:Dlubal.SteelSurfaces.ST_TRESCA">
+            <summary>
+                Yield Hypothesis by Tresca
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_TRESCA.ST_TRESCA_TAUMAX">
+            <summary>
+                Tau max
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_TRESCA.ST_TRESCA_SIGMAEQV">
+            <summary>
+                Sigma eqv
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_SHEARSTRESS">
+            <summary>
+                Calculation Type of Shear Stress
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SHEARSTRESS.ST_SHEARSTRESS_KIRCHHOFF">
+            <summary>
+                Kirchhoff
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SHEARSTRESS.ST_SHEARSTRESS_MINDLIN">
+            <summary>
+                Mindlin
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SHEARSTRESS.ST_SHEARSTRESS_USERDEFINED">
+            <summary>
+                User Defined - Factor
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_METHODCOMB">
+            <summary>
+                Analysis Method for Load Combinations
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_METHODCOMB.ST_METHODCOMB_ENUMERATION">
+            <summary>
+                All possible combinations are enumerated and analyzed (in case  of many load cases very time consuming)
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_METHODCOMB.ST_METHODCOMB_ENVELOPE">
+            <summary>
+                Only combination possibilities of max/min basic stresses will be analyzed
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_METHODCOMB.ST_METHODCOMB_MIXED">
+            <summary>
+                Use Enumeration Method if less than Factor Combination Possibilities otherwise apply Envelope Methode
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_THICK_TYPE">
+            <summary>
+                Thickness type of surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_THICK_TYPE.ST_THICK_CONST">
+            <summary>
+                Thickness constant
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_THICK_TYPE.ST_THICK_LINEAR">
+            <summary>
+                Thickness linear
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_THICK_TYPE.ST_THICK_COUPLING">
+            <summary>
+                Thickness coupling
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_THICK_TYPE.ST_THICK_RIGID">
+            <summary>
+                Thickness rigid
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_THICK_TYPE.ST_THICK_ORTHO">
+            <summary>
+                Thickness orthotrop
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_THICK_TYPE.ST_THICK_NULL">
+            <summary>
+                Thickness null
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ITEM_AT">
+            <summary>
+                Define type of getting an object
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ITEM_AT.AT_INDEX">
+            <summary>
+                Object is get by index of array where is object placed
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ITEM_AT.AT_NO">
+            <summary>
+                Object is get by object number
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.PLANE_TYPE">
+            <summary>
+                Type of plane
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.PLANE_TYPE.PLANE_XY">
+            <summary>
+                Plane X-Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.PLANE_TYPE.PLANE_YZ">
+            <summary>
+                Plane Y-Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.PLANE_TYPE.PLANE_XZ">
+            <summary>
+                Plane Z-Z
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.DIRECTION_TYPE">
+            <summary>
+                Type of Direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DIRECTION_TYPE.DIRECTION_UPWARDS">
+            <summary>
+                Upwards Direction
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DIRECTION_TYPE.DIRECTION_DOWNWARDS">
+            <summary>
+                Downwards Direction
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.VERTICAL_ALIGNMENT">
+            <summary>
+                Define type of vertical alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.VERTICAL_ALIGNMENT.ALIGN_LEFT">
+            <summary>
+                Left alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.VERTICAL_ALIGNMENT.ALIGN_CENTER">
+            <summary>
+                Center alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.VERTICAL_ALIGNMENT.ALIGN_RIGHT">
+            <summary>
+                Right alignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.CURVE_TYPE">
+            <summary>
+                Type of the curve
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CURVE_TYPE.CT_UNKNOWN">
+            <summary>
+                Unknown curve type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CURVE_TYPE.CT_LINE">
+            <summary>
+                Line
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CURVE_TYPE.CT_ARC">
+            <summary>
+                Arc
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CURVE_TYPE.CT_CIRCLE">
+            <summary>
+                Circle
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.BOUND_TYPE">
+            <summary>
+                Type of the bound
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ThicknessType">
+            <summary>
+                Thickness type of surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ThicknessType.ThicknessConstant">
+            <summary>
+                Thickness constant
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ThicknessType.ThicknessLinear">
+            <summary>
+                Thickness linear
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ThicknessType.ThicnessCoupling">
+            <summary>
+                Thickness coupling
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ThicknessType.ThicknessRigid">
+            <summary>
+                Thickness rigid
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ThicknessType.ThicknessOrthotrop">
+            <summary>
+                Thickness orthotrop
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ThicknessType.ThicknessNull">
+            <summary>
+                Thickness null
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.StressesType">
+            <summary>
+                Equivalent Stresses According to
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.StressesType.MisesHuberHencky">
+            <summary>
+                Von Mises, Huber, Hencky; Shape modification hypothesis
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.StressesType.Tresca">
+            <summary>
+                Tresca; Maximum shear stress criterion
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.StressesType.RankineLame">
+            <summary>
+                Rankine, Lamé
+Maximum principal stress criterion
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.StressesType.BachNavierVenantPoncelet">
+            <summary>
+                Bach, Navier, St. Venant, Poncelet; Principal strain criterion
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ResultsUnit">
+            <summary>
+                Results unit
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ResultsUnit.MeshPoints">
+            <summary>
+                FE mesh points
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ResultsUnit.GridPoints">
+            <summary>
+                Grid points
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ResultMethod">
+            <summary>
+                Analysis Method for Result Combinations
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ResultMethod.EnumerationMethod">
+            <summary>
+                All possible combinations are enumerated and analyzed.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ResultMethod.EnvelopeMethod">
+            <summary>
+                Only combination possibilities of max/min basic stresses will be analyzed.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ResultMethod.MixedMethod">
+            <summary>
+                If there are less then specified number of combination possibilities, EnumerationMethod is used.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ResultMethod.InternalForces">
+            <summary>
+                Stresses from internal forces.
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.InternalForcesDistribution">
+            <summary>
+                Distribution of Internal Forces
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.InternalForcesDistribution.ConstantOnElements">
+            <summary>
+                Constant on elements.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.InternalForcesDistribution.Noncontinuous">
+            <summary>
+                Noncontinuous
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.InternalForcesDistribution.ContinuousWithinSurfaces">
+            <summary>
+                Continuous within surfaces
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.InternalForcesDistribution.ContinuousTotal">
+            <summary>
+                Continuous total
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.InternalForcesDistribution.ContinuousByGroups">
+            <summary>
+                Continuous by groups
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_LOCATION">
+            <summary>
+                Define type of location
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_STRESS_TYPE">
+            <summary>
+                Define type of stress
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ItemAt">
+            <summary>
+                Define type of accessing an object.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ItemAt.AtIndex">
+            <summary>
+                Object is get by index of array where is the object placed.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ItemAt.AtNo">
+            <summary>
+                Object is get by object number.
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.AxisType">
+            <summary>
+                Type of the axis
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.AxisType.UnknownAxis">
+            <summary>
+                Unknown axis
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.AxisType.AxisX">
+            <summary>
+                Axis X
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.AxisType.AxisY">
+            <summary>
+                Axis Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.AxisType.AxisZ">
+            <summary>
+                Axis Z
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.PlaneType">
+            <summary>
+                Type of the plane
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.PlaneType.UnknownPlane">
+            <summary>
+                Unknown plane
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.PlaneType.PlaneXY">
+            <summary>
+                Plane X-Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.PlaneType.PlaneYZ">
+            <summary>
+                Plane Y-Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.PlaneType.PlaneXZ">
+            <summary>
+                Plane X-Z
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.OrientationType">
+            <summary>
+                Orientation type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.OrientationType.Downward">
+            <summary>
+                Oriented downward
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.OrientationType.Upward">
+            <summary>
+                Oriented upward
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.HorizontalAlignmentType">
+            <summary>
+                Type of horizontal alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.HorizontalAlignmentType.UnknownHAlignment">
+            <summary>
+                Unknown horizontal alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.HorizontalAlignmentType.Left">
+            <summary>
+                Left alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.HorizontalAlignmentType.Center">
+            <summary>
+                Center alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.HorizontalAlignmentType.Right">
+            <summary>
+                Right alignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.VerticalAlignmentType">
+            <summary>
+                Type of vertical alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.VerticalAlignmentType.UnknownVAlignment">
+            <summary>
+                Unknown vertical alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.VerticalAlignmentType.Top">
+            <summary>
+                Left alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.VerticalAlignmentType.Middle">
+            <summary>
+                Middle alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.VerticalAlignmentType.Bottom">
+            <summary>
+                Right alignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.RotationSequence">
+            <summary>
+                Rotation sequence
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.RotationSequence.UnknownRotationSequence">
+            <summary>
+                Unknown rotation sequence
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.RotationSequence.SequenceZYX">
+            <summary>
+                Rotation Sequence Z'Y'X'
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.RotationSequence.SequenceZXY">
+            <summary>
+                Rotation Sequence Z'X'Y'
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.RotationSequence.SequenceYZX">
+            <summary>
+                Rotation Sequence Y'Z'X'
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.RotationSequence.SequenceYXZ">
+            <summary>
+                Rotation Sequence Y'X'Z'
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.RotationSequence.SequenceXZY">
+            <summary>
+                Rotation Sequence X'Z'Y'
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.RotationSequence.SequenceXYZ">
+            <summary>
+                Rotation Sequence X'Y'Z'
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.LoadingType">
+            <summary>
+                Type of loading
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.UnknownLoadingType">
+            <summary>
+                Unknown load type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.LoadCaseType">
+            <summary>
+                Load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.LoadCombinationType">
+            <summary>
+                Load combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.ResultCombinationType">
+            <summary>
+                Result combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.SuperCombinationType">
+            <summary>
+                Super combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.DynamicCaseType">
+            <summary>
+                Dynamic case
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.DynamicCombinationType">
+            <summary>
+                Dynamic combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.LoadingType.ModuleCaseType">
+            <summary>
+                Module case
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ErrorType">
+            <summary>
+                Type of error
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorType.UnknownErrorType">
+            <summary>
+                Unknown error
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorType.UserErrorType">
+            <summary>
+                User error
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorType.InternalErrorType">
+            <summary>
+                Internal error
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorType.WarningType">
+            <summary>
+                Warning
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorType.CalculationErrorType">
+            <summary>
+                Calculation error
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.DesignSituation">
+            <summary>
+                Design situation type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DesignSituation.UnknownDesignSituation">
+            <summary>
+                Unknown
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DesignSituation.Accidental">
+            <summary>
+                Accidental
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DesignSituation.Fundamental">
+            <summary>
+                Fundamental
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.DesignCombination">
+            <summary>
+                Design combination type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DesignCombination.UnknownDesignCombination">
+            <summary>
+                Unknown
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DesignCombination.Frequent">
+            <summary>
+                Frequent
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DesignCombination.Characteristic">
+            <summary>
+                Characteristic
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.DesignCombination.QuasiPermanent">
+            <summary>
+                QuasiPermanent
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_PARAMETERS">
+            <summary>
+                Structure of Steel calculation parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.bCenterPoint">
+            <summary>
+                Stresses in neutral axis of surfaces
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.bMembrane">
+            <summary>
+                Membrane stresses only due to axial loading
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.eTresca">
+            <summary>
+                Yield Hypothesis by tresca
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.eCritTau">
+            <summary>
+                Calculation type of shear stress
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.fFactTau">
+            <summary>
+                Factor Tau
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.]">
+            <summary>
+                Factor Tau
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.eCombiCalcMode">
+            <summary>
+                Analysis Method for Load Combinations
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_PARAMETERS.nMaxEnumCombiMethod">
+            <summary>
+                Factor for Tau f2
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_SURFACE">
+            <summary>
+                Structure of surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SURFACE.iSurfaceNo">
+            <summary>
+                Surface number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SURFACE.iMaterialNo">
+            <summary>
+                Material number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SURFACE.eThicknessType">
+            <summary>
+                Thickness Type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SURFACE.fThickness">
+            <summary>
+                Thickness
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SURFACE.strRemark">
+            <summary>
+                Section remark
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_SURFACE.strComment">
+            <summary>
+                Section comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.IPOINT">
+            <summary>
+                Define 3D point (floats).
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT.x">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT.y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT.z">
+            <summary>
+                Z coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.IPOINT_2D">
+            <summary>
+                Define 2D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT_2D.x">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT_2D.y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.IPOINT_3D">
+            <summary>
+                Define 3D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT_3D.x">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT_3D.y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.IPOINT_3D.z">
+            <summary>
+                Z coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.CURVE_2D">
+            <summary>
+                Curve defined by 2D points
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CURVE_2D.type">
+            <summary>
+                Type of the curve
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CURVE_2D.bound">
+            <summary>
+                Type of the curve bound
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CURVE_2D.arrPoints">
+            <summary>
+                Array of 2D points defining the curve
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ModuleSettings">
+            <summary>
+                Settings of the module RF Steel Surfaces
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.CalcError">
+            <summary>
+                Calculation error information.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CalcError.ModuleName">
+            <summary>
+                Name of the module
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CalcError.LoadID">
+            <summary>
+                Load
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CalcError.ErrorNo">
+            <summary>
+                Error number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CalcError.Description">
+            <summary>
+                Error description
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.MaterialInformation">
+            <summary>
+                Structure of Steel material
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.No">
+            <summary>
+                Material number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.Description">
+            <summary>
+                Material description
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.SafetyFactor">
+            <summary>
+                Safety Factor (0,10e30>
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.YieldStrength">
+            <summary>
+                Yield Strength (0,10e30> [N/m2]
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.Manually">
+            <summary>
+                Manually
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.Sigma">
+            <summary>
+                Sigma (0,10e30> [N/m2]
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.Tau">
+            <summary>
+                Tau (0,10e30> [N/m2]
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.SigmaEq">
+            <summary>
+                Sigma Eq (0,10e30> [N/m2]
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.MaterialInformation.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.SurfaceInformation">
+            <summary>
+                Structure of surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SurfaceInformation.SurfaceNumber">
+            <summary>
+                Surface number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SurfaceInformation.MaterialNumber">
+            <summary>
+                Material number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SurfaceInformation.ThicknessType">
+            <summary>
+                Thickness Type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SurfaceInformation.Thickness">
+            <summary>
+                Thickness
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SurfaceInformation.Remark">
+            <summary>
+                Section remark
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SurfaceInformation.Comment">
+            <summary>
+                Section comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.StressToCalculate">
+            <summary>
+                Stresses to calculate
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ServiceabilityLimits">
+            <summary>
+                Serviceability limits (Deflections); Combination of actions
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.CaseDetails">
+            <summary>
+                Details of the case
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.StressesEquivalent">
+            <summary>
+                Equivalent Stresses According to:
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.ServiceabilityLimits">
+            <summary>
+                Serviceability limits (Deflections).
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.AnalysisMethod">
+            <summary>
+                Analysis Method for Result Combinations.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.MixedMethodThreshold">
+            <summary>
+                If the number of combination possibilities is smaller, Enumeration method is used.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.ResultsAs">
+            <summary>
+                FE mesh points or Grid points.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.MaximalStressRatio">
+            <summary>
+                Max allowable stress ratio.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.InternalForcesDistribution">
+            <summary>
+                Distribution of Internal Forces
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.CaseDetails.SmoothedInternalForces">
+            <summary>
+                Apply smoothed internal forces in the defined average regions
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_STRESS_VALUE">
+            <summary>
+                Define stress
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_STRESS_VALUE.fExisting">
+            <summary>
+                Stress existing
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_STRESS_VALUE.fAllowable">
+            <summary>
+                Stress allowable
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_STRESS_VALUE.fRatio">
+            <summary>
+                Stress ratio
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_MAX">
+            <summary>
+                Structure of stresses at surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_MAX.iSurfaceNo">
+            <summary>
+                Surface number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_MAX.eType">
+            <summary>
+                Stress type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_MAX.point">
+            <summary>
+                Point coordinates
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_MAX.eLocation">
+            <summary>
+                Stress location
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_MAX.sLCNo">
+            <summary>
+                LC No.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_MAX.value">
+            <summary>
+                Value of Stress
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID">
+            <summary>
+                Structure of stresses in grid points
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID.iSurfaceNo">
+            <summary>
+                Surface number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID.iPointNo">
+            <summary>
+                Grid point number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID.eType">
+            <summary>
+                Stress type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID.point">
+            <summary>
+                Point coordinates
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID.eLocation">
+            <summary>
+                Stress location
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID.sLCNo">
+            <summary>
+                LC No.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_GRID.value">
+            <summary>
+                Value of Stress
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_FE">
+            <summary>
+                Structure of Stresses in FE Points
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_FE.iSurfaceNo">
+            <summary>
+                Surface number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_FE.iPointNo">
+            <summary>
+                FE point number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_FE.eType">
+            <summary>
+                Stress type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_FE.point">
+            <summary>
+                Point coordinates
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ST_RESULTS_STRESSES_FE.value">
+            <summary>
+                Value of Stress
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.Point2D">
+            <summary>
+                3D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.Point2D.X">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.Point2D.Y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.Point3D">
+            <summary>
+                3D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.Point3D.X">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.Point3D.Y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.Point3D.Z">
+            <summary>
+                Z coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.Loading">
+            <summary>
+                Load parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.Loading.Type">
+            <summary>
+                Type of load
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.Loading.No">
+            <summary>
+                Load number
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ErrorInfo">
+            <summary>
+                Information about an error.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorInfo.ModuleName">
+            <summary>
+                Name of the module
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorInfo.Load">
+            <summary>
+                Load
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorInfo.ErrorNo">
+            <summary>
+                Error number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorInfo.Type">
+            <summary>
+                Error type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ErrorInfo.Description">
+            <summary>
+                Error description
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ModuleCase">
+            <summary>
+                Module case basic parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ModuleCase.No">
+            <summary>
+                Number
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ModuleCase.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ULSLoad">
+            <summary>
+                Ultimate Limit State load.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ULSLoad.Type">
+            <summary>
+                Load type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ULSLoad.No">
+            <summary>
+                Load No.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.ULSLoad.DesignSituation">
+            <summary>
+                Load No.
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.SLSLoad">
+            <summary>
+                Serviceability Limit State load.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SLSLoad.Type">
+            <summary>
+                Load type
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SLSLoad.No">
+            <summary>
+                Load No.
+            </summary>
+        </member>
+        <member name="F:Dlubal.SteelSurfaces.SLSLoad.DesignCombination">
+            <summary>
+                Load No.
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.IstNotify">
+            <summary>
+                Interface to Steel notify
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IstNotify.moCalculationStatus(System.String@)">
+            <summary>
+                Return calculation status.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IstNotify.moCalculationFinished(System.Boolean@)">
+            <summary>
+                Indicate that calculation was finished.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IstNotify.moCalculationStarted">
+            <summary>
+                Indicate that calculation was started.
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ISteelSurfacesCase">
+            <summary>
+                Interface to the Steel Surfaces Case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetSurfaceList">
+            <summary>
+                Gets list of surfaces.
+            </summary>
+            <returns>List of surfaces.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.SetSurfaceList(System.String)">
+            <summary>
+                Sets list of surfaces.
+            </summary>
+            <param name="SurfaceList">List of surfaces.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetMaterialsCount">
+            <summary>
+                Gets count of materials.
+            </summary>
+            <returns>Count of materials used.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetMaterialByIndex(System.Int32)">
+            <summary>
+                Gets material by index.
+            </summary>
+            <returns>Material structure.</returns>
+            <param name="Index">Zero-based index of the material.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetMaterialByNumber(System.Int32)">
+            <summary>
+                Gets material by number.
+            </summary>
+            <returns>Material structure.</returns>
+            <param name="No">Number of the material.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetMaterials">
+            <summary>
+                Gets array of materials.
+            </summary>
+            <returns>Materials array.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.SetMaterial(System.UInt32@)">
+            <summary>
+                Sets material.
+            </summary>
+            <param name="Material">Material structure.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.SetMaterials(System.UInt32@)">
+            <summary>
+                Sets materials by array.
+            </summary>
+            <param name="Array">Array of materials to be set.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetSurfaceCount">
+            <summary>
+                Gets count of surfaces.
+            </summary>
+            <returns>Count of surfaces.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetSurfaceByIndex(System.Int32)">
+            <summary>
+                Gets surface based on given index.
+            </summary>
+            <returns>Structure with informations about surface.</returns>
+            <param name="Index">Index of the desired surface.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetSurfaceByNumber(System.Int32)">
+            <summary>
+                Gets surface based on given number.
+            </summary>
+            <returns>Structure with informations about surface.</returns>
+            <param name="Number">Number of the desired surface.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetSurfaces">
+            <summary>
+                Gets array of surfaces.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.SetSurface(System.UInt32@)">
+            <summary>
+                Sets surface.
+            </summary>
+            <param name="Surface">Surface to be set.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.SetSurfaces(System.UInt32@)">
+            <summary>
+                Sets surfaces by array.
+            </summary>
+            <param name="Array">Surfaces to be set.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetDetails">
+            <summary>
+                Gets Steel calculation details and parameters.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.SetDetails(System.UInt32@)">
+            <summary>
+                Sets Steel calculation details and parameters.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.GetResults">
+            <summary>
+                Gets interface to results.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ISteelSurfacesCase.DeleteResults">
+            <summary>
+                Deletes Steel Surfaces results.
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.IModule">
+            <summary>
+                Interface for working with module.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.GetCaseCount">
+            <summary>
+                Gets count of cases in this module.
+            </summary>
+            <returns>Count of cases in this modules.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.GetCase(System.Int32,System.UInt32)">
+            <summary>
+                Gets module case.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number or index of the module case you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.SetCase(System.Int32,System.String)">
+            <summary>
+                Sets the module case. If the case with number exists, just returns its interface.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number of the module case. If it is zero or does not exist, new case is added.</param>
+            <param name="Name">Name of the module case to be added.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.DeleteCase(System.Int32,System.UInt32)">
+            <summary>
+                Deletes module case based.
+            </summary>
+            <param name="No">Number or index of the module case you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.GetCases">
+            <summary>
+                Gets array of module cases.
+            </summary>
+            <returns>Array of module cases</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.Clean">
+            <summary>
+                Deletes all cases of the module.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.CopyCase(System.Int32,System.UInt32)">
+            <summary>
+                Copies case based on given index.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number or index of the module case you want to copy.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModule.HasResults">
+            <summary>
+                Checks whether the module has results.
+            </summary>
+            <returns>True when any module's load case has results, false otherwise</returns>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ILoadsCapableCase">
+            <summary>
+                Case working with loads.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ILoadsCapableCase.GetULSLoadsCount">
+            <summary>
+                GetsUltimateLimit State Loads count.
+            </summary>
+            <returns>Ultimate Limit State loads count."</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ILoadsCapableCase.GetULSLoads">
+            <summary>
+                Gets Ultimate Limit State Loads.
+            </summary>
+            <returns>Array of Ultimate Limit State Loads.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.ILoadsCapableCase.SetULSLoads(System.UInt32@)">
+            <summary>
+                Sets Ultimate Limit State Loads.
+            </summary>
+            <param name="Array">Array of Ultimate Limit State Loads.</param>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.ISteelSurfacesResults">
+            <summary>
+                Interface to Steel Surfaces results
+            </summary>
+        </member>
+        <member name="T:Dlubal.SteelSurfaces.IModuleCaseBase">
+            <summary>
+                Interface for working with module case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.GetNo">
+            <summary>
+                Gets the number of the module case.
+            </summary>
+            <returns>Number of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.GetDescription">
+            <summary>
+                Gets the description of the module case.
+            </summary>
+            <returns>Description of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.SetDescription(System.String)">
+            <summary>
+                Sets the description of the module case.
+            </summary>
+            <param name="Description">Description of the module case.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.GetComment">
+            <summary>
+                Gets the comment of the module case.
+            </summary>
+            <returns>Comment of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.SetComment(System.String)">
+            <summary>
+                Sets the comment of the module case.
+            </summary>
+            <param name="Comment">Comment of the module case.</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.Clone(System.Int32)">
+            <summary>
+                Clones the module case and returns the new one interface.
+            </summary>
+            <returns>Cloned module case interface.</returns>
+            <param name="NewNo">Number of the cloned module case. Zero means number should be assigned by RFEM."</param>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.Delete">
+            <summary>
+                Deletes the load case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.SteelSurfaces.IModuleCaseBase.HasResults">
+            <summary>
+                Check whether the load case has any results.
+            </summary>
+            <returns>True if the module case has any results, otherwise false.</returns>
+        </member>
+    </members>
+</doc>

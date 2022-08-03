@@ -1,0 +1,2549 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dlubal.DynamPro</name>
+    </assembly>
+    <members>
+        <member name="T:Dlubal.DynamPro.MassConversionType">
+            <summary>
+                Mass conversion type.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassConversionType.UnknownMassConversionType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassConversionType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassConversionType.ZComponentsOfLoads">
+            <summary>
+                Z-components of loads
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassConversionType.ZComponentsInOfLoadsInGravityDir">
+            <summary>
+                Z-components of loads in direction of gravity
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassConversionType.FullLoadsAsMass">
+            <summary>
+                Full loads as mass
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MinAxialStrainType">
+            <summary>
+                Minimum axial strain for cables and membranes.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MinAxialStrainType.UnknownMinAxialStrainType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MinAxialStrainType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MinAxialStrainType.ConditionedMinAxialStrain">
+            <summary>
+                Use minimum axial strain if it is bigger than the one in Load Case / Load Combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MinAxialStrainType.AlwaysUseMinAxialStrain">
+            <summary>
+                Always use minimum axial stran
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MassCaseType">
+            <summary>
+                Mass case type.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.UnknownMCType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.PermanentMCType">
+            <summary>
+                Permanent
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryABRoofMCType">
+            <summary>
+                Category A-B Roofs
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryABDependentMCType">
+            <summary>
+                Category A-B Dependent
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryABIndependentMCType">
+            <summary>
+                Category A-B Independent
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryCRoofMCType">
+            <summary>
+                Category C Roofs
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryCDependentMCType">
+            <summary>
+                Category C Dependent
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryCIndependentMCType">
+            <summary>
+                Category C Independent
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryDMCType">
+            <summary>
+                Category D
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryEMCType">
+            <summary>
+                Category E
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.ImposedCategoryFMCType">
+            <summary>
+                Category F
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.SnowEUMCType">
+            <summary>
+                Category Snow
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.BridgeRoadMCType">
+            <summary>
+                Bridges with heavy traffic (roads)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseType.BridgeRailwayMCType">
+            <summary>
+                Bridges with heavy traffic (railways)
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MassFromLoadImportType">
+            <summary>
+                Mass from load import type.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassFromLoadImportType.UnknownLoadFromLoadImportType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassFromLoadImportType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassFromLoadImportType.NoMassFromLoadImport">
+            <summary>
+                Do not import mass from force components of loads
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassFromLoadImportType.MassFromLoadCase">
+            <summary>
+                Import mass from selected load case (MassImportLoadNo)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassFromLoadImportType.MassFromLoadCombination">
+            <summary>
+                Import mass from selected load combination (MassImportLoadNo)
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.OptionalLoadCaseOrCombinationType">
+            <summary>
+                Optional load case or load combination choice
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.OptionalLoadCaseOrCombinationType.UnknownLoadCaseOrCombChoice">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.OptionalLoadCaseOrCombinationType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.OptionalLoadCaseOrCombinationType.NoLoadCaseOrLoadCombinationChoice">
+            <summary>
+                Load case choice
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.OptionalLoadCaseOrCombinationType.LoadCaseChoice">
+            <summary>
+                Load case choice
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.OptionalLoadCaseOrCombinationType.LoadCombinationChoice">
+            <summary>
+                Load combination choice
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MassMatrixType">
+            <summary>
+                Mass matrix type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassMatrixType.UnknownMatrixType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassMatrixType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassMatrixType.DiagonalMatrixType">
+            <summary>
+                Diagonal mass matrix
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassMatrixType.MatrixTypeWithTorsionalElements">
+            <summary>
+                Diagonal mass matrix with torsional elements (RFEM only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassMatrixType.ConsistentMatrixType">
+            <summary>
+                Consistent mass matrix
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassMatrixType.UnitMatrixType">
+            <summary>
+                Unit mass matrix
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.ScalingOfModeShapesMethod">
+            <summary>
+                Scaling of mode shapes method.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ScalingOfModeShapesMethod.UnknownScaling">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ScalingOfModeShapesMethod.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ScalingOfModeShapesMethod.ScalingType1">
+            <summary>
+                |uj| = 1
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ScalingOfModeShapesMethod.ScalingType2">
+            <summary>
+                max(ux, uy, uz) = 1
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ScalingOfModeShapesMethod.ScalingType3">
+            <summary>
+                max(ux, uy, uz, phix, phiy, phiz) = 1
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ScalingOfModeShapesMethod.ScalingType4">
+            <summary>
+                (uj)^T*[M]*(uj) = 1
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.SolutionMethod">
+            <summary>
+                Method for solving eigenvalue problem
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.SolutionMethod.UnknownSolutionMethod">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.SolutionMethod.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.SolutionMethod.RootOfCharacteristicPolynomial">
+            <summary>
+                Root of the characteristic polynomial (RFEM)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.SolutionMethod.Lanczos">
+            <summary>
+                Lanczos (RFEM)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.SolutionMethod.SubspaceIteration">
+            <summary>
+                Subspace iteration
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.SolutionMethod.IcgIteration">
+            <summary>
+                ICG iteration (RFEM)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.SolutionMethod.InversedWithShift">
+            <summary>
+                Shifted inverse power method (RSTAB)
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MassCaseOrCombinationType">
+            <summary>
+                Choice between using mass case or mass combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseOrCombinationType.UnknownMassCaseOrCombination">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseOrCombinationType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseOrCombinationType.MassCaseChoice">
+            <summary>
+                Import masses from mass case
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCaseOrCombinationType.MassCombinationChoice">
+            <summary>
+                Import masses from mass combination
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.ResponseSpectraType">
+            <summary>
+                Response spectra definition type - only RS_USER_DEFINED is being available through COM
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ResponseSpectraType.UnknownResponseSpectraType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ResponseSpectraType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ResponseSpectraType.AccordingToStandard">
+            <summary>
+                According to national standard/annex
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ResponseSpectraType.UserDefinedRS">
+            <summary>
+                User-defined Response Spectrum
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ResponseSpectraType.FromAccelerogramRS">
+            <summary>
+                Generate from acceleration
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DlcDampingType">
+            <summary>
+                DLC - Damping, type of damping to be used
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcDampingType.UnknownDampingType">
+            <summary>
+                Unknown Type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcDampingType.1">
+            <summary>
+                Unknown Type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcDampingType.RayleighDamping">
+            <summary>
+                Rayleigh Damping
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcDampingType.LehrDamping">
+            <summary>
+                Lehr's Damping
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcDampingType.LehrDampingForEachMode">
+            <summary>
+                Lehr's Damping differently for each mode
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DlcSupportSetType">
+            <summary>
+                Choice for DLC between exciting all supports identically or setting up different inputs for different support sets
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcSupportSetType.UnknownSupportSetType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcSupportSetType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcSupportSetType.Simple">
+            <summary>
+                On all supports identically
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DlcSupportSetType.Multipoint">
+            <summary>
+                Differently on support sets
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.ModalResponseCombinationRule">
+            <summary>
+                Modal response combination rule
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ModalResponseCombinationRule.ModalCombinationRuleUnknown">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ModalResponseCombinationRule.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ModalResponseCombinationRule.ModalCombinationSRSS">
+            <summary>
+                SRSS
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ModalResponseCombinationRule.ModalCombinationCQC">
+            <summary>
+                CQC
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.RsaDirCombinationRule">
+            <summary>
+                Response spectra direction combination rule
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RsaDirCombinationRule.DLCResponseSpectraDirectionCombinationRuleUnknown">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RsaDirCombinationRule.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RsaDirCombinationRule.DLCResponseSpectraDirectionCombinationSRSS">
+            <summary>
+                SRSS
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RsaDirCombinationRule.DLCResponseSpectraDirectionCombination10030">
+            <summary>
+                100 / 30 %
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RsaDirCombinationRule.DLCResponseSpectraDirectionCombination10040">
+            <summary>
+                100 / 40 %
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DynamicLoadCaseType">
+            <summary>
+                Type of dynamic load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.UnknownDLCMethodType">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.1">
+            <summary>
+                Unknown type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.MultiModalAndMultiPointResponseSpectraAnalysis">
+            <summary>
+                Multi-modal and multi-point response spectrum analysis
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryWithAccelerogramModalAnalysis">
+            <summary>
+                Modal Analysis (linear) (with accelerogram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryWithAccelerogramLinearImplicit">
+            <summary>
+                Linear implicit Newmark solver (with accelerogram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryWithAccelerogramNonlinearImpilicit">
+            <summary>
+                Nonlinear implicit Newmark solver (with accelerogram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryAccelerogramExplicit">
+            <summary>
+                Explicit solver (with accelerogram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryWithLoadTimeDiagramModalAnalysis">
+            <summary>
+                Modal Analysis (linear) (with load time diagram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryWithLoadTimeDiagramLinearImplicit">
+            <summary>
+                Linear implicit Newmark solver (with load time diagram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryWithLoadTimeDiagramNonlinearImplicit">
+            <summary>
+                Nonlinear implicit Newmark solver (with load time diagram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.TimeHistoryWithLoadTimeDiagramExplicit">
+            <summary>
+                Explicit solver (with load time diagram)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamicLoadCaseType.EquivalentStaticForceAnalysis">
+            <summary>
+                Equivalent static force analysis
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.ItemAt">
+            <summary>
+                Define type of accessing an object.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ItemAt.AtIndex">
+            <summary>
+                Object is get by index of array where is the object placed.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ItemAt.AtNo">
+            <summary>
+                Object is get by object number.
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.AxisType">
+            <summary>
+                Type of the axis
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.AxisType.UnknownAxis">
+            <summary>
+                Unknown axis
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.AxisType.AxisX">
+            <summary>
+                Axis X
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.AxisType.AxisY">
+            <summary>
+                Axis Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.AxisType.AxisZ">
+            <summary>
+                Axis Z
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.PlaneType">
+            <summary>
+                Type of the plane
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.PlaneType.UnknownPlane">
+            <summary>
+                Unknown plane
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.PlaneType.PlaneXY">
+            <summary>
+                Plane X-Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.PlaneType.PlaneYZ">
+            <summary>
+                Plane Y-Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.PlaneType.PlaneXZ">
+            <summary>
+                Plane X-Z
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.OrientationType">
+            <summary>
+                Orientation type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.OrientationType.Downward">
+            <summary>
+                Oriented downward
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.OrientationType.Upward">
+            <summary>
+                Oriented upward
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.HorizontalAlignmentType">
+            <summary>
+                Type of horizontal alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.HorizontalAlignmentType.UnknownHAlignment">
+            <summary>
+                Unknown horizontal alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.HorizontalAlignmentType.Left">
+            <summary>
+                Left alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.HorizontalAlignmentType.Center">
+            <summary>
+                Center alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.HorizontalAlignmentType.Right">
+            <summary>
+                Right alignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.VerticalAlignmentType">
+            <summary>
+                Type of vertical alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.VerticalAlignmentType.UnknownVAlignment">
+            <summary>
+                Unknown vertical alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.VerticalAlignmentType.Top">
+            <summary>
+                Left alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.VerticalAlignmentType.Middle">
+            <summary>
+                Middle alignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.VerticalAlignmentType.Bottom">
+            <summary>
+                Right alignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.RotationSequence">
+            <summary>
+                Rotation sequence
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RotationSequence.UnknownRotationSequence">
+            <summary>
+                Unknown rotation sequence
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RotationSequence.SequenceZYX">
+            <summary>
+                Rotation Sequence Z'Y'X'
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RotationSequence.SequenceZXY">
+            <summary>
+                Rotation Sequence Z'X'Y'
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RotationSequence.SequenceYZX">
+            <summary>
+                Rotation Sequence Y'Z'X'
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RotationSequence.SequenceYXZ">
+            <summary>
+                Rotation Sequence Y'X'Z'
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RotationSequence.SequenceXZY">
+            <summary>
+                Rotation Sequence X'Z'Y'
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RotationSequence.SequenceXYZ">
+            <summary>
+                Rotation Sequence X'Y'Z'
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.LoadingType">
+            <summary>
+                Type of loading
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.UnknownLoadingType">
+            <summary>
+                Unknown load type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.LoadCaseType">
+            <summary>
+                Load case
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.LoadCombinationType">
+            <summary>
+                Load combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.ResultCombinationType">
+            <summary>
+                Result combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.SuperCombinationType">
+            <summary>
+                Super combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.DynamicCaseType">
+            <summary>
+                Dynamic case
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.DynamicCombinationType">
+            <summary>
+                Dynamic combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.LoadingType.ModuleCaseType">
+            <summary>
+                Module case
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.ErrorType">
+            <summary>
+                Type of error
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorType.UnknownErrorType">
+            <summary>
+                Unknown error
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorType.UserErrorType">
+            <summary>
+                User error
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorType.InternalErrorType">
+            <summary>
+                Internal error
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorType.WarningType">
+            <summary>
+                Warning
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorType.CalculationErrorType">
+            <summary>
+                Calculation error
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DynamResultsValueType">
+            <summary>
+                Type of result values.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.UnknownValueType">
+            <summary>
+                Unknown results
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.StandardValueType">
+            <summary>
+                Standard results
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MaximumValueType">
+            <summary>
+                Maximum results
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MinimumValueType">
+            <summary>
+                Minimum results
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MaximumAlongX">
+            <summary>
+                Maximum value in direction along X-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MinimumAlongX">
+            <summary>
+                Minimum value in direction along X-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MaximumAlongY">
+            <summary>
+                Maximum value in direction along Y-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MinimumAlongY">
+            <summary>
+                Minimum value in direction along Y-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MaximumAlongZ">
+            <summary>
+                Maximum value in direction along Z-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MinimumAlongZ">
+            <summary>
+                Minimum value in direction along Z-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MaximumAroundX">
+            <summary>
+                Maximum value in direction about X-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MinimumAroundX">
+            <summary>
+                Minimum value in direction about X-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MaximumAroundY">
+            <summary>
+                Maximum value in direction about Y-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MinimumAroundY">
+            <summary>
+                Minimum value in direction about Y-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MaximumAroundZ">
+            <summary>
+                Maximum value in direction about Z-axis.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamResultsValueType.MinimumAroundZ">
+            <summary>
+                Minimum value in direction about Z-axis.
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.CalcError">
+            <summary>
+                Calculation error information.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.CalcError.ModuleName">
+            <summary>
+                Name of the module
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.CalcError.LoadID">
+            <summary>
+                Load
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.CalcError.ErrorNo">
+            <summary>
+                Error number
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.CalcError.Description">
+            <summary>
+                Error description
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.GeneralParams">
+            <summary>
+                General parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.GeneralParams.EnableMCO">
+            <summary>
+                Enable mass combinations
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.GeneralParams.EnableRS">
+            <summary>
+                Enable response spectra (RF-DYNAM Pro - Forced Vibrations)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.GeneralParams.EnableACC">
+            <summary>
+                Enable accelerations (RF-DYNAM Pro - Forced Vibrations)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.GeneralParams.EnableLTD">
+            <summary>
+                Enable load time diagrams (RF-DYNAM Pro - Forced Vibrations)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.GeneralParams.EnableEFA">
+            <summary>
+                Enable equivalent force analysis (RF-DYNAM Pro - Equivalent Loads)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.GeneralParams.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DynamDetails">
+            <summary>
+                DynamDetails
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.ConversionType">
+            <summary>
+                Mass conversion type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.GravityAcceleration">
+            <summary>
+                OBSOLETE (Acceleration of gravity)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.ActivateEpsilonMin">
+            <summary>
+                Activate minimum axial strain for cables and membranes
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.EpsilonMin">
+            <summary>
+                Minimum axial strain for cables and membranes
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.EpsilonMinUsage">
+            <summary>
+                Enable equivalent force analysis
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.ChangeInstabilityDetection">
+            <summary>
+                Change standard instability detection settings
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.InstabilityTolerance">
+            <summary>
+                Tolerance for detection of instability
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.MaxEquivalentLoadsForGraphics">
+            <summary>
+                Maximum number of generated equivalent loads to be visible in graphics
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DynamDetails.MaxEquivalentLoads">
+            <summary>
+                Maximum number of generated equivalent loads
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MassTableEntry">
+            <summary>
+                Added masses table entry
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassTableEntry.RowNo">
+            <summary>
+                Number of row
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassTableEntry.ObjectNumbers">
+            <summary>
+                List of assigned elements(Lines/Members/Surfaces)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassTableEntry.Mass">
+            <summary>
+                Mass
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassTableEntry.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NodeMassTableEntry">
+            <summary>
+                Added masses table entry for nodes
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NodeMassTableEntry.RowNo">
+            <summary>
+                Number of row
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NodeMassTableEntry.ObjectNumbers">
+            <summary>
+                List of assigned nodes
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NodeMassTableEntry.Mass">
+            <summary>
+                Mass
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NodeMassTableEntry.IX">
+            <summary>
+                Mass moment of inertia in X
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NodeMassTableEntry.IY">
+            <summary>
+                Mass moment of inertia in Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NodeMassTableEntry.IZ">
+            <summary>
+                Mass moment of inertia in Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NodeMassTableEntry.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MCParams">
+            <summary>
+                mass case parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.Number">
+            <summary>
+                mass case number (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.Type">
+            <summary>
+                mass case type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.ImportMassesFromSelfWeight">
+            <summary>
+                Apply self-weight mass
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.MassFromLoadImportType">
+            <summary>
+                Apply mass imported from selected Load Case or Load Combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.MassImportLoadNo">
+            <summary>
+                Selected Load Case or Load Combination to import masses from.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.ApplyListedMassesNode">
+            <summary>
+                Apply listed node masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.NodeMasses">
+            <summary>
+                Listed node masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.ApplyListedMassesLine">
+            <summary>
+                Apply listed line masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.LineMasses">
+            <summary>
+                Listed line masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.ApplyListedMassesMember">
+            <summary>
+                Apply listed member masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.MemberMasses">
+            <summary>
+                Listed member masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.ApplyListedMassesSurface">
+            <summary>
+                Apply listed surface masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.SurfaceMasses">
+            <summary>
+                Listed surface masses
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCParams.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MassCombinationEntry">
+            <summary>
+                Mass combination entry
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCombinationEntry.Coefficient">
+            <summary>
+                Mass case coefficient
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassCombinationEntry.MassCase">
+            <summary>
+                Mass case number
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MCOParams">
+            <summary>
+                Mass combination parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCOParams.Number">
+            <summary>
+                Mass combination number (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCOParams.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCOParams.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MCOParams.Table">
+            <summary>
+                List of mass cases defining this combination
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MassSettings">
+            <summary>
+                Common Calculation parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassSettings.EnableMassActingInX">
+            <summary>
+                Enable masses to acting in direction X
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassSettings.EnableMassActingInY">
+            <summary>
+                Enable masses to acting in direction Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassSettings.EnableMassActingInZ">
+            <summary>
+                Enable masses to acting in direction Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassSettings.EnableMassActingAroundX">
+            <summary>
+                Enable masses to acting around axis X
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassSettings.EnableMassActingAroundY">
+            <summary>
+                Enable masses to acting around axis Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassSettings.EnableMassActingAroundZ">
+            <summary>
+                Enable masses to acting around axis Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MassSettings.MassMatrixType">
+            <summary>
+                Type of mass matrix
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.InitialCondSettings">
+            <summary>
+                Settings of initial conditions
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.InitialCondSettings.InitialConditionsChoice">
+            <summary>
+                Import from load case or load combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.InitialCondSettings.LoadNumber">
+            <summary>
+                Number of load case / load combination to be imported from
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.MemberDivSettings">
+            <summary>
+                Setting of member divisions (RSTAB only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MemberDivSettings.ActivateMemberDivision">
+            <summary>
+                Activate member division
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.MemberDivSettings.NumberOfMemberDivisions">
+            <summary>
+                Number of member divisions
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NVCParams">
+            <summary>
+                Natural vibration case parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.Number">
+            <summary>
+                Natural vibration case number (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.ToSolve">
+            <summary>
+                Whether this NVC should be calculated in general calculation
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.NumberModeShapes">
+            <summary>
+                Number of lowest eigenvalue to calculate
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.FreqSearchEnabled">
+            <summary>
+                Enable frequency-close mode shapes search
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.FreqSearchFrequency">
+            <summary>
+                Frequency around which we search
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.MassCaseOrCombinationChoice">
+            <summary>
+                Whether import masses from mass case or mass combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.MassNo">
+            <summary>
+                Number of mass case or mass combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.ScalingOfModeShapesChoice">
+            <summary>
+                Method for scaling of mode shapes
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.SolutionMethod">
+            <summary>
+                Method for solving eigenvalue problem
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.MassCalculationSettings">
+            <summary>
+                Calculation settings related to mass
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.InitialConditionsSettings">
+            <summary>
+                Initial conditions settings
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.MemberDivisionSettings">
+            <summary>
+                Member divisions settings (only RSTAB)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.ActivateGlobalStiffnessModification">
+            <summary>
+                Activate global stiffness modifications
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCParams.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.RSTableRow">
+            <summary>
+                Response spectra table row
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSTableRow.RowNumber">
+            <summary>
+                Row number (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSTableRow.T">
+            <summary>
+                Period T [s]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSTableRow.S">
+            <summary>
+                Acceleration S [m/s2]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.RSParams">
+            <summary>
+                Response spectra case parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSParams.Number">
+            <summary>
+                Response spectrum case number (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSParams.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSParams.DefinitionType">
+            <summary>
+                Response spectra definition type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSParams.UserDefinedTable">
+            <summary>
+                User defined table of response spectra values
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.RSParams.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLCLehrDampingRow">
+            <summary>
+                DLC - Lehr's Damping table row
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCLehrDampingRow.ModeShape">
+            <summary>
+                Mode shape number
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCLehrDampingRow.D">
+            <summary>
+                Lehr's damping - D[-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCLehrDampingRow.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLCDampingParams">
+            <summary>
+                DLC - damping settings
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCDampingParams.DampingType">
+            <summary>
+                Type of damping to be used
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCDampingParams.Alpha">
+            <summary>
+                Rayleigh damping - alpha[rad/s]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCDampingParams.Beta">
+            <summary>
+                Rayleigh damping - beta[s/rad]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCDampingParams.D">
+            <summary>
+                Lehr's damping - D[-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCDampingParams.LehrDampingTable">
+            <summary>
+                Lehr's damping by table - used only when DampingType = LehrDampingForEachMode
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLCModeShapeParams">
+            <summary>
+                DLC - Mode shapes settings
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCModeShapeParams.SelectedModeShapes">
+            <summary>
+                Selected Mode Shapes for calculation
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLC_RSAssignment">
+            <summary>
+                Dynamic load case - response spectrum assignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.EnableDirX">
+            <summary>
+                Enable direction X
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.ResponseSpectrumX">
+            <summary>
+                Response spectrum in direction X
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.ResponseSpectrumXFactor">
+            <summary>
+                Factor for response spectrum in direction X
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.EnableDirY">
+            <summary>
+                Enable direction Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.ResponseSpectrumY">
+            <summary>
+                Response spectrum in direction Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.ResponseSpectrumYFactor">
+            <summary>
+                Factor for response spectrum in direction Y
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.EnableDirZ">
+            <summary>
+                Enable direction Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.ResponseSpectrumZ">
+            <summary>
+                Response spectrum in direction Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.ResponseSpectrumZFactor">
+            <summary>
+                Factor for response spectrum in direction Z
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLC_RSAssignment.RotationAlpha">
+            <summary>
+                Rotation of ax and ay about Z axis [rad]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLC_AllSupports">
+            <summary>
+                Dynamic load case - all supports response spectrum assignment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLCRsaSupportSet">
+            <summary>
+                DLC-RSA support set
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaSupportSet.Number">
+            <summary>
+                Number of set
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaSupportSet.SupportedNodes">
+            <summary>
+                List of supported nodes
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaSupportSet.SupportedLines">
+            <summary>
+                List of supported lines
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaSupportSet.SupportedSurfaces">
+            <summary>
+                List of supported surfaces
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaSupportSet.RSAssignment">
+            <summary>
+                Response spectrum assignment structure for this support set
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLCRsaParams">
+            <summary>
+                DLC-RSA parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.ResponseSpectrumAppType">
+            <summary>
+                Response spectrum application Type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.SupportSets">
+            <summary>
+                SupportSets
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.AllSupports">
+            <summary>
+                Response spectrum assignment structure
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.ModalResponseCombinationRule">
+            <summary>
+                Modal response combination rule
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.RsaDirCombinationRule">
+            <summary>
+                Combination of directional components method
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.UseEqLinComb">
+            <summary>
+                Use equivalent linear combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.GenResComb">
+            <summary>
+                Generate result combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCRsaParams.ResCombFirstNo">
+            <summary>
+                Number at which to start generating result combinations
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLCEfaParams">
+            <summary>
+                Dynamic load case - equivalent force analysis parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.RSAssignment">
+            <summary>
+                Response spectrum assignment
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.ConsiderAccidentalTorsion">
+            <summary>
+                Consider accidental torsional actions
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.EccentricityX">
+            <summary>
+                Eccentricity eX [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.EccentricityY">
+            <summary>
+                Eccentricity eY [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.ModalResponseCombinationRule">
+            <summary>
+                Modal response combination rule
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.UseEquivalentLinearCombination">
+            <summary>
+                Use equivalent linear combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.SignedResultsUsingDominantMode">
+            <summary>
+                Signed results using dominant mode
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.SignedResultsModeShapeX">
+            <summary>
+                What mode shape to use for signed results in direction X (0=Automatic)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.SignedResultsModeShapeY">
+            <summary>
+                What mode shape to use for signed results in direction Y (0=Automatic)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.SignedResultsModeShapeZ">
+            <summary>
+                What mode shape to use for signed results in direction Z (0=Automatic)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.GenerateLoadCases">
+            <summary>
+                Generate load cases
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.FirstLoadCaseNo">
+            <summary>
+                Number of the first generated load case (if possible)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.GenerateResultCombination">
+            <summary>
+                Generate result combination
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.FirstResultCombinationNo">
+            <summary>
+                Number of the first generated result combination (if possible)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.CombinationOfDirectionalComponents">
+            <summary>
+                Enable combination of directional components
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCEfaParams.DirectionalCombiningRule">
+            <summary>
+                Directional combining rule
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.DLCParams">
+            <summary>
+                Dynamic load case parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCParams.Number">
+            <summary>
+                Dynamic load case number (read only)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCParams.NaturalVibrationCase">
+            <summary>
+                Number of Natural Vibration Case to be used
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCParams.ToSolve">
+            <summary>
+                Whether to solve this Dynamic Load Case on calculation 
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCParams.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCParams.DynamicLoadCaseType">
+            <summary>
+                Dynamic load case analysis type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.DLCParams.Comment">
+            <summary>
+                Comment
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.Point2D">
+            <summary>
+                3D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.Point2D.X">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.Point2D.Y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.Point3D">
+            <summary>
+                3D point
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.Point3D.X">
+            <summary>
+                X coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.Point3D.Y">
+            <summary>
+                Y coordinate
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.Point3D.Z">
+            <summary>
+                Z coordinate
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.Loading">
+            <summary>
+                Load parameters.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.Loading.Type">
+            <summary>
+                Type of load
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.Loading.No">
+            <summary>
+                Load number
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.ErrorInfo">
+            <summary>
+                Information about an error.
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorInfo.ModuleName">
+            <summary>
+                Name of the module
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorInfo.Load">
+            <summary>
+                Load
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorInfo.ErrorNo">
+            <summary>
+                Error number
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorInfo.Type">
+            <summary>
+                Error type
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ErrorInfo.Description">
+            <summary>
+                Error description
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.ModuleCase">
+            <summary>
+                Module case basic parameters
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ModuleCase.No">
+            <summary>
+                Number
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.ModuleCase.Description">
+            <summary>
+                Description
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NVCResultsNaturalFrequencies">
+            <summary>
+                Natural Vibration Case results - eigenvalues
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsNaturalFrequencies.ModeShape">
+            <summary>
+                Number of mode shape
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsNaturalFrequencies.Eigenvalue">
+            <summary>
+                Eigenvalue [1/s^2]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsNaturalFrequencies.AngularFrequency">
+            <summary>
+                Angular frequency [1/s]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsNaturalFrequencies.NaturalFrequency">
+            <summary>
+                Natural frequency [hz]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsNaturalFrequencies.NaturalPeriod">
+            <summary>
+                Natural period [s]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NVCResultsMasses">
+            <summary>
+                Natural Vibration Case results - eigenvalues
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMasses.Node">
+            <summary>
+                Number of node (corresponds to number of FE mesh point in RFEM)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMasses.MassX">
+            <summary>
+                Mass X [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMasses.MassY">
+            <summary>
+                Mass Y [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMasses.MassZ">
+            <summary>
+                Mass Z [kg]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NVCResultsModeShapesOnNode">
+            <summary>
+                Natural Vibration Case results - Mode Shapes on node
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.ModeShape">
+            <summary>
+                Number of mode shape
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.Node">
+            <summary>
+                Number of node (corresponds to number of FE mesh point in RFEM)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.StdDisplacementX">
+            <summary>
+                Standardized Displacement X [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.StdDisplacementY">
+            <summary>
+                Standardized Displacement Y [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.StdDisplacementZ">
+            <summary>
+                Standardized Displacement Z [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.StdRotationX">
+            <summary>
+                Standardized rotation X [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.StdRotationY">
+            <summary>
+                Standardized rotation Y [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnNode.StdRotationZ">
+            <summary>
+                Standardized rotation Z [-]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NVCResultsModeShapesOnMember">
+            <summary>
+                Natural Vibration Case results - Mode Shapes on member
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.ModeShape">
+            <summary>
+                Number of mode shape
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.Node">
+            <summary>
+                Number of node (corresponds to number of FE mesh point in RFEM)
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.LocationX">
+            <summary>
+                Location X[m] on member
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.Member">
+            <summary>
+                Number of member on which this node lies
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.StdDisplacementX">
+            <summary>
+                Standardized Displacement X [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.StdDisplacementY">
+            <summary>
+                Standardized Displacement Y [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.StdDisplacementZ">
+            <summary>
+                Standardized Displacement Z [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.StdRotationX">
+            <summary>
+                Standardized rotation X [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.StdRotationY">
+            <summary>
+                Standardized rotation Y [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnMember.StdRotationZ">
+            <summary>
+                Standardized rotation Z [-]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NVCResultsModeShapesOnSurface">
+            <summary>
+                Natural Vibration Case results - Mode Shapes on surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.ModeShape">
+            <summary>
+                Number of mode shape
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.MeshPointNo">
+            <summary>
+                Number of FE mesh point in RFEM
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.LocationX">
+            <summary>
+                Location X[m] on surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.LocationY">
+            <summary>
+                Location Y[m] on surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.LocationZ">
+            <summary>
+                Location Z[m] on surface
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.Surface">
+            <summary>
+                Number of surface on which this node lies
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.StdDisplacementX">
+            <summary>
+                Standardized Displacement X [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.StdDisplacementY">
+            <summary>
+                Standardized Displacement Y [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.StdDisplacementZ">
+            <summary>
+                Standardized Displacement Z [m]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.StdRotationX">
+            <summary>
+                Standardized rotation X [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.StdRotationY">
+            <summary>
+                Standardized rotation Y [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsModeShapesOnSurface.StdRotationZ">
+            <summary>
+                Standardized rotation Z [-]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.NVCResultsMassFactors">
+            <summary>
+                Natural Vibration Case results - Mass Factors
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModeShape">
+            <summary>
+                Number of mode shape
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassMi">
+            <summary>
+                Modal Mass Mi [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassMeX">
+            <summary>
+                Effective Modal Mass MeX [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassMeY">
+            <summary>
+                Effective Modal Mass MeY [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassMeZ">
+            <summary>
+                Effective Modal Mass MeZ [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassMphiX">
+            <summary>
+                Effective Modal Mass MphiX [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassMphiY">
+            <summary>
+                Effective Modal Mass MphiY [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassMphiZ">
+            <summary>
+                Effective Modal Mass MphiZ [kg]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassFactorFmeX">
+            <summary>
+                Effective Modal Mass Factor FmeX [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassFactorFmeY">
+            <summary>
+                Effective Modal Mass Factor FmeY [-]
+            </summary>
+        </member>
+        <member name="F:Dlubal.DynamPro.NVCResultsMassFactors.ModalMassFactorFmeZ">
+            <summary>
+                Effective Modal Mass Factor FmeZ [-]
+            </summary>
+        </member>
+        <member name="T:Dlubal.DynamPro.IModule">
+            <summary>
+                Interface for working with module.
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.GetCaseCount">
+            <summary>
+                Gets count of cases in this module.
+            </summary>
+            <returns>Count of cases in this modules.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.GetCase(System.Int32,System.UInt32)">
+            <summary>
+                Gets module case.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number or index of the module case you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.SetCase(System.Int32,System.String)">
+            <summary>
+                Sets the module case. If the case with number exists, just returns its interface.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number of the module case. If it is zero or does not exist, new case is added.</param>
+            <param name="Name">Name of the module case to be added.</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.DeleteCase(System.Int32,System.UInt32)">
+            <summary>
+                Deletes module case based.
+            </summary>
+            <param name="No">Number or index of the module case you want to get.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.GetCases">
+            <summary>
+                Gets array of module cases.
+            </summary>
+            <returns>Array of module cases</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.Clean">
+            <summary>
+                Deletes all cases of the module.
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.CopyCase(System.Int32,System.UInt32)">
+            <summary>
+                Copies case based on given index.
+            </summary>
+            <returns>Module case interface.</returns>
+            <param name="No">Number or index of the module case you want to copy.</param>
+            <param name="At">Specifies the type of access.</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModule.HasResults">
+            <summary>
+                Checks whether the module has results.
+            </summary>
+            <returns>True when any module's load case has results, false otherwise</returns>
+        </member>
+        <member name="T:Dlubal.DynamPro.IModuleCase">
+            <summary>
+                Interface for working with module case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetGeneralParams(System.UInt32@)">
+            <summary>
+                Sets general parameters.
+            </summary>
+            <param name="Params">General parameters</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetGeneralParams">
+            <summary>
+                Gets general parameters.
+            </summary>
+            <returns>General parameters</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetDetails(System.UInt32@)">
+            <summary>
+                Sets settings -> details.
+            </summary>
+            <param name="Params">settings/details</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetDetails">
+            <summary>
+                Gets settings -> details.
+            </summary>
+            <returns>settings/details</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.AddMC">
+            <summary>
+                Adds a new mass case.
+            </summary>
+            <returns>Number of added mass case</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.RemoveMC(System.Int32)">
+            <summary>
+                Removes mass case.
+            </summary>
+            <param name="No">Number of mass case to be deleted</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetExistingMC">
+            <summary>
+                Gets list of existing mass cases.
+            </summary>
+            <returns>Array containing numbers of existing mass cases.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetMCParams(System.Int32)">
+            <summary>
+                Gets parameters of given mass case.
+            </summary>
+            <returns>Mass case parameters</returns>
+            <param name="No">Number of mass case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetMCParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given mass case.
+            </summary>
+            <param name="No">Number of mass case whose parameters will be set</param>
+            <param name="Params">mass case parameters</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.AddMCO">
+            <summary>
+                Adds a new mass combination.
+            </summary>
+            <returns>Number of added mass combination</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.RemoveMCO(System.Int32)">
+            <summary>
+                Removes mass combination.
+            </summary>
+            <param name="No">Number of mass combination to be deleted</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetExistingMCO">
+            <summary>
+                Gets list of existing mass combinations.
+            </summary>
+            <returns>Array containing numbers of existing mass combinations.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetMCOParams(System.Int32)">
+            <summary>
+                Gets parameters of given mass combination.
+            </summary>
+            <returns>Mass combination parameters</returns>
+            <param name="No">Number of mass combination whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetMCOParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given mass combination.
+            </summary>
+            <param name="No">Number of mass combination whose parameters will be set</param>
+            <param name="Params">Mass combination parameters</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.AddNVC">
+            <summary>
+                Adds a new natural vibration case.
+            </summary>
+            <returns>Number of added natural vibration case</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.RemoveNVC(System.Int32)">
+            <summary>
+                Removes natural vibration case.
+            </summary>
+            <param name="No">Number of the natural vibration case to be deleted</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetExistingNVC">
+            <summary>
+                Gets list of existing natural vibration cases.
+            </summary>
+            <returns>Array containing numbers of existing natural vibration cases.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetNVCParams(System.Int32)">
+            <summary>
+                Gets parameters of given natural vibration case.
+            </summary>
+            <returns>Natural vibration case parameters</returns>
+            <param name="No">Number of the natural vibration case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetNVCParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given natural vibration case.
+            </summary>
+            <param name="No">Number of the natural vibration case whose parameters will be set</param>
+            <param name="Params">Number of the natural vibration case whose parameters will be set</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.HasNVCResults(System.Int32)">
+            <summary>
+                Queries to NVC to check whether it has results.
+            </summary>
+            <returns>BOOL indicating whether given NVC has results</returns>
+            <param name="No">Number of the natural vibration case</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.AddRS">
+            <summary>
+                Adds a new response spectra case.
+            </summary>
+            <returns>Number of the new response spectra case</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.RemoveRS(System.Int32)">
+            <summary>
+                Removes response spectra case.
+            </summary>
+            <param name="No">Number of the response spectra case to be deleted</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetExistingRS">
+            <summary>
+                Gets list of existing response spectra cases.
+            </summary>
+            <returns>Array containing numbers of existing response spectra cases.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetRSParams(System.Int32)">
+            <summary>
+                Gets parameters of given response spectra case.
+            </summary>
+            <returns>Response spectra case parameters</returns>
+            <param name="No">Number of the response spectra case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetRSParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given response spectra case.
+            </summary>
+            <param name="No">Number of response spectra case whose parameters will be set</param>
+            <param name="Params">Number of response spectra case whose parameters will be set</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.AddDLC(System.UInt32)">
+            <summary>
+                Adds a new dynamic load case.
+            </summary>
+            <returns>Number of the new dynamic load case</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.RemoveDLC(System.Int32)">
+            <summary>
+                Removes dynamic load case.
+            </summary>
+            <param name="No">Number of the dynamic load case to be deleted</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetExistingDLC">
+            <summary>
+                Gets list of existing dynamic load cases.
+            </summary>
+            <returns>Array containing numbers of existing dynamic load cases.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetDLCParams(System.Int32)">
+            <summary>
+                Gets parameters of given dynamic load case.
+            </summary>
+            <returns>Dynamic load case parameters</returns>
+            <param name="No">Number of the dynamic load case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetDLCParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given dynamic load case.
+            </summary>
+            <param name="No">Number of dynamic load case whose parameters will be set</param>
+            <param name="Params">Dynamic load case parameters that will be set</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetDLCResponseSpectraAnalysisParams(System.Int32)">
+            <summary>
+                Gets parameters of given dynamic load case with response spectra analysis.
+            </summary>
+            <returns>Dynamic load case parameters</returns>
+            <param name="No">Number of the dynamic load case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetDLCResponseSpectraAnalysisParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given dynamic load case with response spectra analysis.
+            </summary>
+            <param name="No">Number of dynamic load case whose parameters will be set</param>
+            <param name="Params">Response Spectra parameters that will be set</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetDLCEquivalentStaticForceAnalysisParams(System.Int32)">
+            <summary>
+                Gets parameters of given dynamic load case with equivalent static force analysis.
+            </summary>
+            <returns>Equivalent Forces parameters</returns>
+            <param name="No">Number of the dynamic load case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetDLCEquivalentStaticForceAnalysisParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given dynamic load case with equivalent static force analysis.
+            </summary>
+            <param name="No">Number of dynamic load case whose parameters will be set</param>
+            <param name="Params">Equivalent Forces parameters will be set</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetDLCModeShapesParams(System.Int32)">
+            <summary>
+                Gets parameters of given dynamic load case with time history analysis with load time diagram.
+            </summary>
+            <returns>Mode Shapes parameters</returns>
+            <param name="No">Number of the dynamic load case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetDLCModeShapesParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given dynamic load case with time history analysis with load time diagram.
+            </summary>
+            <param name="No">Number of dynamic load case whose parameters will be set</param>
+            <param name="Params">Mode Shapes parameters that will be set</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.GetDLCDampingParams(System.Int32)">
+            <summary>
+                Gets parameters of given dynamic load case with time history analysis with load time diagram.
+            </summary>
+            <returns>Damping parameters</returns>
+            <param name="No">Number of the dynamic load case whose parameters will be fetched</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.SetDLCDampingParams(System.Int32,System.UInt32@)">
+            <summary>
+                Sets parameters of given dynamic load case with time history analysis with load time diagram.
+            </summary>
+            <param name="No">Number of dynamic load case whose parameters will be set</param>
+            <param name="Params">Damping parameters that will be set</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCase.HasDLCResults(System.Int32)">
+            <summary>
+                Queries to dynamic load case to check if it has results.
+            </summary>
+            <returns>BOOL indicating whether given DLC has results</returns>
+            <param name="No">Number of the dynamic load case</param>
+        </member>
+        <member name="T:Dlubal.DynamPro.IDynamModule">
+            <summary>
+                Interface for working with Dynam module.
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamModule.GetData">
+            <summary>
+                Get input data interface , if module data do not exist this will create them.
+            </summary>
+            <returns>input data interface</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamModule.DeleteData">
+            <summary>
+                Completely deletes module data
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamModule.Calculate">
+            <summary>
+                General calculation
+            </summary>
+            <returns>List of errors that occurred during the calculation</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamModule.CalculateNVC(System.Int32)">
+            <summary>
+                Calculate selected NVC
+            </summary>
+            <returns>List of errors that occurred during the calculation</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamModule.CalculateDLC(System.Int32)">
+            <summary>
+                Calculate selected DLC
+            </summary>
+            <returns>List of errors that occurred during the calculation</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamModule.GetResults">
+            <summary>
+                Get result interface.
+            </summary>
+            <returns>input data interface</returns>
+        </member>
+        <member name="T:Dlubal.DynamPro.IModuleCaseBase">
+            <summary>
+                Interface for working with module case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.GetNo">
+            <summary>
+                Gets the number of the module case.
+            </summary>
+            <returns>Number of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.GetDescription">
+            <summary>
+                Gets the description of the module case.
+            </summary>
+            <returns>Description of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.SetDescription(System.String)">
+            <summary>
+                Sets the description of the module case.
+            </summary>
+            <param name="Description">Description of the module case.</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.GetComment">
+            <summary>
+                Gets the comment of the module case.
+            </summary>
+            <returns>Comment of the module case.</returns>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.SetComment(System.String)">
+            <summary>
+                Sets the comment of the module case.
+            </summary>
+            <param name="Comment">Comment of the module case.</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.Clone(System.Int32)">
+            <summary>
+                Clones the module case and returns the new one interface.
+            </summary>
+            <returns>Cloned module case interface.</returns>
+            <param name="NewNo">Number of the cloned module case. Zero means number should be assigned by RFEM."</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.Delete">
+            <summary>
+                Deletes the load case.
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IModuleCaseBase.HasResults">
+            <summary>
+                Check whether the load case has any results.
+            </summary>
+            <returns>True if the module case has any results, otherwise false.</returns>
+        </member>
+        <member name="T:Dlubal.DynamPro.IDynamResults">
+            <summary>
+                Interface for working with Dynam results.
+            </summary>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetNVCMassesOnNode(System.Int32,System.Int32)">
+            <summary>
+                Fetches masses of given NVC
+            </summary>
+            <returns>structure containing masses for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+            <param name="NodeNo">Number of node (or FE Point in RFEM)</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetNVCMassesOnFEPoint(System.Int32,System.Int32)">
+            <summary>
+                Fetches masses of given NVC (RFEM only)
+            </summary>
+            <returns>structure containing masses for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+            <param name="FEPointNo">Number of FE Point</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetNVCModeShapesOnNode(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Fetches Mode Shape results of given NVC
+            </summary>
+            <returns>structure containing modeshape-related results for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+            <param name="ModeShape">Number of ModeShape whose results shall be returned</param>
+            <param name="NodeNo">Number of Node in which the results shall be returned (or FE Point in RFEM)</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetNVCModeShapesOnFEPoint(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Fetches Mode Shape results of given NVC (RFEM only)
+            </summary>
+            <returns>structure containing modeshape-related results for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+            <param name="ModeShape">Number of ModeShape whose results shall be returned</param>
+            <param name="FEPointNo">Number of FE Point</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetNVCModeShapesOnMember(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Fetches Mode Shape results of given NVC
+            </summary>
+            <returns>structure containing modeshape-related results for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+            <param name="ModeShape">Number of ModeShape whose results shall be returned</param>
+            <param name="MemberNo">Number of Member in which the results shall be returned</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetNVCModeShapesOnSurface(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                Fetches Mode Shape results of given NVC
+            </summary>
+            <returns>structure containing modeshape-related results for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+            <param name="ModeShape">Number of ModeShape whose results shall be returned</param>
+            <param name="SurfaceNo">Number of Surface in which the results shall be returned</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetAllNVCNaturalFrequencies(System.Int32)">
+            <summary>
+                Fetches all Eigenvalue results of given NVC
+            </summary>
+            <returns>structure containing eigenvalues for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetAllNVCMasses(System.Int32)">
+            <summary>
+                Fetches all masses of given NVC
+            </summary>
+            <returns>structure containing masses for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetAllNVCModeShapes(System.Int32)">
+            <summary>
+                Fetches all Mode Shape results of given NVC
+            </summary>
+            <returns>structure containing modeshape-related results for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+        </member>
+        <member name="M:Dlubal.DynamPro.IDynamResults.GetAllNVCMassFactors(System.Int32)">
+            <summary>
+                Fetches all Mass factors results of given NVC
+            </summary>
+            <returns>structure containing mass-results for given NVC and modeshape</returns>
+            <param name="NVCNo">Number of NVC whose results shall be returned</param>
+        </member>
+    </members>
+</doc>

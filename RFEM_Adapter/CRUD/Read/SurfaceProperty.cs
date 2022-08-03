@@ -30,7 +30,7 @@ using BH.oM.Base;
 using BH.oM.Structure.SurfaceProperties;
 using BH.Engine.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
-using rf3 = RFEM3;
+using rf3 = Dlubal.RFEM3;
 using BH.oM.Structure.MaterialFragments;
 
 namespace BH.Adapter.RFEM

@@ -52,9 +52,13 @@ namespace BH.Adapter.RFEM
 
             if (ids == null)
             {
-                List<rf.LoadCombination> rfLoadCombinations = model.GetLoads().GetLoadCombinations().ToList();
+                //List<rf.LoadCombination> rfLoadCombinations = model.GetLoads().GetLoadCombinations().ToList();
                 rf.ILoads l = model.GetLoads();
                 int lcCount = l.GetLoadCombinationCount();
+                //List<rf.LoadCombination> rfLoadCombinations = l.GetLoadCombinations().ToList();// -- - something wrong here: protected memory?
+                //rf.LoadCombination[] rfLoadCombiArr = new rf.LoadCombination[lcCount];
+                //rfLoadCombiArr = l.GetLoadCombinations();
+                //List<rf.LoadCombination> rfLoadCombinations = rfLoadCombiArr.ToList();
 
                 //Dictionary<int, Loadcase> bhLoadcaseDict = new Dictionary<int, Loadcase>();
                 //bhLoadcaseDict = ReadLoadcases().Distinct().ToDictionary(x => x.Number, x => x);
@@ -64,8 +68,10 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < lcCount; i++)
                 {
-                    rf.LoadCombination rfLoadCombination = rfLoadCombinations[i];// l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetData();
+                    rf.ILoadCombination rfILoadCombination = l.GetLoadCombination(i, rf.ItemAt.AtIndex);
                     rf.CombinationLoading[] rfCombiLoadings = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetLoadings();
+
+                    rf.LoadCombination rfLoadCombination = rfILoadCombination.GetData();// <--- failes here!!
 
                     LoadCombination bhLoadCombination;
 
