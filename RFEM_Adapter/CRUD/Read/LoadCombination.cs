@@ -48,27 +48,22 @@ namespace BH.Adapter.RFEM
         private List<LoadCombination> ReadLoadCombinations(List<string> ids = null)
         {
             List<LoadCombination> loadCombinationList = new List<LoadCombination>();
-
+            rf.ILoads l = model.GetLoads();
+            int lcCount = l.GetLoadCombinationCount();
+            if (m_loadcaseDict.Count == 0)
+            {
+                ReadLoadcases();// - should this be handeled by setting dependency types?
+            }
 
             if (ids == null)
             {
-                rf.ILoads l = model.GetLoads();
-                int lcCount = l.GetLoadCombinationCount();
-                if (m_loadcaseDict.Count==0)
-                {
-                    ReadLoadcases();// - should this be handeled by setting dependency types?
-                }
-
                 for (int i = 0; i < lcCount; i++)
                 {
                     rf.LoadCombination rfLoadCombination = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetData();
                     rf.CombinationLoading[] rfCombiLoadings = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetLoadings();
 
-                    LoadCombination bhLoadCombination;
-
-                    string combiName = rfLoadCombination.Description;
+                    string combiName = rfLoadCombination.Description == "" ? rfLoadCombination.Definition;
                     int combiNo = rfLoadCombination.Loading.No;
-
 
                     List<Loadcase> loadcases = new List<Loadcase>();
                     List<double> combiFactors = new List<double>();
@@ -77,7 +72,7 @@ namespace BH.Adapter.RFEM
                         combiFactors.Add(cl.Factor);
                         loadcases.Add(m_loadcaseDict[cl.Loading.No]);
                     }
-                    bhLoadCombination = Engine.Structure.Create.LoadCombination(combiName, combiNo, loadcases, combiFactors);
+                    LoadCombination bhLoadCombination = Engine.Structure.Create.LoadCombination(combiName, combiNo, loadcases, combiFactors);
 
                     loadCombinationList.Add(bhLoadCombination);
                 }
