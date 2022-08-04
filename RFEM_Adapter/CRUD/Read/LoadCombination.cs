@@ -52,42 +52,30 @@ namespace BH.Adapter.RFEM
 
             if (ids == null)
             {
-                //List<rf.LoadCombination> rfLoadCombinations = model.GetLoads().GetLoadCombinations().ToList();
                 rf.ILoads l = model.GetLoads();
                 int lcCount = l.GetLoadCombinationCount();
-                //List<rf.LoadCombination> rfLoadCombinations = l.GetLoadCombinations().ToList();// -- - something wrong here: protected memory?
-                //rf.LoadCombination[] rfLoadCombiArr = new rf.LoadCombination[lcCount];
-                //rfLoadCombiArr = l.GetLoadCombinations();
-                //List<rf.LoadCombination> rfLoadCombinations = rfLoadCombiArr.ToList();
-
-                //Dictionary<int, Loadcase> bhLoadcaseDict = new Dictionary<int, Loadcase>();
-                //bhLoadcaseDict = ReadLoadcases().Distinct().ToDictionary(x => x.Number, x => x);
-
-                //Dictionary<string, Bar> bhBarDict = new Dictionary<string, Bar>();
-                //bool barsRead = false;
+                if (m_loadcaseDict.Count==0)
+                {
+                    ReadLoadcases();// - should this be handeled by setting dependency types?
+                }
 
                 for (int i = 0; i < lcCount; i++)
                 {
-                    rf.ILoadCombination rfILoadCombination = l.GetLoadCombination(i, rf.ItemAt.AtIndex);
+                    rf.LoadCombination rfLoadCombination = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetData();
                     rf.CombinationLoading[] rfCombiLoadings = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetLoadings();
-
-                    rf.LoadCombination rfLoadCombination = rfILoadCombination.GetData();// <--- failes here!!
 
                     LoadCombination bhLoadCombination;
 
                     string combiName = rfLoadCombination.Description;
-                    int combiNo;
-                    if (!int.TryParse(rfLoadCombination.ID, out combiNo))
-                    {
-                        Engine.Base.Compute.RecordWarning("Load Combination id: " + rfLoadCombination.ID + " could not be converted to int");
-                    }
+                    int combiNo = rfLoadCombination.Loading.No;
 
-                    List<Loadcase> loadcases = new List<Loadcase>();//rfCombiLoadings.Select(x => x.Loading).ToList();
-                    List<double> combiFactors = new List<double>();//rfCombiLoadings.Select(x => x.Factor).ToList();
+
+                    List<Loadcase> loadcases = new List<Loadcase>();
+                    List<double> combiFactors = new List<double>();
                     foreach (rf.CombinationLoading cl in rfCombiLoadings)
                     {
                         combiFactors.Add(cl.Factor);
-                        loadcases.Add(m_loadcaseDict[cl.No]);
+                        loadcases.Add(m_loadcaseDict[cl.Loading.No]);
                     }
                     bhLoadCombination = Engine.Structure.Create.LoadCombination(combiName, combiNo, loadcases, combiFactors);
 
