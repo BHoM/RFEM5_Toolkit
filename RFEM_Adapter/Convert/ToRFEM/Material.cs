@@ -40,7 +40,8 @@ namespace BH.Adapter.RFEM
      
         public static rf.Material ToRFEM(this IMaterialFragment materialFragment, int materialId)
         {
-            //Example: NameID|Steel S 235@TypeID|STEEL@StandardID|DIN EN 1993-1-1-10 
+           
+            //Example: NameID|Beton C30/37@TypeID|CONCRETE@NormID|DIN 1045-1 - 08
 
             rf.Material rfMaterial = new rf.Material();
             rfMaterial.No = materialId;
@@ -53,6 +54,9 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
+                rfMaterial.Description = "ALUMINIUM: " + materialFragment.Name;
+                rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
+                rfMaterial.PartialSafetyFactor = 1.00;
                 rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | ALUMINIUM" + "@StandardID | No norm set!";
             }
             else if (materialFragment.GetType() == typeof(Steel))
@@ -61,7 +65,12 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
-                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
+                rfMaterial.Description ="STEEL: "+materialFragment.Name;
+                rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
+                rfMaterial.PartialSafetyFactor = 1.00;
+                rfMaterial.TextID = "NameID | STEEL:" + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
+
+               
             }
             else if (materialFragment.GetType() == typeof(Concrete))
             {
@@ -69,7 +78,11 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
+                rfMaterial.Description = "CONCRETE: " + materialFragment.Name;
+                rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
+                rfMaterial.PartialSafetyFactor = 1.00;
                 rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | CONCRETE" + "@StandardID | No norm set!";
+
 
             }
             else if (materialFragment.GetType() == typeof(GenericIsotropicMaterial))
@@ -78,6 +91,9 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
+                rfMaterial.Description = "ISOTROPIC: " + materialFragment.Name;
+                rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
+                rfMaterial.PartialSafetyFactor = 1.00;
                 rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
 
             }
@@ -88,6 +104,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff.X;
                 rfMaterial.PoissonRatio = material.PoissonsRatio.Y;
                 rfMaterial.ElasticityModulus = material.YoungsModulus.Z;
+                rfMaterial.Description = "TIMBER: " + materialFragment.Name;
                 rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | TIMBER" + "@StandardID | No norm set!";
 
             }
@@ -97,6 +114,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff.X;
                 rfMaterial.PoissonRatio = material.PoissonsRatio.Y;
                 rfMaterial.ElasticityModulus = material.YoungsModulus.Z;
+                rfMaterial.Description = "ORTHOTROPIC: " + materialFragment.Name;
                 rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | TIMBER" + "@StandardID | No norm set!";
 
             }
@@ -106,8 +124,12 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ThermalExpansion = material.ThermalExpansionCoeff;
                 rfMaterial.PoissonRatio = material.PoissonsRatio;
                 rfMaterial.ElasticityModulus = material.YoungsModulus;
+                rfMaterial.Description = "STEEL: " + materialFragment.Name;
+                rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
+                rfMaterial.PartialSafetyFactor = 1.00;
                 Engine.Base.Compute.RecordWarning("Cannot make " + materialFragment.Name + ". Replaced with standard steel");
                 rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
+
 
             }
 
