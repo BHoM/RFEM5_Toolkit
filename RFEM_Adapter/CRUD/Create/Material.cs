@@ -51,7 +51,11 @@ namespace BH.Adapter.RFEM
                     idNum = GetAdapterId<int>(matList[i]);// NextId(matList[i].GetType()));
                     rfMaterials[i] = matList[i].ToRFEM(idNum);
 
+                    
                     modelData.SetMaterial(rfMaterials[i]);
+                   var x= modelData.GetMaterials().ToList().Find(m=>m.No.Equals(rfMaterials[i].No));
+                    x.TextID = "Random Id";
+                   
                 }
 
                 //modelData.SetMaterials(rfMaterials);

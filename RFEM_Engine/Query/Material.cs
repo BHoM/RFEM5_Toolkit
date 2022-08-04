@@ -48,32 +48,36 @@ namespace BH.Engine.Adapters.RFEM
 
         public static MaterialType GetMaterialType(this rf.Material rfMaterial)
         {
-            string[] materialString = rfMaterial.TextID.Split('@');
+            string[] materialStringArr = rfMaterial.TextID.Split('@');
 
-            if(materialString.Count()<2)
-            {
-                Engine.Base.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
-                return MaterialType.Steel;
-            }
+            //if(materialString.Count()<2)
+            //{
+            //    Engine.Base.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
+            //    return MaterialType.Steel;
+            //}
 
-            switch (materialString[1])
+            string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[0] :materialStringArr[1].Split('|')[1];
+
+            switch (materialString)
             {
+
                 case "TypeID|STEEL":
+                case "STEEL":
                     return MaterialType.Steel;
-                case "TypeID|ALUMINIUM":
+                case "ALUMINIUM":
                     return MaterialType.Aluminium;
-                case "TypeID|CONCRETE":
+                case "CONCRETE":
                     return MaterialType.Concrete;
-                case "TypeID|TIMBER":
-                case "TypeID|CONIFEROUS":
+                case "TIMBER":
+                case "CONIFEROUS":
                     return MaterialType.Timber;
-                case "TypeID|CABLE":
+                case "CABLE":
                     return MaterialType.Cable;
-                case "TypeID|GLASS":
+                case "GLASS":
                     return MaterialType.Glass;
-                case "TypeID|REBAR":
+                case "TREBAR":
                     return MaterialType.Rebar;
-                case "TypeID|TENDON":
+                case "TENDON":
                     return MaterialType.Tendon;
                 default:
                     Engine.Base.Compute.RecordWarning("Don't know how to make: " + materialString[1]);
@@ -112,14 +116,26 @@ namespace BH.Engine.Adapters.RFEM
 
         public static string GetMaterialName(rf.Material rfMaterial)
         {
-            string materialName;
-            string[] materialString = rfMaterial.TextID.Split('@');
-            if (materialString.Length < 2)
-                materialName = rfMaterial.Description;
-            else
-                materialName = materialString[0].Split('|')[1];
+            //string materialName;
+            //string[] materialString = rfMaterial.TextID.Split('@');
+            //if (materialString.Length < 2)
+            //    materialName = rfMaterial.Description;
+            //else
+            //    materialName = materialString[0].Split('|')[1];
 
-            return materialName;
+            string[] materialStringArr = rfMaterial.TextID.Split('@');
+
+            //if(materialString.Count()<2)
+            //{
+            //    Engine.Base.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
+            //    return MaterialType.Steel;
+            //}
+
+            //string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : materialStringArr[1].Split('|')[1];
+            string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : rfMaterial.Description;
+
+
+            return materialString;
         }
 
 
