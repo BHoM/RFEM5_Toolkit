@@ -62,7 +62,7 @@ namespace BH.Adapter.RFEM
                     rf.LoadCombination rfLoadCombination = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetData();
                     rf.CombinationLoading[] rfCombiLoadings = l.GetLoadCombination(i, rf.ItemAt.AtIndex).GetLoadings();
 
-                    string combiName = rfLoadCombination.Description == "" ? rfLoadCombination.Definition;
+                    string combiName = rfLoadCombination.Description == "" ? rfLoadCombination.Definition : rfLoadCombination.Description;
                     int combiNo = rfLoadCombination.Loading.No;
 
                     List<Loadcase> loadcases = new List<Loadcase>();
