@@ -171,6 +171,7 @@
     <Compile Include="CRUD\Create\Edge.cs" />
     <Compile Include="CRUD\Create\Load.cs" />
     <Compile Include="CRUD\Create\Loadcase.cs" />
+    <Compile Include="CRUD\Create\LoadCombination.cs" />
     <Compile Include="CRUD\Create\Material.cs" />
     <Compile Include="CRUD\Create\Node.cs" />
     <Compile Include="CRUD\Create\Constraints.cs" />
