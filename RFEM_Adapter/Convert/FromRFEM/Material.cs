@@ -57,21 +57,17 @@ namespace BH.Adapter.RFEM
                     bhMaterial = Engine.Structure.Create.Aluminium(matName);
                     break;
                 case MaterialType.Steel:
-                    bhMaterial = Engine.Structure.Create.Steel(matName);
+                    double[] matStrenth = getMaterialStrength(material);
+
+                    
+                    bhMaterial = Engine.Structure.Create.Steel(matName,material.ElasticityModulus,material.PoissonRatio,material.ThermalExpansion,material.SpecificWeight,0,matStrenth[0],0);
+
                     break;
                 case MaterialType.Concrete:
-                   // double[] matStrenth=getMaterialStrength(material);
+                     matStrenth=getMaterialStrength(material);
 
-                    double elasticiy = material.ElasticityModulus;
-                    double poisson = material.PoissonRatio;
-                    double thermalEx = material.ThermalExpansion;
-                    double desity = material.SpecificWeight;
-                    double damping = 0;
-                    double cubeStrenght = 0;
-                    double cylinderStrength = 0;
-
-                    //bhMaterial = Engine.Structure.Create.Concrete(matName);
-                    bhMaterial = Engine.Structure.Create.Concrete(matName, elasticiy, poisson, thermalEx, desity, damping, cubeStrenght, cylinderStrength);
+                    
+                    bhMaterial = Engine.Structure.Create.Concrete(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight, 0, matStrenth[1], matStrenth[0]);
 
                     break;
                 case MaterialType.Timber://TODO: as this uses vector over double assumption is the the below turns Timber into an incorrect Isotropic material !!!
@@ -90,52 +86,71 @@ namespace BH.Adapter.RFEM
                     break;
             }
 
-
-            //bhMaterial.Name = material.Comment;
             bhMaterial.Name = matName;
 
             bhMaterial.SetAdapterId(typeof(RFEMId), material.No);
             return bhMaterial;
         }
 
-        //private static double[] getMaterialStrength(rf.Material material)
-        //{
-        //    string[] strengthArray=new string[] {"0","0"};
+        private static double[] getMaterialStrength(rf.Material material)
+        {
+            string[] strengthArray = new string[] { "0", "0" };
 
-        //    if (material.TextID.Equals(""))
-        //    {
+            //Non RFEM Libary Material
+            if (material.TextID.Equals(""))
+            {
 
-                
-                
-        //        //  string[] materialStringArr = material.Description.Split(':');
-        //        //  string materialGradeString = "";
-                
-        //        //    switch (materialStringArr[0])
-        //        //    {
-        //        //    case "CONCRETE":
-        //        //        materialGradeString=materialStringArr[1].Substring(1);
-        //        //        strengthArray = materialGradeString.Split('/');
-        //        //        break;
-        //        //    case "STEEL":
-        //        //        break;
-        //        //    case "TIMBER":
-        //        //        break;
-        //        //    case "ALUMINIUM":
-        //        //        break; 
-        //        //    default:
-        //        //        break;
+                string[] materialStringArr = material.Description.Split(':');
+                string materialGradeString = "";
 
+                switch (materialStringArr[0])
+                {
+                    case "CONCRETE":
+                        materialGradeString = materialStringArr[1].Substring(2);
+                        strengthArray = materialGradeString.Split('/');
+                        break;
+                    case "STEEL":
+                        strengthArray[0] = materialStringArr[1].Substring(2);
+                        break;
+                    case "TIMBER":
+                        break;
+                    case "ALUMINIUM":
+                        break;
+                    default:
+                        break;
 
-        //        //}
+                }
 
+            }// RFEM Libary Material
+            else
+            {
+                string[] materialStringArr = material.TextID.Split('@');
+                string materialGradeString = "";
 
+                switch (materialStringArr[1])
+                {
+                    case "TypeID|CONCRETE":
+                        materialGradeString = materialStringArr[0].Split(null)[1];
+                        strengthArray = materialGradeString.Substring(1).Split('/');
+                        break;
+                    case "TypeID|STEEL":
+                        strengthArray[0] = materialStringArr[0].Split(null)[2]; ;
+                        break;
+                    case "TypeID|TIMBER":
+                       
+                        break;
+                    case "TypeID|ALUMINIUM":
+                      
+                        break;
+                    default:
+                        break;
 
-                
+                }
 
-        //    }
+            }
 
-        //    return new double[] { System.Convert.ToDouble(strengthArray[0])*1e9, System.Convert.ToDouble(strengthArray[1])*1e9};
-        //}
+            return new double[] { System.Convert.ToDouble(strengthArray[0]) * 1e9, System.Convert.ToDouble(strengthArray[1]) * 1e9 };
+        }
 
     }
 }
