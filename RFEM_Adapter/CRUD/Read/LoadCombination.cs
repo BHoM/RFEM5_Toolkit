@@ -52,7 +52,7 @@ namespace BH.Adapter.RFEM
             int lcCount = l.GetLoadCombinationCount();
             if (m_loadcaseDict.Count == 0)
             {
-                ReadLoadcases();// - should this be handeled by setting dependency types?
+                ReadLoadcases();// - should/can this be handeled by setting dependency types?
             }
 
             if (ids == null)
@@ -81,8 +81,30 @@ namespace BH.Adapter.RFEM
             {
                 foreach (string id in ids)
                 {
+                    if(int.TryParse(id, out int i))
+                    {
+                        rf.LoadCombination rfLoadCombination = l.GetLoadCombination(i, rf.ItemAt.AtNo).GetData();
+                        rf.CombinationLoading[] rfCombiLoadings = l.GetLoadCombination(i, rf.ItemAt.AtNo).GetLoadings();
 
-                    //loadList.Add();
+                        string combiName = rfLoadCombination.Description == "" ? rfLoadCombination.Definition : rfLoadCombination.Description;
+                        int combiNo = rfLoadCombination.Loading.No;
+
+                        List<Loadcase> loadcases = new List<Loadcase>();
+                        List<double> combiFactors = new List<double>();
+                        foreach (rf.CombinationLoading cl in rfCombiLoadings)
+                        {
+                            combiFactors.Add(cl.Factor);
+                            loadcases.Add(m_loadcaseDict[cl.Loading.No]);
+                        }
+                        LoadCombination bhLoadCombination = Engine.Structure.Create.LoadCombination(combiName, combiNo, loadcases, combiFactors);
+
+                        loadCombinationList.Add(bhLoadCombination);
+                    }
+                    else
+                    {
+                        Engine.Base.Compute.RecordWarning("Cannot convert Load Combination ID : " + id + " into an integer!");
+
+                    }
                 }
             }
 
