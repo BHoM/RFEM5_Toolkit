@@ -46,6 +46,7 @@ namespace BH.Adapter.RFEM
             rfSurface.No = panelId;
             rfSurface.GeometryType = rf.SurfaceGeometryType.PlaneSurfaceType;//several other types are available!
             rfSurface.BoundaryLineList = string.Join<int>(",",boundaryIdArr);
+            
             int materialId = panel.Property.Material.AdapterId<int>(typeof(RFEMId));
             rfSurface.MaterialNo = materialId;
 

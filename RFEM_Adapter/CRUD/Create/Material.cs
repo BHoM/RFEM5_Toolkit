@@ -46,15 +46,21 @@ namespace BH.Adapter.RFEM
                 List<IMaterialFragment> matList = materialFragments.ToList();
                 rf.Material[] rfMaterials = new rf.Material[matList.Count()];
 
-                for(int i=0;i< matList.Count();i++)
+                for (int i = 0; i < matList.Count(); i++)
                 {
                     idNum = GetAdapterId<int>(matList[i]);// NextId(matList[i].GetType()));
                     rfMaterials[i] = matList[i].ToRFEM(idNum);
 
+
+                    List<rf.Material> alreadyExistingMaterialsOFEqualType = modelData.GetMaterials().ToList().FindAll(m => m.Description.Equals(rfMaterials[i].Description));
+
+
+                    if (alreadyExistingMaterialsOFEqualType.Count==0) {
+                        modelData.SetMaterial(rfMaterials[i]);
+                    }
+                   
+                       
                     
-                    modelData.SetMaterial(rfMaterials[i]);
-                   var x= modelData.GetMaterials().ToList().Find(m=>m.No.Equals(rfMaterials[i].No));
-                    x.TextID = "Random Id";
                    
                 }
 
