@@ -110,7 +110,9 @@ namespace BH.Adapter.RFEM
                         strengthArray = materialGradeString.Split('/');
                         break;
                     case "STEEL":
-                        strengthArray[0] = materialStringArr[1].Substring(2);
+                        //Upper boundary for Reading the yield stress from name. Check for Rebar
+                        int upperBoundary = materialStringArr[1].Substring(0,2) == " B" ? materialStringArr[1].Length-3: materialStringArr[1].Length-2;
+                        strengthArray[0] = materialStringArr[1].Substring(2, upperBoundary).Split(null)[0];
                         break;
                     case "TIMBER":
                         break;
@@ -149,7 +151,7 @@ namespace BH.Adapter.RFEM
 
             }
 
-            return new double[] { System.Convert.ToDouble(strengthArray[0]) * 1e9, System.Convert.ToDouble(strengthArray[1]) * 1e9 };
+            return new double[] { System.Convert.ToDouble(strengthArray[0]) * 1e6, System.Convert.ToDouble(strengthArray[1]) * 1e6 };
         }
 
     }
