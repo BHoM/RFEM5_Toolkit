@@ -42,6 +42,7 @@ namespace BH.Adapter.RFEM
 
         private List<IMaterialFragment> ReadMaterials(List<string> ids = null)
         {
+            m_materialDict.Clear();
             List<IMaterialFragment> materialList = new List<IMaterialFragment>();
 
             if (ids == null)

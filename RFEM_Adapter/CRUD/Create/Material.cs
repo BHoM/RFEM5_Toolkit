@@ -53,11 +53,19 @@ namespace BH.Adapter.RFEM
 
 
                     List<rf.Material> alreadyExistingMaterialsOFEqualType = modelData.GetMaterials().ToList().FindAll(m => m.Description.Equals(rfMaterials[i].Description));
-
-
-                    if (alreadyExistingMaterialsOFEqualType.Count==0) {
+                   
+                    //WIP AM
+                    bool materialAlreadyInDict = m_materialDict.Any(m => (m.Value.Name.Equals(" "+matList[i].Name))||(m.Value.Name.Equals( matList[i].Name)));
+                    if (!materialAlreadyInDict)
+                    {
+                        m_materialDict.Add(m_materialDict.Count+1, matList[i]);
                         modelData.SetMaterial(rfMaterials[i]);
                     }
+
+
+                    //if (alreadyExistingMaterialsOFEqualType.Count==0) {
+                    //    modelData.SetMaterial(rfMaterials[i]);
+                    //}
                    
                        
                     

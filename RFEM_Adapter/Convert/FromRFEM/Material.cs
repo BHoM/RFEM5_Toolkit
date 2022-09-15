@@ -44,12 +44,15 @@ namespace BH.Adapter.RFEM
 
         public static IMaterialFragment FromRFEM(this rf.Material material)
         {
+
+
+
             IMaterialFragment bhMaterial = null;
 
             string[] stringArr = material.TextID.Split('@');
             MaterialType matType = material.GetMaterialType();// Engine.Adapters.RFEM.Query.GetMaterialType(material);
             string matName = Engine.Adapters.RFEM.Query.GetMaterialName(material);
-
+            String[] matParaArray = material.Comment.Split('|');
 
             switch (matType)
             {
@@ -57,17 +60,19 @@ namespace BH.Adapter.RFEM
                     bhMaterial = Engine.Structure.Create.Aluminium(matName);
                     break;
                 case MaterialType.Steel:
-                    double[] matStrenth = getMaterialStrength(material);
+                   
+                    double yieldStress = (matParaArray.Length>1)?Double.Parse(matParaArray[1]):0;
+                    double ulitimateStess = (matParaArray.Length > 1) ? Double.Parse(matParaArray[2]) : 0;
 
-                    
-                    bhMaterial = Engine.Structure.Create.Steel(matName,material.ElasticityModulus,material.PoissonRatio,material.ThermalExpansion,material.SpecificWeight,0,matStrenth[0],0);
+                    bhMaterial = Engine.Structure.Create.Steel(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight*0.1, 0, yieldStress, ulitimateStess);
 
                     break;
                 case MaterialType.Concrete:
-                     matStrenth=getMaterialStrength(material);
+  
+                    double cylinderStrenth = (matParaArray.Length > 1) ? Double.Parse(matParaArray[1]) : 0;
+                    double cubeStrength = (matParaArray.Length > 1) ? Double.Parse(matParaArray[2]) : 0;
 
-                    
-                    bhMaterial = Engine.Structure.Create.Concrete(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight, 0, matStrenth[1], matStrenth[0]);
+                    bhMaterial = Engine.Structure.Create.Concrete(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight * 0.1, 0,cubeStrength, cylinderStrenth);
 
                     break;
                 case MaterialType.Timber://TODO: as this uses vector over double assumption is the the below turns Timber into an incorrect Isotropic material !!!
@@ -92,68 +97,68 @@ namespace BH.Adapter.RFEM
             return bhMaterial;
         }
 
-        private static double[] getMaterialStrength(rf.Material material)
-        {
-            string[] strengthArray = new string[] { "0", "0" };
+        //private static double[] getMaterialStrength(rf.Material material)
+        //{
+        //    string[] strengthArray = new string[] { "0", "0" };
 
-            //Non RFEM Libary Material
-            if (material.TextID.Equals(""))
-            {
+        //    //Non RFEM Libary Material
+        //    if (material.TextID.Equals(""))
+        //    {
 
-                string[] materialStringArr = material.Description.Split(':');
-                string materialGradeString = "";
+        //        string[] materialStringArr = material.Description.Split(':');
+        //        string materialGradeString = "";
 
-                switch (materialStringArr[0])
-                {
-                    case "CONCRETE":
-                        materialGradeString = materialStringArr[1].Substring(2);
-                        strengthArray = materialGradeString.Split('/');
-                        break;
-                    case "STEEL":
-                        //Upper boundary for Reading the yield stress from name. Check for Rebar
-                        int upperBoundary = materialStringArr[1].Substring(0,2) == " B" ? materialStringArr[1].Length-3: materialStringArr[1].Length-2;
-                        strengthArray[0] = materialStringArr[1].Substring(2, upperBoundary).Split(null)[0];
-                        break;
-                    case "TIMBER":
-                        break;
-                    case "ALUMINIUM":
-                        break;
-                    default:
-                        break;
+        //        switch (materialStringArr[0])
+        //        {
+        //            case "CONCRETE":
+        //                materialGradeString = materialStringArr[1].Substring(2);
+        //                strengthArray = materialGradeString.Split('/');
+        //                break;
+        //            case "STEEL":
+        //                //Upper boundary for Reading the yield stress from name. Check for Rebar
+        //                int upperBoundary = materialStringArr[1].Substring(0, 2) == " B" ? materialStringArr[1].Length - 3 : materialStringArr[1].Length - 2;
+        //                strengthArray[0] = materialStringArr[1].Substring(2, upperBoundary).Split(null)[0];
+        //                break;
+        //            case "TIMBER":
+        //                break;
+        //            case "ALUMINIUM":
+        //                break;
+        //            default:
+        //                break;
 
-                }
+        //        }
 
-            }// RFEM Libary Material
-            else
-            {
-                string[] materialStringArr = material.TextID.Split('@');
-                string materialGradeString = "";
+        //    }// RFEM Libary Material
+        //    else
+        //    {
+        //        string[] materialStringArr = material.TextID.Split('@');
+        //        string materialGradeString = "";
 
-                switch (materialStringArr[1])
-                {
-                    case "TypeID|CONCRETE":
-                        materialGradeString = materialStringArr[0].Split(null)[1];
-                        strengthArray = materialGradeString.Substring(1).Split('/');
-                        break;
-                    case "TypeID|STEEL":
-                        strengthArray[0] = materialStringArr[0].Split(null)[2]; ;
-                        break;
-                    case "TypeID|TIMBER":
-                       
-                        break;
-                    case "TypeID|ALUMINIUM":
-                      
-                        break;
-                    default:
-                        break;
+        //        switch (materialStringArr[1])
+        //        {
+        //            case "TypeID|CONCRETE":
+        //                materialGradeString = materialStringArr[0].Split(null)[1];
+        //                strengthArray = materialGradeString.Substring(1).Split('/');
+        //                break;
+        //            case "TypeID|STEEL":
+        //                strengthArray[0] = materialStringArr[0].Split(null)[2]; ;
+        //                break;
+        //            case "TypeID|TIMBER":
 
-                }
+        //                break;
+        //            case "TypeID|ALUMINIUM":
 
-            }
+        //                break;
+        //            default:
+        //                break;
 
-            return new double[] { System.Convert.ToDouble(strengthArray[0]) * 1e6, System.Convert.ToDouble(strengthArray[1]) * 1e6 };
-        }
+        //        }
 
+        //    }
+
+        //    return new double[] { System.Convert.ToDouble(strengthArray[0]) * 1e6, System.Convert.ToDouble(strengthArray[1]) * 1e6 };
+        //}
+        
     }
 }
 

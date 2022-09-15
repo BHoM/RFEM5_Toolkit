@@ -41,7 +41,11 @@ namespace BH.Adapter.RFEM
 
         public static rf.CrossSection ToRFEM(this ISectionProperty sectionProperty, int sectionPropertyId, int materialId)
         {
+
             rf.CrossSection rfSectionProperty = new rf.CrossSection();
+
+
+            //rf.CrossSection rfSectionProperty = new rf.CrossSection();
             string name;
             rfSectionProperty.No = sectionPropertyId;
             rfSectionProperty.MaterialNo = materialId;
