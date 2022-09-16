@@ -40,7 +40,7 @@ namespace BH.Adapter.RFEM
 
         private bool CreateCollection(IEnumerable<IMaterialFragment> materialFragments)
         {
-            if(materialFragments.Count()>0)
+            if (materialFragments.Count() > 0)
             {
                 int idNum = 0;
                 List<IMaterialFragment> matList = materialFragments.ToList();
@@ -51,28 +51,17 @@ namespace BH.Adapter.RFEM
                     idNum = GetAdapterId<int>(matList[i]);// NextId(matList[i].GetType()));
                     rfMaterials[i] = matList[i].ToRFEM(idNum);
 
-
                     List<rf.Material> alreadyExistingMaterialsOFEqualType = modelData.GetMaterials().ToList().FindAll(m => m.Description.Equals(rfMaterials[i].Description));
-                   
-                    //WIP AM
-                    bool materialAlreadyInDict = m_materialDict.Any(m => (m.Value.Name.Equals(" "+matList[i].Name))||(m.Value.Name.Equals( matList[i].Name)));
+
+                    bool materialAlreadyInDict = m_materialDict.Any(m => (m.Value.Name.Equals(" " + matList[i].Name)) || (m.Value.Name.Equals(matList[i].Name)));
                     if (!materialAlreadyInDict)
                     {
-                        m_materialDict.Add(m_materialDict.Count+1, matList[i]);
+                        m_materialDict.Add(m_materialDict.Count + 1, matList[i]);
                         modelData.SetMaterial(rfMaterials[i]);
                     }
 
-
-                    //if (alreadyExistingMaterialsOFEqualType.Count==0) {
-                    //    modelData.SetMaterial(rfMaterials[i]);
-                    //}
-                   
-                       
-                    
-                   
                 }
 
-                //modelData.SetMaterials(rfMaterials);
             }
 
             return true;

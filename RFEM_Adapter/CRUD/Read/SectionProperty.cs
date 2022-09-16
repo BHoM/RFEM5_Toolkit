@@ -62,7 +62,7 @@ namespace BH.Adapter.RFEM
                     sectionPropList.Add(section);
 
                     int sectionId = rfSection.No;
-                    if(!m_sectionDict.ContainsKey(sectionId))
+                    if (!m_sectionDict.ContainsKey(sectionId))
                     {
                         section.Name = rfISection.GetData().Comment;
                         m_sectionDict.Add(sectionId, section);

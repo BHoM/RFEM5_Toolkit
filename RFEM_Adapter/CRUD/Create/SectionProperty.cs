@@ -50,7 +50,6 @@ namespace BH.Adapter.RFEM
 
                 for (int i = 0; i < secList.Count(); i++)
                 {
-
                     idNum = GetAdapterId<int>(secList[i]);// NextId(secList[i].GetType()));
                    // matNumId = GetAdapterId<int>(secList[i]);
                     matNumId = modelData.GetMaterials().ToList().IndexOf(modelData.GetMaterials().ToList().Find(m => m.Description.Split(' ')[1].Equals(secList[i].Material.Name))) + 1;
@@ -62,7 +61,6 @@ namespace BH.Adapter.RFEM
                         rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
                         modelData.SetCrossSection(rfCrossSections[i]); 
                     }
-
 
                     rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
                     //modelData.SetCrossSection(rfCrossSections[i]);
