@@ -95,67 +95,7 @@ namespace BH.Adapter.RFEM
             return bhMaterial;
         }
 
-        //private static double[] getMaterialStrength(rf.Material material)
-        //{
-        //    string[] strengthArray = new string[] { "0", "0" };
-
-        //    //Non RFEM Libary Material
-        //    if (material.TextID.Equals(""))
-        //    {
-
-        //        string[] materialStringArr = material.Description.Split(':');
-        //        string materialGradeString = "";
-
-        //        switch (materialStringArr[0])
-        //        {
-        //            case "CONCRETE":
-        //                materialGradeString = materialStringArr[1].Substring(2);
-        //                strengthArray = materialGradeString.Split('/');
-        //                break;
-        //            case "STEEL":
-        //                //Upper boundary for Reading the yield stress from name. Check for Rebar
-        //                int upperBoundary = materialStringArr[1].Substring(0, 2) == " B" ? materialStringArr[1].Length - 3 : materialStringArr[1].Length - 2;
-        //                strengthArray[0] = materialStringArr[1].Substring(2, upperBoundary).Split(null)[0];
-        //                break;
-        //            case "TIMBER":
-        //                break;
-        //            case "ALUMINIUM":
-        //                break;
-        //            default:
-        //                break;
-
-        //        }
-
-        //    }// RFEM Libary Material
-        //    else
-        //    {
-        //        string[] materialStringArr = material.TextID.Split('@');
-        //        string materialGradeString = "";
-
-        //        switch (materialStringArr[1])
-        //        {
-        //            case "TypeID|CONCRETE":
-        //                materialGradeString = materialStringArr[0].Split(null)[1];
-        //                strengthArray = materialGradeString.Substring(1).Split('/');
-        //                break;
-        //            case "TypeID|STEEL":
-        //                strengthArray[0] = materialStringArr[0].Split(null)[2]; ;
-        //                break;
-        //            case "TypeID|TIMBER":
-
-        //                break;
-        //            case "TypeID|ALUMINIUM":
-
-        //                break;
-        //            default:
-        //                break;
-
-        //        }
-
-        //    }
-
-        //    return new double[] { System.Convert.ToDouble(strengthArray[0]) * 1e6, System.Convert.ToDouble(strengthArray[1]) * 1e6 };
-        //}
+        
 
     }
 }
