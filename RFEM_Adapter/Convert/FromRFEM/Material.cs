@@ -45,8 +45,6 @@ namespace BH.Adapter.RFEM
         public static IMaterialFragment FromRFEM(this rf.Material material)
         {
 
-
-
             IMaterialFragment bhMaterial = null;
 
             string[] stringArr = material.TextID.Split('@');
@@ -60,19 +58,19 @@ namespace BH.Adapter.RFEM
                     bhMaterial = Engine.Structure.Create.Aluminium(matName);
                     break;
                 case MaterialType.Steel:
-                   
-                    double yieldStress = (matParaArray.Length>1)?Double.Parse(matParaArray[1]):0;
+
+                    double yieldStress = (matParaArray.Length > 1) ? Double.Parse(matParaArray[1]) : 0;
                     double ulitimateStess = (matParaArray.Length > 1) ? Double.Parse(matParaArray[2]) : 0;
 
-                    bhMaterial = Engine.Structure.Create.Steel(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight*0.1, 0, yieldStress, ulitimateStess);
+                    bhMaterial = Engine.Structure.Create.Steel(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight * 0.1, 0, yieldStress, ulitimateStess);
 
                     break;
                 case MaterialType.Concrete:
-  
+
                     double cylinderStrenth = (matParaArray.Length > 1) ? Double.Parse(matParaArray[1]) : 0;
                     double cubeStrength = (matParaArray.Length > 1) ? Double.Parse(matParaArray[2]) : 0;
 
-                    bhMaterial = Engine.Structure.Create.Concrete(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight * 0.1, 0,cubeStrength, cylinderStrenth);
+                    bhMaterial = Engine.Structure.Create.Concrete(matName, material.ElasticityModulus, material.PoissonRatio, material.ThermalExpansion, material.SpecificWeight * 0.1, 0, cubeStrength, cylinderStrenth);
 
                     break;
                 case MaterialType.Timber://TODO: as this uses vector over double assumption is the the below turns Timber into an incorrect Isotropic material !!!
@@ -158,7 +156,7 @@ namespace BH.Adapter.RFEM
 
         //    return new double[] { System.Convert.ToDouble(strengthArray[0]) * 1e6, System.Convert.ToDouble(strengthArray[1]) * 1e6 };
         //}
-        
+
     }
 }
 

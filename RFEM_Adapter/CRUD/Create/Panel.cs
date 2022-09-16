@@ -64,7 +64,8 @@ namespace BH.Adapter.RFEM
                     List<rf.Line> outlineNodeList = GenerateOutlineLines(panelList[i].ExternalEdges);
                     int[] numberArray = outlineNodeList.Select(line => line.No).ToArray();
                     rfSurfaces[i] = panelList[i].ToRFEM(panelIdNum, numberArray);
-                    rfSurfaces[i].MaterialNo=modelData.GetMaterials().ToList().Find(m => m.Description.Split(' ')[1].Equals(panelList[i].Property.Material.Name)).No;
+                    //rfSurfaces[i].MaterialNo=modelData.GetMaterials().ToList().Find(m => m.Description.Split(' ')[1].Equals(panelList[i].Property.Material.Name)).No;
+                    rfSurfaces[i].MaterialNo = modelData.GetMaterials().ToList().Find(m => m.Description.Split(':')[1].Equals(" " + panelList[i].Property.Material.Name)).No;
 
 
 

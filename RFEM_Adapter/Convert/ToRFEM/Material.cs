@@ -134,8 +134,6 @@ namespace BH.Adapter.RFEM
 
             }
 
-            //rfMaterial.Comment = materialFragment.Name;
-
             return rfMaterial;
 
         }

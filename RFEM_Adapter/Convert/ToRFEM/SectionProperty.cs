@@ -44,8 +44,6 @@ namespace BH.Adapter.RFEM
 
             rf.CrossSection rfSectionProperty = new rf.CrossSection();
 
-
-            //rf.CrossSection rfSectionProperty = new rf.CrossSection();
             string name;
             rfSectionProperty.No = sectionPropertyId;
             rfSectionProperty.MaterialNo = materialId;
@@ -57,12 +55,10 @@ namespace BH.Adapter.RFEM
             rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
 
             name = sectionProperty.DescriptionOrName();
-            
-            
+
             //TODO 
             // The CrossSection class does both use the attribute name and discribtion. 
             // The Grasshopper interface does only know name
-
             rfSectionProperty.Description = name;
             rfSectionProperty.TextID = name;
             rfSectionProperty.Comment = sectionProperty.Name;
