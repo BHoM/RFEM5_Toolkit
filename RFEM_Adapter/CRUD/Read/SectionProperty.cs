@@ -55,7 +55,24 @@ namespace BH.Adapter.RFEM
             {
                 foreach (rf.CrossSection rfSection in modelData.GetCrossSections())
                 {
-                    rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+
+                    int rfSectMaterialNumbe;
+
+                    if (rfSection.MaterialNo==0)
+                    {
+                        Engine.Base.Compute.RecordWarning("Material number "+rfSection.No+" had no in RFEM Material assigned to it. Insted Material number 1 had been assigned to the Cross Section");
+                        rfSectMaterialNumbe = 1;
+
+                    }
+                    else
+                    {
+                        rfSectMaterialNumbe= rfSection.MaterialNo;
+                    }
+
+                    
+                    //rf.Material rfMaterial = modelData.GetMaterial(rfSection.MaterialNo, rf.ItemAt.AtNo).GetData();
+                    rf.Material rfMaterial = modelData.GetMaterial(rfSectMaterialNumbe, rf.ItemAt.AtNo).GetData();
+
                     rf.ICrossSection rfISection = modelData.GetCrossSection(rfSection.No, rf.ItemAt.AtNo);
                     ISectionProperty section = rfISection.FromRFEM(rfMaterial);
 
