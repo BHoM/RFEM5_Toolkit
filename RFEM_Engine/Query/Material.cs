@@ -87,34 +87,7 @@ namespace BH.Engine.Adapters.RFEM
         }
 
 
-        public static string GetMaterialType(IMaterialFragment material)
-        {
-            Type materialType = material.GetType();
-
-            if (materialType == typeof(Aluminium))
-            {
-                return "TypeID|ALUMINIUM";
-            }
-            if (materialType == typeof(Steel))
-            {
-                return "TypeID|STEEL";
-            }
-            if (materialType == typeof(Concrete))
-            {
-                return "TypeID|CONCRETE";
-            }
-            if (materialType == typeof(Timber))
-            {
-                return "TypeID|TIMBER";
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
-        public static string GetMaterialName(rf.Material rfMaterial)
+        public static string GetMaterialName(this rf.Material rfMaterial)
         {
             //string materialName;
             //string[] materialString = rfMaterial.TextID.Split('@');
