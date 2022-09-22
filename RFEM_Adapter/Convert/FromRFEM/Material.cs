@@ -48,8 +48,9 @@ namespace BH.Adapter.RFEM
             IMaterialFragment bhMaterial = null;
 
             string[] stringArr = material.TextID.Split('@');
-            MaterialType matType = material.GetMaterialType();// Engine.Adapters.RFEM.Query.GetMaterialType(material);
-            string matName = Engine.Adapters.RFEM.Query.GetMaterialName(material);
+            MaterialType matType = material.MaterialType();// Engine.Adapters.RFEM.Query.GetMaterialType(material);
+            //string matName = Engine.Adapters.RFEM.Query.GetMaterialName(material);
+            string matName = material.TextID == "" ? material.Description.Split(':')[1] : material.Description;
             String[] matParaArray = material.Comment.Split('|');
 
             switch (matType)
