@@ -46,16 +46,11 @@ namespace BH.Engine.Adapters.RFEM
         //Format: NameID|material ID@TypeID|material type@NormID|material code
         //Example: NameID|Steel S 235@TypeID|STEEL@StandardID|DIN EN 1993-1-1-10 
 
-        public static MaterialType GetMaterialType(this rf.Material rfMaterial)
+        public static MaterialType MaterialType(this rf.Material rfMaterial)
         {
             string[] materialStringArr = rfMaterial.TextID.Split('@');
 
-            //if(materialString.Count()<2)
-            //{
-            //    Engine.Base.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
-            //    return MaterialType.Steel;
-            //}
-
+         
             string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[0] :materialStringArr[1].Split('|')[1];
 
             switch (materialString)
@@ -63,53 +58,53 @@ namespace BH.Engine.Adapters.RFEM
 
                 case "TypeID|STEEL":
                 case "STEEL":
-                    return MaterialType.Steel;
+                    return oM.Structure.MaterialFragments.MaterialType.Steel;
                 case "ALUMINIUM":
-                    return MaterialType.Aluminium;
+                    return oM.Structure.MaterialFragments.MaterialType.Aluminium;
                 case "CONCRETE":
-                    return MaterialType.Concrete;
+                    return oM.Structure.MaterialFragments.MaterialType.Concrete;
                 case "TIMBER":
                 case "CONIFEROUS":
-                    return MaterialType.Timber;
+                    return oM.Structure.MaterialFragments.MaterialType.Timber;
                 case "CABLE":
-                    return MaterialType.Cable;
+                    return oM.Structure.MaterialFragments.MaterialType.Cable;
                 case "GLASS":
-                    return MaterialType.Glass;
+                    return oM.Structure.MaterialFragments.MaterialType.Glass;
                 case "TREBAR":
-                    return MaterialType.Rebar;
+                    return oM.Structure.MaterialFragments.MaterialType.Rebar;
                 case "TENDON":
-                    return MaterialType.Tendon;
+                    return oM.Structure.MaterialFragments.MaterialType.Tendon;
                 default:
                     Engine.Base.Compute.RecordWarning("Don't know how to make: " + materialString[1]);
-                    return MaterialType.Undefined;
+                    return oM.Structure.MaterialFragments.MaterialType.Undefined;
             }
 
         }
 
 
-        public static string GetMaterialName(this rf.Material rfMaterial)
-        {
-            //string materialName;
-            //string[] materialString = rfMaterial.TextID.Split('@');
-            //if (materialString.Length < 2)
-            //    materialName = rfMaterial.Description;
-            //else
-            //    materialName = materialString[0].Split('|')[1];
+        //public static string GetMaterialName(this rf.Material rfMaterial)
+        //{
+        //    //string materialName;
+        //    //string[] materialString = rfMaterial.TextID.Split('@');
+        //    //if (materialString.Length < 2)
+        //    //    materialName = rfMaterial.Description;
+        //    //else
+        //    //    materialName = materialString[0].Split('|')[1];
 
-            string[] materialStringArr = rfMaterial.TextID.Split('@');
+        //    string[] materialStringArr = rfMaterial.TextID.Split('@');
 
-            //if(materialString.Count()<2)
-            //{
-            //    Engine.Base.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
-            //    return MaterialType.Steel;
-            //}
+        //    //if(materialString.Count()<2)
+        //    //{
+        //    //    Engine.Base.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
+        //    //    return MaterialType.Steel;
+        //    //}
 
-            //string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : materialStringArr[1].Split('|')[1];
-            string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : rfMaterial.Description;
+        //    //string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : materialStringArr[1].Split('|')[1];
+        //    string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : rfMaterial.Description;
 
 
-            return materialString;
-        }
+        //    return materialString;
+        //}
 
 
         /***************************************************/
