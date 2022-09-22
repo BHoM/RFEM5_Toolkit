@@ -25,10 +25,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.MaterialFragments;
 using BH.Engine.Structure;
+using BH.oM.Base.Attributes;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Engine.Adapters.RFEM
@@ -45,7 +47,9 @@ namespace BH.Engine.Adapters.RFEM
         //• NormID - Language independent code of the material. 
         //Format: NameID|material ID@TypeID|material type@NormID|material code
         //Example: NameID|Steel S 235@TypeID|STEEL@StandardID|DIN EN 1993-1-1-10 
-
+        [Description("Get list of Ids from RFEM string")]
+        [Input("rfemIdString", "String with RFEM ids")]
+        [Output("idList", "List of ids")]
         public static MaterialType MaterialType(this rf.Material rfMaterial)
         {
             string[] materialStringArr = rfMaterial.TextID.Split('@');
@@ -80,31 +84,6 @@ namespace BH.Engine.Adapters.RFEM
             }
 
         }
-
-
-        //public static string GetMaterialName(this rf.Material rfMaterial)
-        //{
-        //    //string materialName;
-        //    //string[] materialString = rfMaterial.TextID.Split('@');
-        //    //if (materialString.Length < 2)
-        //    //    materialName = rfMaterial.Description;
-        //    //else
-        //    //    materialName = materialString[0].Split('|')[1];
-
-        //    string[] materialStringArr = rfMaterial.TextID.Split('@');
-
-        //    //if(materialString.Count()<2)
-        //    //{
-        //    //    Engine.Base.Compute.RecordWarning("Don't know how to make" + rfMaterial.TextID + ". Steel created instead!");
-        //    //    return MaterialType.Steel;
-        //    //}
-
-        //    //string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : materialStringArr[1].Split('|')[1];
-        //    string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[1] : rfMaterial.Description;
-
-
-        //    return materialString;
-        //}
 
 
         /***************************************************/
