@@ -47,9 +47,9 @@ namespace BH.Engine.Adapters.RFEM
         //• NormID - Language independent code of the material. 
         //Format: NameID|material ID@TypeID|material type@NormID|material code
         //Example: NameID|Steel S 235@TypeID|STEEL@StandardID|DIN EN 1993-1-1-10 
-        [Description("Get list of Ids from RFEM string")]
-        [Input("rfemIdString", "String with RFEM ids")]
-        [Output("idList", "List of ids")]
+        [Description("Get list of Ids from RFEM string.")]
+        [Input("rfMaterial", "String with RFEM ids.")]
+        [Output("idList", "List of ids.")]
         public static MaterialType MaterialType(this rf.Material rfMaterial)
         {
             string[] materialStringArr = rfMaterial.TextID.Split('@');
