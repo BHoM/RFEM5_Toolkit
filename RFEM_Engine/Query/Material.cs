@@ -52,10 +52,26 @@ namespace BH.Engine.Adapters.RFEM
         [Output("idList", "List of ids.")]
         public static MaterialType MaterialType(this rf.Material rfMaterial)
         {
-            string[] materialStringArr = rfMaterial.TextID.Split('@');
+            //string[] materialStringArr = rfMaterial.TextID.Split('@');
 
          
-            string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[0] :materialStringArr[1].Split('|')[1];
+            //string materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[0] :materialStringArr[1].Split('|')[1];
+
+            string materialString = "";
+            string[] materialStringArr;
+
+            if (rfMaterial.Equals(null))
+            {
+                Engine.Base.Compute.RecordWarning("Material was Null and has been set to Steel");
+                return oM.Structure.MaterialFragments.MaterialType.Steel; ; //A suitable return - you could `return null;` here instead if needed
+            }
+            else
+            {
+
+                materialStringArr = rfMaterial.TextID.Split('@');
+                materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[0] : materialStringArr[1].Split('|')[1];
+            }
+
 
             switch (materialString)
             {
