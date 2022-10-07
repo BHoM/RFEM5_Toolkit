@@ -48,7 +48,7 @@ namespace BH.Adapter.RFEM
             IMaterialFragment bhMaterial = null;
 
             string[] stringArr = material.TextID.Split('@');
-            MaterialType matType = material.MaterialType();// Engine.Adapters.RFEM.Query.GetMaterialType(material);
+            MaterialType matType = material.DetermineMaterialType();// Engine.Adapters.RFEM.Query.GetMaterialType(material);
             //string matName = Engine.Adapters.RFEM.Query.GetMaterialName(material);
             string matName = material.TextID == "" ? material.Description.Split(':')[1] : material.Description;
             String[] matParaArray = material.Comment.Split('|');
@@ -96,9 +96,59 @@ namespace BH.Adapter.RFEM
             return bhMaterial;
         }
 
-        
+        private static MaterialType DetermineMaterialType(this rf.Material rfMaterial)
+        {
+       
 
+            string materialString = "";
+            string[] materialStringArr;
+
+            if (rfMaterial.Equals(null))
+            {
+                Engine.Base.Compute.RecordWarning("Material was Null and has been set to Steel");
+                return oM.Structure.MaterialFragments.MaterialType.Steel; ; //A suitable return - you could `return null;` here instead if needed
+            }
+            else
+            {
+
+                materialStringArr = rfMaterial.TextID.Split('@');
+                materialString = rfMaterial.TextID == "" ? rfMaterial.Description.Split(':')[0] : materialStringArr[1].Split('|')[1];
+            }
+
+
+            switch (materialString)
+            {
+
+                case "TypeID|STEEL":
+                case "STEEL":
+                    return oM.Structure.MaterialFragments.MaterialType.Steel;
+                case "ALUMINIUM":
+                    return oM.Structure.MaterialFragments.MaterialType.Aluminium;
+                case "CONCRETE":
+                    return oM.Structure.MaterialFragments.MaterialType.Concrete;
+                case "TIMBER":
+                case "CONIFEROUS":
+                    return oM.Structure.MaterialFragments.MaterialType.Timber;
+                case "CABLE":
+                    return oM.Structure.MaterialFragments.MaterialType.Cable;
+                case "GLASS":
+                    return oM.Structure.MaterialFragments.MaterialType.Glass;
+                case "TREBAR":
+                    return oM.Structure.MaterialFragments.MaterialType.Rebar;
+                case "TENDON":
+                    return oM.Structure.MaterialFragments.MaterialType.Tendon;
+                default:
+                    Engine.Base.Compute.RecordWarning("Don't know how to make: " + materialString[1]);
+                    return oM.Structure.MaterialFragments.MaterialType.Undefined;
+            }
+
+        }
+
+
+        /***************************************************/
     }
+
 }
+
 
 
