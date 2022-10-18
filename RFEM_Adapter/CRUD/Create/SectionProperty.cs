@@ -54,6 +54,7 @@ namespace BH.Adapter.RFEM
                     matNumId = modelData.GetMaterials().ToList().IndexOf(modelData.GetMaterials().ToList().Find(m => m.Description.Split(' ')[1].Equals(secList[i].Material.Name))) + 1;
                     bool sectionAlredyInDict= m_sectionDict.Values.Any(s => s.Name.Equals(secList[i]));
 
+
                     if (!sectionAlredyInDict)
                     {
                         int maxKey = m_sectionDict.Keys.Count > 0 ? m_sectionDict.Keys.Max():0;
