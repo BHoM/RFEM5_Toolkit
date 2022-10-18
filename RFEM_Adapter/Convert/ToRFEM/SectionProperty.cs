@@ -56,6 +56,111 @@ namespace BH.Adapter.RFEM
 
             name = sectionProperty.DescriptionOrName();
 
+
+            String matString=Engine.Base.Query.PropertyValue(sectionProperty, "Material").ToString().Equals("BH.oM.Structure.MaterialFragments.Concrete") ? "Concrete" : "Steel";
+            String shapeString = Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Shape").ToString();
+
+            double diameter, width, height, thickness;
+
+            switch (shapeString)
+            {
+                case "Circle":
+
+                    if (matString.Equals("Steel"))
+                    {
+                        Engine.Base.Compute.RecordError("Parametrical Circular Steel Section has not Been Implemented!");
+                    }
+
+                    diameter = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Diameter")) * 1000;
+                    name = "Circle " + diameter;
+
+                    break;
+
+                case "Rectangle":
+
+                    if (matString.Equals("Steel"))
+                    {
+                        Engine.Base.Compute.RecordError("Parametrical Rectangular Steel Section has not Been Implemented!");
+                    }
+
+                    height = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Height")) * 1000;
+                    width = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Width")) * 1000;
+                    name = "Rectangle " + width + "/" + height;
+
+                    break;
+
+                case "Tube":
+
+                    diameter = System.Convert.ToInt32(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Diameter")) * 1000;
+                    thickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Thickness")) * 1000;
+                    String prefix = matString.Equals("Steel") ? "Pipe " : "Ring ";
+                    name = prefix + diameter + "/" + thickness;
+
+                    break;
+
+                case "Box":
+
+                    height = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Height")) * 1000;
+                    width = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Width")) * 1000;
+                    thickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Thickness")) * 1000;
+                    if (thickness == 0)
+                    {
+                        thickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.WebThickness"));
+                        Engine.Base.Compute.RecordWarning("Flange Thickness hab been changed to " + thickness + "!");
+                        Engine.Base.Compute.RecordWarning("Weld Size have been ingored!");
+                    }
+
+                    prefix = matString.Equals("Steel") ? "TO " : "HK ";
+                    name = prefix + height + "/" + width + "/" + thickness + "/" + thickness + "/" + thickness + "/" + thickness;
+                    Engine.Base.Compute.RecordWarning("Outer and inner radius of Box profile have been set to 0!");
+                    break;
+
+                case "ISection":
+
+                    height = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Height")) * 1000;
+                    width = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Width")) * 1000;
+                    //Check if I section symetrical, if not width is not a property and is 0
+                    if (width == 0)
+                    {
+                        double topFlWidth = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.TopFlangeWidth")) * 1000;
+                        double botFlWidth = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.BotFlangeWidth")) * 1000;
+                        double webThicknesss = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.WebThickness")) * 1000;
+                        double topFlThickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.TopFlangeThickness")) * 1000;
+                        double botFlThickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.BotFlangeThickness")) * 1000;
+                        double weldSize = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.WeldSize")) * 1000;
+                        name = "IU " + height + "/" + topFlWidth + "/" + topFlThickness + "/" + webThicknesss + "/" + botFlWidth + "/" + botFlThickness + "/" + weldSize + "/" + weldSize;
+                    }
+                    else
+                    {
+
+                        double webThicknesss = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.WebThickness")) * 1000;
+                        double flangeThicknesss = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.FlangeThickness")) * 1000;
+
+                        prefix = matString.Equals("Steel") ? "IS " : "ITS ";
+                        name = prefix + height + "/" + width + "/" + webThicknesss + "/" + flangeThicknesss;
+                        Engine.Base.Compute.RecordWarning("Root and toe radius of the ISection have been set to 0!");
+                    }
+
+                    break;
+
+
+                case "Tee":
+
+                    height = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Height")) * 1000;
+                    width = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Width")) * 1000;
+                    double webThickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.WebThickness")) * 1000;
+                    double flangeThickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.FlangeThickness")) * 1000;
+                    prefix = matString.Equals("Steel") ? "TS " : "FB ";
+                    name = prefix + height + "/" + width + "/" + webThickness + "/" + flangeThickness;
+                    Engine.Base.Compute.RecordWarning("Root and toe radius of the ISection have been set to 0!");
+                    break;
+
+                default:
+
+                    name = sectionProperty.DescriptionOrName();
+                    break;
+            }
+
             //TODO 
             // The CrossSection class does both use the attribute name and discribtion. 
             // The Grasshopper interface does only know name
