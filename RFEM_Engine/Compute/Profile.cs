@@ -94,13 +94,14 @@ namespace BH.Engine.Adapters.RFEM
                     case "UBP":
                     case "UC":
                     case "HD":
+                    case "IU":
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
                         v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_s).fValue;
                         v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g).fValue;
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
-                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
+                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, 0.1, 0.1);
                         break;
                     case "IS"://parametric
                     case "ITS":
@@ -126,6 +127,7 @@ namespace BH.Engine.Adapters.RFEM
                     case "TO"://parametric
                     case "HSH":
                     case "HSV":
+                    case "HK":
                         v1 = sectionDBProps[0].fValue;
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;

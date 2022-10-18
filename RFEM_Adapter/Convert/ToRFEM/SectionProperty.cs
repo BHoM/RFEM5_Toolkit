@@ -66,10 +66,10 @@ namespace BH.Adapter.RFEM
             {
                 case "Circle":
 
-                    if (matString.Equals("Steel"))
-                    {
-                        Engine.Base.Compute.RecordError("Parametrical Circular Steel Section has not Been Implemented!");
-                    }
+                    //if (matString.Equals("Steel"))
+                    //{
+                    //    Engine.Base.Compute.RecordError("Parametrical Circular Steel Section has not Been Implemented!");
+                    //}
 
                     diameter = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Diameter")) * 1000;
                     name = "Circle " + diameter;
@@ -78,10 +78,10 @@ namespace BH.Adapter.RFEM
 
                 case "Rectangle":
 
-                    if (matString.Equals("Steel"))
-                    {
-                        Engine.Base.Compute.RecordError("Parametrical Rectangular Steel Section has not Been Implemented!");
-                    }
+                    //if (matString.Equals("Steel"))
+                    //{
+                    //    Engine.Base.Compute.RecordError("Parametrical Rectangular Steel Section has not Been Implemented!");
+                    //}
 
                     height = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Height")) * 1000;
                     width = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Width")) * 1000;
