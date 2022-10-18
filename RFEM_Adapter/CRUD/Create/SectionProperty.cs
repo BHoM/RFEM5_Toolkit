@@ -58,12 +58,12 @@ namespace BH.Adapter.RFEM
                     if (!sectionAlredyInDict)
                     {
                         int maxKey = m_sectionDict.Keys.Count > 0 ? m_sectionDict.Keys.Max():0;
-                        m_sectionDict.Add(maxKey + 1, secList[i]);
+                        m_sectionDict.Add(maxKey +1, secList[i]);
                         rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
                         modelData.SetCrossSection(rfCrossSections[i]); 
                     }
 
-                    rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
+                    //rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
                 }
             }
 

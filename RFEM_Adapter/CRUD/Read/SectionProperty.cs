@@ -46,7 +46,7 @@ namespace BH.Adapter.RFEM
 
         private List<ISectionProperty> ReadSectionProperties(List<string> ids = null)
         {
-            m_sectionDict.Clear();
+           // m_sectionDict.Clear();
             List<ISectionProperty> sectionPropList = new List<ISectionProperty>();
 
             //ReadSectionFromRFEMLibrary("IPE 200");
