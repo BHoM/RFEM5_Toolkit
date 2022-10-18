@@ -57,7 +57,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.Description = "ALUMINIUM: " + materialFragment.Name;
                 rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
                 rfMaterial.PartialSafetyFactor = 1.00;
-                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | ALUMINIUM" + "@StandardID | No norm set!";
+                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | ALUMINIUM" + "@StandardID | No norm";
                 rfMaterial.Comment = materialFragment.Name + "|" + BH.Engine.Base.Query.PropertyValue(material, "YieldStress") + "|" + BH.Engine.Base.Query.PropertyValue(material, "UltimateStress");
             }
             else if (materialFragment.GetType() == typeof(Steel))
@@ -69,7 +69,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.Description ="STEEL: "+materialFragment.Name;
                 rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
                 rfMaterial.PartialSafetyFactor = 1.00;
-                rfMaterial.TextID = "NameID | STEEL:" + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
+                rfMaterial.TextID = "NameID | STEEL:" + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm!";
                 rfMaterial.Comment = materialFragment.Name + "|" + BH.Engine.Base.Query.PropertyValue(material, "YieldStress") + "|" + BH.Engine.Base.Query.PropertyValue(material, "UltimateStress");
 
             }
@@ -82,7 +82,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.Description = "CONCRETE: " + materialFragment.Name;
                 rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
                 rfMaterial.PartialSafetyFactor = 1.00;
-                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | CONCRETE" + "@StandardID | No norm set!";
+                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | CONCRETE" + "@StandardID | No norm";
                 rfMaterial.Comment = materialFragment.Name + "|" + BH.Engine.Base.Query.PropertyValue(material, "CylinderStrength") + "|" + BH.Engine.Base.Query.PropertyValue(material, "CubeStrength");
 
             }
@@ -95,7 +95,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.Description = "ISOTROPIC: " + materialFragment.Name;
                 rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
                 rfMaterial.PartialSafetyFactor = 1.00;
-                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
+                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm";
                 rfMaterial.Comment = materialFragment.Name + "|" + BH.Engine.Base.Query.PropertyValue(material, "YieldStress") + "|" + BH.Engine.Base.Query.PropertyValue(material, "UltimateStress");
             }
             else if (materialFragment.GetType() == typeof(Timber))
@@ -106,7 +106,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.PoissonRatio = material.PoissonsRatio.Y;
                 rfMaterial.ElasticityModulus = material.YoungsModulus.Z;
                 rfMaterial.Description = "TIMBER: " + materialFragment.Name;
-                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | TIMBER" + "@StandardID | No norm set!";
+                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | TIMBER" + "@StandardID | No norm";
                 rfMaterial.Comment = materialFragment.Name;
             }
             else if (materialFragment.GetType() == typeof(GenericOrthotropicMaterial))
@@ -116,7 +116,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.PoissonRatio = material.PoissonsRatio.Y;
                 rfMaterial.ElasticityModulus = material.YoungsModulus.Z;
                 rfMaterial.Description = "ORTHOTROPIC: " + materialFragment.Name;
-                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | TIMBER" + "@StandardID | No norm set!";
+                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | TIMBER" + "@StandardID | No norm";
                 rfMaterial.Comment = materialFragment.Name;
             }
             else
@@ -129,7 +129,7 @@ namespace BH.Adapter.RFEM
                 rfMaterial.ShearModulus = BH.Engine.Structure.Query.ShearModulus(material);
                 rfMaterial.PartialSafetyFactor = 1.00;
                 Engine.Base.Compute.RecordWarning("Cannot make " + materialFragment.Name + ". Replaced with standard steel");
-                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm set!";
+                rfMaterial.TextID = "NameID | " + materialFragment.Name + "@TypeID | STEEL" + "@StandardID | No norm";
                 rfMaterial.Comment = materialFragment.Name;
 
             }
