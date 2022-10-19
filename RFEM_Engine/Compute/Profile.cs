@@ -101,7 +101,7 @@ namespace BH.Engine.Adapters.RFEM
                         v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g).fValue;
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
-                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, 0.1, 0.1);
+                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
                         break;
                     case "IS"://parametric
                     case "ITS":
@@ -149,7 +149,7 @@ namespace BH.Engine.Adapters.RFEM
                         v1 = sectionDBProps[0].fValue;
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
-                        profile = Spatial.Create.RectangleProfile(v1, v2, v3);
+                        profile = Spatial.Create.RectangleProfile(v1, v2, 0);
                         break;
 
                     case "L":
