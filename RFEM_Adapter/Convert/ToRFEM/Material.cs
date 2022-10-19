@@ -47,7 +47,7 @@ namespace BH.Adapter.RFEM
             rfMaterial.No = materialId;
             rfMaterial.Description = materialFragment.Name;
             rfMaterial.SpecificWeight = materialFragment.Density * 10; //translate from kg/m3 to kN/m3
-
+            
             if (materialFragment.GetType() == typeof(Aluminium))
             {
                 IIsotropic material = materialFragment as IIsotropic;

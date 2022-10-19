@@ -94,14 +94,24 @@ namespace BH.Engine.Adapters.RFEM
                     case "UBP":
                     case "UC":
                     case "HD":
-                    case "IU":
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
                         v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;
                         v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_s).fValue;
                         v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g).fValue;
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
-                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
+                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, 0.1, 0.1);
+                        break;
+                    case "IU":
+                        v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
+                        v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_bo).fValue;
+                        v3 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_to).fValue;
+                        v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
+                        v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_bu).fValue;
+                        v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_tu).fValue;
+                        //profile = Spatial.Create.FabricatedISectionProfile(v1, v2, v4, v3, v5, v6);
+                        //profile = Spatial.Create.FabricatedISectionProfile(1, 1.5, 2, 0.1, 0.1, 0.1);
+                        profile = Spatial.Create.FabricatedISectionProfile(v1, v2, v5, v4, v3, v6);
                         break;
                     case "IS"://parametric
                     case "ITS":
