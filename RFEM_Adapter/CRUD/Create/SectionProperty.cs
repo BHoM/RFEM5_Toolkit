@@ -53,7 +53,8 @@ namespace BH.Adapter.RFEM
                     idNum = GetAdapterId<int>(secList[i]);// NextId(secList[i].GetType()));
                     matNumId = modelData.GetMaterials().ToList().IndexOf(modelData.GetMaterials().ToList().Find(m => m.Description.Split(' ')[1].Equals(secList[i].Material.Name))) + 1;
                     rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
-                    bool sectionAlredyExistInModel = modelData.GetCrossSections().Any(c => (c.Description.Equals(rfCrossSections[i].Description) && c.MaterialNo.Equals(rfCrossSections[i].MaterialNo)));
+                    //bool sectionAlredyExistInModel = modelData.GetCrossSections().Any(c => (c.Description.Equals(rfCrossSections[i].Description) && c.MaterialNo.Equals(rfCrossSections[i].MaterialNo)));
+                    bool sectionAlredyExistInModel = modelData.GetCrossSections().Any(c => ((c.Description.Equals(rfCrossSections[i].Description) || (c.Comment.Equals(rfCrossSections[i].Description))) && c.MaterialNo.Equals(rfCrossSections[i].MaterialNo)));
 
                     if (!sectionAlredyExistInModel)
                     {
