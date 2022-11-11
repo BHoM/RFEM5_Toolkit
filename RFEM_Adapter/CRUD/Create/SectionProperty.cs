@@ -53,22 +53,14 @@ namespace BH.Adapter.RFEM
                     idNum = GetAdapterId<int>(secList[i]);// NextId(secList[i].GetType()));
                     matNumId = modelData.GetMaterials().ToList().IndexOf(modelData.GetMaterials().ToList().Find(m => m.Description.Split(' ')[1].Equals(secList[i].Material.Name))) + 1;
                     rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
+                    bool sectionAlredyExistInModel = modelData.GetCrossSections().Any(c => (c.Description.Equals(rfCrossSections[i].Description) && c.MaterialNo.Equals(rfCrossSections[i].MaterialNo)));
 
-                    //  var sectionAlredyInModel = modelData.GetCrossSections().Any(c => c.Description.Equals(rfCrossSections[i].Description));
-                    bool sectionAlredyInModel = modelData.GetCrossSections().Any(c => (c.Description.Equals(rfCrossSections[i].Description) && c.MaterialNo.Equals(rfCrossSections[i].MaterialNo)));
-
-                   // bool sectionAlredyInDict= m_sectionDict.Values.Any(s => s.Name.Equals(secList[i]));
-
-
-                    if (!sectionAlredyInModel)
+                    if (!sectionAlredyExistInModel)
                     {
                         int maxKey = m_sectionDict.Keys.Count > 0 ? m_sectionDict.Keys.Max():0;
                         m_sectionDict.Add(maxKey +1, secList[i]);
-                        //rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
                         modelData.SetCrossSection(rfCrossSections[i]); 
                     }
-
-                    //rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
                 }
             }
 
