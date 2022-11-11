@@ -54,7 +54,8 @@ namespace BH.Adapter.RFEM
                     matNumId = modelData.GetMaterials().ToList().IndexOf(modelData.GetMaterials().ToList().Find(m => m.Description.Split(' ')[1].Equals(secList[i].Material.Name))) + 1;
                     rfCrossSections[i] = secList[i].ToRFEM(idNum, matNumId);
 
-                    var sectionAlredyInModel = modelData.GetCrossSections().Any(c => c.TextID.Equals(rfCrossSections[i].TextID));
+                    //  var sectionAlredyInModel = modelData.GetCrossSections().Any(c => c.Description.Equals(rfCrossSections[i].Description));
+                    bool sectionAlredyInModel = modelData.GetCrossSections().Any(c => (c.Description.Equals(rfCrossSections[i].Description) && c.MaterialNo.Equals(rfCrossSections[i].MaterialNo)));
 
                    // bool sectionAlredyInDict= m_sectionDict.Values.Any(s => s.Name.Equals(secList[i]));
 
