@@ -62,6 +62,38 @@ namespace BH.Adapter.RFEM
 
 
                     rfBars[i] = barList[i].ToRFEM(barIdNum, lineIdNum);
+
+
+                 
+                    
+                        //if cs does already exist
+
+                      //var crossection= modelData.GetCrossSections().ElementAtOrDefault(rfBars[i].StartCrossSectionNo).Equals(null);
+                       Boolean csAlreadyDefinedPreviously=modelData.GetCrossSections().ElementAtOrDefault(rfBars[i].StartCrossSectionNo-1).TextID == null;
+                    if (csAlreadyDefinedPreviously)
+                    {
+                        //find the equivalent material within the "stock"
+                        String barMaterialName = barList[i].SectionProperty.Material.Name;
+                        var mat= modelData.GetMaterials().Where(k => k.Description.Split(' ')[1].Equals(barMaterialName)).First();
+                        int foundMatIndex=modelData.GetMaterials().ToList().IndexOf(mat)+1;
+                        rf.CrossSection tmpCs = barList[i].SectionProperty.ToRFEM( 0, foundMatIndex);
+                        rf.CrossSection suitedCS= modelData.GetCrossSections().ToList().First(c=>c.Description.Equals(tmpCs.Description)&&c.MaterialNo.Equals(tmpCs.MaterialNo));
+                        rfBars[i].StartCrossSectionNo = suitedCS.No;
+
+                    }
+                        
+                    
+                   
+
+                   
+                    
+                    
+                    
+                    
+
+
+                    //modelData.GetCrossSections().First(c=>c.Description.Equals(rfBars[i].StartCrossSectionNo));
+
                     modelData.SetMember(rfBars[i]);
                 }
 
