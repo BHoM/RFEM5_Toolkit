@@ -100,7 +100,7 @@ namespace BH.Engine.Adapters.RFEM
                         v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_t_g).fValue;
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r).fValue;
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_r_1).fValue;
-                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, 0.1, 0.1);
+                        profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, v5, v6);
                         break;
                     case "IU":
                         v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;

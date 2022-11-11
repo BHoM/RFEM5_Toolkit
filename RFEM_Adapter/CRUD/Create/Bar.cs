@@ -69,7 +69,7 @@ namespace BH.Adapter.RFEM
                         var mat= modelData.GetMaterials().Where(k => k.Description.Split(' ')[1].Equals(barMaterialName)).First();
                         int foundMatIndex=modelData.GetMaterials().ToList().IndexOf(mat)+1;
                         rf.CrossSection temporaryCS = barList[i].SectionProperty.ToRFEM( 0, foundMatIndex);
-                        rf.CrossSection matchingCS= modelData.GetCrossSections().ToList().First(c=>c.Description.Equals(temporaryCS.Description)&&c.MaterialNo.Equals(temporaryCS.MaterialNo));
+                        rf.CrossSection matchingCS= modelData.GetCrossSections().ToList().First(c=>(c.Description.Equals(temporaryCS.Description)|| c.Comment.Equals(temporaryCS.Description)) &&c.MaterialNo.Equals(temporaryCS.MaterialNo));
                         rfBars[i].StartCrossSectionNo = matchingCS.No;
 
                     }
