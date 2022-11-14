@@ -109,8 +109,6 @@ namespace BH.Engine.Adapters.RFEM
                         v4 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_s).fValue;
                         v5 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_bu).fValue;
                         v6 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_tu).fValue;
-                        //profile = Spatial.Create.FabricatedISectionProfile(v1, v2, v4, v3, v5, v6);
-                        //profile = Spatial.Create.FabricatedISectionProfile(1, 1.5, 2, 0.1, 0.1, 0.1);
                         profile = Spatial.Create.FabricatedISectionProfile(v1, v2, v5, v4, v3, v6);
                         break;
                     case "IS"://parametric
@@ -121,8 +119,6 @@ namespace BH.Engine.Adapters.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        //v5 = sectionDBProps[4].fValue;
-                        //v6 = sectionDBProps[5].fValue;
                         profile = Spatial.Create.ISectionProfile(v1, v2, v3, v4, 0, 0);
                         break;
                     case "SHS":
@@ -183,8 +179,6 @@ namespace BH.Engine.Adapters.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        //v5 = sectionDBProps[4].fValue;
-                        //v6 = sectionDBProps[5].fValue;
                         profile = Spatial.Create.AngleProfile(v1, v2, v3, v4, 0, 0);
                         break;
 
@@ -207,8 +201,6 @@ namespace BH.Engine.Adapters.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        //v5 = sectionDBProps[4].fValue;
-                        //v6 = sectionDBProps[5].fValue;
                         profile = Spatial.Create.TSectionProfile(v1, v2, v3, v4, 0, 0);
                         break;
 
@@ -235,8 +227,6 @@ namespace BH.Engine.Adapters.RFEM
                         v2 = sectionDBProps[1].fValue;
                         v3 = sectionDBProps[2].fValue;
                         v4 = sectionDBProps[3].fValue;
-                        //v5 = sectionDBProps[4].fValue;
-                        //v6 = sectionDBProps[5].fValue;
                         profile = Spatial.Create.ChannelProfile(v1, v2, v3, v4, 0, 0);
                         break;
                     case "CHS":
