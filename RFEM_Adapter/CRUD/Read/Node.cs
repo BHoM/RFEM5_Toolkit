@@ -46,6 +46,7 @@ namespace BH.Adapter.RFEM
         private List<Node> ReadNodes(List<string> ids = null)
         {
 
+
             List<Node> nodeList = new List<Node>();
 
             if (ids == null)
