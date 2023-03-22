@@ -133,7 +133,8 @@ namespace BH.Adapter.RFEM
                             double flangeThicknesss = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.FlangeThickness")) * 1000;
 
                             prefix = matString.Equals("Steel") ? "IS " : "ITS ";
-                            name = prefix + height + "/" + width + "/" + webThicknesss + "/" + flangeThicknesss+ "/0";
+                            name = prefix + height + "/" + width + "/" + webThicknesss + "/" + flangeThicknesss;
+                            name = prefix.Equals("IS ") ? name + "/0" : name;
                             Engine.Base.Compute.RecordWarning("Root and toe radius of the ISection have been set to 0!");
                         }
 
@@ -147,7 +148,8 @@ namespace BH.Adapter.RFEM
                         double webThickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.WebThickness")) * 1000;
                         double flangeThickness = System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.FlangeThickness")) * 1000;
                         prefix = matString.Equals("Steel") ? "TS " : "FB ";
-                        name = prefix + height + "/" + width + "/" + webThickness + "/" + flangeThickness +"/0";
+                        name = prefix + height + "/" + width + "/" + webThickness + "/" + flangeThickness;
+                        name = prefix.Equals("TS ") ? name + "/0" : name;
                         Engine.Base.Compute.RecordWarning("Root and toe radius of the ISection have been set to 0!");
                         break;
 
