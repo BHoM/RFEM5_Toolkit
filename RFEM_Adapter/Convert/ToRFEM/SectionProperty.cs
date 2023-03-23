@@ -54,10 +54,29 @@ namespace BH.Adapter.RFEM
             rfSectionProperty.BendingMomentY = sectionProperty.Iy;
             rfSectionProperty.BendingMomentZ = sectionProperty.Iz;
 
+
+            name = RFEMSectionName(sectionProperty);
+
+            rfSectionProperty.Description = name;
+            rfSectionProperty.TextID = name;
+            rfSectionProperty.Comment = sectionProperty.Name;
+
+            return rfSectionProperty;
+
+        }
+
+        public static string RFEMSectionName (this ISectionProperty sectionProperty)
+        {
+
+            //rf.CrossSection rfSectionProperty = new rf.CrossSection();
+
+            string name;
+            
+
             name = sectionProperty.DescriptionOrName();
 
-            HashSet<string> standardCSNames = new HashSet<string>() { "HE", "CHS", "IPE", "L", "UPE", "PFC", "RHS", "TUB", "TUC", "UB", "UBP", "UC"};
-                
+            HashSet<string> standardCSNames = new HashSet<string>() { "HE", "CHS", "IPE", "L", "UPE", "PFC", "RHS", "TUB", "TUC", "UB", "UBP", "UC" };
+
 
             if (!standardCSNames.Contains(sectionProperty.Name.Split(' ')[0]))
             {
@@ -160,14 +179,24 @@ namespace BH.Adapter.RFEM
                 }
             }
 
+            if (sectionProperty.Name.Split(' ')[0].Equals("L")) {
+
+                int h = (int)(System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Height")) * 1000);
+                int b = (int)(System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.Width")) * 1000);
+                int t = (int)(System.Convert.ToDouble(Engine.Base.Query.PropertyValue(sectionProperty, "SectionProfile.WebThickness")) * 1000);
+
+                name = "L " + h + "x" + b + "x" + t;
+
+            }
+
             //TODO 
             // The CrossSection class does both use the attribute name and discribtion. 
             // The Grasshopper interface does only know name
-            rfSectionProperty.Description = name;
-            rfSectionProperty.TextID = name;
-            rfSectionProperty.Comment = sectionProperty.Name;
+            //rfSectionProperty.Description = name;
+            //rfSectionProperty.TextID = name;
+            //rfSectionProperty.Comment = sectionProperty.Name;
 
-            return rfSectionProperty;
+            return name;
 
         }
 
