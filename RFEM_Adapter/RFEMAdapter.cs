@@ -75,7 +75,7 @@ namespace BH.Adapter.RFEM
             {
                 {typeof(Bar), new BH.Engine.Structure.BarEndNodesDistanceComparer(3) },
                 {typeof(Node), new BH.Engine.Structure.NodeDistanceComparer(3) },
-                {typeof(ISectionProperty), new BHoMObjectNameOrToStringComparer() },
+                {typeof(ISectionProperty), new RFEMSectionComparer() },
                 {typeof(IMaterialFragment), new BHoMObjectNameComparer() },
                 {typeof(LinkConstraint), new BHoMObjectNameComparer() },
                 //{typeof(Panel), new BHoMObjectNameComparer() },
