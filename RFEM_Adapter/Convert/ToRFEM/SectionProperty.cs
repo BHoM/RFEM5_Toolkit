@@ -188,7 +188,19 @@ namespace BH.Adapter.RFEM
                 name = "L " + h + "x" + b + "x" + t;
 
             }
+            if (sectionProperty.Name.Split(' ')[0].Equals("TUB")) {
 
+                string dimensions=sectionProperty.Name.Split(' ')[1];
+
+                name=string.Concat("1/2 UB ", dimensions);
+            }
+            if (sectionProperty.Name.Split(' ')[0].Equals("TUC"))
+            {
+
+                string dimensions = sectionProperty.Name.Split(' ')[1];
+
+                name = string.Concat("1/2 UC ", dimensions);
+            }
             //TODO 
             // The CrossSection class does both use the attribute name and discribtion. 
             // The Grasshopper interface does only know name

@@ -27,6 +27,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.Constraints;
+using BH.Engine.Base;
+using BH.Engine;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Spatial.ShapeProfiles;
 using rf = Dlubal.RFEM5;
@@ -254,7 +256,26 @@ namespace BH.Engine.Adapters.RFEM
                         profile = Spatial.Create.CircleProfile(v1);
                         break;
 
-                    //case "Z":
+                    case "1/2":
+
+                        //string rfSecName_simplified = profileNameArr[1].Equals("UB") ? " TUB " : " TUC ";
+
+                       
+                        if (profileNameArr[1] == "UC")
+                        {
+                            var parArr=profileNameArr[2].Split('x');
+                            profile = Spatial.Create.TSectionProfile(sectionDBProps[0].fValue, sectionDBProps[1].fValue, sectionDBProps[2].fValue, sectionDBProps[3].fValue, sectionDBProps[3].fValue, sectionDBProps[4].fValue);
+                        }
+                        else if (profileNameArr[1] == "UB") 
+                        {
+                            var parArr = profileNameArr[2].Split('x');
+                            profile = Spatial.Create.TSectionProfile(sectionDBProps[0].fValue, sectionDBProps[1].fValue, sectionDBProps[2].fValue, sectionDBProps[3].fValue, sectionDBProps[3].fValue, sectionDBProps[4].fValue);
+                        }
+                        else Engine.Base.Compute.RecordError("Don't know how to make profile: " + profileName);
+
+
+
+                        break;
                     //case "KZ":
                     //    v1 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_h).fValue;
                     //    v2 = sectionDBProps.FirstOrDefault(x => x.ID == rf3.DB_CRSC_PROPERTY_ID.CRSC_PROP_b).fValue;

@@ -51,11 +51,8 @@ namespace BH.Adapter.RFEM
 
             string sectionName = rfSectionProperty.Description;
 
-            
-
-
-
             rf3.DB_CRSC_PROPERTY[] sectionDBProps = null;
+
             object libraryObj = null;
 
             if (sectionName != "")
