@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -118,9 +118,9 @@
     <Folder Include="Modify\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RFEM_oM\RFEM_oM.csproj">
+    <ProjectReference Include="..\RFEM_oM\RFEM5_oM.csproj">
       <Project>{f55cc8a5-44cb-4333-bc8a-a0eb6775b1a8}</Project>
-      <Name>RFEM_oM</Name>
+      <Name>RFEM5_oM</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

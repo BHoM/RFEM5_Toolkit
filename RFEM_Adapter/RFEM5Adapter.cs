@@ -48,9 +48,9 @@ using BH.Adapter;
 using rf = Dlubal.RFEM5;
 
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter : BHoMAdapter
+    public partial class RFEM5Adapter : BHoMAdapter
     {
         /***************************************************/
         /**** Public Fields                             ****/
@@ -65,7 +65,7 @@ namespace BH.Adapter.RFEM
         [Input("filePath", "Input the optional file path to RFEM model. Default is to use the currently running instance")]
         [Input("rfemSettings", "Input the optional RFEM Settings for the adapter. Default is null")]
         [Output("adapter", "Adapter to RFEM")]
-        public RFEMAdapter(string filePath = "", RFEMSettings rfemSettings = null, bool active = false)
+        public RFEM5Adapter(string filePath = "", RFEMSettings rfemSettings = null, bool active = false)
         {
 
             AdapterIdFragmentType = typeof(RFEMId);

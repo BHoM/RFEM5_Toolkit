@@ -32,7 +32,7 @@ using BH.Engine.Adapter;
 using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
     public class RFEMSectionComparer : IEqualityComparer<ISectionProperty>
     {

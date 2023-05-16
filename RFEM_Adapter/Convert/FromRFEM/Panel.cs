@@ -28,12 +28,12 @@ using System.Threading.Tasks;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Geometry;
-using BH.Adapter.RFEM;
+using BH.Adapter.RFEM5;
 using BH.Engine.Adapter;
 using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
     public static partial class Convert
     {

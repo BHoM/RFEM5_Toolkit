@@ -39,9 +39,9 @@ using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Adapter;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
         public override IEnumerable<object> Pull(IRequest request, PullType pullType = PullType.AdapterDefault, ActionConfig actionConfig = null)
         {
