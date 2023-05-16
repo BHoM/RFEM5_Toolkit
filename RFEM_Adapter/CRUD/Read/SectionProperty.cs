@@ -32,9 +32,9 @@ using rf = Dlubal.RFEM5;
 using rf3 = RFEM3;
 
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
 
         /***************************************************/

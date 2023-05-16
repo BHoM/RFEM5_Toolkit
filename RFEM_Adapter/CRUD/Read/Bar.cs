@@ -33,9 +33,9 @@ using BH.Engine.Spatial;
 using rf = Dlubal.RFEM5;
 using BH.oM.Structure.MaterialFragments;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
 
         /***************************************************/

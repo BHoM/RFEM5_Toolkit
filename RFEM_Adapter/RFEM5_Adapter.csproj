@@ -194,20 +194,20 @@
     <Compile Include="CRUD\Read\SectionProperty.cs" />
     <Compile Include="CRUD\Read\_Read.cs" />
     <Compile Include="CRUD\Update\_Update.cs" />
-    <Compile Include="RFEMAdapter.cs" />
+    <Compile Include="RFEM5Adapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RFEM_Engine\RFEM_Engine.csproj">
+    <ProjectReference Include="..\RFEM_Engine\RFEM5_Engine.csproj">
       <Project>{625C4A3B-A0AB-4B29-B289-4C439B565EFF}</Project>
-      <Name>RFEM_Engine</Name>
+      <Name>RFEM5_Engine</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RFEM_oM\RFEM_oM.csproj">
+    <ProjectReference Include="..\RFEM_oM\RFEM5_oM.csproj">
       <Project>{f55cc8a5-44cb-4333-bc8a-a0eb6775b1a8}</Project>
-      <Name>RFEM_oM</Name>
+      <Name>RFEM5_oM</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

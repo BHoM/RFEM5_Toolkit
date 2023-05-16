@@ -36,9 +36,9 @@ using BH.oM.Structure.Loads;
 using BH.Engine.Adapter;
 using BH.oM.Adapters.RFEM;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
 
         /***************************************************/

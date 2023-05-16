@@ -30,7 +30,7 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.SurfaceProperties;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
     public static partial class Convert
     {

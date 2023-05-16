@@ -34,9 +34,9 @@ using BH.oM.Base;
 using BH.oM.Adapter.Commands;
 
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
         public override Output<List<object>, bool> Execute(IExecuteCommand command, ActionConfig actionConfig = null)
         {
