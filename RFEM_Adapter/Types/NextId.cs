@@ -28,9 +28,9 @@ using System.Threading.Tasks;
 using BH.oM.Structure.MaterialFragments;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
         /***************************************************/
         /**** Adapter overload method                   ****/

@@ -30,9 +30,9 @@ using BH.oM.Adapter;
 using BH.oM.Data.Requests;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
 
         public override int Remove(IRequest request, ActionConfig actionConfig = null)

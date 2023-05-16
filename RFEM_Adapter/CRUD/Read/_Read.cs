@@ -36,9 +36,9 @@ using BH.oM.Structure.Loads;
 using BH.oM.Adapter;
 
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
         /***************************************************/
         /**** Adapter overload method                   ****/
