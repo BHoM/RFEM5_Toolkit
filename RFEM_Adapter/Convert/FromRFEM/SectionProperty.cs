@@ -37,7 +37,7 @@ using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 using rf3 = Dlubal.RFEM3;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
     public static partial class Convert
     {

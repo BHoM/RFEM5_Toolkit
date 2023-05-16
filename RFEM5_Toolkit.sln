@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFEM_Adapter", "RFEM_Adapter\RFEM_Adapter.csproj", "{CFD6BA4A-3480-4351-9F7F-B1B37ABB2F21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFEM5_Adapter", "RFEM_Adapter\RFEM5_Adapter.csproj", "{CFD6BA4A-3480-4351-9F7F-B1B37ABB2F21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFEM_Engine", "RFEM_Engine\RFEM_Engine.csproj", "{625C4A3B-A0AB-4B29-B289-4C439B565EFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFEM5_Engine", "RFEM_Engine\RFEM5_Engine.csproj", "{625C4A3B-A0AB-4B29-B289-4C439B565EFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFEM_oM", "RFEM_oM\RFEM_oM.csproj", "{F55CC8A5-44CB-4333-BC8A-A0EB6775B1A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFEM5_oM", "RFEM_oM\RFEM5_oM.csproj", "{F55CC8A5-44CB-4333-BC8A-A0EB6775B1A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -29,12 +29,12 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.Constraints;
 using BH.oM.Structure.Loads;
-using BH.Adapter.RFEM;
+using BH.Adapter.RFEM5;
 using BH.Engine.Adapter;
 using BH.oM.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
     public static partial class Convert
     {

@@ -27,9 +27,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Adapter;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
         /***************************************************/
         /**** Adapter overload method                   ****/

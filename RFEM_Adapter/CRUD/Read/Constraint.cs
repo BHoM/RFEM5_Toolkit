@@ -32,9 +32,9 @@ using BH.oM.Structure.Constraints;
 using BH.Engine.Adapters.RFEM;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Adapter.RFEM
+namespace BH.Adapter.RFEM5
 {
-    public partial class RFEMAdapter
+    public partial class RFEM5Adapter
     {
 
         /***************************************************/
