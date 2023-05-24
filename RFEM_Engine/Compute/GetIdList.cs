@@ -34,7 +34,7 @@ using rf3 = Dlubal.RFEM3;
 using BH.oM.Base.Attributes;
 using System.ComponentModel;
 
-namespace BH.Engine.Adapters.RFEM
+namespace BH.Engine.Adapters.RFEM5
 {
     public static partial class Compute
     {

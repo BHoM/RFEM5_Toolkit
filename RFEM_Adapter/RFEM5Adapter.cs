@@ -38,7 +38,7 @@ using BH.oM.Base.Attributes;
 using BH.oM.Structure.SectionProperties;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Adapter;
-using BH.oM.Adapters.RFEM;
+using BH.oM.Adapters.RFEM5;
 using BH.Engine.Base.Objects;
 using BH.oM.Structure.SurfaceProperties;
 using BH.oM.Structure.Constraints;
@@ -65,7 +65,7 @@ namespace BH.Adapter.RFEM5
         [Input("filePath", "Input the optional file path to RFEM model. Default is to use the currently running instance")]
         [Input("rfemSettings", "Input the optional RFEM Settings for the adapter. Default is null")]
         [Output("adapter", "Adapter to RFEM")]
-        public RFEM5Adapter(string filePath = "", RFEMSettings rfemSettings = null, bool active = false)
+        public RFEM5Adapter(string filePath = "", RFEM5Settings rfemSettings = null, bool active = false)
         {
 
             AdapterIdFragmentType = typeof(RFEMId);

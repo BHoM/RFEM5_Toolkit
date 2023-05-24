@@ -27,7 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base;
 
-namespace BH.oM.Adapters.RFEM
+namespace BH.oM.Adapters.RFEM5
 {
     public class RFEMId : IAdapterId
     {
