@@ -33,7 +33,7 @@ using BH.oM.Spatial.ShapeProfiles;
 using BH.Engine.Structure;
 using BH.oM.Physical;
 using BH.Engine.Adapter;
-using BH.oM.Adapters.RFEM;
+using BH.oM.Adapters.RFEM5;
 using rf = Dlubal.RFEM5;
 using rf3 = Dlubal.RFEM3;
 
@@ -75,7 +75,7 @@ namespace BH.Adapter.RFEM5
 
 
             IMaterialFragment materialFragment = rfMaterial.FromRFEM();
-            IProfile profile = Engine.Adapters.RFEM.Compute.GetSectionProfile(sectionName, sectionDBProps);
+            IProfile profile = Engine.Adapters.RFEM5.Compute.GetSectionProfile(sectionName, sectionDBProps);
             if (profile != null)
             {
                 IGeometricalSection geoSection = BH.Engine.Structure.Create.SectionPropertyFromProfile(profile, materialFragment, rfSectionProperty.TextID);// this creates the right property if the right material is provided 

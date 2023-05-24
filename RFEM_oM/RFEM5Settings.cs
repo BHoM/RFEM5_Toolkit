@@ -29,12 +29,12 @@ using System.Threading.Tasks;
 using BH.oM.Adapter;
 using BH.oM.Base;
 
-namespace BH.oM.Adapters.RFEM
+namespace BH.oM.Adapters.RFEM5
 {
     [Description("This Config can be specified in the `ActionConfig` input of any Adapter Action (e.g. Push).")]
     // Note: this will get passed within any CRUD method (see their signature). 
     // In order to access its properties, you will need to cast it to `RFEMActionConfig`.
-    public class RFEMSettings : IObject
+    public class RFEM5Settings : IObject
     {
         public virtual bool Is2DModel { get; set; } = false;
         public virtual bool ZIsUp { get; set; } = true;
