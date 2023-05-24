@@ -68,7 +68,7 @@ namespace BH.Adapter.RFEM5
         public RFEM5Adapter(string filePath = "", RFEM5Settings rfemSettings = null, bool active = false)
         {
 
-            AdapterIdFragmentType = typeof(RFEMId);
+            AdapterIdFragmentType = typeof(RFEM5Id);
             BH.Adapter.Modules.Structure.ModuleLoader.LoadModules(this);
 
             AdapterComparers = new Dictionary<Type, object>
