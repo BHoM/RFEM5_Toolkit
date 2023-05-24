@@ -51,7 +51,7 @@ namespace BH.Adapter.RFEM5
             rfLoad.RelativeDistances = false;
             rfLoad.ReferenceTo = rf.MemberLoadReferenceType.MembersType;
 
-            List<string> objectIds = load.Objects.Elements.Select(x => x.AdapterId<int>(typeof(RFEMId)).ToString()).ToList();
+            List<string> objectIds = load.Objects.Elements.Select(x => x.AdapterId<int>(typeof(RFEM5Id)).ToString()).ToList();
             string objectIdString = string.Join(",", objectIds);
             rfLoad.ObjectList = objectIdString;
 

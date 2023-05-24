@@ -50,7 +50,7 @@ namespace BH.Adapter.RFEM5
             List<Opening> openings = null;
             Panel bhPanel = Engine.Structure.Create.Panel(outline,openings,surfaceProperty);
 
-            bhPanel.SetAdapterId(typeof(RFEMId), surface.No);
+            bhPanel.SetAdapterId(typeof(RFEM5Id), surface.No);
 
 
             return bhPanel;

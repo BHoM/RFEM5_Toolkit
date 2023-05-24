@@ -1,0 +1,30 @@
+{
+  "Namespace": {
+    "ToNew": {
+      "BH.oM.Adapters.RFEM": "BH.oM.Adapters.RFEM5"
+    },
+    "ToOld": {
+      "BH.oM.Adapters.RFEM5": "BH.oM.Adapters.RFEM"
+    }
+  },
+  "Type": {
+    "ToNew": {
+      "BH.oM.Adapters.RFEM.RFEMSettings": "BH.oM.Adapters.RFEM5.RFEM5Settings",
+      "BH.oM.Adapters.RFEM.RFEMId": "BH.oM.Adapters.RFEM5.RFEM5Id"
+    },
+    "ToOld": {
+      "BH.oM.Adapters.RFEM5.RFEM5Settings": "BH.oM.Adapters.RFEM.RFEMSettings",
+      "BH.oM.Adapters.RFEM5.RFEM5Id": "BH.oM.Adapters.RFEM.RFEMId"
+    }
+  },
+  "Property": {
+    "ToNew": {
+    },
+    "ToOld": {
+    }
+  },
+  "MessageForDeleted": {
+  },
+  "MessageForNoUpgrade": {
+  }
+}

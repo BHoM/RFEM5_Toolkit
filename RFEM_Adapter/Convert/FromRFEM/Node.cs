@@ -42,7 +42,7 @@ namespace BH.Adapter.RFEM5
         public static Node FromRFEM(this rf.Node node)
         {
             Node bhNode = new Node { Position = new oM.Geometry.Point() { X = node.X, Y = node.Y, Z = node.Z } };
-            bhNode.SetAdapterId(typeof(RFEMId), node.No);
+            bhNode.SetAdapterId(typeof(RFEM5Id), node.No);
 
            
             bhNode.Name = node.Comment;
