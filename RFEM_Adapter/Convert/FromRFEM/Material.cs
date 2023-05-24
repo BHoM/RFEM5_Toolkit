@@ -92,7 +92,7 @@ namespace BH.Adapter.RFEM5
 
             bhMaterial.Name = matName;
 
-            bhMaterial.SetAdapterId(typeof(RFEMId), material.No);
+            bhMaterial.SetAdapterId(typeof(RFEM5Id), material.No);
             return bhMaterial;
         }
 

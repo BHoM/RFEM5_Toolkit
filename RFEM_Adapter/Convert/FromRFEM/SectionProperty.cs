@@ -79,7 +79,7 @@ namespace BH.Adapter.RFEM5
             if (profile != null)
             {
                 IGeometricalSection geoSection = BH.Engine.Structure.Create.SectionPropertyFromProfile(profile, materialFragment, rfSectionProperty.TextID);// this creates the right property if the right material is provided 
-                geoSection.SetAdapterId(typeof(RFEMId), rfSectionProperty.No);
+                geoSection.SetAdapterId(typeof(RFEM5Id), rfSectionProperty.No);
                 geoSection.Name = rfSectionProperty.TextID;
                  
 
@@ -96,7 +96,7 @@ namespace BH.Adapter.RFEM5
                 expSection.Asz = rfSectionProperty.ShearAreaZ;
                 expSection.Iy = rfSectionProperty.BendingMomentY;
                 expSection.Iz = rfSectionProperty.BendingMomentZ;
-                expSection.SetAdapterId(typeof(RFEMId), rfSectionProperty.No);
+                expSection.SetAdapterId(typeof(RFEM5Id), rfSectionProperty.No);
                 expSection.Name = rfSectionProperty.TextID;
                 
                 

@@ -1,0 +1,29 @@
+{
+  "Namespace": {
+    "ToNew": {
+      "BH.oM.Adapters.RFEM": "BH.Adapters.RFEM5"
+    },
+    "ToOld": {
+      "BH.oM.Adapters.RFEM5": "BH.Adapters.RFEM"
+    }
+  },
+  "Type": {
+    "ToNew": {
+
+
+
+    },
+    "ToOld": {
+    }
+  },
+  "Property": {
+    "ToNew": {
+    },
+    "ToOld": {
+    }
+  },
+  "MessageForDeleted": {
+  },
+  "MessageForNoUpgrade": {
+  }
+}

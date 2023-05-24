@@ -29,7 +29,7 @@ using BH.oM.Base;
 
 namespace BH.oM.Adapters.RFEM5
 {
-    public class RFEMId : IAdapterId
+    public class RFEM5Id : IAdapterId
     {
         public object Id { get; set; }
     }
