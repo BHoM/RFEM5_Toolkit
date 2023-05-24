@@ -1,10 +1,10 @@
 {
   "Namespace": {
     "ToNew": {
-      "BH.oM.Adapters.RFEM": "BH.Engine.Adapters.RFEM5"
+      "BH.Engine.Adapters.RFEM": "BH.Engine.Adapters.RFEM5"
     },
     "ToOld": {
-      "BH.oM.Adapters.RFEM5": "BH.Engine.Adapters.RFEM"
+      "BH.Engine.Adapters.RFEM5": "BH.Engine.Adapters.RFEM"
     }
   },
   "Type": {
