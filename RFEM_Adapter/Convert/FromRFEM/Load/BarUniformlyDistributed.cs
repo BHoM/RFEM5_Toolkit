@@ -31,7 +31,7 @@ using BH.oM.Structure.Constraints;
 using BH.oM.Structure.Loads;
 using BH.Adapter.RFEM5;
 using BH.Engine.Adapter;
-using BH.oM.Adapters.RFEM;
+using BH.oM.Adapters.RFEM5;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM5

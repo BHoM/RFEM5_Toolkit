@@ -34,7 +34,7 @@ using rf = Dlubal.RFEM5;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Structure.Loads;
 using BH.Engine.Adapter;
-using BH.oM.Adapters.RFEM;
+using BH.oM.Adapters.RFEM5;
 
 namespace BH.Adapter.RFEM5
 {
@@ -82,7 +82,7 @@ namespace BH.Adapter.RFEM5
 
                         foreach (rf.MemberLoad rfLoad in rfMemberLoads)
                         {
-                            List<string> barIds = BH.Engine.Adapters.RFEM.Compute.GetIdListFromString(rfLoad.ObjectList);
+                            List<string> barIds = BH.Engine.Adapters.RFEM5.Compute.GetIdListFromString(rfLoad.ObjectList);
                             oM.Base.BHoMGroup<Bar> barGroup = new oM.Base.BHoMGroup<Bar>();
                             barGroup.Elements.AddRange(barIds.Where(k => bhBarDict.ContainsKey(k)).Select(k=>bhBarDict[k]));
 
