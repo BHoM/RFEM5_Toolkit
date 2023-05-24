@@ -96,7 +96,7 @@ namespace BH.Adapter.RFEM5
 
 
             surfaceProperty.Name = rfStiffness.Comment;
-            surfaceProperty.SetAdapterId(typeof(RFEMId), rfStiffness.No);
+            surfaceProperty.SetAdapterId(typeof(RFEM5Id), rfStiffness.No);
             return surfaceProperty;
 
         }

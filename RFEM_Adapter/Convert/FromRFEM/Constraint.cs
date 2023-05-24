@@ -151,7 +151,7 @@ namespace BH.Adapter.RFEM5
             }
 
 
-            bhConstraint.SetAdapterId(typeof(RFEMId), rfConstraint.No);
+            bhConstraint.SetAdapterId(typeof(RFEM5Id), rfConstraint.No);
 
             return bhConstraint;
         }

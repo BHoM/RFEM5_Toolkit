@@ -51,7 +51,7 @@ namespace BH.Adapter.RFEM5
             Bar bhBar = BH.Engine.Structure.Create.Bar(ln, sectionProperty, member.Rotation.Angle);
             bhBar.Name = member.Comment;
 
-            bhBar.SetAdapterId(typeof(RFEMId), member.No);
+            bhBar.SetAdapterId(typeof(RFEM5Id), member.No);
             return bhBar;
         }
 

@@ -51,7 +51,7 @@ namespace BH.Adapter.RFEM5
             BarUniformlyDistributedLoad barUniformLoad = new BarUniformlyDistributedLoad();
             barUniformLoad.Loadcase = bhLoadcase;
             barUniformLoad.Objects = objectGroup;
-            barUniformLoad.SetAdapterId(typeof(RFEMId), rfMemberLoad.No);
+            barUniformLoad.SetAdapterId(typeof(RFEM5Id), rfMemberLoad.No);
             
             GetLoadingParameters(rfMemberLoad, out loadAxis, out projected, out direction);
             barUniformLoad.Axis = loadAxis;

@@ -61,12 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fragments\RFEMId.cs" />
+    <Compile Include="Fragments\RFEM5Id.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RFEM5Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Versioning_32.json" />
+    <None Include="Versioning_62.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
