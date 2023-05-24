@@ -61,13 +61,14 @@ namespace BH.Adapter.RFEM5
         /***************************************************/
 
         //Add any applicable constructors here, such as linking to a specific file or anything else as well as linking to that file through the (if existing) com link via the API
+        [PreviousVersion("6.2", "RFEMAdapter.RFEMAdapter(System.String,RFEMSettings, System.Boolean)")]
         [Description("Connect to RFEM")]
         [Input("filePath", "Input the optional file path to RFEM model. Default is to use the currently running instance")]
         [Input("rfemSettings", "Input the optional RFEM Settings for the adapter. Default is null")]
         [Output("adapter", "Adapter to RFEM")]
         public RFEM5Adapter(string filePath = "", RFEM5Settings rfemSettings = null, bool active = false)
         {
-
+           
             AdapterIdFragmentType = typeof(RFEM5Id);
             BH.Adapter.Modules.Structure.ModuleLoader.LoadModules(this);
 
