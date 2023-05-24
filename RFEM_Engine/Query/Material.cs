@@ -33,7 +33,7 @@ using BH.Engine.Structure;
 using BH.oM.Base.Attributes;
 using rf = Dlubal.RFEM5;
 
-namespace BH.Engine.Adapters.RFEM
+namespace BH.Engine.Adapters.RFEM5
 {
     public static partial class Query
     {

@@ -30,7 +30,7 @@ using BH.oM.Structure.Elements;
 using BH.oM.Structure.Loads;
 using BH.oM.Structure.SectionProperties;
 using BH.Engine.Adapter;
-using BH.oM.Adapters.RFEM;
+using BH.oM.Adapters.RFEM5;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM5

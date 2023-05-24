@@ -29,7 +29,7 @@ using BH.oM.Physical.Materials;
 using BH.oM.Structure.Elements;
 using BH.oM.Structure.SurfaceProperties;
 using BH.Engine.Adapter;
-using BH.oM.Adapters.RFEM;
+using BH.oM.Adapters.RFEM5;
 using rf = Dlubal.RFEM5;
 
 namespace BH.Adapter.RFEM5

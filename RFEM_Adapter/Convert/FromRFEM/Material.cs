@@ -30,9 +30,9 @@ using BH.oM.Structure.Constraints;
 using BH.oM.Structure.MaterialFragments;
 using BH.oM.Physical;
 using BH.Engine.Adapter;
-using BH.oM.Adapters.RFEM;
+using BH.oM.Adapters.RFEM5;
 using rf = Dlubal.RFEM5;
-using BH.Engine.Adapters.RFEM;
+using BH.Engine.Adapters.RFEM5;
 
 namespace BH.Adapter.RFEM5
 {
