@@ -12,7 +12,8 @@
     },
     "ToOld": {
       "BH.oM.Adapters.RFEM5.RFEM5Settings": "BH.oM.Adapters.RFEM.RFEMSettings",
-      "BH.oM.Adapters.RFEM5.RFEM5Id": "BH.oM.Adapters.RFEM.RFEMId"
+      "BH.oM.Adapters.RFEM5.RFEM5Id": "BH.oM.Adapters.RFEM.RFEMId" 
+
     }
   },
   "Property": {
