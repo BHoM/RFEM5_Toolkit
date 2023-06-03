@@ -107,11 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compute\GetIdList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\Material.cs" />
-    <Compile Include="Compute\Profile.cs" />
-    <Compile Include="Query\SectionProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Convert\" />
