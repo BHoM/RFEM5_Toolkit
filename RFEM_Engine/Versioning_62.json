@@ -22,6 +22,9 @@
     }
   },
   "MessageForDeleted": {
+    "BH.Engine.Adapters.RFEM.Query.GetSectionType(Dlubal.RFEM5.CrossSection)": "Method GetSectionType for RFEM5 has been tidied away into the Adapter. Functionality remains available during use of the RFEM5 adapter.",
+    "BH.Engine.Adapters.RFEM.Compute.GetIdListFromString(System.String)": "Method GetIdListFromString for RFEM5 has been tidied away into the Adapter. Functionality remains available during use of the RFEM5 adapter.",
+    "BH.Engine.Adapters.RFEM.Compute.GetSectionProfile(System.String, Dlubal.RFEM3.DB_CRSC_PROPERTY[])": "Method GetSectionProfile for RFEM5 has been tidied away into the Adapter. Functionality remains available during use of the RFEM5 adapter."
   },
   "MessageForNoUpgrade": {
   }
