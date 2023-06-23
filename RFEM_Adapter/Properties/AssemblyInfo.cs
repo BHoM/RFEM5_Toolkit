@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RFEM_Adapter")]
-[assembly: AssemblyDescription("https://github.com/BHoM/RFEM_Toolkit")]
+[assembly: AssemblyDescription("https://github.com/BHoM/RFEM5_Toolkit")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Buro Happold")]
 [assembly: AssemblyProduct("RFEM_Adapter")]
@@ -57,7 +57,7 @@ using System.Runtime.InteropServices;
 
 
 [assembly: AssemblyVersion("6.0.0.0")]
-[assembly: AssemblyFileVersion("6.2.0.0")]
+[assembly: AssemblyFileVersion("6.3.0.0")]
 
 
 
