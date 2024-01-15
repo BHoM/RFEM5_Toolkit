@@ -47,8 +47,7 @@ namespace BH.Adapter.RFEM5
             ICurve outline = null;
 
             string[] boundLineList = surface.BoundaryLineList.Split(',');
-            List<Opening> openings = null;
-            Panel bhPanel = Engine.Structure.Create.Panel(outline,openings,surfaceProperty);
+            Panel bhPanel = Engine.Structure.Create.Panel(outline, property: surfaceProperty);
 
             bhPanel.SetAdapterId(typeof(RFEM5Id), surface.No);
 
