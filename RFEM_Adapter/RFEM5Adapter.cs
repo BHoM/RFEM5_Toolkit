@@ -124,7 +124,7 @@ namespace BH.Adapter.RFEM5
                 {
                     try
                     {
-                        app = Marshal.GetActiveObject("RFEM5.Application") as rf.IApplication;
+                        app = Engine.Adapter.Query.GetActiveObject("RFEM5.Application") as rf.IApplication;
 
                         app.LockLicense();
                         lockLevel = 1;
