@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2025, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -124,7 +124,7 @@ namespace BH.Adapter.RFEM5
                 {
                     try
                     {
-                        app = Marshal.GetActiveObject("RFEM5.Application") as rf.IApplication;
+                        app = Engine.Adapter.Query.GetActiveObject("RFEM5.Application") as rf.IApplication;
 
                         app.LockLicense();
                         lockLevel = 1;
@@ -242,6 +242,7 @@ namespace BH.Adapter.RFEM5
 
     }
 }
+
 
 
 
