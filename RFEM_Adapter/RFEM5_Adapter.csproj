@@ -1,35 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFD6BA4A-3480-4351-9F7F-B1B37ABB2F21}</ProjectGuid>
+<TargetFramework>net472</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BH.Adapter.RFEM</RootNamespace>
-    <AssemblyName>RFEM5_Adapter</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>..\Build\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <AssemblyTitle>RFEM_Adapter</AssemblyTitle>
+    <Description>https://github.com/BHoM/RFEM5_Toolkit</Description>
+    <Company>Buro Happold</Company>
+    <Product>RFEM_Adapter</Product>
+    <Copyright>Copyright � https://github.com/BHoM</Copyright>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
+    <FileVersion>9.1.0.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\Build\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(TargetDir)$(TargetFileName)&quot;  &quot;C:\ProgramData\BHoM\Assemblies&quot; /Y" />
+  </Target>
   <ItemGroup>
     <Reference Include="Adapter_Engine">
       <HintPath>$(ProgramData)\BHoM\Assemblies\Adapter_Engine.dll</HintPath>
@@ -71,26 +56,6 @@
       <HintPath>$(ProgramData)\BHoM\Assemblies\Dimensional_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Dlubal.DynamPro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ad96acf4bd703704, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.DynamPro.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Dlubal.RFEM3, Version=3.4.0.0, Culture=neutral, PublicKeyToken=2168830b90cb4fa2, processorArchitecture=AMD64">
-      <HintPath>..\packages\BHoM.Interop.RFEM3.1.0.0\lib\net45\Dlubal.RFEM3.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Dlubal.RFEM5, Version=5.5.0.0, Culture=neutral, PublicKeyToken=f22b2f92593d105e, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.RFEM5.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Dlubal.SteelSurfaces, Version=2.0.0.0, Culture=neutral, PublicKeyToken=401d448485510c51, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.SteelSurfaces.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Dlubal.TimberPro, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0b06332e21b255cd, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM5.1.0.0\lib\net45\x86\Dlubal.TimberPro.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Geometry_Engine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramData)\BHoM\Assemblies\Geometry_Engine.dll</HintPath>
@@ -100,10 +65,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramData)\BHoM\Assemblies\Geometry_oM.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Interop.RFEM3, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BHoM.Interop.RFEM3.1.0.0\lib\net45\Interop.RFEM3.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Physical_oM">
       <SpecificVersion>False</SpecificVersion>
@@ -135,101 +96,37 @@
       <HintPath>$(ProgramData)\BHoM\Assemblies\Structure_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <Reference Include="Dlubal.DynamPro">
+      <HintPath>$(NuGetPackageRoot)bhom.interop.rfem5\1.0.0\lib\net45\x86\Dlubal.DynamPro.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Dlubal.RFEM3">
+      <HintPath>$(NuGetPackageRoot)bhom.interop.rfem3\1.0.0\lib\net45\Dlubal.RFEM3.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Dlubal.RFEM5">
+      <HintPath>$(NuGetPackageRoot)bhom.interop.rfem5\1.0.0\lib\net45\x86\Dlubal.RFEM5.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Dlubal.SteelSurfaces">
+      <HintPath>$(NuGetPackageRoot)bhom.interop.rfem5\1.0.0\lib\net45\x86\Dlubal.SteelSurfaces.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Dlubal.TimberPro">
+      <HintPath>$(NuGetPackageRoot)bhom.interop.rfem5\1.0.0\lib\net45\x86\Dlubal.TimberPro.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.RFEM3">
+      <HintPath>$(NuGetPackageRoot)bhom.interop.rfem3\1.0.0\lib\net45\Interop.RFEM3.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdapterActions\Pull.cs" />
-    <Compile Include="AdapterActions\Push.cs" />
-    <Compile Include="Comparers\RFEMSectionComparer.cs" />
-    <Compile Include="Compute\GetIdList.cs" />
-    <Compile Include="Compute\Profile.cs" />
-    <Compile Include="Convert\FromRFEM\Bar.cs" />
-    <Compile Include="Convert\FromRFEM\Constraint.cs" />
-    <Compile Include="Convert\FromRFEM\Load\BarUniformlyDistributed.cs" />
-    <Compile Include="Convert\FromRFEM\Material.cs" />
-    <Compile Include="Convert\FromRFEM\Node.cs" />
-    <Compile Include="Convert\FromRFEM\Panel.cs" />
-    <Compile Include="Convert\FromRFEM\SectionProperty.cs" />
-    <Compile Include="Convert\FromRFEM\SurfaceProperty.cs" />
-    <Compile Include="Convert\ToRFEM\Bar.cs" />
-    <Compile Include="Convert\ToRFEM\Constraint.cs" />
-    <Compile Include="Convert\ToRFEM\Load\BarUniformlyDistributed.cs" />
-    <Compile Include="Convert\ToRFEM\Load\ILoad.cs" />
-    <Compile Include="Convert\ToRFEM\Load\Loadcase.cs" />
-    <Compile Include="Convert\ToRFEM\Material.cs" />
-    <Compile Include="Convert\ToRFEM\Node.cs" />
-    <Compile Include="Convert\ToRFEM\Panel.cs" />
-    <Compile Include="Convert\ToRFEM\SectionProperty.cs" />
-    <Compile Include="Convert\ToRFEM\SurfaceProperty.cs" />
-    <Compile Include="Convert\ToRFEM\Type.cs" />
-    <Compile Include="CRUD\Create\Bar.cs" />
-    <Compile Include="CRUD\Create\Edge.cs" />
-    <Compile Include="CRUD\Create\Load.cs" />
-    <Compile Include="CRUD\Create\Loadcase.cs" />
-    <Compile Include="CRUD\Create\Material.cs" />
-    <Compile Include="CRUD\Create\Node.cs" />
-    <Compile Include="CRUD\Create\Constraints.cs" />
-    <Compile Include="CRUD\Create\Panel.cs" />
-    <Compile Include="CRUD\Create\RigidLink.cs" />
-    <Compile Include="CRUD\Create\SectionProperty.cs" />
-    <Compile Include="CRUD\Create\SurfaceProperty.cs" />
-    <Compile Include="CRUD\Create\_Create.cs" />
-    <Compile Include="CRUD\Delete\_Remove.cs" />
-    <Compile Include="AdapterActions\_Execute.cs" />
-    <Compile Include="CRUD\Read\Constraint.cs" />
-    <Compile Include="CRUD\Read\Load.cs" />
-    <Compile Include="CRUD\Read\Loadcase.cs" />
-    <Compile Include="CRUD\Read\RigidLink.cs" />
-    <Compile Include="CRUD\Read\Panel.cs" />
-    <Compile Include="CRUD\Read\SurfaceProperty.cs" />
-    <Compile Include="Query\Material.cs" />
-    <Compile Include="Query\SectionProperty.cs" />
-    <Compile Include="Types\NextId.cs" />
-    <Compile Include="CRUD\Read\Bar.cs" />
-    <Compile Include="CRUD\Read\Material.cs" />
-    <Compile Include="CRUD\Read\Node.cs" />
-    <Compile Include="CRUD\Read\SectionProperty.cs" />
-    <Compile Include="CRUD\Read\_Read.cs" />
-    <Compile Include="CRUD\Update\_Update.cs" />
-    <Compile Include="RFEM5Adapter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ProjectReference Include="..\RFEM_Engine\RFEM5_Engine.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RFEM_Engine\RFEM5_Engine.csproj">
-      <Project>{625C4A3B-A0AB-4B29-B289-4C439B565EFF}</Project>
-      <Name>RFEM5_Engine</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\RFEM_oM\RFEM5_oM.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RFEM_oM\RFEM5_oM.csproj">
-      <Project>{f55cc8a5-44cb-4333-bc8a-a0eb6775b1a8}</Project>
-      <Name>RFEM5_oM</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-      xcopy "$(TargetDir)$(TargetFileName)"  "C:\ProgramData\BHoM\Assemblies" /Y
-    </PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
