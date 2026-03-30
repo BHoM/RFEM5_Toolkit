@@ -31,7 +31,7 @@ namespace BH.oM.Adapters.RFEM5
 {
     public class RFEM5Id : IAdapterId
     {
-        public object Id { get; set; }
+        public virtual object Id { get; set; }
     }
 }
 
