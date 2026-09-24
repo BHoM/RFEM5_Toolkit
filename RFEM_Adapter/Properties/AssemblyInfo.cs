@@ -57,7 +57,7 @@ using System.Runtime.InteropServices;
 
 
 [assembly: AssemblyVersion("9.0.0.0")]
-[assembly: AssemblyFileVersion("9.2.0.0")]
+[assembly: AssemblyFileVersion("9.3.0.0")]
 
 
 
